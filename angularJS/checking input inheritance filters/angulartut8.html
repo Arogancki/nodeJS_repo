@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="app8" ng-cloak>
+  <head>
+    <title>AngularJS Tutorial 8</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    </style>
+  </head>
+  <body>
+
+    <!-- Filters transform data in the view without altering it in the scope using the pipe character -->
+    <div ng-controller="mainCtrl">
+
+      <!-- Uppercase -->
+      <label>Make Uppercase : </label>
+      <input type="text" ng-model="name">
+      <p>Uppercase : {{name | uppercase}}</p>
+
+      <!-- Lowercase -->
+      <p>Lowercase : {{name | lowercase}}</p>
+
+      <!-- Currency Filter -->
+      <label>Currency Filter : </label>
+      <input type="text" ng-model="money">
+      <p>Uppercase : {{money | currency}}</p>
+
+      <!-- Filter filter
+      Change the order direction by putting -gpa -->
+      <ul>
+        <li ng-repeat = "student in student.gpas | filter: studentName |orderBy:'gpa'">
+          {{ 'Name: ' + student.name + ' : GPA: ' + student.gpa }}
+        </li>
+      </ul>
+
+      <!-- Number Filter -->
+      <label>Number Filter : </label>
+      <input type="text" ng-model="numVal">
+      <p>Default : {{numVal | number}}</p>
+      <p>No Fractions : {{numVal | number:0}}</p>
+      <p>Negative 4 Decimals : {{-numVal | number:4}}</p>
+
+      <!-- Date Filter https://docs.angularjs.org/api/ng/filter/date -->
+      <p>Date 1 : {{currDate | date:'medium'}}</p>
+      <p>Date 2 : {{currDate | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+
+      <!-- LimitTo Filter -->
+      <p>Default : {{randomStr}}</p>
+      <p>10 Characters : {{randomStr | limitTo:10}}</p>
+      <p>
+        <ul>
+          <li ng-repeat="item in randArray | limitTo:3">
+            {{item}}
+          </li>
+        </ul>
+      </p>
+
+      <!-- Custom Filter
+      Different unicode characters are returned based on if item.rain
+      has the value of true or false -->
+      <p>
+        <ul>
+          <li ng-repeat="item in weather">
+            {{item.day + " : "}} {{item.rain | raining}}
+          </li>
+        </ul>
+      </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/exam8.js"></script>
+
+    <!-- Needed for custom Filter -->
+    <script src="js/filters.js"></script>
+
+  </body>
+</html>
