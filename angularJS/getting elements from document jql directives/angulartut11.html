@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="app11" ng-cloak>
+  <head>
+    <title>AngularJS Tutorial 11</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    </style>
+  </head>
+  <body>
+
+    <!-- Another custom directive example. Will pull in data based on the value of an attribute and replace the element player with that data below -->
+    <div ng-controller="mainCtrl">
+
+      <!-- Define the data to print by passing the scope name -->
+      <player name="barryBonds"></player>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/exam11.js"></script>
+  </body>
+</html>

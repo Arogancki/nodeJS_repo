@@ -1,0 +1,80 @@
+<!doctype html>
+<html ng-app="app14" ng-cloak>
+  <head>
+    <title>AngularJS Tutorial 14</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    .thick {
+      font-weight: bold;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div ng-controller="mainCtrl">
+
+      <!-- Demonstrate $window -->
+      <input type="text" ng-model="userName" />
+      <button ng-click="greetUser(userName)">Hello</button>
+      <br><br>
+
+      <!-- Demonstrate $location -->
+      URL : {{currURL}}
+      <br><br>
+
+      Protocol : {{theProtocol}}
+      <br><br>
+
+      Host : {{currHost}}
+      <br><br>
+
+      Port : {{currPort}}
+      <br><br>
+
+      Path : {{currPath}}
+      <br><br>
+
+      Search : {{currSearch}}
+      <br><br>
+
+      <!-- Updates time using $interval -->
+      Current Time : {{time}}
+      <br><br>
+
+      <!-- The $log service -->
+      <label>Message:
+        <input type="text" ng-model="message" /></label>
+        <button ng-click="$log.log(message)">log</button>
+        <button ng-click="$log.warn(message)">warn</button>
+        <button ng-click="$log.info(message)">info</button>
+        <button ng-click="$log.error(message)">error</button>
+        <button ng-click="$log.debug(message)">debug</button>
+        <br><br>
+
+        <!-- The $exceptionHandler service -->
+        <button ng-click="throwException()">Throw Exception</button>
+        <br><br>
+
+        <!-- Angular automatically replaces < and > that is entered by the user to keep them from entering dangerous HTML. <p onmouseover=alert('Doing Bad Stuff')>Do Bad Stuff</p> isn't displayed as HTML unless you use ng-bind-html, but even then onmouseover is stripped away. -->
+
+        <input type="text" ng-model="badStuff"/>
+        <br><br>
+        <span>{{badStuff}}</span>
+        <span ng-bind-html="badStuff"></span>
+        <span ng-bind="badStuff"></span>
+        <br>
+
+        <!-- $compile service -->
+        <p get-player-info></p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+    <!-- Used to allow some HTML to avoid sanitization -->
+    <script src="http:////ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.js"></script>
+    <script src="js/exam14.js"></script>
+  </body>
+</html>

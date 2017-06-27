@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="app10" ng-cloak>
+  <head>
+    <title>AngularJS Tutorial 10</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    </style>
+  </head>
+  <body>
+
+    <!-- Create a custom directive and then cover how to append, prepend, remove and replace HTML elements -->
+
+    <!-- Custom directives allow you to add functionality not provided by AngularJS and to create reusable code -->
+
+    <div ng-controller="mainCtrl">
+
+      <!-- The directive name is different because each uppercase letter is treated as a separate word in the attribute name. We define the item to get from the array by saving it in the array-item attribute. This is an example on how to apply a directive as an attribute. -->
+      <div bb-player-list="bbPlayers" array-item="name | uppercase"></div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/exam10.js"></script>
+  </body>
+</html>

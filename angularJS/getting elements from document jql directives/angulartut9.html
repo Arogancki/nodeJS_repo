@@ -1,0 +1,53 @@
+<!doctype html>
+<html ng-app="app9" ng-cloak>
+  <head>
+    <title>AngularJS Tutorial 9</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    .thick {
+      font-weight: bold;
+    }
+    </style>
+  </head>
+  <body>
+
+    <!-- We cover how to modify, set, get attributes, set attributes, get values, set values for HTML elements -->
+
+    <div ng-controller="mainCtrl">
+
+      <ul jql-directive>
+        <li id="barry">Barry Bonds</li>
+        <ul>
+          <li>AVG : .298
+          <li>HR : 762
+          <li>OBP : .444
+        </ul>
+        <li id="hank">Hank Aaron</li>
+        <ul>
+          <li>AVG : .305
+          <li>HR : 755
+          <li>OBP : .374
+        </ul>
+        <li>Babe Ruth</li>
+        <ul>
+          <li>AVG : .342
+          <li>HR : 714
+          <li>OBP : .474
+        </ul>
+      </ul>
+
+      <h4>Children in List</h4>
+      <span id="childrenList"></span><br><br>
+      Barry's Number: <span id="barrysNum"></span><br><br>
+      Is Hank Bold: <span id="hankBold"></span><br><br>
+      Barry's ID: <span id="barryID"></span><br><br>
+      <button ng-click="unBold()">Toggle Bold</button>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/exam9.js"></script>
+  </body>
+</html>
