@@ -7,11 +7,20 @@ body
 	padding:1%;
 }	
 
-.element
+a:-webkit-any-link {
+	text-decoration: none; /* no underline */
+	 color: inherit; /* blue colors for links too */
+}
+.elementText, .elementButton
 {
 	border: 2px solid #FFFFFF;
 	text-align:center;
-	margin:-1px;
+}
+
+.elementButton:hover
+{
+	background-color: #FFFFFF;
+	color: #3399FF;
 }
 
 footer

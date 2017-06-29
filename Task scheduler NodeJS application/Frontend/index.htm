@@ -12,30 +12,99 @@
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<!-- AngularJS external link -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+		<!-- JQuery external link -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!--  Font external link -->
 		<link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
 		<!--  CSS external link -->
 		<link rel="stylesheet" href="styles.css">
-	</head>
-	<body>
-	
-			<header>
-					<div id="headerTitle" class="element" style="width:75%;height:50px;text-align:left;float: left;">
-							<div class="text1">NodeJS task menager</div>
-					</div>
-					<div id="headerButton1" class="element" style="width:25%;height:26px;float: left;">
-						<div class="text5">NodeJS task menager</div>
-					</div>
-					<div id="headerButton2" class="element" style="width:25%;height:26px;float: left;">
-						<div class="text5">NodeJS task menager</div>
-					</div>
-				</div>
-				
-			</header>
+		
+		<script>
+			function alignRowColumn1to2(column1, column21, column22)
+			{
+				document.getElementById(column1).style.height=
+				document.getElementById(column21).offsetHeight+
+				document.getElementById(column22).offsetHeight+'px';
+			}
 			
-			<main>
+			var main = angular.module("main", ['ngRoute']);
+			
+			main.controller('mainController', function($scope) {
+				$scope.headerButton1={
+					link: "SingIn",
+					text: "Sing In"
+				};
+				$scope.headerButton2={
+					link: "SingUp",
+					text: "Sing Up"
+				};
+			});
+			
+			main.controller('SingInController', function($scope) {
+			});
+			
+			main.controller('SingUpController', function($scope) {
+			});
+			
+			main.config(['$routeProvider', function($routeProvider) {
+            $routeProvider.
+            when('/SingIn', {
+               templateUrl: 'SingIn.htm',
+               controller: 'SingInController'
+            }).
+            
+            when('/SingUp', {
+               templateUrl: 'SingUp.htm',
+               controller: 'SingUpController'
+            }).
+            otherwise({
+               redirectTo: '/SingIn'
+            });
+			}]);
+			
+		</script>
+		
+	</head>
+	<body ng-app = "main" ng-init ng-controller = "mainController">
+	
+			<div id="headerTitle" class="elementText" style="width:75%;text-align:left;float: left;">
+					<div class="text1" >NodeJS task menager</div>
+			</div>
+			<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+				<a href = "#/{{headerButton1.link}}"><div class="text5">{{headerButton1.text}}</div></a>
+			</div>
+			<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+				<a href = "#/{{headerButton2.link}}"><div class="text5">{{headerButton2.text}}</div></a>
+			</div>
+			<div style="float:auto"></div>
+			
+			<div ng-view id="main">
+				<!-- Script for dynamicly update header size and marignTop header-main-->
+				<script>
+				alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
+				document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; 
+				$(window).resize(function(e) { alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; });
+				</script>
+			
+				<script type = "text/ng-template" id = "SingIn.htm">
+					<div class="elementText" style="padding:2% 25%;">
+							<div class="elementText" style="width:50%;float:left; margin: 0 auto;">
+								Nick:
+							</div>
+							<div class="elementText" style="width:50%;float:left; margin: 0 auto;">
+								asdad
+							</div>
+							<div style="float:auto"></div>
+							
+					</div>
+				</script>
+				 
+				<script type = "text/ng-template" id = "SingUp.htm">
+					<h2> up </h2>
+				</script>
 				
-			</main>
+			</div>
 			
 			<footer>
 				<div class="text6">Artur Ziemba - Task menager application as an example of Node.js technology</div>
