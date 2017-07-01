@@ -5,6 +5,7 @@ body
 	color: #FFFFFF;
 	font-family: 'Exo', sans-serif;
 	padding:2%;
+	font-size: 19px;
 }	
 
 #template
@@ -21,14 +22,14 @@ footer
 	margin-top:1%;
 	position: absolute;
 	margin-left:2%;
-	width: 92%;
+	min-width: 92%;
 }
 
 ul 
 { 
 	display:table; 
 	margin:0 auto;
-	width:100%;
+	min-width:100%;
 	list-style-type: none;
 }
 
@@ -82,7 +83,7 @@ input[type="text"] {
   border-bottom: solid 2px #3399FF;
   background: transparent;
   text-align:center;
-  width:80%;
+  min-width:80%;
   color:#FFFFFF;
 }
 
@@ -92,7 +93,7 @@ input[type="text"]:hover{
 
 input[type="text"]:focus,input[type="text"].focus{
 	outline: none;
-  border-bottom: solid 2px #FFFFFF;
+	border-bottom: solid 2px #FFFFFF;
 }
 
 .main
@@ -128,29 +129,29 @@ input[type="text"]:focus,input[type="text"].focus{
 }
 
 .text1 {
-  font-size: 5.5vh;
+  font-size: 2.6vw;
 }
 .text2{
-  font-size: 5.0vh;
+  font-size: 2.4vw;
 }
 .text3{
-  font-size: 4.5vh;
+  font-size: 2.2vw;
 }
 .text4{
-  font-size: 4.0vh;
+  font-size: 2.0vw;
 }
 .text5{
-  font-size: 3.5vh;
+  font-size: 1.8vw;
 }
 .text6 {
-  font-size: 3.0vh;
+  font-size: 1.6vw;
 }
 .text7 {
-  font-size: 2.5vh;
+  font-size: 1.4vw;
 }
 .text8 {
-  font-size: 2.0vh;
+  font-size: 1.2vw;
 }
 .text9 {
-  font-size: 1.5vh;
+  font-size: 1.0vw;
 }
