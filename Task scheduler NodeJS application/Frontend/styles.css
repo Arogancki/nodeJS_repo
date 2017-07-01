@@ -1,20 +1,124 @@
 body
 {
-	background-color: #3399FF;
-	height: 100%;
+	background-color: #3399FF; 
+	min-height: 100vh;
 	color: #FFFFFF;
 	font-family: 'Exo', sans-serif;
-	padding:1%;
+	padding:2%;
 }	
+
+#template
+{
+	position: relative; /* needed for footer positioning*/
+	height: auto !important; /* real browsers */
+	min-height: 100%; /* real browsers */
+}
+
+footer
+{
+	border-top: solid 1px #99CCFF;
+	text-align:center;
+	margin-top:1%;
+	position: absolute;
+	margin-left:2%;
+	width: 92%;
+}
+
+ul 
+{ 
+	display:table; 
+	margin:0 auto;
+	width:100%;
+	list-style-type: none;
+}
+
+li
+{
+	padding: 2% 2% 2% 2%;
+}
+
+body::after
+{
+	content: "";
+	background-image: url("https://userscontent2.emaze.com/images/2530c89d-5ac8-485c-8589-295acf19125e/c2001a0468c5237fadf3f84e94675311.png");
+	opacity: 0.1;
+	top: 0;
+	left: 0;
+	z-index: -1;  
+	background-repeat:repeat;
+	min-width: 100%;
+	min-height: 100%;
+	position: fixed;
+}
 
 a:-webkit-any-link {
 	text-decoration: none; /* no underline */
 	 color: inherit; /* blue colors for links too */
 }
-.elementText, .elementButton
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   color: #FFFFFF;
+   font-style: italic;
+   opacity: 0.5;
+}
+::-moz-placeholder { /* Firefox 19+ */
+   color: #FFFFFF;
+   font-style: italic;
+   opacity: 0.5;
+}
+:-ms-input-placeholder { /* IE 10+ */
+   color: #FFFFFF;
+   font-style: italic;
+   opacity: 0.5;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: pink;
+   font-style: italic;
+   opacity: 0.5;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: solid 2px #3399FF;
+  background: transparent;
+  text-align:center;
+  width:80%;
+  color:#FFFFFF;
+}
+
+input[type="text"]:hover{
+  border-bottom: solid 2px #99CCFF;
+}
+
+input[type="text"]:focus,input[type="text"].focus{
+	outline: none;
+  border-bottom: solid 2px #FFFFFF;
+}
+
+.main
+{
+	min-height:90vh;
+	text-align:center;
+	padding: 5% 25% 2% 25%;
+	background: rgba(1, 1, 1, 0.3);
+}
+
+.bordered
 {
 	border: 2px solid #FFFFFF;
 	text-align:center;
+}
+
+.elementText
+{
+	border: 2px solid #FFFFFF;
+	text-align:center;
+}
+
+.elementButton ,.elementButton:focus
+{
+	text-align:center;
+	background: rgba(0.128, 0.386, 1, 0.5);
 }
 
 .elementButton:hover
@@ -23,16 +127,11 @@ a:-webkit-any-link {
 	color: #3399FF;
 }
 
-footer
-{
-	text-align:center;
-}
-
 .text1 {
   font-size: 5.5vh;
 }
 .text2{
-  font-size: 3.0vh;
+  font-size: 5.0vh;
 }
 .text3{
   font-size: 4.5vh;
@@ -45,4 +144,13 @@ footer
 }
 .text6 {
   font-size: 3.0vh;
+}
+.text7 {
+  font-size: 2.5vh;
+}
+.text8 {
+  font-size: 2.0vh;
+}
+.text9 {
+  font-size: 1.5vh;
 }

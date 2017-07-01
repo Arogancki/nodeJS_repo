@@ -21,97 +21,331 @@
 		<link rel="stylesheet" href="styles.css">
 		
 		<script>
-			function alignRowColumn1to2(column1, column21, column22)
-			{
-				document.getElementById(column1).style.height=
-				document.getElementById(column21).offsetHeight+
-				document.getElementById(column22).offsetHeight+'px';
+			function alignRowColumn1to2(column1, column21, column22){
+				try {
+					document.getElementById(column1).style.height=
+					document.getElementById(column21).offsetHeight+
+					document.getElementById(column22).offsetHeight+'px';
+				}
+				catch (err){}
 			}
 			
 			var main = angular.module("main", ['ngRoute']);
 			
-			main.controller('mainController', function($scope) {
-				$scope.headerButton1={
-					link: "SingIn",
-					text: "Sing In"
-				};
-				$scope.headerButton2={
-					link: "SingUp",
-					text: "Sing Up"
-				};
+			main.controller('SignInController', function($scope) {
+				$scope.SignIn=function(){
+				}
 			});
 			
-			main.controller('SingInController', function($scope) {
+			main.controller('SignUpController', function($scope) {
+				$scope.SignUp=function(){
+				}
 			});
 			
-			main.controller('SingUpController', function($scope) {
+			main.controller('AppController', function($scope) {
+				$scope.CreateNewBoard=function(){
+					var input=prompt("Please enter new board name");
+					if (input != null) {
+						
+					}
+				}
+				$scope.AcceptInvitation=function(invitation){
+					if (confirm('Invitation will be accepted.')) {
+						//accept invitation
+					} else {
+						// Remove invitation
+					}
+				}
+				
+				$scope.ActiveBoard=function(board){
+					$scope.activeBoard=board;
+				}
+				
+				$scope.isThatMe=function(name){
+					return $scope.login===name ? true : false;
+				} 
+					
+				$scope.activeBoard="";
+				$scope.login="Arek";
+				$scope.boards=[{name:"Klikaj tu",owner:"Arek",members:["Michal","Janek"],invitations:["kasia","monika"]},{name:"dupaJarka",owner:"Jarek"},{name:"AAAAAdupaJarka",owner:"Jarek"}];
+				$scope.invitations=[{name:"Barka",owner:"Jarek"},{name:"Aarka",owner:"Jarek"},{name:"dupaJarka",owner:"Jarek"}];
+			});
+			
+			main.controller('SettingsController', function($scope) {
+				$scope.Change=function(){
+				}
 			});
 			
 			main.config(['$routeProvider', function($routeProvider) {
-            $routeProvider.
-            when('/SingIn', {
-               templateUrl: 'SingIn.htm',
-               controller: 'SingInController'
-            }).
-            
-            when('/SingUp', {
-               templateUrl: 'SingUp.htm',
-               controller: 'SingUpController'
-            }).
-            otherwise({
-               redirectTo: '/SingIn'
-            });
+			$routeProvider.
+				when('/SignIn', {
+					templateUrl: 'SignIn.htm',
+					controller: 'SignInController'
+				}).
+			
+				when('/SignUp', {
+					templateUrl: 'SignUp.htm',
+					controller: 'SignUpController'
+				}).
+			
+				when('/App', {
+					templateUrl: 'App.htm',
+					controller: 'AppController'
+				}).
+				
+				when('/Settings', {
+					templateUrl: 'Settings.htm',
+					controller: 'SettingsController'
+				}).
+			
+				otherwise({
+					redirectTo: '/SignIn'
+				});
 			}]);
 			
 		</script>
 		
 	</head>
-	<body ng-app = "main" ng-init ng-controller = "mainController">
+	<body ng-app = "main">
 	
-			<div id="headerTitle" class="elementText" style="width:75%;text-align:left;float: left;">
-					<div class="text1" >NodeJS task menager</div>
-			</div>
-			<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
-				<a href = "#/{{headerButton1.link}}"><div class="text5">{{headerButton1.text}}</div></a>
-			</div>
-			<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
-				<a href = "#/{{headerButton2.link}}"><div class="text5">{{headerButton2.text}}</div></a>
-			</div>
-			<div style="float:auto"></div>
+		<div ng-view id="template">
+			<script type = "text/ng-template" id = "SignIn.htm">
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignIn"><div class="text5">Sign In</div></a>
+					</div>
+					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignUp"><div class="text5">Sign Up</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+				
+				<div class="main">
+						<table style="width:100%;">
+							<tr>
+								<td style="width:50%;">
+										<div class="text4" >Login</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="login" ng-model = "login">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="password" ng-model = "password">
+								</td>
+							</tr>
+						</table>
+						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignIn()">
+							<a href =  ""><div class="text4">Accept</div></a>
+						</div>
+				</div>
+			</script>
 			
-			<div ng-view id="main">
-				<!-- Script for dynamicly update header size and marignTop header-main-->
-				<script>
-				alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
+			<script type = "text/ng-template" id = "SignUp.htm">
+				
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignIn"><div class="text5">Sign In</div></a>
+					</div>
+					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignUp"><div class="text5">Sign Up</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+			
+				<div class="main">
+						<table style="width:100%;">
+							<tr>
+								<td style="width:50%;">
+									<div class="text4" >Login</div>
+								</td>
+								<td style="width:50%">
+									<input class="text6" type = "text" placeholder="login" ng-model = "login">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+									<div class="text4" >Password</div>
+								</td>
+								<td style="width:50%">
+									<input class="text6" type = "text" placeholder="password" ng-model = "password">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+									<div class="text4" >Re-type password</div>
+								</td>
+								<td style="width:50%">
+									<input class="text6" type = "text" placeholder="re-type password" ng-model = "password2">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+									<div class="text4" >Email</div>
+									<div class="text8" >Fill only if you want receive notifications</div>
+								</td>
+								<td style="width:50%">
+									<input class="text6" type = "text" placeholder="email" ng-model = "email">
+								</td>
+							</tr>
+						</table>
+						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignUp()">
+							<a  href = ""><div class="text4">Accept</div></a>
+						</div>
+				</div>
+			</script>
+			
+			<script type = "text/ng-template" id = "App.htm">
+			
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/Settings"><div class="text5">Settings</div></a>
+					</div>
+					<div  id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignIn"><div class="text5">Sign Out</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+			
+				<div class="main" style="padding-left:0%;padding-right:0%;">
+					<table style="width:100%;">
+						<tr>
+							<td valign="top" style="width:25%;">
+								<ul>
+									<li style="width:100%;overflow: hidden;overflow:auto">
+											<div class="elementButton" ng-click ="CreateNewBoard()" style="float: left;; width:25%;">
+												<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
+											</div>	
+											<div class="text2" style="float: left;margin-right:12.5%;width:50%;">Boards:</div>
+											<div style="float:auto;"></div>
+									</li>
+									<li ng-hide="!boards.length" ng-repeat = "board in boards  | orderBy: 'name.toString()'">
+										<div class="elementButton" ng-click = "ActiveBoard(board);"><a  href = ""><!--href = "#/Board"-->
+											<div ng-show="isThatMe(board.owner)" class="text5" style="border-left: solid 1vh #FFFFFF;">{{board.name}}</div>
+											<div ng-show="!isThatMe(board.owner)" class="text5" style="border-left: solid 1vh #FFFFFF;">{{board.name+" ("+board.owner+")"}}</div>
+										</a></div>
+									</li>
+									<li ng-show="!boards.length">
+										<div class="text5">You dont have any boards</div>
+									</li>
+									<li>
+										<div class="text2" ng-hide="!invitations.length">Invitations:</div>
+									</li>
+									<li ng-hide="!invitations.length" ng-repeat = "invitation in invitations | orderBy: 'name.toString()'">
+										<div class="elementButton" ng-click = "AcceptInvitation(invitation);"><a  href = "#/Board">
+											<div class="text5" style="border-left: solid 1vh #FFFFFF;">{{invitation.owner+": "+invitation.name}}</div>
+										</a></div>
+									</li>
+								</ul>
+							</td>
+							<td valign="top" style="width:50%;">
+								<div class="text4" >Main<br>Main<br>Main<br>Main<br>Main<br>Main<br>Main</div>
+							</td>
+							<td valign="top" style="width:25%;">
+								<ul>
+									<li style="width:100%;overflow: hidden;overflow:auto">
+											<div class="elementButton" ng-click ="CreateNewBoard()" style="float: left;; width:25%;">
+												<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
+											</div>	
+											<div class="text2" style="float: left;margin-right:12.5%;width:50%;">Members:</div>
+											<div style="float:auto;"></div>
+									</li>
+									<li  ng-show="activeBoard" >
+										<div class="elementButton">
+											<div class="text5">&#128081 {{activeBoard.owner}}</div>
+										</div>
+									</li>
+									<li ng-show="activeBoard" ng-repeat = "member in activeBoard.members  | orderBy: 'toString()'">
+											<div class="text5">{{member}}</div>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+			</script>
+			
+			<script type = "text/ng-template" id = "Settings.htm">
+				
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/Settings"><div class="text5">Settings</div></a>
+					</div>
+					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/Sign Out"><div class="text5">Sign Out</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+			
+				<div class="main">
+						<table style="width:100%;">
+							<tr>
+								<td style="width:50%;">
+										<div class="text4" >Change login</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="login" ng-model = "login">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Change password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="password" ng-model = "password">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Re-type new password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="re-type password" ng-model = "password2">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Change email</div>
+										<div class="text8" >Fill only if you want receive notifications</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="email" ng-model = "email">
+								</td>
+							</tr>
+						</table>
+						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="Change()">
+							<a href = ""><div class="text4">Accept</div></a>
+						</div>
+				</div>
+			</script>
+		</div>
+		
+		<footer>
+			<div class="text8">Artur Ziemba - Task menager application as an example of Node.js technology</div>
+		</footer>
+		
+		<script>
+			alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
+			try {				
 				document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; 
 				$(window).resize(function(e) { alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; });
-				</script>
-			
-				<script type = "text/ng-template" id = "SingIn.htm">
-					<div class="elementText" style="padding:2% 25%;">
-							<div class="elementText" style="width:50%;float:left; margin: 0 auto;">
-								Nick:
-							</div>
-							<div class="elementText" style="width:50%;float:left; margin: 0 auto;">
-								asdad
-							</div>
-							<div style="float:auto"></div>
-							
-					</div>
-				</script>
-				 
-				<script type = "text/ng-template" id = "SingUp.htm">
-					<h2> up </h2>
-				</script>
-				
-			</div>
-			
-			<footer>
-				<div class="text6">Artur Ziemba - Task menager application as an example of Node.js technology</div>
-			</footer>
-			
-			
-			
-			
-			
+			}
+			catch (err){}
+		</script>
+		
 </html>
