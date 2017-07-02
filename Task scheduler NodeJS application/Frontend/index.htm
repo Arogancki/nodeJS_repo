@@ -33,17 +33,31 @@
 			var main = angular.module("main", ['ngRoute']);
 			
 			main.controller('SignInController', function($scope) {
-				$scope.SignIn=function($login,$password){
-					alert(login+" "+password);
+				$scope.SignIn=function(){
+					if ($scope.login && $scope.password)
+					{
+						alert("git");
+					}
 				}
 			});
 			
 			main.controller('SignUpController', function($scope) {
-				$scope.SignUp=function(login,password,password2,email){
+				$scope.SignUp=function(){
+					if ($scope.login && $scope.password && $scope.password2)
+					{
+						//email moze byc undefined
+						alert("git");
+					}
 				}
 			});
 			
 			main.controller('AppController', function($scope) {
+			
+				$scope.SignOut=function()
+				{
+					$rootScope = $rootScope.$new(true);
+					$scope = $scope.$new(true);
+				}
 			
 				$scope.CreateNewBoard=function(){
 					var input=prompt("Please enter new board name");
@@ -62,10 +76,11 @@
 				
 				$scope.ActiveBoard=function(board){
 					$scope.activeBoard=board;
+					$scope.activeTask=undefined;
 				}
 				
 				$scope.LeaveBoard=function(board){
-					if (confirm(board.owner+'\'s board "'+board.name+'" will be leaved.')) {
+					if (confirm(board.owner+'\'s board "'+board.name+'" will be left.')) {
 						//leave
 					}
 				}
@@ -76,8 +91,8 @@
 					}
 				}
 				
-				$scope.KickOut=function(member,activeBoard){
-					if (confirm('Member "'+member+'" will be kicked from '+activeBoard.name+".")) {
+				$scope.KickOut=function(member){
+					if (confirm('Member "'+member+'" will be kicked from '+$scope.activeBoard.name+".")) {
 						//kick
 					}
 				}				
@@ -88,47 +103,91 @@
 				
 				$scope.InviteToBoard=function(){
 					var input=prompt("Please enter who you want invite");
-					if (input != null && activeBoard != null ) {
+					if (input != null && $scope.activeBoard != null ) {
 						//add input to inviteted
 					}
 				} 
+				
+				$scope.CreateNewTask=function(){
+					var input=prompt("Please enter new task name");
+					if (input != null && $scope.activeBoard != null ) {
+						//add new task with status new 
+						var info=prompt("If you want write first comment");
+					}
+				}
+				
+				$scope.ActiveTask=function(task){
+					$scope.activeTask=task;
+				}
 					
 				$scope.activeBoard="";
 				$scope.login="Agnieszka";
-				$scope.boards=[{name:"Gotowanie",owner:"Agnieszka",members:["Artur","Mama"],invitations:["Marek"]},{name:"Podroze",owner:"Artur",members:["Agnieszka"]}];
+				$scope.boards=[
+											{	name:"Gotowanie",
+												owner:"Agnieszka",
+												members:["Artur","Mama"],
+												invitations:["Marek"],
+												tasks:[
+															{ name:"Kurczak",statuses:[
+																											{ type:"New",user:"Artur",info:"My 1"},
+																											{ type:"Blocked",user:"Agnieszka",info:"My 2"},
+																											{ type:"In progress",user:"Artur",info:"My 3"},
+																											{ type:"Finished",user:"Agnieszka",info:"My 4"}
+																										]
+															},
+																											
+															{name:"Wolowina na parze",statuses:[
+																															{type:"New",user:"Agnieszka",info:"Time for beef"},
+																															{type:"In progress",user:"Artur",info:"I take it"}
+																														]
+															}
+														]
+											},
+											{
+												name:"Podroze",
+												owner:"Artur",
+												members:["Agnieszka"],
+												invitations:["Marek","Mama"]
+											}
+											
+										];
 				$scope.invitations=[{name:"Praca",owner:"Szef"},{name:"Dom",owner:"Mama"}];
 			});
 			
 			main.controller('SettingsController', function($scope) {
 				$scope.Change=function(){
+					if ($scope.login && $scope.password && $scope.password2 && $scope.email)
+					{
+						alert("git");
+					}
 				}
 			});
 			
 			main.config(['$routeProvider', function($routeProvider) {
 			$routeProvider.
-				when('/SignIn', {
-					templateUrl: 'SignIn.htm',
-					controller: 'SignInController'
-				}).
+			when('/SignIn', {
+				templateUrl: 'SignIn.htm',
+				controller: 'SignInController'
+			}).
 			
-				when('/SignUp', {
-					templateUrl: 'SignUp.htm',
-					controller: 'SignUpController'
-				}).
+			when('/SignUp', {
+				templateUrl: 'SignUp.htm',
+				controller: 'SignUpController'
+			}).
 			
-				when('/App', {
-					templateUrl: 'App.htm',
-					controller: 'AppController'
-				}).
-				
-				when('/Settings', {
-					templateUrl: 'Settings.htm',
-					controller: 'SettingsController'
-				}).
+			when('/App', {
+				templateUrl: 'App.htm',
+				controller: 'AppController'
+			}).
 			
-				otherwise({
-					redirectTo: '/SignIn'
-				});
+			when('/Settings', {
+				templateUrl: 'Settings.htm',
+				controller: 'SettingsController'
+			}).
+			
+			otherwise({
+				redirectTo: '/SignIn'
+			});
 			}]);
 			
 		</script>
@@ -166,11 +225,11 @@
 										<div class="text4" >Password</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="password" ng-model = "password">
+										<input class="text6" type = "password" placeholder="password" ng-model = "password">
 								</td>
 							</tr>
 						</table>
-						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignIn(login,password)">
+						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignIn()">
 							<a href =  ""><div class="text4">Accept</div></a>
 						</div>
 				</div>
@@ -206,7 +265,7 @@
 									<div class="text4" >Password</div>
 								</td>
 								<td style="width:50%">
-									<input class="text6" type = "text" placeholder="password" ng-model = "password">
+									<input class="text6" type = "password" placeholder="password" ng-model = "password">
 								</td>
 							</tr>
 							<tr>
@@ -214,7 +273,7 @@
 									<div class="text4" >Re-type password</div>
 								</td>
 								<td style="width:50%">
-									<input class="text6" type = "text" placeholder="re-type password" ng-model = "password2">
+									<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
 								</td>
 							</tr>
 							<tr>
@@ -242,7 +301,7 @@
 					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
 						<a href = "#/Settings"><div class="text5">Settings</div></a>
 					</div>
-					<div  id="headerButton2" class="elementButton" style="width:25%;float: left;">
+					<div  id="headerButton2" ng-click ="SignOut()" class="elementButton" style="width:25%;float: left;">
 						<a href = "#/SignIn"><div class="text5">Sign Out</div></a>
 					</div>
 					<div style="float:auto"></div>
@@ -264,16 +323,16 @@
 									<li ng-hide="!boards.length" ng-repeat = "board in boards  | orderBy: 'name.toString()'" style="width:100%;overflow: hidden;overflow:auto">
 										<div ng-show="isThatMe(board.owner)" style="width:100%;overflow: hidden;overflow:auto">
 											<div class="elementButton" ng-click = "ActiveBoard(board);" style="float: left; width:87%;">
-												<a  href = ""><!--href = "#/Board"--><div class="text5" style="border-left: solid 1vh #FFFFFF;">{{board.name}}</div></a>
+												<a  href = ""><div class="text5" >{{board.name}}</div></a>
 											</div>
 											<div class="elementButton" ng-click = "DeleteBoard(board);" style="float: left; width:13%;">
-												<a  href = ""><!--href = "#/Board"--><div class="text4" >&nbsp&#10007;&nbsp</div></a>
+												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
 											</div>
 											<div style="float:auto;"></div>
 										</div>
 										<div ng-show="!isThatMe(board.owner)" style="width:100%;overflow: hidden;overflow:auto">
 											<div class="elementButton" ng-click = "ActiveBoard(board);" style="float: left; width:87%;">
-												<a  href = ""><!--href = "#/Board"--><div class="text5" style="border-left: solid 1vh #FFFFFF;">{{board.name+" ("+board.owner+")"}}</div></a>
+												<a  href = ""><div class="text5">{{board.name+" ("+board.owner+")"}}</div></a>
 											</div>
 											<div class="elementButton" ng-click = "LeaveBoard(board);" style="float: left; width:13%;">
 												<a  href = ""><div class="text4" >&nbsp&#128682&nbsp</div></a>
@@ -290,16 +349,102 @@
 										<div style="float:auto;"></div>
 									</li>
 									<li ng-hide="!invitations.length" ng-repeat = "invitation in invitations | orderBy: 'name.toString()'">
-										<div class="elementButton" ng-click = "AcceptInvitation(invitation);"><a  href = ""><!--href = "#/Board"-->
-											<div class="text5" style="border-left: solid 1vh #FFFFFF;">{{invitation.owner+": "+invitation.name}}</div>
+										<div class="elementButton" ng-click = "AcceptInvitation(invitation);"><a  href = "">
+											<div class="text5">{{invitation.owner+": "+invitation.name}}</div>
 										</a></div>
 									</li>
 								</ul>
 							</td>
 							<td valign="top" style="width:50%;border-left: solid 1px #99CCFF;border-right: solid 1px #99CCFF;">
-							<!-- MIDDLE-->
-								<div class="text4" >
-									WIP
+								<!-- MIDDLE-->
+								<div style="min-height:68vh;">
+									<ul ng-show="!activeBoard" >
+										<li>
+											<div class="text1">Hi {{login}}!</div>
+											<div class="text4">What's up on your boards?<div>
+										</li>
+										<li style="width:100%;overflow: hidden;text-align:center;">
+											<div style="float: left;padding-right:10%; width:50%;">
+												<div class="text6">&#8592 Here are your boards</div>
+												<div class="text7">click on board to enter</div>
+												<div class="text7">click on +                 to create new</div>
+												<div class="text7">click on &#128682 to leave</div>
+												<div class="text7">click on &#10007   to delete</div>
+											</div>
+											<div style="float: left; width:50%;padding-top:5%;">
+												<div class="text6">Here will be board members &#8594</div>
+												<div class="text7">the user with &#128081 is an owner</div>
+												<div class="text7">click on +                 to invite somebody</div>
+												<div class="text7">click on &#10007 to kick somebody<div>
+											</div>
+											<div style="float:auto;"></div>
+										</li >
+											<div >
+												<div class="text6">Here &#8595<div>
+												<div class="text7">will be board tasks<div>
+												<div class="text7">~Task instructions~<div>
+											</div>
+										<li>
+										</li>
+									</ul>
+									
+									<ul ng-show="activeBoard && !activeTask">
+										<li style="width:100%;overflow: hidden;overflow:auto">
+												<div class="elementButton" ng-click ="CreateNewTask()" style="float: left;text-align:center;width:25%;">
+													<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
+												</div>	
+												<div ng-show="isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}}:</div>
+												<div ng-show="!isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}} ({{activeBoard.owner}}):</div>
+												<div style="float:auto;"></div>
+										</li>
+										<li ng-repeat = "task in activeBoard.tasks" style="padding: 0;">
+											<div class="elementButton" ng-click = "ActiveTask(task)"><a  href = "">
+												<div style="width:100%;overflow: hidden;overflow:auto" >
+													<!-- Status sign -->
+													<div class="text6" style="text-align:center; float: left;width:10%;">
+														<div ng-show="task.statuses[task.statuses.length-1].type==='New'"				>&#127381	</div>
+														<div ng-show="task.statuses[task.statuses.length-1].type==='In progress'"	>&#10148		</div>
+														<div ng-show="task.statuses[task.statuses.length-1].type==='Blocked'"		>&#9940		</div>
+														<div ng-show="task.statuses[task.statuses.length-1].type==='Finished'"		>&#10004		</div>
+													</div>
+													<!-- name -->
+													<div class="text6" style="float: left;width:45%;text-align:left;">
+														<div ng-show="task.statuses[0].user===login">{{task.name}}</div>
+														<div ng-show="task.statuses[0].user!=login">{{task.name}} ({{task.statuses[0].user}})</div>
+													</div>
+													<!-- last status -->
+													<div class="text6" style="float: left;width:45%;text-align:left;">
+														<div ng-show="task.statuses[task.statuses.length-1].user===login">
+															{{task.statuses[task.statuses.length-1].type}}
+														</div>
+														<div ng-show="task.statuses[task.statuses.length-1].user!=login">	
+															{{task.statuses[task.statuses.length-1].type}} ({{task.statuses[task.statuses.length-1].user}})
+														</div>
+													</div>
+													<div style="float:auto;"></div>
+												</div>
+											</a></div>
+										</li>
+									</ul>
+								
+									<ul ng-show="activeTask">
+										<!-- Header -->
+										<li style="width:100%;overflow: hidden;overflow:auto">
+											<div ng-show="task.statuses[task.statuses.length-1].type==='Finished'">
+												<div ng-show="task.statuses[task.statuses.length-1].type!='Finished'" class="elementButton" ng-click ="CreateNewStatus()" style="float: left;text-align:center;width:25%;">
+													<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
+												</div>	
+												<div ng-show="isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{task.name}}:</div>
+												<div ng-show="!isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{task.name}} ({{task.owner}}):</div>
+												<div style="float:auto;"></div>
+										</li>
+													
+													
+													
+													
+
+													
+									</ul>
 								</div>
 							</td>
 							<td valign="top" style="min-width:25%;">
@@ -335,7 +480,7 @@
 											<div style="float: left; width:87%;">
 												<div class="text5">{{member}}</div>
 											</div>
-											<div class="elementButton" ng-click = "KickOut(member,activeBoard);" style="float: left; width:13%;">
+											<div class="elementButton" ng-click = "KickOut(member);" style="float: left; width:13%;">
 												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
 											</div>
 											<div style="float:auto;"></div>
@@ -362,7 +507,7 @@
 											<div style="float: left; width:87%;">
 												<div class="text5">{{invitation}}</div>
 											</div>
-											<div class="elementButton" ng-click = "KickOut(invitation,activeBoard);" style="float: left; width:13%;">
+											<div class="elementButton" ng-click = "KickOut(invitation);" style="float: left; width:13%;">
 												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
 											</div>
 											<div style="float:auto;"></div>
@@ -417,7 +562,7 @@
 										<div class="text4" >Re-type new password</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="re-type password" ng-model = "password2">
+										<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
 								</td>
 							</tr>
 							<tr>

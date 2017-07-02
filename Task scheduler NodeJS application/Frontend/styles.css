@@ -8,6 +8,11 @@ body
 	font-size: 19px;
 }	
 
+div:hover
+{
+    cursor: default;
+}
+
 #template
 {
 	position: relative; /* needed for footer positioning*/
@@ -35,7 +40,7 @@ ul
 
 li
 {
-	padding: 2% 2% 2% 2%;
+	padding: 2%;
 }
 
 body::after
@@ -46,7 +51,7 @@ body::after
 	top: 0;
 	left: 0;
 	z-index: -1;  
-	background-repeat:repeat;
+	background-size:cover;
 	min-width: 100%;
 	min-height: 100%;
 	position: fixed;
@@ -78,7 +83,7 @@ a:-webkit-any-link {
    opacity: 0.5;
 }
 
-input[type="text"] {
+input{
   border: none;
   border-bottom: solid 2px #3399FF;
   background: transparent;
@@ -87,20 +92,20 @@ input[type="text"] {
   color:#FFFFFF;
 }
 
-input[type="text"]:hover{
+input:hover{
   border-bottom: solid 2px #99CCFF;
 }
 
-input[type="text"]:focus,input[type="text"].focus{
+input:focus,input.focus{
 	outline: none;
 	border-bottom: solid 2px #FFFFFF;
 }
 
 .main
 {
-	min-height:90vh;
+	min-height:89vh;
 	text-align:center;
-	padding: 5% 25% 2% 25%;
+	padding: 5% 25% 5% 25%;
 	background: rgba(1, 1, 1, 0.3);
 }
 
