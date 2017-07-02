@@ -507,11 +507,11 @@
 												<tr ng-repeat = "status in activeTask.statuses" class="text9">
 													<!-- Status sign -->
 													<td style="text-align:center">
-														<div class="text6" ng-show="status.type==='New'"				>&#127381	</div>
-														<div class="text6" ng-show="status.type==='In progress'"		>&#10148		</div>
-														<div class="text6" ng-show="status.type==='Blocked'"			>&#9940		</div>
-														<div class="text6" ng-show="status.type==='Finished'"			>&#10004		</div>
-														<div class="text6" ng-show="status.type==='Resumed'"		>&#9850		</div>
+														<div class="text8" ng-show="status.type==='New'"				>&#127381	</div>
+														<div class="text8" ng-show="status.type==='In progress'"		>&#10148		</div>
+														<div class="text8" ng-show="status.type==='Blocked'"			>&#9940		</div>
+														<div class="text8" ng-show="status.type==='Finished'"			>&#10004		</div>
+														<div class="text8" ng-show="status.type==='Resumed'"		>&#9850		</div>
 													</td>
 													<!-- Status name -->
 													<td>
@@ -664,9 +664,20 @@
 								</td>
 							</tr>
 						</table>
-						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="Change()">
-							<a href = ""><div class="text4">Accept</div></a>
-						</div>
+						<table style="width:100%;">
+							<tr style="width:100%;">
+								<td style="text-align:center;">
+									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton">
+										<a href = "#/App"><div class="text4">Cancel</div></a>
+									</div>
+								</td>
+								<td>
+									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton" ng-click ="Change()">
+										<a href = ""><div class="text4">Accept</div></a>
+									</div>
+								</td>
+							</tr>
+						</table>
 				</div>
 			</script>
 		</div>
