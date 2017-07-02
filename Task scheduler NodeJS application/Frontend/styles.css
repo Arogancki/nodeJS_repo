@@ -43,6 +43,12 @@ li
 	padding: 2%;
 }
 
+th
+{
+	font-weight: normal;
+	text-decoration: underline;
+}
+
 body::after
 {
 	content: "";

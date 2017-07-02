@@ -60,14 +60,14 @@
 				}
 			
 				$scope.CreateNewBoard=function(){
-					var input=prompt("Please enter new board name");
+					var input=prompt("Please enter new board name.");
 					if (input != null) {
 						
 					}
 				}
 				
 				$scope.AcceptInvitation=function(invitation){
-					if (confirm('Invitation to "'+invitation.name+'" board from '+invitation.owner+' will be accepted.')) {
+					if (confirm('Do you want to accept an invitation to "'+invitation.name+'" board from '+invitation.owner+'?')) {
 						//accept invitation
 					} else {
 						// Remove invitation
@@ -80,39 +80,49 @@
 				}
 				
 				$scope.LeaveBoard=function(board){
-					if (confirm(board.owner+'\'s board "'+board.name+'" will be left.')) {
+					if (confirm("Do you want to leave "+board.owner+'\'s board "'+board.name+'"?')) {
 						//leave
 					}
 				}
 				
 				$scope.DeleteBoard=function(board){
-					if (confirm('Your board "'+board.name+'" will be deleted.')) {
+					if (confirm('Do you want to delete your board "'+board.name+'"?')) {
 						//ldelete
 					}
 				}
 				
 				$scope.KickOut=function(member){
-					if (confirm('Member "'+member+'" will be kicked from '+$scope.activeBoard.name+".")) {
+					if (confirm('Do you want to kick "'+member+'" out from '+$scope.activeBoard.name+"?")) {
 						//kick
 					}
-				}				
+				}
+				
+				$scope.AddStatus=function(type){
+					var info=prompt("You're going to add a \""+type+"\" status.\nWrite a comment if you want.");
+				}
 				
 				$scope.isThatMe=function(name){
 					return $scope.login===name ? true : false;
 				} 
 				
 				$scope.InviteToBoard=function(){
-					var input=prompt("Please enter who you want invite");
+					var input=prompt("Please enter user's login you want to invite.");
 					if (input != null && $scope.activeBoard != null ) {
 						//add input to inviteted
 					}
 				} 
 				
 				$scope.CreateNewTask=function(){
-					var input=prompt("Please enter new task name");
+					var input=prompt("Please enter new task name.");
 					if (input != null && $scope.activeBoard != null ) {
 						//add new task with status new 
-						var info=prompt("If you want write first comment");
+						var info=prompt("Write first comment if you want.");
+					}
+				}
+				
+				$scope.RemoveTask=function(){
+					if (confirm('Do you want to delete task "'+$scope.activeTask.name+'"?')) {
+						//remove task from activeTask
 					}
 				}
 				
@@ -129,10 +139,10 @@
 												invitations:["Marek"],
 												tasks:[
 															{ name:"Kurczak",statuses:[
-																											{ type:"New",user:"Artur",info:"My 1"},
-																											{ type:"Blocked",user:"Agnieszka",info:"My 2"},
-																											{ type:"In progress",user:"Artur",info:"My 3"},
-																											{ type:"Finished",user:"Agnieszka",info:"My 4"}
+																											{ type:"New",user:"Artur",info:"My 1",date:"18:51"},
+																											{ type:"Blocked",user:"Agnieszka",info:"My 2",date:"18:55"},
+																											{ type:"In progress",user:"Artur",info:"My 3 to bedize najdpluzszy kmemtaurz bo nalezy spradziwc rozciaganie sie divoww sifnaosufbaifbaifbasfa sfaosf asfasu",date:"22:00"},
+																											{ type:"Finished",user:"Agnieszka",info:"My 4",date:"23:51"}
 																										]
 															},
 																											
@@ -202,10 +212,10 @@
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
 					</div>
 					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/SignIn"><div class="text5">Sign In</div></a>
+						<a href = "#/SignIn"><div class="text5">Sign In &#10534</div></a>
 					</div>
 					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/SignUp"><div class="text5">Sign Up</div></a>
+						<a href = "#/SignUp"><div class="text5">Sign Up &#128221</div></a>
 					</div>
 					<div style="float:auto"></div>
 				</header>
@@ -242,10 +252,10 @@
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
 					</div>
 					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/SignIn"><div class="text5">Sign In</div></a>
+						<a href = "#/SignIn"><div class="text5">Sign In &#10534</div></a>
 					</div>
 					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/SignUp"><div class="text5">Sign Up</div></a>
+						<a href = "#/SignUp"><div class="text5">Sign Up &#128221</div></a>
 					</div>
 					<div style="float:auto"></div>
 				</header>
@@ -279,7 +289,7 @@
 							<tr>
 								<td style="width:50%">
 									<div class="text4" >Email</div>
-									<div class="text8" >Fill only if you want receive notifications</div>
+									<div class="text9" >Fill in only if you want receive notifications</div>
 								</td>
 								<td style="width:50%">
 									<input class="text6" type = "text" placeholder="email" ng-model = "email">
@@ -299,10 +309,10 @@
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
 					</div>
 					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/Settings"><div class="text5">Settings</div></a>
+						<a href = "#/Settings"><div class="text5">Settings &#9881</div></a>
 					</div>
 					<div  id="headerButton2" ng-click ="SignOut()" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/SignIn"><div class="text5">Sign Out</div></a>
+						<a href = "#/SignIn"><div class="text5">Sign Out &#128282</div></a>
 					</div>
 					<div style="float:auto"></div>
 				</header>
@@ -358,92 +368,171 @@
 							<td valign="top" style="width:50%;border-left: solid 1px #99CCFF;border-right: solid 1px #99CCFF;">
 								<!-- MIDDLE-->
 								<div style="min-height:68vh;">
-									<ul ng-show="!activeBoard" >
+								
+									<ul ng-show="!activeBoard">
 										<li>
 											<div class="text1">Hi {{login}}!</div>
 											<div class="text4">What's up on your boards?<div>
 										</li>
-										<li style="width:100%;overflow: hidden;text-align:center;">
-											<div style="float: left;padding-right:10%; width:50%;">
-												<div class="text6">&#8592 Here are your boards</div>
-												<div class="text7">click on board to enter</div>
-												<div class="text7">click on +                 to create new</div>
-												<div class="text7">click on &#128682 to leave</div>
-												<div class="text7">click on &#10007   to delete</div>
+										<li ng-show="help" style="padding:0;width:100%;overflow: hidden;text-align:center;">
+											<div style="overflow:auto">
+												<div style="float: left; width:50%;">
+													<div class="text7" style="padding-right:5%;">&#8592 Here</div>
+													<div class="text8">are your boards</div>
+													<div class="text8">click on board to enter</div>
+													<div class="text8">click on +                 to create new</div>
+													<div class="text8">click on &#128682 to leave</div>
+													<div class="text8">click on &#10007   to delete</div>
+												</div>
+												<div style="float: left; width:50%;">
+													<div class="text7">Here &#8594</div>
+													<div class="text8">will be board members &#8594</div>
+													<div class="text8">the user with &#128081 is an owner</div>
+													<div class="text8">click on +                 to invite somebody</div>
+													<div class="text8">click on &#10007 to kick somebody out</div>
+												</div>
+												<div style="float:auto;"></div>
 											</div>
-											<div style="float: left; width:50%;padding-top:5%;">
-												<div class="text6">Here will be board members &#8594</div>
-												<div class="text7">the user with &#128081 is an owner</div>
-												<div class="text7">click on +                 to invite somebody</div>
-												<div class="text7">click on &#10007 to kick somebody<div>
+											<div>
+												<div class="text7">Here &#8595<div>
+												<div class="text8">will be board tasks<div>
+												<div class="text8">click on task to show details<div>
+												<div class="text8">click on +&#10148 	to add new "In progress" 	status</div>
+												<div class="text8">click on +&#9940 	 	to add new "Blocked"			status</div>
+												<div class="text8">click on +&#10004 	to add new "Finished" 	status</div>
+												<div class="text8">click on +&#9850 	 	to add new "Resumed" 	status</div>
 											</div>
-											<div style="float:auto;"></div>
 										</li >
-											<div >
-												<div class="text6">Here &#8595<div>
-												<div class="text7">will be board tasks<div>
-												<div class="text7">~Task instructions~<div>
-											</div>
-										<li>
-										</li>
+										<div ng-show="!help" class="elementButton" ng-click="help=!help;" style="display: inline-block">
+											<div class="text9">show help</div>
+										</div>
+										<div ng-show="help" class="elementButton" ng-click="help=!help;" style="display: inline-block">
+											<div class="text9">hide help</div>
+										</div>
 									</ul>
 									
 									<ul ng-show="activeBoard && !activeTask">
 										<li style="width:100%;overflow: hidden;overflow:auto">
-												<div class="elementButton" ng-click ="CreateNewTask()" style="float: left;text-align:center;width:25%;">
-													<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
-												</div>	
-												<div ng-show="isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}}:</div>
-												<div ng-show="!isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}} ({{activeBoard.owner}}):</div>
-												<div style="float:auto;"></div>
+											<div class="elementButton" ng-click ="CreateNewTask()" style="float: left;text-align:center;width:25%;">
+												<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
+											</div>	
+											<div ng-show="isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}}:</div>
+											<div ng-show="!isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}} ({{activeBoard.owner}}):</div>
+											<div style="float:auto;"></div>
 										</li>
-										<li ng-repeat = "task in activeBoard.tasks" style="padding: 0;">
-											<div class="elementButton" ng-click = "ActiveTask(task)"><a  href = "">
-												<div style="width:100%;overflow: hidden;overflow:auto" >
-													<!-- Status sign -->
-													<div class="text6" style="text-align:center; float: left;width:10%;">
-														<div ng-show="task.statuses[task.statuses.length-1].type==='New'"				>&#127381	</div>
-														<div ng-show="task.statuses[task.statuses.length-1].type==='In progress'"	>&#10148		</div>
-														<div ng-show="task.statuses[task.statuses.length-1].type==='Blocked'"		>&#9940		</div>
-														<div ng-show="task.statuses[task.statuses.length-1].type==='Finished'"		>&#10004		</div>
-													</div>
-													<!-- name -->
-													<div class="text6" style="float: left;width:45%;text-align:left;">
-														<div ng-show="task.statuses[0].user===login">{{task.name}}</div>
-														<div ng-show="task.statuses[0].user!=login">{{task.name}} ({{task.statuses[0].user}})</div>
-													</div>
-													<!-- last status -->
-													<div class="text6" style="float: left;width:45%;text-align:left;">
-														<div ng-show="task.statuses[task.statuses.length-1].user===login">
+										<li>
+											<table ng-show="activeBoard.tasks" style="width:100%;">
+												<tr class="text7" >
+													<th ></th>
+													<th>task:</th>
+													<th>status:</th>
+												</tr>
+												<tr ng-repeat = "task in activeBoard.tasks" class="elementButton" ng-click = "ActiveTask(task)"><a  href = "">
+													<td>
+														<!-- Status sign -->
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='New'"				>&#127381	</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='In progress'"	>&#10148		</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Blocked'"			>&#9940		</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Finished'"		>&#10004		</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Resumed'"		>&#9850		</div>
+													</td>
+													<td style="text-align:left;">
+														<!-- name -->
+														<div class="text6" ng-show="task.statuses[0].user===login">{{task.name}}</div>
+														<div ng-show="task.statuses[0].user!=login" class="text6" >{{task.name}} ({{task.statuses[0].user}})</div>
+													</td>
+													<td style="text-align:left;">
+														<!-- last status -->
+														<div class="text6"  ng-show="task.statuses[task.statuses.length-1].user===login">
 															{{task.statuses[task.statuses.length-1].type}}
 														</div>
-														<div ng-show="task.statuses[task.statuses.length-1].user!=login">	
+														<div class="text6"  ng-show="task.statuses[task.statuses.length-1].user!=login">	
 															{{task.statuses[task.statuses.length-1].type}} ({{task.statuses[task.statuses.length-1].user}})
 														</div>
-													</div>
-													<div style="float:auto;"></div>
-												</div>
-											</a></div>
+													</td>	
+												</a></tr>
+											</table>
 										</li>
 									</ul>
 								
 									<ul ng-show="activeTask">
 										<!-- Header -->
-										<li style="width:100%;overflow: hidden;overflow:auto">
-											<div ng-show="task.statuses[task.statuses.length-1].type==='Finished'">
-												<div ng-show="task.statuses[task.statuses.length-1].type!='Finished'" class="elementButton" ng-click ="CreateNewStatus()" style="float: left;text-align:center;width:25%;">
-													<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
-												</div>	
-												<div ng-show="isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{task.name}}:</div>
-												<div ng-show="!isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{task.name}} ({{task.owner}}):</div>
-												<div style="float:auto;"></div>
+										<li>
+											<table class="text2" style="width:100%;"><tr>
+												<td style="width:12.5%;">
+													<div class="elementButton" ng-click ="ActiveBoard(activeBoard);"><a href = "">
+														<div>&#128281</div>
+													</a></div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type!='Finished'" style="width:12.5%;">
+													<div class="elementButton" ng-click ="AddStatus('Finished')"><a href = "">
+														<div>+&#10004</div>
+													</a></div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type==='Finished' && (activeTask.statuses[0].user===login || activeBoard.owner===login)" style="width:12.5%;">
+													<div class="elementButton" ng-click ="RemoveTask()"><a href = "">
+														<div>&#10007</div>
+													</a></div>
+												</td>
+												<td style="width:50%;">
+													<div>{{activeTask.name}}</div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type!='Finished'" style="width:12.5%;">
+													<div class="elementButton" ng-click ="AddStatus('In progress')"><a href = "">
+														<div >+&#10148</div>
+													</a></div>	
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type!='Finished'" style="width:12.5%;">
+													<div class="elementButton" ng-click ="AddStatus('Blocked')"><a href = "">
+														<div>+&#9940</div>
+													</a></div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type==='Finished'" style="width:25%;">
+													<div class="elementButton" ng-click ="AddStatus('Resumed')"><a href = "">
+														<div>+&#9850</div>
+													</a></div>
+												</td>
+											</tr></table>
 										</li>
-													
-													
-													
-													
-
-													
+										<!-- statuses -->
+										<li>
+											<table style="width:100%;text-align:left;border-collapse: separate;border-spacing: 5px;">
+												<tr class="text7" >
+													<th ></th>
+													<th>task:</th>
+													<th>user:</th>
+													<th>comment:</th>
+													<th>time:</th>
+												</tr>
+												<tr ng-repeat = "status in activeTask.statuses" class="text9">
+													<!-- Status sign -->
+													<td style="text-align:center">
+														<div class="text6" ng-show="status.type==='New'"				>&#127381	</div>
+														<div class="text6" ng-show="status.type==='In progress'"		>&#10148		</div>
+														<div class="text6" ng-show="status.type==='Blocked'"			>&#9940		</div>
+														<div class="text6" ng-show="status.type==='Finished'"			>&#10004		</div>
+														<div class="text6" ng-show="status.type==='Resumed'"		>&#9850		</div>
+													</td>
+													<!-- Status name -->
+													<td>
+														<div>{{status.type}}</div>
+													</td>
+													<!-- Status user-->
+													<td>
+														<div ng-show="status.user===login">You</div>
+														<div ng-show="status.user!=login	"> {{status.user}}</div>
+													</td>
+													<!-- Status info-->
+													<td>
+														<div>{{status.info}}</div>
+													</td>
+													<!-- Date -->
+													<td>
+														<div>{{status.date}}</div>
+													</td>
+												</tr>
+											</table>
+										</li>
 									</ul>
 								</div>
 							</td>
@@ -531,10 +620,10 @@
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
 					</div>
 					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/Settings"><div class="text5">Settings</div></a>
+						<a href = "#/Settings"><div class="text5">Settings &#9881</div></a>
 					</div>
 					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
-						<a href = "#/Sign Out"><div class="text5">Sign Out</div></a>
+						<a href = "#/Sign Out"><div class="text5">Sign Out &#128282</div></a>
 					</div>
 					<div style="float:auto"></div>
 				</header>
@@ -568,7 +657,7 @@
 							<tr>
 								<td style="width:50%">
 										<div class="text4" >Change email</div>
-										<div class="text8" >Fill only if you want receive notifications</div>
+										<div class="text9" >Fill in only if you want to receive notifications</div>
 								</td>
 								<td style="width:50%">
 										<input class="text6" type = "text" placeholder="email" ng-model = "email">
