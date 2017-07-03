@@ -15,9 +15,9 @@ div:hover
 
 #template
 {
-	position: relative; /* needed for footer positioning*/
-	height: auto !important; /* real browsers */
-	min-height: 100%; /* real browsers */
+	position: relative;
+	height: auto !important;
+	min-height: 100%;
 }
 
 footer
@@ -64,8 +64,8 @@ body::after
 }
 
 a:-webkit-any-link {
-	text-decoration: none; /* no underline */
-	 color: inherit; /* blue colors for links too */
+	text-decoration: none;
+	 color: inherit;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

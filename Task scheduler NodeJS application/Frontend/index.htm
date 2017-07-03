@@ -52,20 +52,17 @@
 			});
 			
 			main.controller('AppController', function($scope) {
-			
 				$scope.SignOut=function()
 				{
 					$rootScope = $rootScope.$new(true);
 					$scope = $scope.$new(true);
 				}
-			
 				$scope.CreateNewBoard=function(){
 					var input=prompt("Please enter new board name.");
 					if (input != null) {
 						
 					}
 				}
-				
 				$scope.AcceptInvitation=function(invitation){
 					if (confirm('Do you want to accept an invitation to "'+invitation.name+'" board from '+invitation.owner+'?')) {
 						//accept invitation
@@ -73,45 +70,37 @@
 						// Remove invitation
 					}
 				}
-				
 				$scope.ActiveBoard=function(board){
 					$scope.activeBoard=board;
 					$scope.activeTask=undefined;
 				}
-				
 				$scope.LeaveBoard=function(board){
 					if (confirm("Do you want to leave "+board.owner+'\'s board "'+board.name+'"?')) {
 						//leave
 					}
 				}
-				
 				$scope.DeleteBoard=function(board){
 					if (confirm('Do you want to delete your board "'+board.name+'"?')) {
 						//ldelete
 					}
 				}
-				
 				$scope.KickOut=function(member){
 					if (confirm('Do you want to kick "'+member+'" out from '+$scope.activeBoard.name+"?")) {
 						//kick
 					}
 				}
-				
 				$scope.AddStatus=function(type){
 					var info=prompt("You're going to add a \""+type+"\" status.\nWrite a comment if you want.");
 				}
-				
 				$scope.isThatMe=function(name){
 					return $scope.login===name ? true : false;
 				} 
-				
 				$scope.InviteToBoard=function(){
 					var input=prompt("Please enter user's login you want to invite.");
 					if (input != null && $scope.activeBoard != null ) {
 						//add input to inviteted
 					}
 				} 
-				
 				$scope.CreateNewTask=function(){
 					var input=prompt("Please enter new task name.");
 					if (input != null && $scope.activeBoard != null ) {
@@ -119,17 +108,14 @@
 						var info=prompt("Write first comment if you want.");
 					}
 				}
-				
 				$scope.RemoveTask=function(){
 					if (confirm('Do you want to delete task "'+$scope.activeTask.name+'"?')) {
 						//remove task from activeTask
 					}
 				}
-				
 				$scope.ActiveTask=function(task){
 					$scope.activeTask=task;
 				}
-					
 				$scope.activeBoard="";
 				$scope.login="Agnieszka";
 				$scope.boards=[
@@ -179,32 +165,25 @@
 				templateUrl: 'SignIn.htm',
 				controller: 'SignInController'
 			}).
-			
 			when('/SignUp', {
 				templateUrl: 'SignUp.htm',
 				controller: 'SignUpController'
 			}).
-			
 			when('/App', {
 				templateUrl: 'App.htm',
 				controller: 'AppController'
 			}).
-			
 			when('/Settings', {
 				templateUrl: 'Settings.htm',
 				controller: 'SettingsController'
 			}).
-			
 			otherwise({
 				redirectTo: '/SignIn'
 			});
 			}]);
-			
 		</script>
-		
 	</head>
 	<body ng-app = "main">
-	
 		<div ng-view id="template">
 			<script type = "text/ng-template" id = "SignIn.htm">
 				<header>
@@ -219,34 +198,31 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				
 				<div class="main">
-						<table style="width:100%;">
-							<tr>
-								<td style="width:50%;">
-										<div class="text4" >Login</div>
-								</td>
-								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="login" ng-model = "login">
-								</td>
-							</tr>
-							<tr>
-								<td style="width:50%">
-										<div class="text4" >Password</div>
-								</td>
-								<td style="width:50%">
-										<input class="text6" type = "password" placeholder="password" ng-model = "password">
-								</td>
-							</tr>
-						</table>
-						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignIn()">
-							<a href =  ""><div class="text4">Accept</div></a>
-						</div>
+					<table style="width:100%;">
+						<tr>
+							<td style="width:50%;">
+									<div class="text4" >Login</div>
+							</td>
+							<td style="width:50%">
+									<input class="text6" type = "text" placeholder="login" ng-model = "login">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:50%">
+									<div class="text4" >Password</div>
+							</td>
+							<td style="width:50%">
+									<input class="text6" type = "password" placeholder="password" ng-model = "password">
+							</td>
+						</tr>
+					</table>
+					<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignIn()">
+						<a href =  ""><div class="text4">Accept</div></a>
+					</div>
 				</div>
 			</script>
-			
 			<script type = "text/ng-template" id = "SignUp.htm">
-				
 				<header>
 					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
@@ -259,51 +235,48 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-			
 				<div class="main">
-						<table style="width:100%;">
-							<tr>
-								<td style="width:50%;">
-									<div class="text4" >Login</div>
-								</td>
-								<td style="width:50%">
-									<input class="text6" type = "text" placeholder="login" ng-model = "login">
-								</td>
-							</tr>
-							<tr>
-								<td style="width:50%">
-									<div class="text4" >Password</div>
-								</td>
-								<td style="width:50%">
-									<input class="text6" type = "password" placeholder="password" ng-model = "password">
-								</td>
-							</tr>
-							<tr>
-								<td style="width:50%">
-									<div class="text4" >Re-type password</div>
-								</td>
-								<td style="width:50%">
-									<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
-								</td>
-							</tr>
-							<tr>
-								<td style="width:50%">
-									<div class="text4" >Email</div>
-									<div class="text9" >Fill in only if you want receive notifications</div>
-								</td>
-								<td style="width:50%">
-									<input class="text6" type = "text" placeholder="email" ng-model = "email">
-								</td>
-							</tr>
-						</table>
-						<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignUp()">
-							<a  href = ""><div class="text4">Accept</div></a>
-						</div>
+					<table style="width:100%;">
+						<tr>
+							<td style="width:50%;">
+								<div class="text4" >Login</div>
+							</td>
+							<td style="width:50%">
+								<input class="text6" type = "text" placeholder="login" ng-model = "login">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:50%">
+								<div class="text4" >Password</div>
+							</td>
+							<td style="width:50%">
+								<input class="text6" type = "password" placeholder="password" ng-model = "password">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:50%">
+								<div class="text4" >Re-type password</div>
+							</td>
+							<td style="width:50%">
+								<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:50%">
+								<div class="text4" >Email</div>
+								<div class="text9" >Fill in only if you want receive notifications</div>
+							</td>
+							<td style="width:50%">
+								<input class="text6" type = "text" placeholder="email" ng-model = "email">
+							</td>
+						</tr>
+					</table>
+					<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignUp()">
+						<a  href = ""><div class="text4">Accept</div></a>
+					</div>
 				</div>
 			</script>
-			
 			<script type = "text/ng-template" id = "App.htm">
-			
 				<header>
 					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
@@ -316,7 +289,6 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-			
 				<div class="main" style="padding-left:0%;padding-right:0%;">
 					<table style="min-width:100%;">
 						<tr>
@@ -376,7 +348,6 @@
 							<td valign="top" style="width:50%;border-left: solid 1px #99CCFF;border-right: solid 1px #99CCFF;">
 								<!-- MIDDLE-->
 								<div style="min-height:68vh;">
-								
 									<ul ng-show="!activeBoard">
 										<li>
 											<div class="text1">Hi {{login}}!</div>
@@ -417,7 +388,6 @@
 											<div class="text9">hide help</div>
 										</div>
 									</ul>
-									
 									<ul ng-show="activeBoard && !activeTask">
 										<li>
 											<table style="margin: auto;"><tr>
@@ -463,7 +433,6 @@
 											</table>
 										</li>
 									</ul>
-								
 									<ul ng-show="activeTask">
 										<!-- Header -->
 										<li>
@@ -614,9 +583,7 @@
 						</tr>
 					</table>
 			</script>
-			
 			<script type = "text/ng-template" id = "Settings.htm">
-				
 				<header>
 					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
 							<div class="text1" style="padding-left:1%;">NodeJS task menager</div>
@@ -629,7 +596,6 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-			
 				<div class="main">
 						<table style="width:100%;">
 							<tr>
@@ -683,11 +649,9 @@
 				</div>
 			</script>
 		</div>
-		
 		<footer>
 			<div class="text8">Artur Ziemba - Task menager application as an example of Node.js technology</div>
 		</footer>
-		
 		<script>
 			alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
 			try {				
@@ -696,5 +660,4 @@
 			}
 			catch (err){}
 		</script>
-		
 </html>
