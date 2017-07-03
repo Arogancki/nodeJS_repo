@@ -318,45 +318,53 @@
 				</header>
 			
 				<div class="main" style="padding-left:0%;padding-right:0%;">
-				<!-- LEFT -->
 					<table style="min-width:100%;">
 						<tr>
+							<!-- LEFT -->
 							<td valign="top" style="width:25%;">
 								<ul>
-									<li style="width:100%;overflow: hidden;overflow:auto">
-											<div class="elementButton" ng-click ="CreateNewBoard()" style="float: left; width:25%;">
-												<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
-											</div>	
-											<div class="text2" style="float: left;margin-right:12.5%;width:50%;">Boards:</div>
-											<div style="float:auto;"></div>
+									<li>
+										<table style="margin: auto;"><tr>
+											<td class="elementButton" ng-click ="CreateNewBoard()">
+												<a href = ""><div class="text1">&nbsp+&nbsp</div></a>
+											</td>
+											<td class="text2">
+												Boards:
+											</td>
+											<td class="text1">&nbsp&nbsp&nbsp</td>
+										<tr></table>
 									</li>
-									<li ng-hide="!boards.length" ng-repeat = "board in boards  | orderBy: 'name.toString()'" style="width:100%;overflow: hidden;overflow:auto">
-										<div ng-show="isThatMe(board.owner)" style="width:100%;overflow: hidden;overflow:auto">
-											<div class="elementButton" ng-click = "ActiveBoard(board);" style="float: left; width:87%;">
-												<a  href = ""><div class="text5" >{{board.name}}</div></a>
-											</div>
-											<div class="elementButton" ng-click = "DeleteBoard(board);" style="float: left; width:13%;">
-												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
-											</div>
-											<div style="float:auto;"></div>
-										</div>
-										<div ng-show="!isThatMe(board.owner)" style="width:100%;overflow: hidden;overflow:auto">
-											<div class="elementButton" ng-click = "ActiveBoard(board);" style="float: left; width:87%;">
+									<li ng-show="boards.length" ng-repeat = "board in boards  | orderBy: 'name.toString()'">
+										<table ng-show="isThatMe(board.owner);" style="width:100%;"><tr>
+											<td class="elementButton" ng-click = "ActiveBoard(board);" style="width:86%;padding-left:14%">
+												<a  href = ""><div class="text5">{{board.name}}</div></a>
+											</td>
+											<td class="elementButton" ng-click = "DeleteBoard(board);" style="width:14%;">
+												<a  href = ""><div class="text5">&nbsp&#10007&nbsp</div></a>
+											</td>
+										</tr></table>
+										<table ng-show="!isThatMe(board.owner);" style="width:100%;"><tr>
+											<td class="elementButton" ng-click = "ActiveBoard(board);" style="width:86%;padding-left:14%">
 												<a  href = ""><div class="text5">{{board.name+" ("+board.owner+")"}}</div></a>
-											</div>
-											<div class="elementButton" ng-click = "LeaveBoard(board);" style="float: left; width:13%;">
-												<a  href = ""><div class="text4" >&nbsp&#128682&nbsp</div></a>
-											</div>
-											<div style="float:auto;"></div>
-										</div>
+											</td>
+											<td class="elementButton" ng-click = "LeaveBoard(board);" style="width:14%;">
+												<a  href = ""><div class="text5">&nbsp&#128682&nbsp</div></a>
+											</td>
+										</tr></table>
 									</li>
-									<li ng-hide="boards.length">
+									<li ng-show="!boards.length">
 										<div class="text5">You dont have any boards</div>
 									</li>
-									<li style="width:100%;overflow: hidden;overflow:auto">
-										<div class="text2" style="float: left; width:25%;">&#9993</div>
-										<div class="text2" style="float: left;margin-right:12.5%;width:50%;">Invitations:</div>
-										<div style="float:auto;"></div>
+									<li>
+										<table style="margin: auto;"><tr>
+											<td class="text1">
+												&#9993&nbsp</div>
+											</td>
+											<td class="text2">
+												Invitations:
+											</td>
+											<td class="text1">&nbsp&nbsp</td>
+										<tr></table>
 									</li>
 									<li ng-hide="!invitations.length" ng-repeat = "invitation in invitations | orderBy: 'name.toString()'">
 										<div class="elementButton" ng-click = "AcceptInvitation(invitation);"><a  href = "">
@@ -375,24 +383,23 @@
 											<div class="text4">What's up on your boards?<div>
 										</li>
 										<li ng-show="help" style="padding:0;width:100%;overflow: hidden;text-align:center;">
-											<div style="overflow:auto">
-												<div style="float: left; width:50%;">
+											<table style="width:100%;"><tr>
+												<td style="width:50%;">
 													<div class="text7" style="padding-right:5%;">&#8592 Here</div>
 													<div class="text8">are your boards</div>
 													<div class="text8">click on board to enter</div>
 													<div class="text8">click on +                 to create new</div>
 													<div class="text8">click on &#128682 to leave</div>
 													<div class="text8">click on &#10007   to delete</div>
-												</div>
-												<div style="float: left; width:50%;">
+												</td>
+												<td style="width:50%;">
 													<div class="text7">Here &#8594</div>
 													<div class="text8">will be board members &#8594</div>
 													<div class="text8">the user with &#128081 is an owner</div>
 													<div class="text8">click on +                 to invite somebody</div>
 													<div class="text8">click on &#10007 to kick somebody out</div>
-												</div>
-												<div style="float:auto;"></div>
-											</div>
+												</td>
+											</tr></table>
 											<div>
 												<div class="text7">Here &#8595<div>
 												<div class="text8">will be board tasks<div>
@@ -402,7 +409,7 @@
 												<div class="text8">click on +&#10004 	to add new "Finished" 	status</div>
 												<div class="text8">click on +&#9850 	 	to add new "Resumed" 	status</div>
 											</div>
-										</li >
+										</li>
 										<div ng-show="!help" class="elementButton" ng-click="help=!help;" style="display: inline-block">
 											<div class="text9">show help</div>
 										</div>
@@ -412,17 +419,19 @@
 									</ul>
 									
 									<ul ng-show="activeBoard && !activeTask">
-										<li style="width:100%;overflow: hidden;overflow:auto">
-											<div class="elementButton" ng-click ="CreateNewTask()" style="float: left;text-align:center;width:25%;">
-												<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
-											</div>	
-											<div ng-show="isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}}:</div>
-											<div ng-show="!isThatMe(activeBoard.owner)" class="text2" style="float: left;margin-right:12.5%;width:50%;">{{activeBoard.name}} ({{activeBoard.owner}}):</div>
-											<div style="float:auto;"></div>
+										<li>
+											<table style="margin: auto;"><tr>
+												<td class="elementButton" ng-click ="CreateNewTask();">
+													<a href = ""><div class="text1">&nbsp+&nbsp</div></a>
+												</td>	
+												<td ng-show="isThatMe(activeBoard.owner);" class="text2" >{{activeBoard.name}}:</div>
+												<td ng-show="!isThatMe(activeBoard.owner);" class="text2">{{activeBoard.name}} ({{activeBoard.owner}}):</div>
+												<td class="text1" >&nbsp&nbsp&nbsp</td>
+											<tr></table>
 										</li>
 										<li>
-											<table ng-show="activeBoard.tasks" style="width:100%;">
-												<tr class="text7" >
+											<table ng-show="activeBoard.tasks" style="width:100%;margin: auto;">
+												<tr class="text7">
 													<th ></th>
 													<th>task:</th>
 													<th>status:</th>
@@ -430,16 +439,16 @@
 												<tr ng-repeat = "task in activeBoard.tasks" class="elementButton" ng-click = "ActiveTask(task)"><a  href = "">
 													<td>
 														<!-- Status sign -->
-														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='New'"				>&#127381	</div>
-														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='In progress'"	>&#10148		</div>
-														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Blocked'"			>&#9940		</div>
-														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Finished'"		>&#10004		</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='New'"			>&#127381	</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='In progress'"	>&#10148	</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Blocked'"		>&#9940		</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Finished'"	>&#10004	</div>
 														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Resumed'"		>&#9850		</div>
 													</td>
 													<td style="text-align:left;">
 														<!-- name -->
 														<div class="text6" ng-show="task.statuses[0].user===login">{{task.name}}</div>
-														<div ng-show="task.statuses[0].user!=login" class="text6" >{{task.name}} ({{task.statuses[0].user}})</div>
+														<div class="text6" ng-show="task.statuses[0].user!=login" >{{task.name}} ({{task.statuses[0].user}})</div>
 													</td>
 													<td style="text-align:left;">
 														<!-- last status -->
@@ -539,72 +548,65 @@
 							<td valign="top" style="min-width:25%;">
 							<!-- RIGHT -->
 								<ul ng-show="activeBoard">
-									<li ng-show="isThatMe(activeBoard.owner)"  style="width:100%;overflow: hidden;overflow:auto">
-											<div class="elementButton" ng-click ="InviteToBoard()" style="float: left; width:25%;">
-												<a href = ""><div class="text2">&nbsp+&nbsp</div></a>
-											</div>	
-											<div class="text2" style="float: left;margin-right:12.5%;width:50%;">Members:</div>
-											<div style="float:auto;"></div>
-									</li>
-									<li ng-show="!isThatMe(activeBoard.owner)"  style="width:100%;overflow: hidden;overflow:auto">
-											<div style="float: left; width:25%;">
-												<div class="text2"></div>
-											</div>	
-											<div class="text2" style="float: left;margin-right:12.5%;margin-left:25%;width:50%;">Members:</div>
-											<div style="float:auto;"></div>
+									<li>
+										<table ng-show="isThatMe(activeBoard.owner)" style="margin: auto;"><tr>
+											<td class="elementButton" ng-click ="InviteToBoard()">
+												<a href = ""><div class="text1">&nbsp+&nbsp</div></a>
+											</td>
+											<td class="text2">
+												Members:
+											</td>
+											<td class="text1">&nbsp&nbsp&nbsp</td>
+										<tr></table>
+										<div ng-show="!isThatMe(activeBoard.owner)" class="text2">
+											Members:
+										</div>
 									</li>
 									<li>
-										<div style="width:100%;overflow: hidden;overflow:auto">
-											<div style="float: left; min-width:86%;">
-												<div class="text5">{{activeBoard.owner}}</div>
-											</div>
-											<div style="float: left; width:13%;">
-												<div class="text4" >&nbsp&#128081;&nbsp</div>
-											</div>
-											<div style="float:auto;"></div>
-										</div>
+										<table style="width:100%;"><tr>
+											<td class="text5" style="width:86%;padding-left:14%">
+												{{activeBoard.owner}}
+											</td>
+											<td class="text4" style="width:14%;">
+												&nbsp&#128081;&nbsp</div>
+											</td>
+										</tr></table>
 									</li>
-									<li  ng-show="isThatMe(activeBoard.owner)" ng-repeat = "member in activeBoard.members  | orderBy: 'toString()'">
-										<div style="width:100%;overflow: hidden;overflow:auto">
-											<div style="float: left; width:87%;">
-												<div class="text5">{{member}}</div>
-											</div>
-											<div class="elementButton" ng-click = "KickOut(member);" style="float: left; width:13%;">
+									<li ng-repeat = "member in activeBoard.members  | orderBy: 'toString()'">
+										<table ng-show="isThatMe(activeBoard.owner)" style="width:100%;"><tr>
+											<td class="text5" style="width:86%;padding-left:14%">
+												{{member}}
+											</td>
+											<td class="elementButton" ng-click = "KickOut(member);" style="width:14%;">
 												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
-											</div>
-											<div style="float:auto;"></div>
-										</div>
-									</li>
-									<li  ng-show="!isThatMe(activeBoard.owner)" ng-repeat = "member in activeBoard.members  | orderBy: 'toString()'">
-										<div style="width:100%;overflow: hidden;overflow:auto">
-											<div style="float: left; width:87%;">
-												<div class="text5">{{member}}</div>
-											</div>
-											<div style="float: left; width:13%;">
-												<div class="text4" ></div>
-											</div>
-											<div style="float:auto;"></div>
+											</td>
+										</tr></table>
+										<div ng-show="!isThatMe(activeBoard.owner)" class="text5">
+											{{member}}
 										</div>
 									</li>
 									<li  ng-show="activeBoard.invitations"  style="width:100%;overflow: hidden;overflow:auto">
-										<div class="text2" style="float: left; width:25%;">&#128233</div>
-										<div class="text2" style="float: left;margin-right:12.5%;width:50%;">Invited:</div>
-										<div style="float:auto;"></div>
+										<table style="margin: auto;"><tr>
+											<td class="text1">
+												&#128233&nbsp</div>
+											</td>
+											<td class="text2">
+												Invited:
+											</td>
+											<td class="text1">&nbsp&nbsp</td>
+										<tr></table>
 									</li>
 									<li ng-repeat = "invitation in activeBoard.invitations  | orderBy: 'toString()'">
-										<div ng-show="isThatMe(activeBoard.owner)"  style="width:100%;overflow: hidden;overflow:auto">
-											<div style="float: left; width:87%;">
-												<div class="text5">{{invitation}}</div>
-											</div>
-											<div class="elementButton" ng-click = "KickOut(invitation);" style="float: left; width:13%;">
+										<table ng-show="isThatMe(activeBoard.owner)" style="width:100%;"><tr>
+											<td class="text5" style="width:86%;padding-left:14%">
+												{{invitation}}
+											</td>
+											<td class="elementButton" ng-click = ng-click = "KickOut(invitation);" style="width:14%;">
 												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
-											</div>
-											<div style="float:auto;"></div>
-										</div>
-										<div ng-show="!isThatMe(activeBoard.owner)"  style="width:100%">
-											<div style="width:100%;">
-												<div class="text5">{{invitation}}</div>
-											</div>
+											</td>
+										</tr></table>
+										<div ng-show="!isThatMe(activeBoard.owner)" class="text5">
+											{{invitation}}
 										</div>
 									</li>
 								</ul>
@@ -665,8 +667,8 @@
 							</tr>
 						</table>
 						<table style="width:100%;">
-							<tr style="width:100%;">
-								<td style="text-align:center;">
+							<tr>
+								<td>
 									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton">
 										<a href = "#/App"><div class="text4">Cancel</div></a>
 									</div>
