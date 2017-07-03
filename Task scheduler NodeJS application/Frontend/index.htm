@@ -54,7 +54,6 @@
 			main.controller('AppController', function($scope) {
 				$scope.SignOut=function()
 				{
-					$rootScope = $rootScope.$new(true);
 					$scope = $scope.$new(true);
 				}
 				$scope.CreateNewBoard=function(){
@@ -533,11 +532,11 @@
 									</li>
 									<li>
 										<table style="width:100%;"><tr>
-											<td class="text5" style="width:86%;padding-left:14%">
+											<td class="text5" style="width:86%;padding-left:14%;">
 												{{activeBoard.owner}}
 											</td>
-											<td class="text4" style="width:14%;">
-												&nbsp&#128081;&nbsp</div>
+											<td class="text5" style="width:14%;">
+												&nbsp&#128081&nbsp</div>
 											</td>
 										</tr></table>
 									</li>
