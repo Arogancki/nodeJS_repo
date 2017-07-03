@@ -52,7 +52,7 @@ th
 body::after
 {
 	content: "";
-	background-image: url("https://userscontent2.emaze.com/images/2530c89d-5ac8-485c-8589-295acf19125e/c2001a0468c5237fadf3f84e94675311.png");
+	background-image: url("file:resources/4");
 	opacity: 0.1;
 	top: 0;
 	left: 0;
