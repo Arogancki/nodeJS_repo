@@ -7,10 +7,6 @@ try {
 catch (err){}
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function SendPostToCurrentUrl(headerType1,headerType2,data,onReadyStateChangeFunction)
 {
 	var pathArray = location.href.split( '/' );
@@ -23,7 +19,7 @@ function SendPostToCurrentUrl(headerType1,headerType2,data,onReadyStateChangeFun
 		else console.log("Reguest status: "+xhr.status);
 	}
 	try{
-		xhr.send(data);
+		xhr.send(data); // requested backgorund is random
 	}
 	catch(err) {
 		console.log("Error during sending post "+err);
@@ -32,7 +28,7 @@ function SendPostToCurrentUrl(headerType1,headerType2,data,onReadyStateChangeFun
 
 function setBackground()
 {
-	SendPostToCurrentUrl("Content-type","image/jpeg","gbImg="+getRandomInt(1, 4),function () {
+	SendPostToCurrentUrl("Content-type","image/jpeg","bgImg=0",function () {
 		var css = 'body::after{ background-image: '+1+'; }';
 		var style = document.createElement('style');
 		if (style.styleSheet) {
@@ -50,8 +46,14 @@ var main = angular.module("main", ['ngRoute']);
 
 main.controller('SignInController', function($scope) {
 	$scope.SignIn=function(){
+		var c=$cookieStore.get("login");
+			alert("c");
 		if ($scope.login && $scope.password) {
-			alert("git");
+			$cookieStore.put("login", $scope.login);
+			var c=$cookieStore.get("login");
+			alert("c");
+			//$cookieStore.remove("login");
+			
 		}
 	}
 });

@@ -90,18 +90,12 @@ function HandleGet(req, res) {
 }
 
 function HandlePost(req, res, data) {
-	if (data.gbImg) {
-		console.log("Background image requested "+data.gbImg);
-		if (data.gbImg>=1 && data.gbImg<=4) {
-			res.setHeader('Content-Type', "image/jpeg");
-			res.statusCode = 200;
-			res.write(resourcesPath + data.gbImg);
-		}
-		else {
-			res.setHeader('Content-Type', "message");
-			res.statusCode = 403;
-			res.write("requested bgIMG does not exist");
-		}	
+	if (data.bgImg) {
+		console.log("Background image requested ");
+		var bgImg=bgImg!=0 ? bgImg : Math.ceil(Math.random() * 4); // bg quantity
+		res.setHeader('Content-Type', "image/jpeg");
+		res.statusCode = 200;
+		res.write(resourcesPath + bgImg);
 		res.end();
 	}
 	else {
