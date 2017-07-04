@@ -1,10 +1,12 @@
 ﻿var http = require("http");                         // http protocol - socets, connections
 var fs = require('fs');                             //file streams
 var qs = require('querystring');                    //unpacking post - into jason
+var path = require('path');                         // differences between OS
 var port = 8081;
-var resourcesPath = "resources\\";
+var resourcesPath = "resources";
 var dataBase = require('mongodb').MongoClient;      //MongoDB
 var dataBaseUrl = "mongodb://localhost:27017/mydb"; //dataBase address
+var date = new Date();                              // date object
 
 // remember to run run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
@@ -40,14 +42,28 @@ function CreateDataBases() {
     });
 }
 
-function writeFromPath(path,obj) {
-    if (!path || !obj)
-        console.log("Undefined: " + path + " or " + obj);
+function writeTextFromPath(path, res) {
+    if (!path || !res)
+        console.log("Undefined: " + path + " or " + res);
     else {
         fs.readFile(path, function (err, data) {
             if (err) console.log(err);
-            obj.write(data);
-            obj.end();
+            res.write(data);
+            res.end();
+        });
+    }
+}
+
+function writeImageFromPath(path, res) {
+    if (!path || !res)
+        console.log("Undefined: " + path + " or " + res);
+    else {
+        fs.readFile(path, function(err, data) {
+            if (err) {
+                console.log(err);
+                return 1;
+            }
+            res.end(data); 
         });
     }
 }
@@ -58,26 +74,32 @@ function HandleGet(req, res) {
             console.log("Main page file requested");
             res.setHeader('Content-Type', 'text/html');
             res.statusCode = 200;
-            writeFromPath(resourcesPath + "index.htm", res);
+            writeTextFromPath(path.join(resourcesPath, "index.htm"), res);
             break;
         case "/styles.css":
             console.log("CSS file requested");
             res.setHeader('Content-Type', 'text/css');
             res.statusCode = 200;
-            writeFromPath(resourcesPath + "styles.css", res);
+            writeTextFromPath(path.join(resourcesPath,"styles.css"), res);
             break;
-		case "/main.js":
+        case "/main.js":
             console.log("JS file requested");
             res.setHeader('Content-Type', 'application/javascript');
             res.statusCode = 200;
-            writeFromPath(resourcesPath + "main.js", res);
+            writeTextFromPath(path.join(resourcesPath,"resources", "main.js"), res);
+            break;
+        case "/bgIMG":
+            var bgIMG = Math.ceil(Math.random() * 4); // 4 is bg quantity
+            console.log("Background image requested: "+bgIMG);
+            res.setHeader('Content-Type', "image/jpeg");
+            res.statusCode = 200;
+            writeImageFromPath(path.join(resourcesPath,"resources",bgIMG.toString()),res);
             break;
         case "/ico":
             console.log("Ico requested");
             res.setHeader('Content-Type', 'image/vnd.microsoft.icon');
             res.statusCode = 200;
-            res.write(resourcesPath + "ico");
-            res.end();
+            writeImageFromPath(path.join(resourcesPath, "resources","ico"),res);
             break;
         default:
             console.log("Unsupported request");
@@ -91,12 +113,6 @@ function HandleGet(req, res) {
 
 function HandlePost(req, res, data) {
 	if (data.bgImg) {
-		console.log("Background image requested ");
-		var bgImg=bgImg!=0 ? bgImg : Math.ceil(Math.random() * 4); // bg quantity
-		res.setHeader('Content-Type', "image/jpeg");
-		res.statusCode = 200;
-		res.write(resourcesPath + bgImg);
-		res.end();
 	}
 	else {
 		console.log("Unsupported request");
@@ -108,7 +124,7 @@ function HandlePost(req, res, data) {
 }
 
 http.createServer(function (req, res) {
-    console.log("\nNew request: " + req.method + " : " + req.url);
+    console.log("\n"+date.toString()+":\nNew request: " + req.method + " : " + req.url);
     switch (req.method) {
     case "GET":
         HandleGet(req, res);
@@ -134,4 +150,3 @@ http.createServer(function (req, res) {
 }).listen(port);
 
 console.log("Server started listening on: " + port);
-

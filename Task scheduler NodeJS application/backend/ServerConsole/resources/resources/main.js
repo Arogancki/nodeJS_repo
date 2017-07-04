@@ -7,45 +7,6 @@ try {
 catch (err){}
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function SendPostToCurrentUrl(headerType1,headerType2,data,onReadyStateChangeFunction)
-{
-	var pathArray = location.href.split( '/' );
-	var url = pathArray[0] + '//' + pathArray[2];
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader(headerType1,headerType2);
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) onReadyStateChangeFunction();
-		else console.log("Reguest status: "+xhr.status);
-	}
-	try{
-		xhr.send(data);
-	}
-	catch(err) {
-		console.log("Error during sending post "+err);
-	}
-}
-
-function setBackground()
-{
-	SendPostToCurrentUrl("Content-type","image/jpeg","gbImg="+getRandomInt(1, 4),function () {
-		var css = 'body::after{ background-image: '+1+'; }';
-		var style = document.createElement('style');
-		if (style.styleSheet) {
-			style.styleSheet.cssText = css;
-		} 
-		else {
-			style.appendChild(document.createTextNode(css));
-		}
-		document.getElementsByTagName('head')[0].appendChild(style);
-		alert(xhr.responseText);
-	});
-}
-
 var main = angular.module("main", ['ngRoute']);
 
 main.controller('SignInController', function($scope) {

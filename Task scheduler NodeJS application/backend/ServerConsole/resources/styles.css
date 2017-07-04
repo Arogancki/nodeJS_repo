@@ -53,6 +53,7 @@ body::after
 {
 	content: "";
 	opacity: 0.1;
+	background-image: url("bgIMG");
 	top: 0;
 	left: 0;
 	z-index: -1;  
