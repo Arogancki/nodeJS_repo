@@ -167,7 +167,7 @@
 									<li ng-show="!boards.length">
 										<div class="text5">You dont have any boards</div>
 									</li>
-									<li>
+									<li ng-show="invitations.length">
 										<table style="margin: auto;"><tr>
 											<td class="text1">
 												&#9993&nbsp</div>
@@ -239,7 +239,7 @@
 												<td class="text1" >&nbsp&nbsp&nbsp</td>
 											<tr></table>
 										</li>
-										<li>
+										<li >
 											<table ng-show="activeBoard.tasks" style="width:100%;margin: auto;">
 												<tr class="text7">
 													<th ></th>
@@ -271,6 +271,9 @@
 													</td>	
 												</a></tr>
 											</table>
+										</li>
+										<li ng-show="!activeBoard.tasks.length">
+											<div class="text2" >There are no tasks here</div>
 										</li>
 									</ul>
 									<ul ng-show="activeTask">
@@ -443,7 +446,7 @@
 										<div class="text4" >Change login</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="login" ng-model = "login">
+										<input class="text6" type = "text" placeholder="login" ng-model = "newLogin">
 								</td>
 							</tr>
 							<tr>
@@ -451,7 +454,7 @@
 										<div class="text4" >Change password</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="password" ng-model = "password">
+										<input class="text6" type = "text" placeholder="password" ng-model = "newPassword">
 								</td>
 							</tr>
 							<tr>
@@ -459,7 +462,7 @@
 										<div class="text4" >Re-type new password</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
+										<input class="text6" type = "password" placeholder="re-type password" ng-model = "newPassword2">
 								</td>
 							</tr>
 							<tr>
@@ -468,7 +471,7 @@
 										<div class="text9" >Fill in only if you want to receive notifications</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="email" ng-model = "email">
+										<input class="text6" type = "text" placeholder="email" ng-model = "newEmail">
 								</td>
 							</tr>
 						</table>
