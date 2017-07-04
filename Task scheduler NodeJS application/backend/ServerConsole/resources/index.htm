@@ -38,7 +38,7 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<div class="main">
+				<div class="main"  name="form" novalidate>
 					<table style="width:100%;">
 						<tr>
 							<td style="width:50%;">
@@ -75,14 +75,14 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<div class="main">
+				<div class="main" name="form" novalidate>
 					<table style="width:100%;">
 						<tr>
 							<td style="width:50%;">
 								<div class="text4" >Login</div>
 							</td>
 							<td style="width:50%">
-								<input class="text6" type = "text" placeholder="login" ng-model = "login">
+								<input class="text6" type = "text" name="login" placeholder="login" ng-model = "login" required>
 							</td>
 						</tr>
 						<tr>
@@ -90,7 +90,7 @@
 								<div class="text4" >Password</div>
 							</td>
 							<td style="width:50%">
-								<input class="text6" type = "password" placeholder="password" ng-model = "password">
+								<input class="text6" type = "password" name="password" placeholder="password" ng-model = "password" required>
 							</td>
 						</tr>
 						<tr>
@@ -98,7 +98,7 @@
 								<div class="text4" >Re-type password</div>
 							</td>
 							<td style="width:50%">
-								<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
+								<input class="text6" type = "password" name="password2" placeholder="re-type password" ng-model = "password2" required>
 							</td>
 						</tr>
 						<tr>
@@ -107,13 +107,38 @@
 								<div class="text9" >Fill in only if you want receive notifications</div>
 							</td>
 							<td style="width:50%">
-								<input class="text6" type = "text" placeholder="email" ng-model = "email">
+								<input class="text6" type="email" name="email" type = "text" placeholder="email" ng-model = "email">
 							</td>
 						</tr>
+						<tr>
+							<td colspan="2" style="margin-top:5%;"  class="elementButton"   ng-disabled="myForm.login.$dirty && myForm.login.$invalid ||
+														myForm.password.$dirty && myForm.password.$invalid ||
+														myForm.password2.$dirty && myForm.passwor2.$invalid ||
+														myForm.login.$email && myForm.email.$invalid"  ng-click ="SignUp()">
+								<a  href = ""><div class="text4">Accept</div></a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="text4" ng-show="myForm.login.$invalid">dupa</div>
+							</td>	
+						</tr>
+						<tr>
+							<td>
+								<div class="text4" ng-show="myForm.password.$invalid">dupa</div>
+							</td>	
+						</tr>
+						<tr>
+							<td>
+								<div class="text4" ng-show="myForm.password2.$invalid">dupa</div>
+							</td>	
+						</tr>
+						<tr>
+							<td>
+								<div class="text4" ng-show="myForm.email.$invalid">dupa</div>
+							</td>	
+						</tr>
 					</table>
-					<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignUp()">
-						<a  href = ""><div class="text4">Accept</div></a>
-					</div>
 				</div>
 			</script>
 			<script type = "text/ng-template" id = "App.htm">
@@ -439,7 +464,7 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<div class="main">
+				<div class="main"  name="form" novalidate>
 						<table style="width:100%;">
 							<tr>
 								<td style="width:50%;">
@@ -471,7 +496,7 @@
 										<div class="text9" >Fill in only if you want to receive notifications</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="email" ng-model = "newEmail">
+										<input class="text6" type="email" type = "text" placeholder="email" ng-model = "newEmail">
 								</td>
 							</tr>
 						</table>

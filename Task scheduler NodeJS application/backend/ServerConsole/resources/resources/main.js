@@ -11,6 +11,7 @@ var main = angular.module("main", ['ngRoute']);
 
 main.controller('SignInController', function($scope) {
 	$scope.SignIn=function(){
+		alert("git");
 		if ($scope.login && $scope.password) {
 			alert("git");
 		}

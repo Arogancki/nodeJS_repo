@@ -98,6 +98,14 @@ input{
   color:#FFFFFF;
 }
 
+input.ng-invalid {
+    border-bottom: solid 2px #CC0000;
+}
+
+input.ng-untouched{
+  border-bottom: solid 2px #3399FF;
+}
+
 input:hover{
   border-bottom: solid 2px #99CCFF;
 }
@@ -106,6 +114,7 @@ input:focus,input.focus{
 	outline: none;
 	border-bottom: solid 2px #FFFFFF;
 }
+
 
 .main
 {
@@ -137,6 +146,12 @@ input:focus,input.focus{
 {
 	background-color: #FFFFFF;
 	color: #3399FF;
+}
+
+.elementButton:disabled
+{
+	border: 2px solid #FFFFFF;
+	text-align:left;
 }
 
 .text1 {
