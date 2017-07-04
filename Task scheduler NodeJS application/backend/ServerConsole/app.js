@@ -6,7 +6,6 @@ var resourcesPath = "resources\\";
 var dataBase = require('mongodb').MongoClient;      //MongoDB
 var dataBaseUrl = "mongodb://localhost:27017/mydb"; //dataBase address
 
-
 // remember to run run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
 function CreateDataBases() {
@@ -56,16 +55,22 @@ function writeFromPath(path,obj) {
 function HandleGet(req, res) {
     switch (req.url) {
         case "/":
-            console.log("Main page requested");
+            console.log("Main page file requested");
             res.setHeader('Content-Type', 'text/html');
             res.statusCode = 200;
             writeFromPath(resourcesPath + "index.htm", res);
             break;
         case "/styles.css":
-            console.log("CSS requested");
+            console.log("CSS file requested");
             res.setHeader('Content-Type', 'text/css');
             res.statusCode = 200;
             writeFromPath(resourcesPath + "styles.css", res);
+            break;
+		case "/main.js":
+            console.log("JS file requested");
+            res.setHeader('Content-Type', 'application/javascript');
+            res.statusCode = 200;
+            writeFromPath(resourcesPath + "main.js", res);
             break;
         case "/ico":
             console.log("Ico requested");
@@ -77,7 +82,7 @@ function HandleGet(req, res) {
         default:
             console.log("Unsupported request");
             res.setHeader('Content-Type', "text / html");
-            res.statusCode = 404;
+            res.statusCode = 400; //Bad Request
             res.write("Unsupported request");
             res.end();
             break;
@@ -85,18 +90,27 @@ function HandleGet(req, res) {
 }
 
 function HandlePost(req, res, data) {
-    console.log("Unsupported req." + data.img);
-    switch (req.url) {
-        //case "/":
-          //  break;
-        default:
-            console.log("Unsupported request");
-            res.setHeader('Content-Type', "text / html");
-            res.statusCode = 404;
-            res.write("Unsupported request");
-            res.end();
-            break;
-    }
+	if (data.gbImg) {
+		console.log("Background image requested "+data.gbImg);
+		if (data.gbImg>=1 && data.gbImg<=4) {
+			res.setHeader('Content-Type', "image/jpeg");
+			res.statusCode = 200;
+			res.write(resourcesPath + data.gbImg);
+		}
+		else {
+			res.setHeader('Content-Type', "message");
+			res.statusCode = 403;
+			res.write("requested bgIMG does not exist");
+		}	
+		res.end();
+	}
+	else {
+		console.log("Unsupported request");
+        res.setHeader('Content-Type', "message");
+        res.statusCode = 400; //Bad Request
+        res.write("Unsupported request");
+        res.end();
+	}
 }
 
 http.createServer(function (req, res) {
