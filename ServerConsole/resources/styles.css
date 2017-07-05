@@ -52,8 +52,8 @@ th
 body::after
 {
 	content: "";
-	background-image: url("file:resources/4");
 	opacity: 0.1;
+	background-image: url("bgIMG");
 	top: 0;
 	left: 0;
 	z-index: -1;  
@@ -96,6 +96,14 @@ input{
   text-align:center;
   min-width:80%;
   color:#FFFFFF;
+}
+
+input.ng-invalid {
+    border-bottom: solid 2px #CC0000;
+}
+
+input.ng-untouched{
+  border-bottom: solid 2px #3399FF;
 }
 
 input:hover{

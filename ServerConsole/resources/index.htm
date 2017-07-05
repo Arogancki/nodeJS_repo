@@ -2,12 +2,13 @@
 <html lang="en-US">
 <html>
 	<head>
-		<title>Task menager</title>
-		<meta name="description" content="Simply task menager application">
+		<title>Task menager NodeJS</title>
+		<meta name="description" content="Simply task menager application working on nodeJS server">
 		<meta name="keywords" content="task,menager,nodejs,artur,ziemba,zut,wi">
 		<meta name="author" content="Artur Ziemba">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" type="image/x-icon"  href="https://lh3.googleusercontent.com/HvLGMwACi8hrQaEV7oeALcIkVHokmVUjHEx28TXSGZepZ3frggtDmVUnWSbYUJHnyg=w300">
+		<!-- window ico external link -->
+		<link rel="shortcut icon" type="image/x-icon"  href="ico">
 		<!-- bootstrap external link -->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<!-- AngularJS external link -->
@@ -19,168 +20,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
 		<!--  CSS external link -->
 		<link rel="stylesheet" href="styles.css">
-		
-		<script>
-			function alignRowColumn1to2(column1, column21, column22){
-				try {
-					document.getElementById(column1).style.height=
-					document.getElementById(column21).offsetHeight+
-					document.getElementById(column22).offsetHeight+'px';
-				}
-				catch (err){}
-			}
-			
-			var main = angular.module("main", ['ngRoute']);
-			
-			main.controller('SignInController', function($scope) {
-				$scope.SignIn=function(){
-					if ($scope.login && $scope.password)
-					{
-						alert("git");
-					}
-				}
-			});
-			
-			main.controller('SignUpController', function($scope) {
-				$scope.SignUp=function(){
-					if ($scope.login && $scope.password && $scope.password2)
-					{
-						//email moze byc undefined
-						alert("git");
-					}
-				}
-			});
-			
-			main.controller('AppController', function($scope) {
-				$scope.SignOut=function()
-				{
-					$scope = $scope.$new(true);
-				}
-				$scope.CreateNewBoard=function(){
-					var input=prompt("Please enter new board name.");
-					if (input != null) {
-						
-					}
-				}
-				$scope.AcceptInvitation=function(invitation){
-					if (confirm('Do you want to accept an invitation to "'+invitation.name+'" board from '+invitation.owner+'?')) {
-						//accept invitation
-					} else {
-						// Remove invitation
-					}
-				}
-				$scope.ActiveBoard=function(board){
-					$scope.activeBoard=board;
-					$scope.activeTask=undefined;
-				}
-				$scope.LeaveBoard=function(board){
-					if (confirm("Do you want to leave "+board.owner+'\'s board "'+board.name+'"?')) {
-						//leave
-					}
-				}
-				$scope.DeleteBoard=function(board){
-					if (confirm('Do you want to delete your board "'+board.name+'"?')) {
-						//ldelete
-					}
-				}
-				$scope.KickOut=function(member){
-					if (confirm('Do you want to kick "'+member+'" out from '+$scope.activeBoard.name+"?")) {
-						//kick
-					}
-				}
-				$scope.AddStatus=function(type){
-					var info=prompt("You're going to add a \""+type+"\" status.\nWrite a comment if you want.");
-				}
-				$scope.isThatMe=function(name){
-					return $scope.login===name ? true : false;
-				} 
-				$scope.InviteToBoard=function(){
-					var input=prompt("Please enter user's login you want to invite.");
-					if (input != null && $scope.activeBoard != null ) {
-						//add input to inviteted
-					}
-				} 
-				$scope.CreateNewTask=function(){
-					var input=prompt("Please enter new task name.");
-					if (input != null && $scope.activeBoard != null ) {
-						//add new task with status new 
-						var info=prompt("Write first comment if you want.");
-					}
-				}
-				$scope.RemoveTask=function(){
-					if (confirm('Do you want to delete task "'+$scope.activeTask.name+'"?')) {
-						//remove task from activeTask
-					}
-				}
-				$scope.ActiveTask=function(task){
-					$scope.activeTask=task;
-				}
-				$scope.activeBoard="";
-				$scope.login="Agnieszka";
-				$scope.boards=[
-											{	name:"Gotowanie",
-												owner:"Agnieszka",
-												members:["Artur","Mama"],
-												invitations:["Marek"],
-												tasks:[
-															{ name:"Kurczak",statuses:[
-																											{ type:"New",user:"Artur",info:"My 1",date:"18:51"},
-																											{ type:"Blocked",user:"Agnieszka",info:"My 2",date:"18:55"},
-																											{ type:"In progress",user:"Artur",info:"My 3 to bedize najdpluzszy kmemtaurz bo nalezy spradziwc rozciaganie sie divoww sifnaosufbaifbaifbasfa sfaosf asfasu",date:"22:00"},
-																											{ type:"Finished",user:"Agnieszka",info:"My 4",date:"23:51"}
-																										]
-															},
-																											
-															{name:"Wolowina na parze",statuses:[
-																															{type:"New",user:"Agnieszka",info:"Time for beef"},
-																															{type:"In progress",user:"Artur",info:"I take it"}
-																														]
-															}
-														]
-											},
-											{
-												name:"Podroze",
-												owner:"Artur",
-												members:["Agnieszka"],
-												invitations:["Marek","Mama"]
-											}
-											
-										];
-				$scope.invitations=[{name:"Praca",owner:"Szef"},{name:"Dom",owner:"Mama"}];
-			});
-			
-			main.controller('SettingsController', function($scope) {
-				$scope.Change=function(){
-					if ($scope.login && $scope.password && $scope.password2 && $scope.email)
-					{
-						alert("git");
-					}
-				}
-			});
-			
-			main.config(['$routeProvider', function($routeProvider) {
-			$routeProvider.
-			when('/SignIn', {
-				templateUrl: 'SignIn.htm',
-				controller: 'SignInController'
-			}).
-			when('/SignUp', {
-				templateUrl: 'SignUp.htm',
-				controller: 'SignUpController'
-			}).
-			when('/App', {
-				templateUrl: 'App.htm',
-				controller: 'AppController'
-			}).
-			when('/Settings', {
-				templateUrl: 'Settings.htm',
-				controller: 'SettingsController'
-			}).
-			otherwise({
-				redirectTo: '/SignIn'
-			});
-			}]);
-		</script>
+		<!-- JS external link-->
+		<script type="text/javascript" src="main.js"></script>
 	</head>
 	<body ng-app = "main">
 		<div ng-view id="template">
@@ -197,14 +38,15 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<div class="main">
+				<form class="main"  name="form">
 					<table style="width:100%;">
 						<tr>
 							<td style="width:50%;">
 									<div class="text4" >Login</div>
 							</td>
 							<td style="width:50%">
-									<input class="text6" type = "text" placeholder="login" ng-model = "login">
+									<input class="text6" type = "text" placeholder="login" ng-model = "login" name="login"
+									required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
 							</td>
 						</tr>
 						<tr>
@@ -212,14 +54,29 @@
 									<div class="text4" >Password</div>
 							</td>
 							<td style="width:50%">
-									<input class="text6" type = "password" placeholder="password" ng-model = "password">
+									<input class="text6" type = "password" placeholder="password" ng-model = "password" name="password"
+									required ng-pattern='/^[a-zA-Z0-9._-]+$/' ng-maxlength="20" ng-minlength="8">
 							</td>
 						</tr>
+						<tr>
+							<td colspan="2" ng-show='form.login.$valid && form.password.$valid'>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="SignIn()">
+									<a href =  ""><div class="text4">Accept</div></a>
+								</div>
+							</td>
+							<td colspan="2" class="text4" class="elementButton"
+								ng-show='form.login.$invalid || form.password.$invalid'>
+								<div style="margin-top:4%;color: #AFAFAF;">Accept</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<div class="text6" ng-show="form.login.$invalid && form.login.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
+								<div class="text6" ng-show="form.password.$invalid && form.password.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
+							</td>	
+						</tr>
 					</table>
-					<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignIn()">
-						<a href =  ""><div class="text4">Accept</div></a>
-					</div>
-				</div>
+				</form>
 			</script>
 			<script type = "text/ng-template" id = "SignUp.htm">
 				<header>
@@ -234,46 +91,69 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<div class="main">
+				<form class="main" name="form" novalidate>
 					<table style="width:100%;">
 						<tr>
-							<td style="width:50%;">
-								<div class="text4" >Login</div>
+								<td style="width:50%;">
+										<div class="text4" >Login</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="login" ng-model = "login" name = "login"
+										required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "password" placeholder="password" ng-model = "password" name = "password"
+										required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="8">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Confirm password</div>
+								</td>
+								<td ng-show="password" style="width:50%">
+										<input class="text6" type = "password" placeholder="confirm password" ng-model = "password2" name = "password2"
+										required ng-pattern="password">
+								</td>
+								<td ng-show="!password" style="width:50%">
+										<input ng-disabled='1' class="text6" placeholder="enter password first">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Email</div>
+										<div class="text9" >Fill in only if you want to receive notifications</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type="email" type = "text" placeholder="email" ng-model = "email" name = "email">
+								</td>
+							</tr>
+						<tr>
+							<td colspan="2" ng-show='form.login.$valid && form.password.$valid && form.password2.$valid && form.email.$valid'>
+								<div style="margin: auto;margin-top:4%;" class="elementButton" ng-click ="Change()">
+									<a href = ""><div class="text4">Accept</div></a>
+								</div>
 							</td>
-							<td style="width:50%">
-								<input class="text6" type = "text" placeholder="login" ng-model = "login">
+							<td colspan="2" ng-show='!(form.login.$valid && form.password.$valid && form.password2.$valid && form.email.$valid)'>
+								<div class="text4" style="margin: auto;margin-top:4%;color: #AFAFAF;">
+									Accept
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:50%">
-								<div class="text4" >Password</div>
-							</td>
-							<td style="width:50%">
-								<input class="text6" type = "password" placeholder="password" ng-model = "password">
-							</td>
-						</tr>
-						<tr>
-							<td style="width:50%">
-								<div class="text4" >Re-type password</div>
-							</td>
-							<td style="width:50%">
-								<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
-							</td>
-						</tr>
-						<tr>
-							<td style="width:50%">
-								<div class="text4" >Email</div>
-								<div class="text9" >Fill in only if you want receive notifications</div>
-							</td>
-							<td style="width:50%">
-								<input class="text6" type = "text" placeholder="email" ng-model = "email">
-							</td>
+							<td colspan="2">
+								<div class="text6" ng-show="form.newLogin.$invalid && form.newLogin.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
+								<div class="text6" ng-show="form.newPassword.$invalid && form.newPassword.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
+								<div class="text6" ng-show="form.newPassword2.$invalid && form.newPassword2.$touched">Passwords are different</div>
+								<div class="text6" ng-show="form.newEmail.$invalid && form.newEmail.$touched">Invalid email: example@domain, 5 to 80 character</div>
+							</td>	
 						</tr>
 					</table>
-					<div style="width:100%;margin-top:4%;" class="elementButton" ng-click ="SignUp()">
-						<a  href = ""><div class="text4">Accept</div></a>
-					</div>
-				</div>
+				</form>
 			</script>
 			<script type = "text/ng-template" id = "App.htm">
 				<header>
@@ -326,7 +206,7 @@
 									<li ng-show="!boards.length">
 										<div class="text5">You dont have any boards</div>
 									</li>
-									<li>
+									<li ng-show="invitations.length">
 										<table style="margin: auto;"><tr>
 											<td class="text1">
 												&#9993&nbsp</div>
@@ -398,7 +278,7 @@
 												<td class="text1" >&nbsp&nbsp&nbsp</td>
 											<tr></table>
 										</li>
-										<li>
+										<li >
 											<table ng-show="activeBoard.tasks" style="width:100%;margin: auto;">
 												<tr class="text7">
 													<th ></th>
@@ -430,6 +310,9 @@
 													</td>	
 												</a></tr>
 											</table>
+										</li>
+										<li ng-show="!activeBoard.tasks.length">
+											<div class="text2" >There are no tasks here</div>
 										</li>
 									</ul>
 									<ul ng-show="activeTask">
@@ -595,14 +478,15 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<div class="main">
+				<form class="main"  name="form" novalidate>
 						<table style="width:100%;">
 							<tr>
 								<td style="width:50%;">
 										<div class="text4" >Change login</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="login" ng-model = "login">
+										<input class="text6" type = "text" placeholder="new login" ng-model = "newLogin" name = "newLogin"
+										ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
 								</td>
 							</tr>
 							<tr>
@@ -610,15 +494,20 @@
 										<div class="text4" >Change password</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="password" ng-model = "password">
+										<input class="text6" type = "password" placeholder="new password" ng-model = "newPassword" name = "newPassword"
+										ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="8">
 								</td>
 							</tr>
 							<tr>
 								<td style="width:50%">
-										<div class="text4" >Re-type new password</div>
+										<div class="text4" >Confirm new password</div>
 								</td>
-								<td style="width:50%">
-										<input class="text6" type = "password" placeholder="re-type password" ng-model = "password2">
+								<td ng-show="newPassword" style="width:50%">
+										<input class="text6" type = "password" placeholder="confirm new password" ng-model = "newPassword2" name = "newPassword2"
+										required ng-pattern="newPassword">
+								</td>
+								<td ng-show="!newPassword" style="width:50%">
+										<input ng-disabled='1' class="text6" placeholder="enter new password first">
 								</td>
 							</tr>
 							<tr>
@@ -627,25 +516,36 @@
 										<div class="text9" >Fill in only if you want to receive notifications</div>
 								</td>
 								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="email" ng-model = "email">
+										<input class="text6" type="new email" type = "text" placeholder="email" ng-model = "newEmail" name = "newEmail">
 								</td>
 							</tr>
-						</table>
-						<table style="width:100%;">
 							<tr>
 								<td>
 									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton">
 										<a href = "#/App"><div class="text4">Cancel</div></a>
 									</div>
 								</td>
-								<td>
+								<td ng-show='(newLogin || newEmail || newPassword) && form.newLogin.$valid && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true)'>
 									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton" ng-click ="Change()">
 										<a href = ""><div class="text4">Accept</div></a>
 									</div>
 								</td>
+								<td ng-show='!((newLogin || newEmail || newPassword) && form.newLogin.$valid && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true))'>
+									<div class="text4" style="width:50%;margin: auto;margin-top:4%;color: #AFAFAF;">
+										Accept
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div class="text6" ng-show="form.newLogin.$invalid && form.newLogin.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
+									<div class="text6" ng-show="form.newPassword.$invalid && form.newPassword.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
+									<div class="text6" ng-show="form.newPassword2.$invalid && form.newPassword2.$touched">Passwords are different</div>
+									<div class="text6" ng-show="form.newEmail.$invalid && form.newEmail.$touched">Invalid email: example@domain, 5 to 80 character</div>
+								</td>	
 							</tr>
 						</table>
-				</div>
+				</form>
 			</script>
 		</div>
 		<footer>
