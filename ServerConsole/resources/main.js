@@ -42,6 +42,7 @@ main.directive("passwordVerify", function() {
 });
 
 main.controller('SignInController', function($scope) {
+	alert("nic");
 	$scope.SignIn=function(){
 		alert("git");
 		if ($scope.login && $scope.password) {
