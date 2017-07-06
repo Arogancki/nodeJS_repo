@@ -1,4 +1,4 @@
-function alignRowColumn1to2(column1, column21, column22){
+function AlignRowColumn1to2(column1, column21, column22){
 try {
 	document.getElementById(column1).style.height=
 	document.getElementById(column21).offsetHeight+
@@ -7,63 +7,127 @@ try {
 catch (err){}
 }
 
+function getCurrentURL(){
+	var pathArray = location.href.split( '/' );
+ 	return (pathArray[0] + '//' + pathArray[2]);
+}
+
+function getUserData(){
+	return "login="+GetCookie("login")+";password="+GetCookie("password")+";";
+}
+
+function setCookie(name,value,expiryDays) {
+	if (getCookie(name)!="" && expiryDays>0)
+		DeleteCookie(name);
+    var date = new Date();
+    date.setTime(date.getTime() + (expiryDays*24*60*60*1000)); // 24- one day before expire
+    var expireDate = date.toGMTString();
+	document.cookie ="expires="+expireDate+";domain="+getCurrentURL()+";path=/;"+name+"="+value+";";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function deleteCookie(name){
+	setCookie(name,"",-1);
+}
+
+function PreparePost(headerType1,headerType2)
+{
+ 	var xhr = new XMLHttpRequest();
+ 	xhr.open("POST", getCurrentURL(), true);
+ 	xhr.setRequestHeader(headerType1,headerType2);
+	// has to set xhr.onreadystatechange and xhr.send(GetUserData()+"...")
+}
+ 
 var main = angular.module("main", ['ngRoute']);
-
-main.directive("passwordVerify", function() {
-   return {
-      require: "ngModel",
-      scope: {
-        passwordVerify: '='
-      },
-      link: function(scope, element, attrs, ctrl) {
-        scope.$watch(function() {
-            var combined;
-
-            if (scope.passwordVerify || ctrl.$viewValue) {
-               combined = scope.passwordVerify + '_' + ctrl.$viewValue; 
-            }                    
-            return combined;
-        }, function(value) {
-            if (value) {
-                ctrl.$parsers.unshift(function(viewValue) {
-                    var origin = scope.passwordVerify;
-                    if (origin !== viewValue) {
-                        ctrl.$setValidity("passwordVerify", false);
-                        return undefined;
-                    } else {
-                        ctrl.$setValidity("passwordVerify", true);
-                        return viewValue;
-                    }
-                });
-            }
-        });
-     }
-   };
-});
+//global login password data in case when cookies doesn't work
+var login="";
+var password="";
 
 main.controller('SignInController', function($scope) {
-	alert("nic");
+	deleteCookie("login");
+	deleteCookie("password");
+	login="";
+	password="";
 	$scope.SignIn=function(){
-		alert("git");
 		if ($scope.login && $scope.password) {
-			alert("git");
+			//wyslanie na serwer i sprawdzenie potweirdzenia ewentualnie wyrzucenie bledu w alert z serwera
+			setCookie("login",$scope.login,1);
+			setCookie("password",$scope.password,1);
+			login=$scope.login;
+			password=$scope.password;
+			window.location.href = getCurrentURL()+"#/App";
 		}
 	}
 });
 
 main.controller('SignUpController', function($scope) {
 	$scope.SignUp=function(){
+		login="";
+		password="";
 		if ($scope.login && $scope.password && $scope.password2) {
-			//email moze byc undefined
-			alert("git");
+			//wyslanie na serwer i sprawdzenie potweirdzenia ewentualnie wyrzucenie bledu w alert z serwera
+			setCookie("login",$scope.login,1);
+			setCookie("password",$scope.password,1);
+			login=$scope.login;
+			password=$scope.password;
+			window.location.href = getCurrentURL()+"#/App";
 		}
 	}
 });
 
 main.controller('AppController', function($scope) {
+	var cookieLogin=getCookie("name");
+	if (cookieLogin!=""){
+		$scope.login=cookieLogin;
+		login=cookieLogin;
+	}
+	else
+		$scope.login=login;
+	var cookiePassword=getCookie("password");
+	if (cookiePassword!=""){
+		$scope.password=cookiePassword;
+		password=cookiePassword;
+	}
+	else
+		$scope.password=password;
+	
+	if ($scope.login=="" || $scope.password=="")
+	{
+		alert("You have to Sign in.");
+		window.location.href = getCurrentURL()+"#/SignIn";
+	}
+	$scope.AutoUpdate=function (timeInMs){
+		if (login!="" && password!=""){
+			//get data from server invitaitons and boards
+			try{
+				setTimeout($scope.AutoUpdate(timeInMs),timeInMs); // run again after x ms
+			} catch(err){}
+		}
+	}
+	$scope.AutoUpdate();
+	$scope.activeBoard="";
 	$scope.SignOut=function()
 	{
 		$scope = $scope.$new(true);
+		deleteCookie("login");
+		deleteCookie("password");
+		login="";
+		password="";
 	}
 	$scope.CreateNewBoard=function(){
 		var input=prompt("Please enter new board name.");
@@ -149,8 +213,6 @@ main.controller('AppController', function($scope) {
 	$scope.ActiveTask=function(task){
 		$scope.activeTask=task;
 	}
-	$scope.activeBoard="";
-	$scope.login="Agnieszka";
 	$scope.boards=[
 								{	name:"Gotowanie",
 									owner:"Agnieszka",
@@ -184,7 +246,12 @@ main.controller('AppController', function($scope) {
 main.controller('SettingsController', function($scope) {
 	$scope.Change=function(){
 		if ($scope.newLogin || $scope.newPassword || $scope.newPassword2 || $scope.newEmail) {
-			alert("git");
+			//send data to server if gets ok : if not show alert from server
+			setCookie("login",$scope.newLogin,1);
+			setCookie("password",$scope.newPassword,1);
+			login=$scope.newLogin;
+			password=$scope.newPassword;
+			window.location.href = getCurrentURL()+"#/App";
 		}
 	}
 });
@@ -208,6 +275,6 @@ when('/Settings', {
 	controller: 'SettingsController'
 }).
 otherwise({
-	redirectTo: '/SignIn'
+	redirectTo: '/App'
 });
 }]);

@@ -8,12 +8,12 @@
 		<meta name="author" content="Artur Ziemba">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- window ico external link -->
-		<link rel="shortcut icon" type="image/x-icon"  href="ico">
+		<link rel="shortcut icon" type="image/x-icon"  href="favicon.ico">
 		<!-- bootstrap external link -->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<!-- AngularJS external link -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
 		<!-- JQuery external link -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!--  Font external link -->
@@ -552,10 +552,10 @@
 			<div class="text8">Artur Ziemba - Task menager application as an example of Node.js technology</div>
 		</footer>
 		<script>
-			alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
+			AlignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
 			try {				
 				document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; 
-				$(window).resize(function(e) { alignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; });
+				$(window).resize(function(e) { AlignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; });
 			}
 			catch (err){}
 		</script>

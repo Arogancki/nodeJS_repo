@@ -95,7 +95,6 @@ function HandleGet(req, res) {
             res.statusCode = 200;
             writeImageFromPath(path.join(resourcesPath,"resources",bgIMG.toString()),res);
             break;
-        case "/ico":
         case "/favicon.ico":
             console.log("Ico requested");
             res.setHeader('Content-Type', 'image/vnd.microsoft.icon');

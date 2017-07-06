@@ -1,4 +1,4 @@
-function alignRowColumn1to2(column1, column21, column22){
+function AlignRowColumn1to2(column1, column21, column22){
 try {
 	document.getElementById(column1).style.height=
 	document.getElementById(column21).offsetHeight+
@@ -12,13 +12,13 @@ function getCurrentURL(){
  	return (pathArray[0] + '//' + pathArray[2]);
 }
 
-function GetUserData(){
-	return "login="+getCookie("login")+";password="+getCookie("password")+";";
+function getUserData(){
+	return "login="+GetCookie("login")+";password="+GetCookie("password")+";";
 }
 
 function setCookie(name,value,expiryDays) {
-	if (getCookie(cname)!="" && expiryDays>0)
-		deleteCookie(name);
+	if (getCookie(name)!="" && expiryDays>0)
+		DeleteCookie(name);
     var date = new Date();
     date.setTime(date.getTime() + (expiryDays*24*60*60*1000)); // 24- one day before expire
     var expireDate = date.toGMTString();
@@ -54,16 +54,22 @@ function PreparePost(headerType1,headerType2)
 }
  
 var main = angular.module("main", ['ngRoute']);
+//global login password data in case when cookies doesn't work
+var login="";
+var password="";
 
 main.controller('SignInController', function($scope) {
 	deleteCookie("login");
 	deleteCookie("password");
->>>>>>> 3b91bff23953dd3ca33c8730fbb80ce41762efcf:Task scheduler NodeJS application/backend/ServerConsole/resources/resources/main.js
+	login="";
+	password="";
 	$scope.SignIn=function(){
 		if ($scope.login && $scope.password) {
 			//wyslanie na serwer i sprawdzenie potweirdzenia ewentualnie wyrzucenie bledu w alert z serwera
 			setCookie("login",$scope.login,1);
 			setCookie("password",$scope.password,1);
+			login=$scope.login;
+			password=$scope.password;
 			window.location.href = getCurrentURL()+"#/App";
 		}
 	}
@@ -71,26 +77,42 @@ main.controller('SignInController', function($scope) {
 
 main.controller('SignUpController', function($scope) {
 	$scope.SignUp=function(){
+		login="";
+		password="";
 		if ($scope.login && $scope.password && $scope.password2) {
 			//wyslanie na serwer i sprawdzenie potweirdzenia ewentualnie wyrzucenie bledu w alert z serwera
 			setCookie("login",$scope.login,1);
 			setCookie("password",$scope.password,1);
+			login=$scope.login;
+			password=$scope.password;
 			window.location.href = getCurrentURL()+"#/App";
 		}
 	}
 });
 
 main.controller('AppController', function($scope) {
-	// 
-	$scope.login=getCookie(name);
-	$scope.password=getCookie(password);
-	if ($scope.login || $scope.password)
+	var cookieLogin=getCookie("name");
+	if (cookieLogin!=""){
+		$scope.login=cookieLogin;
+		login=cookieLogin;
+	}
+	else
+		$scope.login=login;
+	var cookiePassword=getCookie("password");
+	if (cookiePassword!=""){
+		$scope.password=cookiePassword;
+		password=cookiePassword;
+	}
+	else
+		$scope.password=password;
+	
+	if ($scope.login=="" || $scope.password=="")
 	{
 		alert("You have to Sign in.");
 		window.location.href = getCurrentURL()+"#/SignIn";
 	}
 	$scope.AutoUpdate=function (timeInMs){
-		if (getCookie("login")!="" && getCookie("password")!=""){
+		if (login!="" && password!=""){
 			//get data from server invitaitons and boards
 			try{
 				setTimeout($scope.AutoUpdate(timeInMs),timeInMs); // run again after x ms
@@ -104,6 +126,8 @@ main.controller('AppController', function($scope) {
 		$scope = $scope.$new(true);
 		deleteCookie("login");
 		deleteCookie("password");
+		login="";
+		password="";
 	}
 	$scope.CreateNewBoard=function(){
 		var input=prompt("Please enter new board name.");
@@ -225,6 +249,8 @@ main.controller('SettingsController', function($scope) {
 			//send data to server if gets ok : if not show alert from server
 			setCookie("login",$scope.newLogin,1);
 			setCookie("password",$scope.newPassword,1);
+			login=$scope.newLogin;
+			password=$scope.newPassword;
 			window.location.href = getCurrentURL()+"#/App";
 		}
 	}
@@ -249,6 +275,6 @@ when('/Settings', {
 	controller: 'SettingsController'
 }).
 otherwise({
-	redirectTo: '/SignIn'
+	redirectTo: '/App'
 });
 }]);
