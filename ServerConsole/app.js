@@ -112,8 +112,14 @@ function HandleGet(req, res) {
 }
 
 function HandlePost(req, res, data) {
-	if (data.bgImg) {
-	}
+    var json = JSON.parse(data);
+    if (json.service == "authorization") {
+        // check login and password
+        console.log("user bleblebleAuthorization complete");
+        res.setHeader('Content-Type', "message");
+        res.statusCode = 401;
+        res.end();
+    }
 	else {
 		console.log("Unsupported request");
         res.setHeader('Content-Type', "message");
@@ -139,8 +145,7 @@ http.createServer(function (req, res) {
                 req.connection.destroy();
         });
         req.on('end', function () {
-            var data = qs.parse(body);
-            HandlePost(req, res, data);
+            HandlePost(req, res, body);
             // use post['blah'], etc.
         });
         break;

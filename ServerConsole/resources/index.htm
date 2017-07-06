@@ -71,6 +71,8 @@
 						</tr>
 						<tr>
 							<td colspan="2" >
+								<div class="text6" style=" margin-top:4%" ng-show="invalid">Invalid username or password</div>
+								<div class="text6" ng-show="invalid">Remember:</div>
 								<div class="text6" ng-show="form.login.$invalid && form.login.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
 								<div class="text6" ng-show="form.password.$invalid && form.password.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
 							</td>	

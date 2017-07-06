@@ -1,3 +1,5 @@
+var serverError="Server error.\nPlease try again later.";
+
 function AlignRowColumn1to2(column1, column21, column22){
 try {
 	document.getElementById(column1).style.height=
@@ -10,10 +12,6 @@ catch (err){}
 function getCurrentURL(){
 	var pathArray = location.href.split( '/' );
  	return (pathArray[0] + '//' + pathArray[2]);
-}
-
-function getUserData(){
-	return "login="+GetCookie("login")+";password="+GetCookie("password")+";";
 }
 
 function setCookie(name,value,expiryDays) {
@@ -45,12 +43,16 @@ function deleteCookie(name){
 	setCookie(name,"",-1);
 }
 
-function PreparePost(headerType1,headerType2)
+function PreparePost(headerType1,headerType2,isAsynchronous)
 {
  	var xhr = new XMLHttpRequest();
- 	xhr.open("POST", getCurrentURL(), true);
+ 	xhr.open("POST", getCurrentURL(), isAsynchronous);
  	xhr.setRequestHeader(headerType1,headerType2);
-	// has to set xhr.onreadystatechange and xhr.send(GetUserData()+"...")
+	// has to set 
+	//xhr.onreadystatechange = function() {  if (xhr.readyState === 4) { ... } }
+	//xhr.send("...")
+	//xhr.send(JSON.stringify({name:"John Rambo", time:"2pm"}));
+	return xhr;
 }
  
 var main = angular.module("main", ['ngRoute']);
@@ -66,6 +68,22 @@ main.controller('SignInController', function($scope) {
 	$scope.SignIn=function(){
 		if ($scope.login && $scope.password) {
 			//wyslanie na serwer i sprawdzenie potweirdzenia ewentualnie wyrzucenie bledu w alert z serwera
+			var req=PreparePost("POST", "/json-handler",false);
+			req.send(	JSON.stringify({service:"authorization",login:$scope.login,password:$scope.password}));
+			if (req.status === 200) {
+				console.log(req.responseText);
+			}
+			else if (req.status === 401){// Unauthorized
+				$scope.login="";
+				$scope.password="";
+				$scope.invalid=true;
+				return;
+			}
+			else{
+				console.log(req);
+				alert(serverError);
+				return;
+			}
 			setCookie("login",$scope.login,1);
 			setCookie("password",$scope.password,1);
 			login=$scope.login;
