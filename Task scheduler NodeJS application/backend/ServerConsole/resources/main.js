@@ -58,7 +58,6 @@ var main = angular.module("main", ['ngRoute']);
 main.controller('SignInController', function($scope) {
 	deleteCookie("login");
 	deleteCookie("password");
->>>>>>> 3b91bff23953dd3ca33c8730fbb80ce41762efcf:Task scheduler NodeJS application/backend/ServerConsole/resources/resources/main.js
 	$scope.SignIn=function(){
 		if ($scope.login && $scope.password) {
 			//wyslanie na serwer i sprawdzenie potweirdzenia ewentualnie wyrzucenie bledu w alert z serwera
