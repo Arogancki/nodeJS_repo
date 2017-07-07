@@ -1,12 +1,12 @@
 var serverError="Server error.\nPlease try again later.";
 
 function AlignRowColumn1to2(column1, column21, column22){
-try {
-	document.getElementById(column1).style.height=
-	document.getElementById(column21).offsetHeight+
-	document.getElementById(column22).offsetHeight+'px';
-}
-catch (err){}
+	try {
+		document.getElementById(column1).style.height=
+		document.getElementById(column21).offsetHeight+
+		document.getElementById(column22).offsetHeight+'px';
+	}
+	catch (err){}
 }
 
 function getCurrentURL(){

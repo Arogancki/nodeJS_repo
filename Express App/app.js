@@ -9,9 +9,6 @@ var dataBase = require('mongodb').MongoClient;      //MongoDB
 var dataBaseUrl = "mongodb://localhost:27017/mydb"; //dataBase address
 var date = new Date();                              // date object
 
-//specify resource path for express
-app.use(express.static('resources'));
-
 // remember to run run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
 function CreateDataBases() {
@@ -72,43 +69,6 @@ function writeImageFromPath(path, res) {
     }
 }
 
-function HandleGet(req, res) {
-    switch (req.url) {
-        case "/styles.css":
-            console.log("CSS file requested");
-            res.setHeader('Content-Type', 'text/css');
-            res.statusCode = 200;
-            writeTextFromPath(path.join(resourcesPath,"styles.css"), res);
-            break;
-        case "/main.js":
-            console.log("JS file requested");
-            res.setHeader('Content-Type', 'application/javascript');
-            res.statusCode = 200;
-            writeTextFromPath(path.join(resourcesPath,"resources", "main.js"), res);
-            break;
-        case "/bgIMG":
-            var bgIMG = Math.ceil(Math.random() * 4); // 4 is bg quantity
-            console.log("Background image requested: "+bgIMG);
-            res.setHeader('Content-Type', "image/jpeg");
-            res.statusCode = 200;
-            writeImageFromPath(path.join(resourcesPath,"resources",bgIMG.toString()),res);
-            break;
-        case "/favicon.ico":
-            console.log("Ico requested");
-            res.setHeader('Content-Type', 'image/vnd.microsoft.icon');
-            res.statusCode = 200;
-            writeImageFromPath(path.join(resourcesPath, "resources","ico"),res);
-            break;
-        default:
-            console.log("Unsupported request");
-            res.setHeader('Content-Type', "text / html");
-            res.statusCode = 400; //Bad Request
-            res.write("Unsupported request");
-            res.end();
-            break;
-    }
-}
-
 function HandlePost(req, res, data) {
     var json = JSON.parse(data);
     if (json.service == "authorization") {
@@ -127,42 +87,65 @@ function HandlePost(req, res, data) {
 	}
 }
 
-http.createServer(function (req, res) {
-    console.log("\n"+date.toString()+":\nNew request: " + req.method + " : " + req.url);
-    switch (req.method) {
-    case "GET":
-        HandleGet(req, res);
-        break;
-    case "POST":
-        // if too much POST data, kill the connection
-        // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-        var body = "";
+app.use(express.static('resources'));
+
+app.use(function(req, res, next){
+	console.log("\n"+date.toString()+":\nNew request: " + req.method + " : " + req.url);
+	// if too much POST data, kill the connection
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+	if (req.method=="POST")
+	{
+		var body = "";
         req.on('data', function (data) {
             body += data;
             if (body.length > 1e6)
                 req.connection.destroy();
         });
-        req.on('end', function () {
-            HandlePost(req, res, body);
-            // use post['blah'], etc.
-        });
-        break;
-    default:
-        break;
-    }
-}).listen(port);
-
+	}
+	next();
+});
 
 app.post('/submit-data', function (req, res) {
     res.send('POST Request');
 });
 
-app.get('/update-data', function (req, res) {
-    res.send('PUT Request');
+app.get('/', function (req, res) {
+    res.setHeader('Content-Type', 'text/html');
+    res.statusCode = 200;
+    writeTextFromPath(path.join(resourcesPath, "index.htm"), res);
 });
 
-app.delete('/delete-data', function (req, res) {
-    res.send('DELETE Request');
+app.get('/styles.css', function (req, res) {
+    res.setHeader('Content-Type', 'text/css');
+    res.statusCode = 200;
+    writeTextFromPath(path.join(resourcesPath,"styles.css"), res);
+});
+
+app.get('/main.js', function (req, res) {
+    res.setHeader('Content-Type', 'application/javascript');
+     res.statusCode = 200;
+     writeTextFromPath(path.join(__dirname, "main.js"), res);
+});
+
+app.get('/bgIMG"', function (req, res) {
+    var bgIMG = Math.ceil(Math.random() * 4); // 4 is bg quantity
+    res.setHeader('Content-Type', "image/jpeg");
+    res.statusCode = 200;
+    writeImageFromPath(path.join(__dirname,bgIMG.toString()),res);
+});
+
+app.get('/favicon.ico', function (req, res) {
+    res.setHeader('Content-Type', 'image/vnd.microsoft.icon');
+    res.statusCode = 200;
+    writeImageFromPath(path.join(__dirname,"favicon.ico"),res);
+});
+
+app.use(function(err, req, res, next) {
+	console.error(err.stack);
+	res.setHeader('Content-Type', "text / html");
+    res.statusCode = 400; //Bad Request
+    res.write("Unsupported request");
+    res.end();
 });
 
 var server = app.listen(port, function () {
