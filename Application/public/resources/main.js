@@ -94,7 +94,7 @@ main.controller('SignInController', function($scope) {
 						password=$scope.password;
 						window.location.href = getCurrentURL()+"#/App";
 					}
-					else if (req.status === 403){// Unauthorized
+					else if (req.status === 403){// Error happend
 						$scope.invalid=req.responseText;
 					}
 					else{
@@ -111,17 +111,22 @@ main.controller('SignInController', function($scope) {
 										email: $scope.email}));
 			req.onreadystatechange = function() {
 				if (req.readyState === 4) {
-				if (req.status === 200 || req.status === 403) {
-						$scope.invalid=responseText;
-					}
-					else{
-						ServerError(req);
+					if (req.status === 200 || req.status === 403) {
+						if (req.status === 200) {
+							$scope.invalid="If login and email are correct new password is sended to your email.";
+						}
+						else if (req.status === 403){// Error happend
+							$scope.invalid=req.responseText;
+						}
+						else{
+							ServerError(req);
+						}
 					}
 				}
 			}
 		}
 	}
-});
+}):
 
 main.controller('SignUpController', function($scope) {
 	$scope.SignUp=function(){
@@ -142,8 +147,8 @@ main.controller('SignUpController', function($scope) {
 						password=$scope.password;
 						window.location.href = getCurrentURL()+"#/App";
 					}
-					else if (req.status === 403){// Unauthorized
-						$scope.invalid=req.responseText;
+					else if (req.status === 401){// Unauthorized
+						$scope.invalid="Invalid login or password";
 					}
 					else{
 						ServerError(req);
@@ -188,7 +193,7 @@ main.controller('AppController', function($scope) {
 					$scope.refreshTimer=setTimeout($scope.Refresh(timeInMs),timeInMs); // run again after x ms
 					} catch(err){}
 				}
-				else if (req.status === 403){ // Forrbiden
+				else if (req.status === 401){// Unauthorized
 					ForbiddenAccess();
 					$scope = $scope.$new(true);
 				}
@@ -233,9 +238,12 @@ main.controller('AppController', function($scope) {
 						if (req.status === 200) {
 							$scope.RefreshNow();
 						}
-						else if (req.status === 403){ // Forrbiden
+						else if (req.status === 401){// Unauthorized
 							ForbiddenAccess();
 							$scope = $scope.$new(true);
+						}
+						else if (req.status === 403){ //Error happend
+							alert(req.responseText);
 						}
 						else{
 							ServerError(req);
@@ -263,9 +271,12 @@ main.controller('AppController', function($scope) {
 				if (req.status === 200) {
 					$scope.RefreshNow();
 				}
-				else if (req.status === 403){ // Forrbiden
+				else if (req.status === 401){// Unauthorized
 					ForbiddenAccess();
 					$scope = $scope.$new(true);
+				}
+				else if (req.status === 403){ //Error happend
+					alert(req.responseText);
 				}
 				else{
 					ServerError(req);
@@ -289,9 +300,12 @@ main.controller('AppController', function($scope) {
 					if (req.status === 200) {
 						$scope.RefreshNow();
 					}
-					else if (req.status === 403){ // Forrbiden
+					else if (req.status === 401){// Unauthorized
 						ForbiddenAccess();
 						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);
@@ -312,9 +326,12 @@ main.controller('AppController', function($scope) {
 					if (req.status === 200) {
 						$scope.RefreshNow();
 					}
-					else if (req.status === 403){ // Forrbiden
+						else if (req.status === 401){// Unauthorized
 						ForbiddenAccess();
 						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);
@@ -336,9 +353,12 @@ main.controller('AppController', function($scope) {
 					if (req.status === 200) {
 						$scope.RefreshNow();
 					}
-					else if (req.status === 403){ // Forrbiden
+					else if (req.status === 401){// Unauthorized
 						ForbiddenAccess();
 						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);
@@ -364,9 +384,12 @@ main.controller('AppController', function($scope) {
 					if (req.status === 200) {
 						$scope.RefreshNow();
 					}
-					else if (req.status === 403){ // Forrbiden
+					else if (req.status === 401){// Unauthorized
 						ForbiddenAccess();
 						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);
@@ -393,9 +416,12 @@ main.controller('AppController', function($scope) {
 					if (req.status === 200) {
 						$scope.RefreshNow();
 					}
-					else if (req.status === 403){ // Forrbiden
+					else if (req.status === 401){// Unauthorized
 						ForbiddenAccess();
 						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);
@@ -421,9 +447,12 @@ main.controller('AppController', function($scope) {
 						if (req.status === 200) {
 							$scope.RefreshNow();
 						}
-						else if (req.status === 403){ // Forrbiden
+						else if (req.status === 401){// Unauthorized
 							ForbiddenAccess();
 							$scope = $scope.$new(true);
+						}
+						else if (req.status === 403){ //Error happend
+							alert(req.responseText);
 						}
 						else{
 							ServerError(req);
@@ -446,9 +475,12 @@ main.controller('AppController', function($scope) {
 					if (req.status === 200) {
 						$scope.RefreshNow();
 					}
-					else if (req.status === 403){ // Forrbiden
+					else if (req.status === 401){// Unauthorized
 						ForbiddenAccess();
 						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);
@@ -460,34 +492,6 @@ main.controller('AppController', function($scope) {
 	$scope.ActiveTask=function(task){
 		$scope.activeTask=task;
 	}
-	$scope.boards=[
-								{	name:"Gotowanie",
-									owner:"Agnieszka",
-									members:["Artur","Mama"],
-									tasks:[
-												{ name:"Kurczak",statuses:[
-																								{ type:"New",user:"Artur",info:"My 1",date:"18:51"},
-																								{ type:"Blocked",user:"Agnieszka",info:"My 2",date:"18:55"},
-																								{ type:"In progress",user:"Artur",info:"My 3 to bedize najdpluzszy kmemtaurz bo nalezy spradziwc rozciaganie sie divoww sifnaosufbaifbaifbasfa sfaosf asfasu",date:"22:00"},
-																								{ type:"Finished",user:"Agnieszka",info:"My 4",date:"23:51"}
-																							]
-												},
-																								
-												{name:"Wolowina na parze",statuses:[
-																												{type:"New",user:"Agnieszka",info:"Time for beef"},
-																												{type:"In progress",user:"Artur",info:"I take it"}
-																											]
-												}
-											]
-								},
-								{
-									name:"Podroze",
-									owner:"Artur",
-									members:["Agnieszka"],
-									invitations:["Marek","Mama"]
-								}
-							];
-	$scope.invitations=[{name:"Praca",owner:"Szef"},{name:"Dom",owner:"Mama"}];
 });
 
 main.controller('SettingsController', function($scope) {
@@ -524,10 +528,11 @@ main.controller('SettingsController', function($scope) {
 						window.location.href = getCurrentURL()+"#/App";
 					}
 					else if (req.status === 401){// Unauthorized
-						$scope.invalid=req.responseText;
-					}
-					else if (req.status === 403){ // Forrbiden
 						ForbiddenAccess();
+						$scope = $scope.$new(true);
+					}
+					else if (req.status === 403){ //Error happend
+						alert(req.responseText);
 					}
 					else{
 						ServerError(req);

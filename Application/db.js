@@ -58,7 +58,7 @@ function GetUser(login) {
     });
 }
 
-function InsertUser(login, password) {
+var InsertUser=function (login, password) {
     return new Promise(function (fulfill, reject) {
         Connect().done(function (db) {
             db.collection(usersTable).findOne({ login: login }, function (err, result) {
@@ -117,7 +117,7 @@ function UpdateUser(login, newLogin, password) {
     });
 }
 
-function InsertUserEmail(login, email) {
+var InsertUserEmail=function (login, email) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -176,7 +176,7 @@ function ConfirmEmail(login, confirmation) {
     });
 }
 
-function ResetPassword(login, email){
+var ResetPassword=function(login, email){
 	return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -252,7 +252,7 @@ function GetInvitationsInfo(ids) {
     });
 }
 
-function InsertBoard(name, owner) {
+var InsertBoard=function (name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
             if (board != null) {
@@ -282,7 +282,7 @@ function InsertBoard(name, owner) {
     });
 }
 
-function GetUserBoards(login) {
+var GetUserBoards=function (login) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -297,7 +297,7 @@ function GetUserBoards(login) {
     });
 }
 
-function GetUserInvitationsInfo(login) {
+var GetUserInvitationsInfo=function (login) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -312,11 +312,15 @@ function GetUserInvitationsInfo(login) {
     });
 }
 
-function InsertInvitation(login, name, owner) {
+var InsertInvitation=function (ownerLogin, login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
             if (board == null) {
                 fulfill(1); // boards doesn't exist
+                return;
+            }
+			 if (board.owner != ownerLogin) {
+                fulfill(5); // LOGINOWNER isn't an owner
                 return;
             }
             if (board.owner == user) {
@@ -335,28 +339,37 @@ function InsertInvitation(login, name, owner) {
                     return;
                 }
             }
-            Connect().done(function (db) {
-                db.collection(usersTable).updateOne({ login: login }, { $push: { invitations: board._id } }, function (err, result) {
-                    if (err) {
-                        reject(err);
-                        db.close();
-                    } else {
-                        db.collection(boardsTable).updateOne({ _id: board._id }, { $push: { invitations: login } }, function (err, result) {
-                            if (err) {
-                                reject(err);
-                            } else {
-                                fulfill(0);
-                            }
-                            db.close();
-                        });
-                    }
-                });
-            });
+			GetUser(login).done(function (user) {
+				if (user==null)
+				{
+					fulfill(6); // user doesn't exist
+					return;
+				}
+				else{
+					Connect().done(function (db) {
+						db.collection(usersTable).updateOne({ login: login }, { $push: { invitations: board._id } }, function (err, result) {
+							if (err) {
+								reject(err);
+								db.close();
+							} else {
+								db.collection(boardsTable).updateOne({ _id: board._id }, { $push: { invitations: login } }, function (err, result) {
+									if (err) {
+										reject(err);
+									} else {
+										fulfill(0);
+									}
+									db.close();
+								});
+							}
+						});
+					});
+				}
+			}
         });
     });
 }
 
-function AcceptInvitation(login, name, owner) {
+var AcceptInvitation=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -409,7 +422,7 @@ function AcceptInvitation(login, name, owner) {
     });
 }
 
-function RefuseInvitation(login, name, owner) {
+var RefuseInvitation=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -468,7 +481,7 @@ function IsBoardOwner(login, name) {
     });
 }
 
-function LeaveBoard(login, name, owner) {
+var LeaveBoard=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
             var IsMember = false;
@@ -485,7 +498,7 @@ function LeaveBoard(login, name, owner) {
                         if (err) {
                             reject(err);
                         } else {
-                            fulfill(0);
+                            fulfill(true);
                         }
                         db.close();
                     });
@@ -495,7 +508,7 @@ function LeaveBoard(login, name, owner) {
     });
 }
 
-function DeleteBoard(login, name, owner) {
+var DeleteBoard=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
             if (board.owner != login) {
@@ -523,24 +536,24 @@ function DeleteBoard(login, name, owner) {
     });
 }
 
-function InsertTask(login, board, owner, name, info) {
+var InsertTask=function (login, board, owner, name, info) {
     return new Promise(function (fulfill, reject) {
         GetTasks(board, owner, name).done(function (task) {
             if (task != null) {
                 fulfill(false);
             } else {
-                Connect().done(function (db) {
-                    db.collection(boardsTable).updateOne({ name: board, owner: owner }, { $push: { tasks: { name: name } } }, function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            InsertTaskStatus(login, board, owner, name, info, "New").done(function (isInserted) {
-                                fulfill(true);
-                            });
-                        }
-                        db.close();
-                    });
-                });
+				Connect().done(function (db) {
+					db.collection(boardsTable).updateOne({ name: board, owner: owner }, { $push: { tasks: { name: name } } }, function (err, result) {
+						if (err) {
+							reject(err);
+						} else {
+							InsertTaskStatus(login, board, owner, name, info, "New").done(function (isInserted) {
+								fulfill(true);
+							});
+						}
+						db.close();
+					});
+				});
             }
         });
     });
@@ -582,7 +595,7 @@ function GetTasks(board, owner, name) {
     });
 }
 
-function InsertTaskStatus(login, board, owner, task, info, type) {
+var InsertTaskStatus=function (login, board, owner, task, info, type) {
     return new Promise(function (fulfill, reject) {
         GetTasks(board, owner, name).done(function (task) {
             if (task != null) {
@@ -604,5 +617,20 @@ function InsertTaskStatus(login, board, owner, task, info, type) {
 }
 
 module.exports = {
-    Authorization
+    Authorization,
+	ResetPassword,
+	InsertUser,
+	InsertUserEmail,
+	GetUserBoards,
+	GetUserInvitationsInfo,
+	InsertBoard,
+	AcceptInvitation,
+	RefuseInvitation,
+	LeaveBoard,
+	DeleteBoard,
+	InsertTaskStatus,
+	InsertInvitation,
+	InsertTask,
+	RemoveTask,
+	UpdateUser
 };

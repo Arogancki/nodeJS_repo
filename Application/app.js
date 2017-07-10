@@ -54,17 +54,30 @@ function EmailValidation(text, min, max) {
     return (text !== undefined) && (/^[^\/\\'"@\s]+@[^\/\\'"@\s]+$/).test(text) && text.length >= min && text.length <= max;
 }
 
+function Send401(res) {
+    res.setHeader('Content-Type', "text/html");
+    res.statusCode = 401; // error has happend
+    res.write("Invalid login or password");
+    res.end();
+}
+
 function Send403(message, res) {
     res.setHeader('Content-Type', "text/html");
-    res.statusCode = 403; //Bad Request
+    res.statusCode = 403; // error has happend
     res.write(message);
     res.end();
 }
 
 function SendOk(res) {
     res.setHeader('Content-Type', "text/html");
-    res.statusCode = 200; //Bad Request
+    res.statusCode = 200;
     res.end();
+}
+
+function SendJson(json,res){
+	res.setHeader('Content-Type', 'application/json');
+	res.statusCode = 200;
+    res.send(json);
 }
 
 function UserValidation(body) {
@@ -115,130 +128,256 @@ app.get('/favicon.ico', function (req, res) {
     writeImageFromPath(path.join(resources, "favicon.ico"), res);
 });
 
-app.post('/authorization', function (req, res) {
-    UserValidation(req.body).done(function(valid) {
-        if (valid) {
-            SendOk(res);
-        }
-    });
-});
-
-app.post('/resetpassword', function (req, res) {
-    if ( EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20) ) {
-        //use method from db - check if email is right and reset it
-    }
-	else
-		Send403("Invalid login or email");
-});
-
 app.post('/registration', function (req, res) {
-    if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.password === req.password2) {
+    if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
 		if (req.body.email !== undefined) {
 			if (!EmailValidation(req.body.email)) {
-				Send403("Invalid address email");
+				Send403("Invalid address email",res);
 			}
 		}
 		else {
 			req.body.email = "";
 		}
-		//use method from db
+		db.InsertUser(req.body.login, req.body.password).done(function (result) {
+			if (result){
+				db.InsertUserEmail(req.body.login, req.body.email).done(function (result) {
+					if (result){
+						SendOk(res);
+					}
+					else{				
+						Send403("Account is created. You can't sign in, but email wasn't accepted.",res);
+					}
+				});
+			}
+			else{				
+				Send403("Login is already taken",res);
+			}
+        });
     }
 });
 
+app.post('/resetpassword', function (req, res) {
+    if ( EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20) ) {
+		db.ResetPassword(req.body.login, req.body.email).done(function (newPassword) {
+			//TODO wyslac email o resecie z tym co zwrocila funckja
+			SendOk(res);
+		});
+    }
+	else{
+		Send403("Invalid login or email",res);
+	}
+});
+
+app.use(function (req, res, next) {
+	if (req.method == 'POST'){
+		UserValidation(req.body).done(function(valid) {
+			if (valid) {
+				next();
+			}
+			else{
+				Send401(res);
+			}
+		});
+	}
+});
+
+app.post('/authorization', function (req, res) {
+    SendOk(res);
+});
+
 app.post('/getBoardsAndInvitations', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-        
-        }
-    });
+    db.GetUserBoards(req.body.login).done(function (boards) {
+		db.GetUserInvitationsInfo(req.body.login).done(function (invitations) {
+			SendJson(JSON.stringify({ boards:boards, invitations:invitations }),res);
+		});
+	)};
 });
 
 app.post('/CreateNewBoard', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+    db.InsertBoard(req.body.board, req.body.login).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("You already have board "+req.body.board+".",res);
+		}
+	});
 });
 
 app.post('/AcceptInviattion', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+	db.AcceptInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
+		if (result==0){
+			SendOk(res);
+		}
+		else if (result==1){
+			Send403("User doesn't exist.",res);
+		}
+		else{			
+			Send403("Board doesn't exist or user hasn't been invited.",res);
+		}
+	});						
 });
 
 app.post('/ReffuseInviattion', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+    db.RefuseInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
+		if (result==0){
+			SendOk(res);
+		}
+		else if (result==1){
+			Send403("User doesn't exist.",res);
+		}
+		else{			
+			Send403("Board doesn't exist or user hasn't been invited.",res);
+		}
+	});	
 });
 
 app.post('/LeaveBoard', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+	db.LeaveBoard(req.body.login, req.body.board, req.body.owner).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("Board doesn't exist or user isn't the member.",res);
+		}
+	});
 });
 
 app.post('/DeleteBoard', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+    db.DeleteBoard(req.body.login, req.body.board, req.body.owner).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("Board doesn't exist or user isn't the owner.",res);
+		}
+	});
 });
 
 app.post('/KickOut', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+    db.LeaveBoard(req.body.member, req.body.board, req.body.owner).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("Board doesn't exist or user isn't the member.",res);
+		}
+	});
 });
 
 app.post('/AddStatus', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+	db.InsertTaskStatus(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info, req.body.type).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("Task doesn't exist.",res);
+		}
+	});									
 });
 
 app.post('/InviteToBoard', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+	db.InsertInvitation(req.body.login, req.body.member, req.body.board, req.body.owner).done(function (result) {
+		if (result==0){
+			SendOk(res);
+		}
+		else if (result==3){
+			Send403("User is already invited.",res);
+		}
+		else if (result==4){
+			Send403("User is a member already.",res);
+		}
+		else if (result==6){
+			Send403("User doesn't exist.",res);
+		}
+		else{			
+			Send403("You aren't this board owner.",res);
+		}
+	});	
 });
 
 app.post('/CreateNewTask', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+	db.InsertTask(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("Task already exist.",res);
+		}
+	});	
 });
 
 app.post('/RemoveTask', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
-
-        }
-    });
+	db.RemoveTask(req.body.login, req.body.board, req.body.owner, req.body.task).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			Send403("Task doesn't exist.",res);
+		}
+	});	
 });
 
 app.post('/changeUserData', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid) {
+    UpdateUser(login, newLogin, password)
+	
+	login: $scope.login,
+										password: $scope.password,
+										newLogin: $scope.newLogin,
+										newPassword: $scope.newPassword,
+										newPassword2: $scope.newPassword2,
+										newEmail: $scope.newEmail}));
+										
+	if (newLogin!="")
+	{
+		if (!TextValidation(req.body.newLogin, 3, 20)){
+			//send zly login
+		}
+	}
+	if (newPassword!="")
+	{
+		if (newPassword!==newPassword2){
+			// send hasla nie takie same
+		}
+		else if (!TextValidation(req.body.newPassword, 3, 20)){
+			//send zly password
+		}
+	}
+	db.UpdateUser(req.body.login, req.body.newLogin, req.body.password).done(function (result) {
+		if (result){
+			SendOk(res);
+		}
+		else{			
+			// nieznaleziono usera lub nowy login zajety
+		}
+	});	
 
-        }
-    });
+			
+	 if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
+		if (req.body.email !== undefined) {
+			if (!EmailValidation(req.body.email)) {
+				Send403("Invalid address email",res);
+			}
+		}
+		else {
+			req.body.email = "";
+		}
+		db.InsertUser(req.body.login, req.body.password).done(function (result) {
+			if (result){
+				db.InsertUserEmail(req.body.login, req.body.email).done(function (result) {
+					if (result){
+						SendOk(res);
+					}
+					else{				
+						Send403("Account is created. You can't sign in, but email wasn't accepted.",res);
+					}
+				});
+			}
+			else{				
+				Send403("Login is already taken",res);
+			}
+        });
+    }
 });
 
 app.use(function (req, res, next) {
