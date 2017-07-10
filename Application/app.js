@@ -123,20 +123,26 @@ app.post('/authorization', function (req, res) {
     });
 });
 
+app.post('/resetpassword', function (req, res) {
+    if ( EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20) ) {
+        //use method from db - check if email is right and reset it
+    }
+	else
+		Send403("Invalid login or email");
+});
+
 app.post('/registration', function (req, res) {
-    UserValidation(req.body).done(function (valid) {
-        if (valid && req.password === req.password2) {
-            if (req.body.email !== undefined) {
-                if (!EmailValidation(req.body.email)) {
-                    Send403("Invalid address email")
-                }
-            }
-            else {
-                req.body.email = "";
-            }
-            //use method from db
-        }
-    });
+    if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.password === req.password2) {
+		if (req.body.email !== undefined) {
+			if (!EmailValidation(req.body.email)) {
+				Send403("Invalid address email");
+			}
+		}
+		else {
+			req.body.email = "";
+		}
+		//use method from db
+    }
 });
 
 app.post('/getBoardsAndInvitations', function (req, res) {

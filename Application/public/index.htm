@@ -38,7 +38,7 @@
 					</div>
 					<div style="float:auto"></div>
 				</header>
-				<form class="main"  name="form">
+				<form class="main"  name="form" ng-init="option=false;">
 					<table style="width:100%;">
 						<tr>
 							<td style="width:50%;">
@@ -50,30 +50,52 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="width:50%">
+							<td ng-show="!option" style="width:50%">
 									<div class="text4" >Password</div>
 							</td>
-							<td style="width:50%">
+							<td ng-show="!option" style="width:50%">
 									<input class="text6" type = "password" placeholder="password" ng-model = "password" name="password"
 									required ng-pattern='/^[a-zA-Z0-9._-]+$/' ng-maxlength="20" ng-minlength="8">
 							</td>
+							<td ng-show="option" style="width:50%">
+									<div class="text4" >Email</div>
+							</td>
+							<td ng-show="option" style="width:50%">
+									<input class="text6" type = "email" placeholder="email" ng-model = "email" name="email" required>
+							</td>
 						</tr>
 						<tr>
-							<td colspan="2" ng-show='form.login.$valid && form.password.$valid'>
-								<div style="margin-top:4%;" class="elementButton" ng-click ="SignIn()">
-									<a href =  ""><div class="text4">Accept</div></a>
+							<td>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="option=!option;">
+									<a ng-show='!option' href =  ""><div class="text4">Reset password</div></a>
+									<a ng-show='option' href =  ""><div class="text4">Sign in</div></a>
 								</div>
 							</td>
-							<td colspan="2" class="text4" class="elementButton"
-								ng-show='form.login.$invalid || form.password.$invalid'>
-								<div style="margin-top:4%;color: #AFAFAF;">Accept</div>
+							<td ng-show='option && form.login.$valid && form.email.$valid'>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="ResetPassword();">
+									<a href =  ""><div class="text4">Reset password</div></a>
+								</div>
+							</td>
+							<td class="text4" class="elementButton"
+								ng-show='option && (form.login.$invalid || form.email.$invalid)'>
+								<div style="margin-top:4%;color: #AFAFAF;">Reset password</div>
+							</td>
+							<td ng-show='!option && form.login.$valid && form.password.$valid'>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="SignIn()">
+									<a href =  ""><div class="text4">Sign in</div></a>
+								</div>
+							</td>
+							<td class="text4" class="elementButton"
+								ng-show='!option && (form.login.$invalid || form.password.$invalid)'>
+								<div style="margin-top:4%;color: #AFAFAF;">Sign in</div>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" >
-								<div class="text6" style=" margin-top:4%" ng-show="invalid">Invalid username or password</div>
+								<div class="text6" style=" margin-top:4%" ng-show="invalid">{{invalid}}</div>
 								<div class="text6" ng-show="form.login.$invalid && form.login.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
-								<div class="text6" ng-show="form.password.$invalid && form.password.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
+								<div class="text6" ng-show="!option && (form.password.$invalid && form.password.$touched)">Invalid password: letters and numbers only, 8 to 20 character</div>
+								<div class="text6" ng-show="option && (form.email.$invalid && form.email.$touched)">Invalid email</div>
 							</td>	
 						</tr>
 					</table>
@@ -127,7 +149,7 @@
 							<tr>
 								<td style="width:50%">
 										<div class="text4" >Email</div>
-										<div class="text9" >Fill in only if you want to receive notifications</div>
+										<div class="text9" >Fill in only if you want to receive notifications and want to have an opportunity to reset your password</div>
 								</td>
 								<td style="width:50%">
 										<input class="text6" type="email" type = "text" placeholder="email" ng-model = "email" name = "email">
@@ -515,7 +537,7 @@
 							<tr>
 								<td style="width:50%">
 										<div class="text4" >Change email</div>
-										<div class="text9" >Fill in only if you want to receive notifications</div>
+										<div class="text9" >Fill in only if you want to receive notifications and want to have an opportunity to reset your password</div>
 								</td>
 								<td style="width:50%">
 										<input class="text6" type="new email" type = "text" placeholder="email" ng-model = "newEmail" name = "newEmail">

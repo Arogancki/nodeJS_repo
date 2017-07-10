@@ -176,6 +176,32 @@ function ConfirmEmail(login, confirmation) {
     });
 }
 
+function ResetPassword(login, email){
+	return new Promise(function (fulfill, reject) {
+        GetUser(login).done(function (user) {
+            if (user == null) {
+                fulfill(false); // user doesn't exist
+                return;
+            }
+            if (user.email != email) {
+                fulfill(false); // user email doesn't match
+                return;
+            }
+            Connect().done(function (db) {
+				newPassword=GetRandomString();
+                db.collection(usersTable).updateOne({ login: login }, { $set: { password:newPassword } }, function (err, result) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        fulfill(newPassword);
+                    }
+                    db.close();
+                });
+            });
+        });
+    });
+}
+
 function GetBoard(name, owner) {
     return new Promise(function (fulfill, reject) {
         Connect().done(function (db) {
