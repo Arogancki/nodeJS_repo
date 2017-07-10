@@ -126,7 +126,7 @@ main.controller('SignInController', function($scope) {
 			}
 		}
 	}
-}):
+})
 
 main.controller('SignUpController', function($scope) {
 	$scope.SignUp=function(){
@@ -510,21 +510,27 @@ main.controller('SettingsController', function($scope) {
 	else
 		$scope.password=password;
 	$scope.Change=function(){
-		if ($scope.newLogin || $scope.newPassword || $scope.newPassword2 || $scope.newEmail) {
+		if (($scope.newPassword && $scope.newPassword2) || $scope.newEmail) {
+			if (!$scope.newPassword){
+				$scope.newPassword =$scope.password;
+				$scope.newPassword2 =$scope.password;
+			}
+			if (!$scope.newEmail){
+				$scope.newEmail="";
+			}
 			var req=PreparePost("Content-type", "application/json","changeUserData");
 			req.send(JSON.stringify({	login: $scope.login,
 										password: $scope.password,
-										newLogin: $scope.newLogin,
 										newPassword: $scope.newPassword,
 										newPassword2: $scope.newPassword2,
 										newEmail: $scope.newEmail}));
 			req.onreadystatechange = function() {
 				if (req.readyState === 4) {
 					if (req.status === 200) {
-						setCookie("login",$scope.newLogin,1);
 						setCookie("password",$scope.newPassword,1);
-						login=$scope.newLogin;
 						password=$scope.newPassword;
+						if ($scope.newEmail!="")
+							alert("Please remember to check and confirm your email.")
 						window.location.href = getCurrentURL()+"#/App";
 					}
 					else if (req.status === 401){// Unauthorized

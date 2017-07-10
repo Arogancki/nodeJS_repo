@@ -82,35 +82,22 @@ var InsertUser=function (login, password) {
     });
 }
 
-function UpdateUser(login, newLogin, password) {
+function UpdateUser(login, password) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
                 fulfill(false);
             }
             else {
-                if (newLogin == "") {
-                    newLogin = user.login;
-                }
-                if (password == "") {
-                    password = user.password;
-                }
-                GetUser(newLogin).done(function (newUser) {
-                    if (newUser != null) {
-                        fulfill(false);
-                    }
-                    else {
-                        Connect().done(function (db) {
-                            db.collection(usersTable).updateOne({ login: login }, { $set: { login: newLogin, password: password } }, function (err, result) {
-                                if (err) {
-                                    reject(err);
-                                } else {
-                                    fulfill(true);
-                                }
-                                db.close();
-                            });
-                        });
-                    }
+                Connect().done(function (db) {
+                    db.collection(usersTable).updateOne({ login: login }, { $set: { password: password } }, function (err, result) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            fulfill(true);
+                        }
+                        db.close();
+                    });
                 });
             }
         });
@@ -339,32 +326,30 @@ var InsertInvitation=function (ownerLogin, login, name, owner) {
                     return;
                 }
             }
-			GetUser(login).done(function (user) {
-				if (user==null)
-				{
-					fulfill(6); // user doesn't exist
-					return;
-				}
-				else{
-					Connect().done(function (db) {
-						db.collection(usersTable).updateOne({ login: login }, { $push: { invitations: board._id } }, function (err, result) {
-							if (err) {
-								reject(err);
-								db.close();
-							} else {
-								db.collection(boardsTable).updateOne({ _id: board._id }, { $push: { invitations: login } }, function (err, result) {
-									if (err) {
-										reject(err);
-									} else {
-										fulfill(0);
-									}
-									db.close();
-								});
-							}
-						});
-					});
-				}
-			}
+            GetUser(login).done(function(user) {
+                if (user == null) {
+                    fulfill(6); // user doesn't exist
+                    return;
+                } else {
+                    Connect().done(function(db) {
+                        db.collection(usersTable).updateOne({ login: login }, { $push: { invitations: board._id } }, function(err, result) {
+                            if (err) {
+                                reject(err);
+                                db.close();
+                            } else {
+                                db.collection(boardsTable).updateOne({ _id: board._id }, { $push: { invitations: login } }, function(err, result) {
+                                    if (err) {
+                                        reject(err);
+                                    } else {
+                                        fulfill(0);
+                                    }
+                                    db.close();
+                                });
+                            }
+                        });
+                    });
+                }
+            });
         });
     });
 }

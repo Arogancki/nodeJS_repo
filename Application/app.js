@@ -42,6 +42,10 @@ function writeImageFromPath(path, res) {
     }
 }
 
+function IsMongoInjectionsFree(text) {
+    return (/^[^'"\\;{}]*$/g).test(text);
+}
+
 function TextValidation(text, min, max) {
     if (min === undefined) min = 0;
     if (max === undefined) max = Infinity;
@@ -128,6 +132,16 @@ app.get('/favicon.ico', function (req, res) {
     writeImageFromPath(path.join(resources, "favicon.ico"), res);
 });
 
+app.get('/confirm', function (req, res) {
+    // zawsze wysylam strone glowna - czy potwierdzono wysle sie na email
+    // przykladowy confirm http://localhost:8081/confirm?login=Artur&confirmation=tebzdury
+    //req.query.login
+    //req.query.confirmation
+    res.setHeader('Content-Type', 'text/html');
+    res.statusCode = 200;
+    writeTextFromPath(path.join(public, "index.htm"), res);
+});
+
 app.post('/registration', function (req, res) {
     if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
 		if (req.body.email !== undefined) {
@@ -174,11 +188,13 @@ app.use(function (req, res, next) {
 			if (valid) {
 				next();
 			}
-			else{
-				Send401(res);
-			}
+            else {
+			    console.log("Authorization failed");
+                Send401(res);
+			    return;
+            }
 		});
-	}
+    }
 });
 
 app.post('/authorization', function (req, res) {
@@ -190,21 +206,30 @@ app.post('/getBoardsAndInvitations', function (req, res) {
 		db.GetUserInvitationsInfo(req.body.login).done(function (invitations) {
 			SendJson(JSON.stringify({ boards:boards, invitations:invitations }),res);
 		});
-	)};
-});
-
-app.post('/CreateNewBoard', function (req, res) {
-    db.InsertBoard(req.body.board, req.body.login).done(function (result) {
-		if (result){
-			SendOk(res);
-		}
-		else{			
-			Send403("You already have board "+req.body.board+".",res);
-		}
 	});
 });
 
+app.post('/CreateNewBoard', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
+    else {
+        db.InsertBoard(req.body.board, req.body.login).done(function(result) {
+            if (result) {
+                SendOk(res);
+            } else {
+                Send403("You already have board " + req.body.board + ".", res);
+            }
+        });
+    }
+});
+
 app.post('/AcceptInviattion', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
 	db.AcceptInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(res);
@@ -219,6 +244,10 @@ app.post('/AcceptInviattion', function (req, res) {
 });
 
 app.post('/ReffuseInviattion', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
     db.RefuseInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(res);
@@ -233,6 +262,10 @@ app.post('/ReffuseInviattion', function (req, res) {
 });
 
 app.post('/LeaveBoard', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
 	db.LeaveBoard(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result){
 			SendOk(res);
@@ -244,6 +277,10 @@ app.post('/LeaveBoard', function (req, res) {
 });
 
 app.post('/DeleteBoard', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
     db.DeleteBoard(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result){
 			SendOk(res);
@@ -255,6 +292,10 @@ app.post('/DeleteBoard', function (req, res) {
 });
 
 app.post('/KickOut', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
     db.LeaveBoard(req.body.member, req.body.board, req.body.owner).done(function (result) {
 		if (result){
 			SendOk(res);
@@ -266,6 +307,10 @@ app.post('/KickOut', function (req, res) {
 });
 
 app.post('/AddStatus', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner) || !IsMongoInjectionsFree(req.body.task) || !IsMongoInjectionsFree(req.body.info) || !IsMongoInjectionsFree(req.body.type)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
 	db.InsertTaskStatus(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info, req.body.type).done(function (result) {
 		if (result){
 			SendOk(res);
@@ -277,6 +322,10 @@ app.post('/AddStatus', function (req, res) {
 });
 
 app.post('/InviteToBoard', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner) || !IsMongoInjectionsFree(req.body.member)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
 	db.InsertInvitation(req.body.login, req.body.member, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(res);
@@ -297,6 +346,10 @@ app.post('/InviteToBoard', function (req, res) {
 });
 
 app.post('/CreateNewTask', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner) || !IsMongoInjectionsFree(req.body.task) || !IsMongoInjectionsFree(req.body.info)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
 	db.InsertTask(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info).done(function (result) {
 		if (result){
 			SendOk(res);
@@ -308,6 +361,10 @@ app.post('/CreateNewTask', function (req, res) {
 });
 
 app.post('/RemoveTask', function (req, res) {
+    if (!IsMongoInjectionsFree(req.body.board) || !IsMongoInjectionsFree(req.body.owner) || !IsMongoInjectionsFree(req.body.task)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
 	db.RemoveTask(req.body.login, req.body.board, req.body.owner, req.body.task).done(function (result) {
 		if (result){
 			SendOk(res);
@@ -319,63 +376,43 @@ app.post('/RemoveTask', function (req, res) {
 });
 
 app.post('/changeUserData', function (req, res) {
-    UpdateUser(login, newLogin, password)
-	
-	login: $scope.login,
-										password: $scope.password,
-										newLogin: $scope.newLogin,
-										newPassword: $scope.newPassword,
-										newPassword2: $scope.newPassword2,
-										newEmail: $scope.newEmail}));
-										
-	if (newLogin!="")
-	{
-		if (!TextValidation(req.body.newLogin, 3, 20)){
-			//send zly login
-		}
-	}
-	if (newPassword!="")
-	{
-		if (newPassword!==newPassword2){
-			// send hasla nie takie same
-		}
-		else if (!TextValidation(req.body.newPassword, 3, 20)){
-			//send zly password
-		}
-	}
-	db.UpdateUser(req.body.login, req.body.newLogin, req.body.password).done(function (result) {
-		if (result){
-			SendOk(res);
-		}
-		else{			
-			// nieznaleziono usera lub nowy login zajety
-		}
-	});	
-
-			
-	 if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
-		if (req.body.email !== undefined) {
-			if (!EmailValidation(req.body.email)) {
-				Send403("Invalid address email",res);
-			}
-		}
-		else {
-			req.body.email = "";
-		}
-		db.InsertUser(req.body.login, req.body.password).done(function (result) {
-			if (result){
-				db.InsertUserEmail(req.body.login, req.body.email).done(function (result) {
-					if (result){
-						SendOk(res);
-					}
-					else{				
-						Send403("Account is created. You can't sign in, but email wasn't accepted.",res);
-					}
-				});
-			}
-			else{				
-				Send403("Login is already taken",res);
-			}
+    if (!IsMongoInjectionsFree(req.body.newPassword) || !IsMongoInjectionsFree(req.body.newPassword2) || !IsMongoInjectionsFree(req.body.newEmail)) {
+        Send403("Field has one of unsupported characters: ' \" \\ ; { }", res);
+        return;
+    }
+    if (req.body.newPassword !== req.body.newPassword2) {
+        Send403("Passwords don't match", res);    
+    }
+    else if (!TextValidation(req.body.newPassword, 3, 20)) {
+        Send403("Password dosn't meet the requirements", res); 
+    }
+    else {
+        db.UpdateUser(req.body.login, req.body.newPassword).done(function(result) {
+            if (result) {
+                if (req.body.newEmail != "") {
+                    if (EmailValidation(req.body.newEmail)) {
+                        db.InsertUserEmail(req.body.login, req.body.newEmail).done(function (result) {
+                            if (result) {
+                                SendOk(res);
+                            }
+                            else {
+                                Send403("Email wasn't accepted.", res);
+                                db.UpdateUser(req.body.login, req.body.password);
+                            }
+                        });
+                    }
+                    else {
+                        Send403("Invalid new email address", res);
+                        db.UpdateUser(req.body.login, req.body.password);
+                    }
+                }
+                else {
+                    SendOk(res);
+                }
+            }
+            else {
+                Send403("Didn't found you in database.", res);    
+            }
         });
     }
 });

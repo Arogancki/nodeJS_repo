@@ -505,15 +505,6 @@
 				<form class="main"  name="form" novalidate>
 						<table style="width:100%;">
 							<tr>
-								<td style="width:50%;">
-										<div class="text4" >Change login</div>
-								</td>
-								<td style="width:50%">
-										<input class="text6" type = "text" placeholder="new login" ng-model = "newLogin" name = "newLogin"
-										ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
-								</td>
-							</tr>
-							<tr>
 								<td style="width:50%">
 										<div class="text4" >Change password</div>
 								</td>
@@ -549,12 +540,12 @@
 										<a href = "#/App"><div class="text4">Cancel</div></a>
 									</div>
 								</td>
-								<td ng-show='(newLogin || newEmail || newPassword) && form.newLogin.$valid && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true)'>
+								<td ng-show='(newEmail || newPassword) && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true)'>
 									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton" ng-click ="Change()">
 										<a href = ""><div class="text4">Accept</div></a>
 									</div>
 								</td>
-								<td ng-show='!((newLogin || newEmail || newPassword) && form.newLogin.$valid && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true))'>
+								<td ng-show='!((newEmail || newPassword) && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true))'>
 									<div class="text4" style="width:50%;margin: auto;margin-top:4%;color: #AFAFAF;">
 										Accept
 									</div>
@@ -563,7 +554,6 @@
 							<tr>
 								<td colspan="2">
 									<div class="text6" style=" margin-top:4%" ng-show="invalid">{{invalid}}</div>
-									<div class="text6" ng-show="form.newLogin.$invalid && form.newLogin.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
 									<div class="text6" ng-show="form.newPassword.$invalid && form.newPassword.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
 									<div class="text6" ng-show="form.newPassword2.$invalid && form.newPassword2.$touched">Passwords are different</div>
 									<div class="text6" ng-show="form.newEmail.$invalid && form.newEmail.$touched">Invalid email: example@domain, 5 to 80 character</div>
