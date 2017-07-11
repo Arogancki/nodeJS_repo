@@ -133,6 +133,8 @@ main.controller('SignUpController', function($scope) {
 		login="";
 		password="";
 		if ($scope.login && $scope.password && $scope.password2) {
+			if (!$scope.email)
+				$scope.email="";
 			var req=PreparePost("Content-type", "application/json","registration");
 			req.send(JSON.stringify({	login: $scope.login,
 										password: $scope.password,

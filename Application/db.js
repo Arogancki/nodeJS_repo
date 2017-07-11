@@ -126,20 +126,24 @@ var InsertUserEmail=function (login, email) {
     });
 }
 
-function ConfirmEmail(login, confirmation) {
+var ConfirmEmail=function (login, confirmation) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
                 fulfill(1); // user doesn't exist
                 return;
             }
+			if (user.emailConfimr == ""){
+				fulfill(4); // user has already confirmed an email
+                return;
+			}
             if (user.emailConfimr == null) {
                 fulfill(2); // user hasn't specify email
                 return;
             }
             Connect().done(function (db) {
-                if (user.emailConfimr !== confirmation) {  // confirmation code is different - erase email
-                    db.collection(usersTable).updateOne({ login: login }, { $set: { email: "", emailConfimr: "" } }, function (err, result) {
+                if (user.emailConfimr !== confirmation) {  // confirmation code is different - create new confimation
+                    db.collection(usersTable).updateOne({ login: login }, { $set: { emailConfimr: GetRandomString() } }, function (err, result) {
                         if (err) {
                             reject(err);
                         } else {
@@ -603,6 +607,7 @@ var InsertTaskStatus=function (login, board, owner, task, info, type) {
 
 module.exports = {
     Authorization,
+	ConfirmEmail,
 	ResetPassword,
 	InsertUser,
 	InsertUserEmail,
