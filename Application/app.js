@@ -2,12 +2,13 @@
 var fs = require('fs');                    // file streams
 var path = require('path');                  // differences between OS
 var db = require('./db.js');                    // database handling application
-var courier = require('./emails.js');                    // email sending application
+var nodemailer = require('./emails.js');                    // email sending application
 var bodyParser = require('body-parser');           // parse jsondata
 var Promise = require('promise');               // asynchronous returns from functions
 
 var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = true;	// constant variable if true json objects will be printed in logs after sending response
 var port = 8081;
+var address = 'localhost:' + port;
 var public = path.join(__dirname, "public");	// path with public files
 var resources = path.join(public, "resources");	//specific files path
 var date = new Date();                              // date object
@@ -23,7 +24,7 @@ function GetDate(){
 
 function MakeLog(text,req){
 	if (req!==undefined)
-		console.log(GetDate()+">"+req.connection.remoteAddress+">"+text);;
+        console.log(GetDate() + ">" + req.ip +">"+text);
 	else
 		console.log(GetDate()+">"+text);
 }
@@ -58,7 +59,7 @@ function writeImageFromPath(path, res) {
 }
 
 function IsMongoInjectionsFree(text) {
-    return (/^[^'"\\;{}]*$/g).test(text);
+    return /^[^\/\\."$*<>:|?]*$/g.test(text);
 }
 
 function TextValidation(text, min, max) {
@@ -96,7 +97,7 @@ function SendOk(req,res) {
 	MakeLog("Response complete: confirmation sent",req);
 }
 
-function SendJson(json,req,res){
+function SendJson(json, req, res) {
 	res.setHeader('Content-Type', 'application/json');
 	res.statusCode = 200;
     res.send(json);
@@ -118,12 +119,16 @@ function UserValidation(body) {
     });
 }
 
-function SendMailToLogin(login,subject,message){
-	db.GetUserEmail(login).done(function(email){
-		if (email!=null){
-			courier.send(email,subject,message);
-		}
-	});
+function SendMailToLogin(login, subject, message, priorytyEmail) {
+    if (priorytyEmail !== undefined) {
+        nodemailer.send(priorytyEmail, subject, message);
+    } else {
+        db.GetUserEmail(login).done(function(email) {
+            if (email != null) {
+                nodemailer.send(email, subject, message);
+            }
+        });
+    }
 }
 
 function SendMailToBoard(board,owner,subject,message,exception){
@@ -154,7 +159,8 @@ function SendMailToTaskObservers(board,owner,task,subject,message,exception){
 }
 
 app.use(function (req, res, next) {
-    MakeLog("\nNew request: " + req.method + ":\"" + req.url + "\"",req);
+    console.log();
+    MakeLog("New request: " + req.method + ":\"" + req.url + "\"",req,res);
     next();
 });
 
@@ -194,11 +200,12 @@ app.get('/favicon.ico', function (req, res) {
 	MakeLog("Ico file sent",req);
 });
 
+
 app.get('/confirm', function (req, res) {
 	if (req.query.login !== undefined && IsMongoInjectionsFree(req.query.login) && req.query.confirmation !== undefined && IsMongoInjectionsFree(req.query.confirmation)){
 		db.ConfirmEmail(req.query.login, req.query.confirmation).done(function (result) {
 			if (result===0){
-				SendMailToLogin(req.query.login,"Email confirmed","Your email is now confirmed.<br>You're going to recive notifications from now.");
+				SendMailToLogin(req.query.login,"Email confirmed","Your email is confirmed.<br>You're going to recive notifications from now.");
 			}
 		});
 	}
@@ -210,7 +217,7 @@ app.get('/confirm', function (req, res) {
 
 app.post('/registration', function (req, res) {
     if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
-		if (req.body.email !== undefined || req.body.email != "") {
+		if (req.body.email != "") {
 			if (!EmailValidation(req.body.email)) {
 				Send403("Invalid address email",req,res);
 			}
@@ -222,10 +229,10 @@ app.post('/registration', function (req, res) {
 			if (result){
 				db.InsertUserEmail(req.body.login, req.body.email).done(function (result) {
 					if (result){
-						SendOk(req,res);
-						SendMailToLogin(req.body.login,"Confirm your email","Click the link to confirm your email:<br><a href='"+
-										server.address().address+':'+server.address().port+"/confirm?login="+req.body.login+
-										"&confirmation="+result+"'>Click the link</a>");
+                        SendOk(req, res);
+					    var emailbody = "Open this link to confirm your email:<br>" + address +
+					        "/confirm?login=" + req.body.login + "&confirmation=" + result;
+                        SendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
 					}
 					else{				
 						Send403("Account is created. You can't sign in, but email wasn't accepted.",req,res);
@@ -253,16 +260,24 @@ app.post('/resetpassword', function (req, res) {
 });
 
 app.use(function (req, res, next) {
-	if (req.method == 'POST'){
-		UserValidation(req.body).done(function(valid) {
-			if (valid) {
-				next();
-			}
-            else {
-                Send401(req,res);
-			    return;
+    if (req.method == 'POST') {
+        db.GetRealName(req.body.login).done(function (realLogin) {
+            if (realLogin==null) {
+                Send401(req, res);
+      	    	return;
+            } else {
+                req.body.login = realLogin;
             }
-		});
+	        UserValidation(req.body).done(function(valid) {
+	        	if (valid) {
+	  	    		next();
+	   	    	}
+                else {
+                    Send401(req,res);
+      	    	    return;
+                }
+            });
+        });
     }
 });
 
@@ -296,6 +311,20 @@ app.post('/CreateNewBoard', function (req, res) {
 			else {
                 Send403("You already have board " + req.body.board + ".", req,res);
 				return;
+            }
+        });
+    }
+});
+
+app.use(function (req, res, next) {
+    if (req.method == 'POST') {
+        db.GetRealName(req.body.owner).done(function (realLogin) {
+            if (realLogin == null) {
+                Send403("Board owner is undefined.", req, res);
+                return;
+            } else {
+                req.body.owner = realLogin;
+                next();
             }
         });
     }
@@ -399,6 +428,20 @@ app.post('/DeleteBoard', function (req, res) {
 			return;
 		}
 	});
+});
+
+app.use(function (req, res, next) {
+    if (req.method == 'POST') {
+        db.GetRealName(req.body.member).done(function (realLogin) {
+            if (realLogin == null) {
+                Send403("Board member is undefined.", req, res);
+                return;
+            } else {
+                req.body.member = realLogin;
+                next();
+            }
+        });
+    }
 });
 
 app.post('/KickOut', function (req, res) {
@@ -554,8 +597,11 @@ app.post('/changeUserData', function (req, res) {
                     if (EmailValidation(req.body.newEmail)) {
                         db.InsertUserEmail(req.body.login, req.body.newEmail).done(function (result) {
                             if (result) {
-                                SendOk(req,res);
-								SendMailToLogin(req.body.member,"Settings changed","Your settings has changed.");
+                                SendOk(req, res);
+
+                                var emailbody = "Open this link to confirm your email:<br>" + address +
+                                    "/confirm?login=" + req.body.login + "&confirmation=" + result;
+                                SendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.email);
 								return;
                             }
                             else {
@@ -601,5 +647,5 @@ app.use(function (err, req, res, next) {
 });
 
     var server = app.listen(port, function () {
-        MakeLog('Server has started listening on: ' + server.address().address + ':' + server.address().port);
+        MakeLog('Server\'s listening on: ' + address);
 });

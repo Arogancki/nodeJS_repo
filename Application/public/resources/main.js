@@ -94,8 +94,9 @@ main.controller('SignInController', function($scope) {
 						password=$scope.password;
 						window.location.href = getCurrentURL()+"#/App";
 					}
-					else if (req.status === 403){// Error happend
+					else if (req.status === 401){// Error happend
 						$scope.invalid=req.responseText;
+						$scope.$apply();
 					}
 					else{
 						ServerError(req);
@@ -111,16 +112,12 @@ main.controller('SignInController', function($scope) {
 										email: $scope.email}));
 			req.onreadystatechange = function() {
 				if (req.readyState === 4) {
-					if (req.status === 200 || req.status === 403) {
-						if (req.status === 200) {
+					if (req.status === 200 || req.status === 401 || req.status === 403) {
 							$scope.invalid="If login and email are correct new password is sended to your email.";
-						}
-						else if (req.status === 403){// Error happend
-							$scope.invalid=req.responseText;
-						}
-						else{
-							ServerError(req);
-						}
+							$scope.$apply();
+					}
+					else{
+						ServerError(req);
 					}
 				}
 			}
@@ -153,6 +150,7 @@ main.controller('SignUpController', function($scope) {
 					}
 					else if (req.status === 401){// Unauthorized
 						$scope.invalid="Invalid login or password";
+						$scope.$apply();
 					}
 					else{
 						ServerError(req);
@@ -193,6 +191,7 @@ main.controller('AppController', function($scope) {
 					var resObj = JSON.parse(this.responseText);
 					$scope.boards=resObj.boards;
 					$scope.invitations=resObj.invitations;
+					$scope.$apply();
 					try{
 					$scope.refreshTimer=setTimeout($scope.Refresh(timeInMs),timeInMs); // run again after x ms
 					} catch(err){}

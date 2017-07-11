@@ -1,15 +1,18 @@
 var dataBase = require('mongodb').MongoClient;   // MongoDB databases
 var Promise = require('promise');               // asynchronous returns from functions
-var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerApp1Test"; //dataBase address
+var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerAppTestX"; //dataBase address
 
 var usersTable = "users";
 var boardsTable = "boards";
 
-// remember to run run database in background
+// run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
-
-//var exec = require('child_process').exec;
-//exec("C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe &");
+var exec = require('child_process').exec;
+exec('\"C:\\Program Files\\MongoDB\\Server\\3.4\\bin\\mongod.exe\"', function (error, stdout, stderr) {
+    console.log(stdout);
+    console.error(error);
+    console.error(stderr);
+});
 
 function GetRandomString() {
     return Math.random().toString(36).slice(-16);
@@ -22,6 +25,32 @@ function Connect() {
                 reject(err);
             }
             fulfill(db);
+        });
+    });
+}
+
+// mongodb is casesesitive, so if user write his name with different case
+// there is need to find his real name (that he has used to sign up)
+var GetRealName = function (login) {
+    return new Promise(function (fulfill, reject) {
+        if (login === undefined) {
+            fulfill(null);
+            return;
+        }
+        Connect().done(function (db) {
+            db.collection(usersTable).findOne({ lowerCaseLogin: login.toLowerCase() }, function (err, user) {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (user != null) {
+                        fulfill(user.login);
+                    }
+                    else {
+                        fulfill(null);
+                    }
+                }
+                db.close();
+            });
         });
     });
 }
@@ -61,7 +90,7 @@ function GetUser(login) {
     });
 }
 
-function GetUserEmail(login){
+function GetUserEmail(login) {
 	return new Promise(function (fulfill, reject) {
 		GetUser(login).done(function(user){
 			if (user!=null && user.email!="" && user.emailConfimr==""){
@@ -77,13 +106,13 @@ function GetUserEmail(login){
 var InsertUser=function (login, password) {
     return new Promise(function (fulfill, reject) {
         Connect().done(function (db) {
-            db.collection(usersTable).findOne({ login: login }, function (err, result) {
+            db.collection(usersTable).findOne({ lowerCaseLogin: login.toLowerCase() }, function (err, result) {
                 if (err) reject(err);
                 if (result != null) {
                     fulfill(false);
                     db.close();
                 } else {
-                    db.collection(usersTable).insertOne({ login: login, password: password, email: "", emailConfimr: "" }, function (err, result) {
+                    db.collection(usersTable).insertOne({ lowerCaseLogin: login.toLowerCase(), login: login, password: password, email: "", emailConfimr: "" }, function (err, result) {
                         if (err) {
                             reject(err);
                         }
@@ -120,7 +149,7 @@ function UpdateUser(login, password) {
     });
 }
 
-var InsertUserEmail=function (login, email) {
+var InsertUserEmail = function (login, email) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -143,38 +172,47 @@ var InsertUserEmail=function (login, email) {
     });
 }
 
-var ConfirmEmail=function (login, confirmation) {
+var ConfirmEmail = function (login, confirmation) {
     return new Promise(function (fulfill, reject) {
-        GetUser(login).done(function (user) {
-            if (user == null) {
+        GetRealName(login).done(function (realLogin) {
+            if (realLogin == null) {
                 fulfill(1); // user doesn't exist
                 return;
             }
-			if (user.emailConfimr == ""){
-				fulfill(4); // user has already confirmed an email
-                return;
-			}
-            if (user.emailConfimr == null) {
-                fulfill(2); // user hasn't specify email
-                return;
+            else {
+                login = realLogin;
             }
-            Connect().done(function (db) {
-                if (user.emailConfimr === confirmation) {  // confirmation code is ok
-					db.collection(usersTable).updateOne({ login: login }, { $set: { emailConfimr: "" } }, function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            fulfill(0);
-                        }
-                    });
+            GetUser(login).done(function (user) {
+                if (user == null) {
+                    fulfill(1); // user doesn't exist
+                    return;
                 }
-				db.close();
+		    	if (user.emailConfimr == ""){
+		    		fulfill(4); // user has already confirmed an email
+                    return;
+		    	}
+                if (user.emailConfimr == null) {
+                    fulfill(2); // user hasn't specify email
+                    return;
+                }
+                Connect().done(function (db) {
+                    if (user.emailConfimr === confirmation) {  // confirmation code is ok
+		    			db.collection(usersTable).updateOne({ login: login }, { $set: { emailConfimr: "" } }, function (err, result) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                fulfill(0);
+                            }
+                        });
+                    }
+		    		db.close();
+                });
             });
         });
     });
 }
 
-var ResetPassword=function(login, email){
+var ResetPassword = function (login, email) {
 	return new Promise(function (fulfill, reject) {
         GetUser(login).done(function (user) {
             if (user == null) {
@@ -185,6 +223,7 @@ var ResetPassword=function(login, email){
                 fulfill(false); // user email doesn't match
                 return;
             }
+            login = user.lowerCaseLogin;
             Connect().done(function (db) {
 				newPassword=GetRandomString();
                 db.collection(usersTable).updateOne({ login: login }, { $set: { password:newPassword } }, function (err, result) {
@@ -609,7 +648,7 @@ var GetTaskObservers=function (board, owner, task){
 		GetTask(board, owner, name).done(function(task){
 			if (task!=null){
 				var observers=[];
-				for (int i=0; i<task.statuses.length; i++){
+				for (var i=0; i<task.statuses.length; i++){
 					observers.push({user:task.statuses[i].user});
 				}
 				fulfill(observers);
@@ -643,6 +682,7 @@ var InsertTaskStatus=function (login, board, owner, task, info, type) {
 }
 
 module.exports = {
+    GetRealName,
     Authorization,
 	GetUserEmail,
 	ConfirmEmail,
