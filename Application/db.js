@@ -8,6 +8,9 @@ var boardsTable = "boards";
 // remember to run run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
 
+//var exec = require('child_process').exec;
+//exec("C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe &");
+
 function GetRandomString() {
     return Math.random().toString(36).slice(-16);
 }
@@ -56,6 +59,19 @@ function GetUser(login) {
             });
         });
     });
+}
+
+function GetUserEmail(login){
+	return new Promise(function (fulfill, reject) {
+		GetUser(login).done(function(user){
+			if (user!=null && user.email!="" && user.emailConfimr==""){
+				fulfill(user.email);
+			}
+			else{
+				fulfill(null);
+			}
+		});
+	});
 }
 
 var InsertUser=function (login, password) {
@@ -112,11 +128,12 @@ var InsertUserEmail=function (login, email) {
             }
             else {
                 Connect().done(function (db) {
-                    db.collection(usersTable).updateOne({ login: login }, { $set: { email: email, emailConfimr: GetRandomString() } }, function (err, result) {
+					var rand=GetRandomString();
+                    db.collection(usersTable).updateOne({ login: login }, { $set: { email: email, emailConfimr: rand } }, function (err, result) {
                         if (err) {
                             reject(err);
                         } else {
-                            fulfill(true);
+                            fulfill(rand);
                         }
                         db.close();
                     });
@@ -142,26 +159,16 @@ var ConfirmEmail=function (login, confirmation) {
                 return;
             }
             Connect().done(function (db) {
-                if (user.emailConfimr !== confirmation) {  // confirmation code is different - create new confimation
-                    db.collection(usersTable).updateOne({ login: login }, { $set: { emailConfimr: GetRandomString() } }, function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            fulfill(3);
-                        }
-                        db.close();
-                    });
-                }
-                else { // confirmation code is equal - accept email
-                    db.collection(usersTable).updateOne({ login: login }, { $set: { emailConfimr: "" } }, function (err, result) {
+                if (user.emailConfimr === confirmation) {  // confirmation code is ok
+					db.collection(usersTable).updateOne({ login: login }, { $set: { emailConfimr: "" } }, function (err, result) {
                         if (err) {
                             reject(err);
                         } else {
                             fulfill(0);
                         }
-                        db.close();
                     });
                 }
+				db.close();
             });
         });
     });
@@ -207,6 +214,19 @@ function GetBoard(name, owner) {
             });
         });
     });
+}
+
+var GetBoardUsers=function (name, owner){
+	return new Promise(function (fulfill, reject) {
+		GetBoard.done(function(board){
+			if (board!=null){
+				fulfill({owner:board.owner, members:board.members, invited:board.invitations});
+			}
+			else{
+				fulfill(null);
+			}
+		});
+	});
 }
 
 function GetBoards(ids) {
@@ -527,7 +547,7 @@ var DeleteBoard=function (login, name, owner) {
 
 var InsertTask=function (login, board, owner, name, info) {
     return new Promise(function (fulfill, reject) {
-        GetTasks(board, owner, name).done(function (task) {
+        GetTask(board, owner, name).done(function (task) {
             if (task != null) {
                 fulfill(false);
             } else {
@@ -550,7 +570,7 @@ var InsertTask=function (login, board, owner, name, info) {
 
 function RemoveTask(login, board, owner, name) {
     return new Promise(function (fulfill, reject) {
-        GetTasks(board, owner, name).done(function (task) {
+        GetTask(board, owner, name).done(function (task) {
             if (task == null) {
                 fulfill(false);
             }
@@ -570,7 +590,7 @@ function RemoveTask(login, board, owner, name) {
     });
 }
 
-function GetTasks(board, owner, name) {
+function GetTask(board, owner, name) {
     return new Promise(function (fulfill, reject) {
         GetBoard(board, owner).done(function (_board) {
             for (var i = 0; i < _board.tasks.length; i++) {
@@ -584,9 +604,26 @@ function GetTasks(board, owner, name) {
     });
 }
 
+var GetTaskObservers=function (board, owner, task){
+	return new Promise(function (fulfill, reject) {
+		GetTask(board, owner, name).done(function(task){
+			if (task!=null){
+				var observers=[];
+				for (int i=0; i<task.statuses.length; i++){
+					observers.push({user:task.statuses[i].user});
+				}
+				fulfill(observers);
+			}
+			else{
+				fulfill(null);
+			}
+		});
+	});
+}
+
 var InsertTaskStatus=function (login, board, owner, task, info, type) {
     return new Promise(function (fulfill, reject) {
-        GetTasks(board, owner, name).done(function (task) {
+        GetTask(board, owner, name).done(function (task) {
             if (task != null) {
                 fulfill(false);
             } else {
@@ -607,8 +644,10 @@ var InsertTaskStatus=function (login, board, owner, task, info, type) {
 
 module.exports = {
     Authorization,
+	GetUserEmail,
 	ConfirmEmail,
 	ResetPassword,
+	GetBoardUsers,
 	InsertUser,
 	InsertUserEmail,
 	GetUserBoards,
@@ -622,5 +661,6 @@ module.exports = {
 	InsertInvitation,
 	InsertTask,
 	RemoveTask,
-	UpdateUser
+	UpdateUser,
+	GetTaskObservers
 };

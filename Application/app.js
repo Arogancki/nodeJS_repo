@@ -1,20 +1,18 @@
 ﻿var express = require('express');				// web app framework
-var http = require("http");                  // http protocol - socets, connections
 var fs = require('fs');                    // file streams
-var qs = require('querystring');           // unpacking post - into jason
 var path = require('path');                  // differences between OS
 var db = require('./db.js');                    // database handling application
-var email = require('./emails.js');                    // email sending application
+var courier = require('./emails.js');                    // email sending application
 var bodyParser = require('body-parser');           // parse jsondata
 var Promise = require('promise');               // asynchronous returns from functions
 
-var app = express();								//  create epress configuration object
-var port = 8081;
-var date = new Date();                              // date object
-var public = path.join(__dirname, "public");
-var resources = path.join(public, "resources");
-
 var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = true;	// constant variable if true json objects will be printed in logs after sending response
+var port = 8081;
+var public = path.join(__dirname, "public");	// path with public files
+var resources = path.join(public, "resources");	//specific files path
+var date = new Date();                              // date object
+
+var app = express();								//  create epress configuration object
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -120,8 +118,43 @@ function UserValidation(body) {
     });
 }
 
+function SendMailToLogin(login,subject,message){
+	db.GetUserEmail(login).done(function(email){
+		if (email!=null){
+			courier.send(email,subject,message);
+		}
+	});
+}
+
+function SendMailToBoard(board,owner,subject,message,exception){
+	db.GetBoardUsers(board,owner).done(function(users){
+		if (users!=null){
+			for(var user in users) {
+				if (users[user]!=exception){
+					SendMailToLogin(users[user],subject,message);
+				}
+			}
+		}
+	});
+}
+
+function SendMailToTaskObservers(board,owner,task,subject,message,exception){
+	db.GetTaskObservers(board, owner, task).done(function(users){
+		if (users!=null){
+			for(var user in users) {
+				if (users[user]!=exception){
+					SendMailToLogin(users[user],subject,message);
+				}
+			}
+			if (owner!=exception){
+				SendMailToLogin(owner,subject,message);
+			}
+		}
+	});
+}
+
 app.use(function (req, res, next) {
-    MakeLog("\n" + New request: " + req.method + ":\"" + req.url + "\"",req);
+    MakeLog("\nNew request: " + req.method + ":\"" + req.url + "\"",req);
     next();
 });
 
@@ -162,11 +195,10 @@ app.get('/favicon.ico', function (req, res) {
 });
 
 app.get('/confirm', function (req, res) {
-    // przykladowy confirm http://localhost:8081/confirm?login=Artur&confirmation=randomString
 	if (req.query.login !== undefined && IsMongoInjectionsFree(req.query.login) && req.query.confirmation !== undefined && IsMongoInjectionsFree(req.query.confirmation)){
 		db.ConfirmEmail(req.query.login, req.query.confirmation).done(function (result) {
 			if (result===0){
-				//TODO send email with confirmation complete
+				SendMailToLogin(req.query.login,"Email confirmed","Your email is now confirmed.<br>You're going to recive notifications from now.");
 			}
 		});
 	}
@@ -191,6 +223,9 @@ app.post('/registration', function (req, res) {
 				db.InsertUserEmail(req.body.login, req.body.email).done(function (result) {
 					if (result){
 						SendOk(req,res);
+						SendMailToLogin(req.body.login,"Confirm your email","Click the link to confirm your email:<br><a href='"+
+										server.address().address+':'+server.address().port+"/confirm?login="+req.body.login+
+										"&confirmation="+result+"'>Click the link</a>");
 					}
 					else{				
 						Send403("Account is created. You can't sign in, but email wasn't accepted.",req,res);
@@ -207,8 +242,9 @@ app.post('/registration', function (req, res) {
 app.post('/resetpassword', function (req, res) {
     if ( EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20) ) {
 		db.ResetPassword(req.body.login, req.body.email).done(function (newPassword) {
-			//TODO wyslac email o resecie z tym co zwrocila funckja
 			SendOk(req,res);
+			SendMailToLogin(req.body.login,"Your new password","The password is reset.<br>Your new password<br>"+
+							newPassword+"<br>I propose to change it after next sign in.");
 		});
     }
 	else{
@@ -277,6 +313,8 @@ app.post('/AcceptInviattion', function (req, res) {
 	db.AcceptInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(req,res);
+			SendMailToLogin(req.body.owner,"Invitation to "+req.body.board+" accepted","User<br>"+req.body.login+
+							"<br>is now member to your board "+req.body.board+".");
 			return;
 		}
 		else if (result==1){
@@ -302,6 +340,8 @@ app.post('/ReffuseInviattion', function (req, res) {
     db.RefuseInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(req,res);
+			SendMailToLogin(req.body.owner,"Invitation to "+req.body.board+" refused","User<br>"+req.body.login+
+							"<br>refused invitation to your board "+req.body.board+".");
 			return;
 		}
 		else if (result==1){
@@ -327,6 +367,8 @@ app.post('/LeaveBoard', function (req, res) {
 	db.LeaveBoard(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result){
 			SendOk(req,res);
+			SendMailToBoard(req.body.board,req.body.owner,"A member has left the board",
+			"User<br>"+req.body.login+"<br>has left the "+req.body.owner+"'s board "+req.body.board+".","");
 			return;
 		}
 		else{			
@@ -348,6 +390,8 @@ app.post('/DeleteBoard', function (req, res) {
     db.DeleteBoard(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result){
 			SendOk(req,res);
+			SendMailToBoard(req.body.board,req.body.owner,"The board deleted",
+			"The board<br>"+req.body.board+"<br>has been deleted by owner "+req.body.owner+".",req.body.owner);
 			return;
 		}
 		else{			
@@ -369,6 +413,8 @@ app.post('/KickOut', function (req, res) {
     db.LeaveBoard(req.body.member, req.body.board, req.body.owner).done(function (result) {
 		if (result){
 			SendOk(req,res);
+			SendMailToBoard(req.body.board,req.body.owner,"A member kicked out",
+			"Owner "+req.body.owner+" has kicked out<br>"+req.body.member+"<br>from his board "+req.body.board+".",req.body.owner);
 			return;
 		}
 		else{			
@@ -390,6 +436,9 @@ app.post('/AddStatus', function (req, res) {
 	db.InsertTaskStatus(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info, req.body.type).done(function (result) {
 		if (result){
 			SendOk(req,res);
+			SendMailToTaskObservers(req.body.board,req.body.owner,req.body.task,"New task status",
+			"User "+req.body.login+" added new status to<br>"+req.body.task+" - "+req.body.type+
+			"<br>in "+req.body.owner+"'s board "+req.body.board+".",req.body.login);
 			return;
 		}
 		else{			
@@ -411,6 +460,9 @@ app.post('/InviteToBoard', function (req, res) {
 	db.InsertInvitation(req.body.login, req.body.member, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(req,res);
+			SendMailToLogin(req.body.member,"New invitation waiting",
+							"User "+req.body.login+" invited you to board<br>"+req.body.board+
+							"<br>You can accept or refuse it after sign in.");
 			return;
 		}
 		else if (result==3){
@@ -444,6 +496,8 @@ app.post('/CreateNewTask', function (req, res) {
 	db.InsertTask(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info).done(function (result) {
 		if (result){
 			SendOk(req,res);
+			SendMailToBoard(req.body.board,req.body.owner,"New task in board",
+			"User "+req.body.login+" has added new Task:<br>"+req.body.task+"<br>to "+req.body.owner+"'s board "+req.body.board+".","");
 			return;
 		}
 		else{			
@@ -465,6 +519,8 @@ app.post('/RemoveTask', function (req, res) {
 	db.RemoveTask(req.body.login, req.body.board, req.body.owner, req.body.task).done(function (result) {
 		if (result){
 			SendOk(req,res);
+			SendMailToTaskObservers(req.body.board,req.body.owner,req.body.task,"Task removed",
+			req.body.owner+" has removed task:<br>"+req.body.task+"<br>from his board "+req.body.board+".",req.body.owner);
 			return;
 		}
 		else{			
@@ -499,17 +555,18 @@ app.post('/changeUserData', function (req, res) {
                         db.InsertUserEmail(req.body.login, req.body.newEmail).done(function (result) {
                             if (result) {
                                 SendOk(req,res);
+								SendMailToLogin(req.body.member,"Settings changed","Your settings has changed.");
 								return;
                             }
                             else {
-                                Send403("Email wasn't accepted.", req,res);
+                                Send403("Invalid new email address.", req,res);
                                 db.UpdateUser(req.body.login, req.body.password);
 								return;
                             }
                         });
                     }
                     else {
-                        Send403("Invalid new email address", req,res);
+                        Send403("Invalid new email address.", req,res);
                         db.UpdateUser(req.body.login, req.body.password);
 						return;
                     }

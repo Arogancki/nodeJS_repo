@@ -147,6 +147,8 @@ main.controller('SignUpController', function($scope) {
 						setCookie("password",$scope.password,1);
 						login=$scope.login;
 						password=$scope.password;
+						if ($scope.email!="")
+							alert("Please remember to check and confirm your email.")
 						window.location.href = getCurrentURL()+"#/App";
 					}
 					else if (req.status === 401){// Unauthorized
