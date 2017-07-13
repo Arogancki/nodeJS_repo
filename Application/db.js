@@ -8,6 +8,7 @@ var boardsTable = "boards";
 // run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
 var exec = require('child_process').exec;
+
 exec('\"C:\\Program Files\\MongoDB\\Server\\3.4\\bin\\mongod.exe\"', function (error, stdout, stderr) {
     console.log(stdout);
     console.error(error);
@@ -20,12 +21,17 @@ function GetRandomString() {
 
 function Connect() {
     return new Promise(function (fulfill, reject) {
-        dataBase.connect(dataBaseUrl, function (err, db) {
-            if (err) {
-                reject(err);
-            }
-            fulfill(db);
-        });
+        try {
+            dataBase.connect(dataBaseUrl, function(err, db) {
+                if (err) {
+                    reject(err);
+                }
+                fulfill(db);
+            });
+        }
+        catch (e) {
+            console.error(e);
+        }
     });
 }
 
@@ -112,7 +118,7 @@ var InsertUser=function (login, password) {
                     fulfill(false);
                     db.close();
                 } else {
-                    db.collection(usersTable).insertOne({ lowerCaseLogin: login.toLowerCase(), login: login, password: password, email: "", emailConfimr: "" }, function (err, result) {
+                    db.collection(usersTable).insertOne({ lowerCaseLogin: login.toLowerCase(), login: login, password: password, email: "", emailConfimr: "", boards: [], invitations:[]}, function (err, result) {
                         if (err) {
                             reject(err);
                         }
@@ -213,26 +219,32 @@ var ConfirmEmail = function (login, confirmation) {
 }
 
 var ResetPassword = function (login, email) {
-	return new Promise(function (fulfill, reject) {
-        GetUser(login).done(function (user) {
-            if (user == null) {
+    return new Promise(function(fulfill, reject) {
+        GetRealName(login).done(function (name)
+        {
+            if (name == null) {
                 fulfill(false); // user doesn't exist
                 return;
             }
-            if (user.email != email) {
-                fulfill(false); // user email doesn't match
-                return;
-            }
-            login = user.lowerCaseLogin;
-            Connect().done(function (db) {
-				newPassword=GetRandomString();
-                db.collection(usersTable).updateOne({ login: login }, { $set: { password:newPassword } }, function (err, result) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        fulfill(newPassword);
-                    }
-                    db.close();
+            GetUser(name).done(function(user) {
+                if (user == null) {
+                    fulfill(false); // user doesn't exist
+                    return;
+                }
+                if (user.email != email) {
+                    fulfill(false); // user email doesn't match
+                    return;
+                }
+                Connect().done(function(db) {
+                    newPassword = GetRandomString();
+                    db.collection(usersTable).updateOne({ login: name }, { $set: { password: newPassword } }, function(err, result) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            fulfill({newPassword: newPassword, login: name});
+                        }
+                        db.close();
+                    });
                 });
             });
         });

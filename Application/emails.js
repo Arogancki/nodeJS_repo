@@ -15,16 +15,19 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var EMAIL_HEADER =	'<h1 style="text-align:center;border-bottom:solid 1px #99CCFF;">Hello!<br></h1>'
-var EMAIL_FOOTER =	'<p style="text-align:center;">See you soon,<br>NodeJs Task Menager Application.</p>'
+function GetHeader(name) {
+    return '<h1 style="text-align:center;border-bottom:solid 1px #99CCFF;">Hello ' + name + '!<br></h1>';
+}
 
-var send = function (to, subject, message) {
+var EMAIL_FOOTER = '<p style="text-align:center;">See you soon,<br>NodeJs Task Menager Application.</p>';
+
+var send = function (name, to, subject, message) {
     return new Promise(function(fulfill, reject) {
         var mailOptions = {
             from: SERVER_NAME,
             to: to,
             subject: subject,
-            html: EMAIL_HEADER + '<p style="text-align:center;">' + message + '</p>' + EMAIL_FOOTER
+            html: GetHeader(name) + '<p style="text-align:center;">' + message + '</p>' + EMAIL_FOOTER
         };
         transporter.sendMail(mailOptions, function(error, info) {
             if (error) {

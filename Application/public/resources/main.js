@@ -88,9 +88,10 @@ main.controller('SignInController', function($scope) {
 			req.onreadystatechange = function() {
 				if (req.readyState === 4) {
 					if (req.status === 200) {
-						setCookie("login",$scope.login,1);
+						var resObj = JSON.parse(this.responseText);
+						setCookie("login",resObj.login,1);
 						setCookie("password",$scope.password,1);
-						login=$scope.login;
+						login=resObj.login;
 						password=$scope.password;
 						window.location.href = getCurrentURL()+"#/App";
 					}
@@ -177,11 +178,7 @@ main.controller('AppController', function($scope) {
 	else
 		$scope.password=password;
 	
-	if ($scope.login=="" || $scope.password==""){
-		ForbiddenAccess();
-		return;
-	}
-	$scope.Refresh=function(timeInMs){
+	$scope.Refresh=function(){
 		var req=PreparePost("Content-type", "application/json","getBoardsAndInvitations");
 		req.send(JSON.stringify({	login: $scope.login,
 									password: $scope.password}));
@@ -189,11 +186,13 @@ main.controller('AppController', function($scope) {
 			if (req.readyState === 4) {
 				if (req.status === 200) {
 					var resObj = JSON.parse(this.responseText);
-					$scope.boards=resObj.boards;
-					$scope.invitations=resObj.invitations;
-					$scope.$apply();
+					if ($scope.boards!=resObj.boards || $scope.invitations!=resObj.invitations){
+						$scope.boards=resObj.boards;
+						$scope.invitations=resObj.invitations;
+						$scope.$apply();
+					}
 					try{
-					$scope.refreshTimer=setTimeout($scope.Refresh(timeInMs),timeInMs); // run again after x ms
+						$scope.refreshTimer=setTimeout($scope.Refresh,$scope.autoUpdateTime); // run again after x ms
 					} catch(err){}
 				}
 				else if (req.status === 401){// Unauthorized
@@ -207,7 +206,7 @@ main.controller('AppController', function($scope) {
 		}
 	}
 	$scope.autoUpdateTime=60000;
-	$scope.refreshTimer=setTimeout($scope.Refresh($scope.autoUpdateTime),0);
+	$scope.refreshTimer=setTimeout($scope.Refresh(),0);
 	$scope.RefreshNow=function(){
 		try{
 			clearTimeout($scope.refreshTimer);
@@ -512,6 +511,7 @@ main.controller('SettingsController', function($scope) {
 	}
 	else
 		$scope.password=password;
+	
 	$scope.Change=function(){
 		if (($scope.newPassword && $scope.newPassword2) || $scope.newEmail) {
 			if (!$scope.newPassword){
@@ -549,6 +549,9 @@ main.controller('SettingsController', function($scope) {
 				}
 			}
 		}
+	}
+	if ($scope.login=="" || $scope.password==""){
+		window.location.href = getCurrentURL()+"#/App";
 	}
 });
 

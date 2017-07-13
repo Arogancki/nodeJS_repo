@@ -8,18 +8,18 @@ var Promise = require('promise');               // asynchronous returns from fun
 
 var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = true;	// constant variable if true json objects will be printed in logs after sending response
 var port = 8081;
-var address = 'localhost:' + port;
+var address = 'http://192.168.0.189:' + port;
 var public = path.join(__dirname, "public");	// path with public files
 var resources = path.join(public, "resources");	//specific files path
-var date = new Date();                              // date object
 
 var app = express();								//  create epress configuration object
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-function GetDate(){               
-    return [date.getFullYear(),("0"+(date.getMonth()+1)).slice(-2),("0"+date.getDate()).slice(-2)].join("-")+" "+[("0"+date.getHours()).slice(-2),("0"+date.getMinutes()).slice(-2),("0"+date.getSeconds()).slice(-2)].join(':');
+function GetDate() {               
+    var date = new Date();
+    return [date.getFullYear(), ("0" + (date.getMonth() + 1)).slice(-2), ("0" + date.getDate()).slice(-2)].join("-") + " " + [("0" + date.getHours()).slice(-2), ("0" + date.getMinutes()).slice(-2), ("0" + date.getSeconds()).slice(-2), ("0" + date.getMilliseconds()).slice(-2)].join(':');
 }
 
 function MakeLog(text,req){
@@ -59,7 +59,7 @@ function writeImageFromPath(path, res) {
 }
 
 function IsMongoInjectionsFree(text) {
-    return /^[^\/\\."$*<>:|?]*$/g.test(text);
+    return /^[^\/\\"$*<>:|?]*$/g.test(text);
 }
 
 function TextValidation(text, min, max) {
@@ -121,11 +121,11 @@ function UserValidation(body) {
 
 function SendMailToLogin(login, subject, message, priorytyEmail) {
     if (priorytyEmail !== undefined) {
-        nodemailer.send(priorytyEmail, subject, message);
+        nodemailer.send(login, priorytyEmail, subject, message);
     } else {
         db.GetUserEmail(login).done(function(email) {
             if (email != null) {
-                nodemailer.send(email, subject, message);
+                nodemailer.send(login, email, subject, message);
             }
         });
     }
@@ -200,7 +200,6 @@ app.get('/favicon.ico', function (req, res) {
 	MakeLog("Ico file sent",req);
 });
 
-
 app.get('/confirm', function (req, res) {
 	if (req.query.login !== undefined && IsMongoInjectionsFree(req.query.login) && req.query.confirmation !== undefined && IsMongoInjectionsFree(req.query.confirmation)){
 		db.ConfirmEmail(req.query.login, req.query.confirmation).done(function (result) {
@@ -230,8 +229,8 @@ app.post('/registration', function (req, res) {
 				db.InsertUserEmail(req.body.login, req.body.email).done(function (result) {
 					if (result){
                         SendOk(req, res);
-					    var emailbody = "Open this link to confirm your email:<br>" + address +
-					        "/confirm?login=" + req.body.login + "&confirmation=" + result;
+					    var emailbody = "Open this link to confirm your email:<br><a href=\"" + address +
+					        "/confirm?login=" + req.body.login + "&confirmation=" + result+"\">Click Here</a>";
                         SendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
 					}
 					else{				
@@ -248,10 +247,12 @@ app.post('/registration', function (req, res) {
 
 app.post('/resetpassword', function (req, res) {
     if ( EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20) ) {
-		db.ResetPassword(req.body.login, req.body.email).done(function (newPassword) {
-			SendOk(req,res);
-			SendMailToLogin(req.body.login,"Your new password","The password is reset.<br>Your new password<br>"+
-							newPassword+"<br>I propose to change it after next sign in.");
+        db.ResetPassword(req.body.login, req.body.email).done(function (result) {
+            SendOk(req, res);
+            if (result !== false) {
+                SendMailToLogin(result.login, "Your new password", "The password is reset.<br>Your new password<br>" +
+                    result.newPassword + "<br>You can change it when you sign in next time.", req.body.email);   
+            }
 		});
     }
 	else{
@@ -282,7 +283,7 @@ app.use(function (req, res, next) {
 });
 
 app.post('/authorization', function (req, res) {
-    SendOk(req,res);
+    SendJson(JSON.stringify({ login: req.body.login }), req, res);
 });
 
 app.post('/getBoardsAndInvitations', function (req, res) {
@@ -320,8 +321,7 @@ app.use(function (req, res, next) {
     if (req.method == 'POST') {
         db.GetRealName(req.body.owner).done(function (realLogin) {
             if (realLogin == null) {
-                Send403("Board owner is undefined.", req, res);
-                return;
+                next();
             } else {
                 req.body.owner = realLogin;
                 next();
@@ -434,8 +434,7 @@ app.use(function (req, res, next) {
     if (req.method == 'POST') {
         db.GetRealName(req.body.member).done(function (realLogin) {
             if (realLogin == null) {
-                Send403("Board member is undefined.", req, res);
-                return;
+                next();
             } else {
                 req.body.member = realLogin;
                 next();
@@ -598,10 +597,9 @@ app.post('/changeUserData', function (req, res) {
                         db.InsertUserEmail(req.body.login, req.body.newEmail).done(function (result) {
                             if (result) {
                                 SendOk(req, res);
-
-                                var emailbody = "Open this link to confirm your email:<br>" + address +
-                                    "/confirm?login=" + req.body.login + "&confirmation=" + result;
-                                SendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.email);
+                                var emailbody = "Open this link to confirm your new email:<br><a href=\"" + address +
+                                    "/confirm?login=" + req.body.login + "&confirmation=" + result + "\">Click Here</a>";
+                                SendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.newEmail);
 								return;
                             }
                             else {
@@ -630,7 +628,7 @@ app.post('/changeUserData', function (req, res) {
     }
 });
 
-app.use(function (req, res, next) {
+app.use(function (err, req, res, next) {
     console.error("Unsupported request");
     res.setHeader('Content-Type', "text / html");
     res.statusCode = 400; //Bad Request
@@ -646,6 +644,6 @@ app.use(function (err, req, res, next) {
     res.end();
 });
 
-    var server = app.listen(port, function () {
+var server = app.listen(port, function () {
         MakeLog('Server\'s listening on: ' + address);
 });
