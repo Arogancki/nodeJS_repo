@@ -1,6 +1,6 @@
 var dataBase = require('mongodb').MongoClient;   // MongoDB databases
 var Promise = require('promise');               // asynchronous returns from functions
-var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerApp"; //dataBase address
+var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerAppDbA"; //dataBase address
 
 var usersTable = "users";
 var boardsTable = "boards";
@@ -558,7 +558,7 @@ var LeaveBoard=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
             var isMember = false;
-            for (var i = RemoveTask0; i < board.members.length; i++) {
+            for (var i = 0; i < board.members.length; i++) {
                 if (board.members[i] == login) {
                     isMember = true;
                     Connect().done(function(db) {
@@ -718,25 +718,26 @@ var GetTaskObservers=function (board, owner, name){
 
 var InsertTaskStatus=function (login, board, owner, name, info, type) {
     return new Promise(function (fulfill, reject) {
-        if (type != "New" || type != "In progress" || type != "Blocked" || type != "Finished" || type != "Resumed") {
+        if (type != "New" && type != "In progress" && type != "Blocked" && type != "Finished" && type != "Resumed") {
             fulfill(false);
-        }
-        GetTask(board, owner, name).done(function (task) {
-            if (task == null || (task.statuses[task.statuses.length - 1].type == "Finished" && type != "Resumed") || (type == "Resumed" && task.statuses[task.statuses.length - 1].type != "Finished")) {
-                fulfill(false);
-            } else {
-                Connect().done(function (db) {
-                    db.collection(boardsTable).updateOne({ name: board, owner: owner, "tasks.name": name }, { $push: { "tasks.$.statuses": { type: type, user: login, info: info, date: GetDate() } } }, function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            fulfill(true);
-                        }
-                        db.close();
+        } else {
+            GetTask(board, owner, name).done(function(task) {
+                if (task == null || (task.statuses.length > 0 && task.statuses[task.statuses.length - 1].type == "Finished" && type != "Resumed") || (task.statuses.length > 0 && type == "Resumed" && task.statuses[task.statuses.length - 1].type != "Finished")) {
+                    fulfill(false);
+                } else {
+                    Connect().done(function(db) {
+                        db.collection(boardsTable).updateOne({ name: board, owner: owner, "tasks.name": name }, { $push: { "tasks.$.statuses": { type: type, user: login, info: info, date: GetDate() } } }, function(err, result) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                fulfill(true);
+                            }
+                            db.close();
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
+        }
     });
 }
 

@@ -1,6 +1,7 @@
 function ServerError(req){
 	console.log("Serrver Error");
-	alert(req.responseText);
+	if (req.responseText.length>1)
+		alert(req.responseText);
 }
 
 function ForbiddenAccess(){
@@ -236,6 +237,7 @@ main.controller('AppController', function($scope) {
 		}catch(err){console.log("Refresh already ongoing.");}
 	}
 	$scope.SignOut=function(){
+		clearTimeout($scope.refreshTimer);
 		$scope = $scope.$new(true);
 		deleteCookie("login");
 		deleteCookie("password");
