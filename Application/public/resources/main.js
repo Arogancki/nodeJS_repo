@@ -12,6 +12,25 @@ function ForbiddenAccess(){
 	window.location.href = getCurrentURL()+"#/SignIn";
 }
 
+function LoadUserDataFromScope($scope)
+{
+	var cookieLogin=getCookie("name");
+		if (cookieLogin!=""){
+			$scope.login=cookieLogin;
+			login=cookieLogin;
+		}
+		else
+			$scope.login=login;
+		var cookiePassword=getCookie("password");
+		if (cookiePassword!=""){
+			$scope.password=cookiePassword;
+			password=cookiePassword;
+		}
+		else
+			$scope.password=password;
+		return $scope;
+}
+
 function AlignRowColumn1to2(column1, column21, column22){
 try {
 	document.getElementById(column1).style.height=
@@ -76,10 +95,10 @@ var login="";
 var password="";
 
 main.controller('SignInController', function($scope) {
-	deleteCookie("login");
-	deleteCookie("password");
-	login="";
-	password="";
+	$scope=LoadUserDataFromScope($scope);
+	if ($scope.login!='' || $scope.password!='' ){
+			window.location.href = getCurrentURL()+"#/App";
+	}
 	$scope.SignIn=function(){
 		if ($scope.login && $scope.password) {
 			var req=PreparePost("Content-type", "application/json","authorization");
@@ -127,9 +146,11 @@ main.controller('SignInController', function($scope) {
 })
 
 main.controller('SignUpController', function($scope) {
+	$scope=LoadUserDataFromScope($scope);
+	if ($scope.login!='' || $scope.password!='' ){
+			window.location.href = getCurrentURL()+"#/App";
+	}
 	$scope.SignUp=function(){
-		login="";
-		password="";
 		if ($scope.login && $scope.password && $scope.password2) {
 			if (!$scope.email)
 				$scope.email="";
@@ -163,21 +184,8 @@ main.controller('SignUpController', function($scope) {
 });
 
 main.controller('AppController', function($scope) {
-	var cookieLogin=getCookie("name");
-	if (cookieLogin!=""){
-		$scope.login=cookieLogin;
-		login=cookieLogin;
-	}
-	else
-		$scope.login=login;
-	var cookiePassword=getCookie("password");
-	if (cookiePassword!=""){
-		$scope.password=cookiePassword;
-		password=cookiePassword;
-	}
-	else
-		$scope.password=password;
-	
+	$scope.ready=false;
+	$scope=LoadUserDataFromScope($scope);
 	$scope.Refresh=function(){
 		var req=PreparePost("Content-type", "application/json","getBoardsAndInvitations");
 		req.send(JSON.stringify({	login: $scope.login,
@@ -186,14 +194,28 @@ main.controller('AppController', function($scope) {
 			if (req.readyState === 4) {
 				if (req.status === 200) {
 					var resObj = JSON.parse(this.responseText);
-					if ($scope.boards!=resObj.boards || $scope.invitations!=resObj.invitations){
+					if (resObj.login!==undefined){
+						$scope.login=resObj.login;
+						setCookie("login",$scope.login,1);
+						try{
+						$scope.refreshTimer=setTimeout($scope.Refresh,0); // run again after x ms
+						} catch(err){}
+					}
+					else{
 						$scope.boards=resObj.boards;
 						$scope.invitations=resObj.invitations;
+						if ($scope.activeBoard!==undefined && $scope.activeBoard!==null){
+							$scope.activeBoard = $scope.boards.find(x => x.name === $scope.activeBoard.name && x.owner === $scope.activeBoard.owner);
+						}
+						if ($scope.activeTask!==undefined && $scope.activeTask!==null){
+							$scope.activeTask = $scope.activeBoard.tasks.find(x => x.name === $scope.activeTask.name);
+						}
+						$scope.ready=true;
 						$scope.$apply();
+						try{
+							$scope.refreshTimer=setTimeout($scope.Refresh,$scope.autoUpdateTime); // run again after x ms
+						} catch(err){}
 					}
-					try{
-						$scope.refreshTimer=setTimeout($scope.Refresh,$scope.autoUpdateTime); // run again after x ms
-					} catch(err){}
 				}
 				else if (req.status === 401){// Unauthorized
 					ForbiddenAccess();
@@ -205,12 +227,12 @@ main.controller('AppController', function($scope) {
 			}
 		}
 	}
-	$scope.autoUpdateTime=60000;
-	$scope.refreshTimer=setTimeout($scope.Refresh(),0);
+	$scope.autoUpdateTime=30000;
+	$scope.refreshTimer=setTimeout($scope.Refresh,0);
 	$scope.RefreshNow=function(){
 		try{
 			clearTimeout($scope.refreshTimer);
-			$scope.refreshTimer=setTimeout($scope.Refresh($scope.autoUpdateTime),0);
+			$scope.refreshTimer=setTimeout($scope.Refresh,0);
 		}catch(err){console.log("Refresh already ongoing.");}
 	}
 	$scope.SignOut=function(){
@@ -300,6 +322,8 @@ main.controller('AppController', function($scope) {
 			req.onreadystatechange = function() {
 				if (req.readyState === 4) {
 					if (req.status === 200) {
+						if ($scope.activeBoard==board)
+							$scope.activeBoard=null;
 						$scope.RefreshNow();
 					}
 					else if (req.status === 401){// Unauthorized
@@ -326,6 +350,8 @@ main.controller('AppController', function($scope) {
 			req.onreadystatechange = function() {
 				if (req.readyState === 4) {
 					if (req.status === 200) {
+						if ($scope.activeBoard==board)
+							$scope.activeBoard=null;
 						$scope.RefreshNow();
 					}
 						else if (req.status === 401){// Unauthorized
@@ -497,21 +523,7 @@ main.controller('AppController', function($scope) {
 });
 
 main.controller('SettingsController', function($scope) {
-	var cookieLogin=getCookie("name");
-	if (cookieLogin!=""){
-		$scope.login=cookieLogin;
-		login=cookieLogin;
-	}
-	else
-		$scope.login=login;
-	var cookiePassword=getCookie("password");
-	if (cookiePassword!=""){
-		$scope.password=cookiePassword;
-		password=cookiePassword;
-	}
-	else
-		$scope.password=password;
-	
+	$scope=LoadUserDataFromScope($scope);
 	$scope.Change=function(){
 		if (($scope.newPassword && $scope.newPassword2) || $scope.newEmail) {
 			if (!$scope.newPassword){
@@ -574,6 +586,6 @@ when('/Settings', {
 	controller: 'SettingsController'
 }).
 otherwise({
-	redirectTo: '/App'
+	redirectTo: '/SignIn'
 });
 }]);

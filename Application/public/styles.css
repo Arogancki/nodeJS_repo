@@ -8,6 +8,30 @@ body
 	font-size: 19px;
 }	
 
+.loader {
+	border: 0.7vw solid #FFFFFF;
+	border-right: 0.7vw solid #3399FF;
+	border-left: 0.7vw solid #3399FF;
+	border-radius: 50%;
+    width: 6vw;
+    height: 6vw;
+    animation: spin 0.75s linear infinite;
+	position:absolute;
+	left:0; 
+	right:0;
+	top:0; 
+	bottom:0;
+	margin:auto;
+	max-width:100%;
+	max-height:100%;
+	overflow:auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 div:hover
 {
     cursor: default;

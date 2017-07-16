@@ -1,22 +1,27 @@
 var dataBase = require('mongodb').MongoClient;   // MongoDB databases
 var Promise = require('promise');               // asynchronous returns from functions
-var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerAppTestX"; //dataBase address
+var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerApp"; //dataBase address
 
 var usersTable = "users";
 var boardsTable = "boards";
 
 // run database in background
 // "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
-var exec = require('child_process').exec;
-
-exec('\"C:\\Program Files\\MongoDB\\Server\\3.4\\bin\\mongod.exe\"', function (error, stdout, stderr) {
+require('child_process').exec('\"C:\\Program Files\\MongoDB\\Server\\3.4\\bin\\mongod.exe\"', function (error, stdout, stderr) {
     console.log(stdout);
     console.error(error);
     console.error(stderr);
 });
 
+// return random string for password confirmation
 function GetRandomString() {
     return Math.random().toString(36).slice(-16);
+}
+
+//get date for statuses
+function GetDate() {
+    var date = new Date();
+    return [("0" + date.getHours()).slice(-2), ("0" + date.getMinutes()).slice(-2), ("0" + date.getSeconds()).slice(-2)].join(':') + " " + [("0" + date.getDate()).slice(-2), ("0" + (date.getMonth() + 1)).slice(-2), ("" + date.getFullYear()).slice(-2)].join("-");
 }
 
 function Connect() {
@@ -31,6 +36,7 @@ function Connect() {
         }
         catch (e) {
             console.error(e);
+            console.error("Server is already running!");
         }
     });
 }
@@ -269,7 +275,7 @@ function GetBoard(name, owner) {
 
 var GetBoardUsers=function (name, owner){
 	return new Promise(function (fulfill, reject) {
-		GetBoard.done(function(board){
+        GetBoard(name, owner).done(function(board){
 			if (board!=null){
 				fulfill({owner:board.owner, members:board.members, invited:board.invitations});
 			}
@@ -322,7 +328,7 @@ var InsertBoard=function (name, owner) {
             }
             else {
                 Connect().done(function (db) {
-                    db.collection(boardsTable).insertOne({ name: name, owner: owner }, function (err, result) {
+                    db.collection(boardsTable).insertOne({ name: name, owner: owner, invitations: [], members: [], tasks:[]  }, function (err, result) {
                         if (err) {
                             reject(err);
                             db.close();
@@ -385,7 +391,7 @@ var InsertInvitation=function (ownerLogin, login, name, owner) {
                 fulfill(5); // LOGINOWNER isn't an owner
                 return;
             }
-            if (board.owner == user) {
+             if (board.owner == login) {
                 fulfill(2); // user is an owner
                 return;
             }
@@ -466,10 +472,17 @@ var AcceptInvitation=function (login, name, owner) {
                                         db.collection(boardsTable).updateOne({ _id: board._id }, { $push: { members: login } }, function (err, result) {
                                             if (err) {
                                                 reject(err);
+                                                db.close();
                                             } else {
-                                                fulfill(0);
+                                                db.collection(usersTable).updateOne({ login: login }, { $push: { boards: board._id } }, function (err, result) {
+                                                    if (err) {
+                                                        reject(err);
+                                                    } else {
+                                                        fulfill(0);
+                                                    }
+                                                    db.close();
+                                                });
                                             }
-                                            db.close();
                                         });
                                     }
                                 });
@@ -544,26 +557,57 @@ function IsBoardOwner(login, name) {
 var LeaveBoard=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
-            var IsMember = false;
-            for (var i = 0; i < board.members.length; i++)
+            var isMember = false;
+            for (var i = RemoveTask0; i < board.members.length; i++) {
                 if (board.members[i] == login) {
-                    IsMember = true;
-                }
-            if (IsMember === false) {
-                fulfill(false);
-            }
-            else {
-                Connect().done(function (db) {
-                    db.collection(boardsTable).updateOne({ _id: board._id }, { $pull: { members: login } }, function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            fulfill(true);
-                        }
-                        db.close();
+                    isMember = true;
+                    Connect().done(function(db) {
+                        db.collection(boardsTable).updateOne({ _id: board._id }, { $pull: { members: login } }, function(err, result) {
+                            if (err) {
+                                reject(err);
+                                db.close();
+                                return;
+                            } else {
+                                db.collection(usersTable).updateOne({ login: login }, { $pull: { boards: board._id } }, function (err, result) {
+                                    if (err) {
+                                        reject(err);
+                                    } else {
+                                        fulfill(true);
+                                    }
+                                    db.close();
+                                    return;
+                                });
+                            }
+                        });
                     });
-                });
+                }
             }
+            for (var i = 0; i < board.invitations.length; i++) {
+                if (board.invitations[i] == login) {
+                    isMember = true;
+                    Connect().done(function(db) {
+                        db.collection(boardsTable).updateOne({ _id: board._id }, { $pull: { invitations: login } }, function(err, result) {
+                            if (err) {
+                                reject(err);
+                                db.close();
+                                return;
+                            } else {
+                                db.collection(usersTable).updateOne({ login: login }, { $pull: { invitations: board._id } }, function (err, result) {
+                                    if (err) {
+                                        reject(err);
+                                    } else {
+                                        fulfill(true);
+                                    }
+                                    db.close();
+                                    return;
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+            if (!isMember)
+                fulfill(false);
         });
     });
 }
@@ -571,16 +615,16 @@ var LeaveBoard=function (login, name, owner) {
 var DeleteBoard=function (login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).done(function (board) {
-            if (board.owner != login) {
+            if (board == null || board.owner != login) {
                 fulfill(false);
             }
             else {
                 Connect().done(function (db) {
                     for (var i = 0; i < board.members.length; i++) {
-                        db.collection(usersTable).updateOne({ login: board.members[i] }, { $pull: { boards: boards._id } });
+                        db.collection(usersTable).updateOne({ login: board.members[i] }, { $pull: { boards: board._id } });
                     }
                     for (var i = 0; i < board.invitations.length; i++) {
-                        db.collection(usersTable).updateOne({ login: board.invitations[i] }, { $pull: { boards: invitations._id } });
+                        db.collection(usersTable).updateOne({ login: board.invitations[i] }, { $pull: { invitations: board._id } });
                     }
                     db.collection(boardsTable).remove({ name: name, owner: owner }, function (err, result) {
                         if (err) {
@@ -603,7 +647,7 @@ var InsertTask=function (login, board, owner, name, info) {
                 fulfill(false);
             } else {
 				Connect().done(function (db) {
-					db.collection(boardsTable).updateOne({ name: board, owner: owner }, { $push: { tasks: { name: name } } }, function (err, result) {
+                    db.collection(boardsTable).updateOne({ name: board, owner: owner }, { $push: { tasks: { name: name, statuses:[] } } }, function (err, result) {
 						if (err) {
 							reject(err);
 						} else {
@@ -655,15 +699,15 @@ function GetTask(board, owner, name) {
     });
 }
 
-var GetTaskObservers=function (board, owner, task){
+var GetTaskObservers=function (board, owner, name){
 	return new Promise(function (fulfill, reject) {
 		GetTask(board, owner, name).done(function(task){
-			if (task!=null){
-				var observers=[];
-				for (var i=0; i<task.statuses.length; i++){
-					observers.push({user:task.statuses[i].user});
+            if (task != null) {
+                var observers = {};
+                for (var i=0; i<task.statuses.length; i++){
+                    observers[task.statuses[i].user] = task.statuses[i].user;
 				}
-				fulfill(observers);
+                fulfill(observers);
 			}
 			else{
 				fulfill(null);
@@ -672,14 +716,17 @@ var GetTaskObservers=function (board, owner, task){
 	});
 }
 
-var InsertTaskStatus=function (login, board, owner, task, info, type) {
+var InsertTaskStatus=function (login, board, owner, name, info, type) {
     return new Promise(function (fulfill, reject) {
+        if (type != "New" || type != "In progress" || type != "Blocked" || type != "Finished" || type != "Resumed") {
+            fulfill(false);
+        }
         GetTask(board, owner, name).done(function (task) {
-            if (task != null) {
+            if (task == null || (task.statuses[task.statuses.length - 1].type == "Finished" && type != "Resumed") || (type == "Resumed" && task.statuses[task.statuses.length - 1].type != "Finished")) {
                 fulfill(false);
             } else {
                 Connect().done(function (db) {
-                    db.collection(boardsTable).updateOne({ name: board, owner: owner, tasks: { name: name } }, { $push: { statuses: { type: type, user: login, info: info, date: 1 } } }, function (err, result) {
+                    db.collection(boardsTable).updateOne({ name: board, owner: owner, "tasks.name": name }, { $push: { "tasks.$.statuses": { type: type, user: login, info: info, date: GetDate() } } }, function (err, result) {
                         if (err) {
                             reject(err);
                         } else {

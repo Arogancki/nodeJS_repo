@@ -1,27 +1,30 @@
-﻿var express = require('express');				// web app framework
-var fs = require('fs');                    // file streams
-var path = require('path');                  // differences between OS
-var db = require('./db.js');                    // database handling application
-var nodemailer = require('./emails.js');                    // email sending application
-var bodyParser = require('body-parser');           // parse jsondata
-var Promise = require('promise');               // asynchronous returns from functions
+﻿var express = require('express');			// web app framework
+var fs = require('fs');                     // file streams
+var path = require('path');                 // differences between OS
+var db = require('./db.js');                // database handling application
+var nodemailer = require('./emails.js');    // email sending application
+var bodyParser = require('body-parser');    // parse jsondata
+var Promise = require('promise');           // asynchronous returns from functions
+var cookieParser = require('cookie-parser');// cookies handling
 
 var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = true;	// constant variable if true json objects will be printed in logs after sending response
-var port = 8081;
-var address = 'http://192.168.0.189:' + port;
+var port = 8081;                                // default port for listening
+var address = 'http://192.168.0.189:' + port;   // address site
 var public = path.join(__dirname, "public");	// path with public files
-var resources = path.join(public, "resources");	//specific files path
+var resources = path.join(public, "resources");	// specific files path
 
-var app = express();								//  create epress configuration object
-
-app.use(bodyParser.json()); // for parsing application/json
+var app = express();						        //  create epress configuration object
+app.use(bodyParser.json());                         // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(cookieParser());                            // load cookies module for app
 
+// get Date for logs
 function GetDate() {               
     var date = new Date();
     return [date.getFullYear(), ("0" + (date.getMonth() + 1)).slice(-2), ("0" + date.getDate()).slice(-2)].join("-") + " " + [("0" + date.getHours()).slice(-2), ("0" + date.getMinutes()).slice(-2), ("0" + date.getSeconds()).slice(-2), ("0" + date.getMilliseconds()).slice(-2)].join(':');
 }
 
+// same format logs
 function MakeLog(text,req){
 	if (req!==undefined)
         console.log(GetDate() + ">" + req.ip +">"+text);
@@ -29,6 +32,7 @@ function MakeLog(text,req){
 		console.log(GetDate()+">"+text);
 }
 
+//send file from path
 function writeTextFromPath(path, res) {
     if (!path || !res)
         MakeLog("Undefined: " + path + " or " + res);
@@ -44,6 +48,7 @@ function writeTextFromPath(path, res) {
     }
 }
 
+// send image from path
 function writeImageFromPath(path, res) {
     if (!path || !res)
         MakeLog("Undefined: " + path + " or " + res);
@@ -58,22 +63,26 @@ function writeImageFromPath(path, res) {
     }
 }
 
+// check if there are mongo forbidden characters
 function IsMongoInjectionsFree(text) {
     return /^[^\/\\"$*<>:|?]*$/g.test(text);
 }
 
+// check if text is ok
 function TextValidation(text, min, max) {
     if (min === undefined) min = 0;
     if (max === undefined) max = Infinity;
     return (text !== undefined) && (/^[a-zA-Z0-9._-]+$/).test(text) && text.length >= min && text.length <= max;
 }
 
+// check if email is ok
 function EmailValidation(text, min, max) {
     if (min === undefined) min = 0;
     if (max === undefined) max = Infinity;
     return (text !== undefined) && (/^[^\/\\'"@\s]+@[^\/\\'"@\s]+$/).test(text) && text.length >= min && text.length <= max;
 }
 
+// send "authorizaton error"
 function Send401(req,res) {
     res.setHeader('Content-Type', "text/html");
     res.statusCode = 401; // error has happend
@@ -82,6 +91,7 @@ function Send401(req,res) {
 	MakeLog("Authorization failed",req);
 }
 
+// send "there was some errors"
 function Send403(message, req, res) {
     res.setHeader('Content-Type', "text/html");
     res.statusCode = 403; // error has happend
@@ -90,6 +100,7 @@ function Send403(message, req, res) {
 	MakeLog("Error response: "+message,req);
 }
 
+// send "everything went ok"
 function SendOk(req,res) {
     res.setHeader('Content-Type', "text/html");
     res.statusCode = 200;
@@ -97,6 +108,7 @@ function SendOk(req,res) {
 	MakeLog("Response complete: confirmation sent",req);
 }
 
+// send "json file"
 function SendJson(json, req, res) {
 	res.setHeader('Content-Type', 'application/json');
 	res.statusCode = 200;
@@ -107,6 +119,7 @@ function SendJson(json, req, res) {
 		MakeLog("Response complete: json object sent",req);
 }
 
+// send "check login and password"
 function UserValidation(body) {
     return new Promise(function(fulfill, reject) {
         if (!TextValidation(body.login, 3, 20) || !TextValidation(body.password, 3, 20)) {
@@ -119,6 +132,7 @@ function UserValidation(body) {
     });
 }
 
+//send mail to user
 function SendMailToLogin(login, subject, message, priorytyEmail) {
     if (priorytyEmail !== undefined) {
         nodemailer.send(login, priorytyEmail, subject, message);
@@ -131,24 +145,29 @@ function SendMailToLogin(login, subject, message, priorytyEmail) {
     }
 }
 
+// send mail to every board members
 function SendMailToBoard(board,owner,subject,message,exception){
 	db.GetBoardUsers(board,owner).done(function(users){
-		if (users!=null){
-			for(var user in users) {
-				if (users[user]!=exception){
-					SendMailToLogin(users[user],subject,message);
+        if (users != null) {
+            for (var i = 0; i < users.members.length; i++) {
+                if (users.members[i]!=exception){
+                    SendMailToLogin(users.members[i],subject,message);
 				}
-			}
+            }
+            if (users.owner != exception) {
+                SendMailToLogin(users.owner, subject, message);
+            }
 		}
 	});
 }
 
+//send mail to every 
 function SendMailToTaskObservers(board,owner,task,subject,message,exception){
 	db.GetTaskObservers(board, owner, task).done(function(users){
 		if (users!=null){
 			for(var user in users) {
-				if (users[user]!=exception){
-					SendMailToLogin(users[user],subject,message);
+				if (user!=exception){
+					SendMailToLogin(user,subject,message);
 				}
 			}
 			if (owner!=exception){
@@ -214,6 +233,44 @@ app.get('/confirm', function (req, res) {
 	MakeLog("HTML file sent",req);
 });
 
+app.post('/resetpassword', function (req, res) {
+    if (EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20)) {
+        db.ResetPassword(req.body.login, req.body.email).done(function (result) {
+            SendOk(req, res);
+            if (result !== false) {
+                SendMailToLogin(result.login, "Your new password", "The password is reset.<br>Your new password<br>" +
+                    result.newPassword + "<br>You can change it when you sign in next time.", req.body.email);
+            }
+        });
+    }
+    else {
+        Send403("Invalid login or email", req, res);
+    }
+});
+
+// cookies handling
+app.use(function (req, res, next) {
+    if (req.method == 'POST' && req.body !== undefined) {
+        var cookieLogin = req.cookies.login;
+        if (req.body.login !== undefined && req.body.login != "" && cookieLogin !== req.body.login) {
+                res.cookie('login', req.body.login, { maxAge: 86400000, httpOnly: true });
+        }
+        else if (cookieLogin !== undefined && cookieLogin !== req.body.login) {
+            SendJson(JSON.stringify({ login: cookieLogin }), req, res);
+            return;
+        }
+
+        var cookiePassword = req.cookies.password;
+        if (req.body.password !== undefined && req.body.password != "" && cookiePassword !== req.body.password) {
+                res.cookie('password', req.body.password, { maxAge: 86400000, httpOnly: true });
+        }
+        else if (cookiePassword !== undefined) {
+            req.body.password = cookiePassword;
+        }
+    }
+    next();
+});
+
 app.post('/registration', function (req, res) {
     if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
 		if (req.body.email != "") {
@@ -243,21 +300,6 @@ app.post('/registration', function (req, res) {
 			}
         });
     }
-});
-
-app.post('/resetpassword', function (req, res) {
-    if ( EmailValidation(req.body.email) && TextValidation(req.body.login, 3, 20) ) {
-        db.ResetPassword(req.body.login, req.body.email).done(function (result) {
-            SendOk(req, res);
-            if (result !== false) {
-                SendMailToLogin(result.login, "Your new password", "The password is reset.<br>Your new password<br>" +
-                    result.newPassword + "<br>You can change it when you sign in next time.", req.body.email);   
-            }
-		});
-    }
-	else{
-		Send403("Invalid login or email",req,res);
-	}
 });
 
 app.use(function (req, res, next) {
@@ -342,9 +384,9 @@ app.post('/AcceptInviattion', function (req, res) {
 	db.AcceptInvitation(req.body.login, req.body.board, req.body.owner).done(function (result) {
 		if (result==0){
 			SendOk(req,res);
-			SendMailToLogin(req.body.owner,"Invitation to "+req.body.board+" accepted","User<br>"+req.body.login+
-							"<br>is now member to your board "+req.body.board+".");
-			return;
+            SendMailToBoard(req.body.board, req.body.owner, "A member has joined the board",
+                "User<br>" + req.body.login + "<br>has joined the " + req.body.owner + "'s board " + req.body.board + ".", req.body.login);
+            return;
 		}
 		else if (result==1){
 			Send403("User doesn't exist.",req,res);
@@ -475,7 +517,7 @@ app.post('/AddStatus', function (req, res) {
         Send403("Field has one of unsupported characters: ' \" \\ ; { }", req,res);
         return;
     }
-	db.InsertTaskStatus(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info, req.body.type).done(function (result) {
+    db.InsertTaskStatus(req.body.login, req.body.board, req.body.owner, req.body.task, req.body.info, req.body.type).done(function (result) {
 		if (result){
 			SendOk(req,res);
 			SendMailToTaskObservers(req.body.board,req.body.owner,req.body.task,"New task status",
@@ -484,7 +526,7 @@ app.post('/AddStatus', function (req, res) {
 			return;
 		}
 		else{			
-			Send403("Task doesn't exist.",req,res);
+			Send403("Task doesn't exist or invalid status.",req,res);
 			return;
 		}
 	});									
@@ -539,7 +581,7 @@ app.post('/CreateNewTask', function (req, res) {
 		if (result){
 			SendOk(req,res);
 			SendMailToBoard(req.body.board,req.body.owner,"New task in board",
-			"User "+req.body.login+" has added new Task:<br>"+req.body.task+"<br>to "+req.body.owner+"'s board "+req.body.board+".","");
+                "User " + req.body.login + " has added new Task:<br>" + req.body.task + "<br>to " + req.body.owner + "'s board " + req.body.board + ".", req.body.login);
 			return;
 		}
 		else{			
