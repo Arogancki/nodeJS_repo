@@ -546,7 +546,7 @@ app.post('/InviteToBoard', function (req, res) {
 			SendOk(req,res);
 			SendMailToLogin(req.body.member,"New invitation waiting",
 							"User "+req.body.login+" invited you to board<br>"+req.body.board+
-							"<br>You can accept or refuse it after sign in.");
+							"<br>You can accept or refuse it after you sign in.");
 			return;
 		}
 		else if (result==3){

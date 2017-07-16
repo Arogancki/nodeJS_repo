@@ -23,7 +23,7 @@ function GetHeader(name) {
 }
 
 // set email footer
-var EMAIL_FOOTER = '<p style="text-align:center;">See you soon,<br>NodeJs Task Menager Application.</p>';
+var EMAIL_FOOTER = '<p style="text-align:center;">See you soon,<br>NodeJs Task Manager Application.</p>';
 
 // sending function
 var send = function (name, to, subject, message) {
