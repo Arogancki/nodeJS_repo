@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.17)  17 JUL 2017 20:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.17)  17 JUL 2017 19:47
 entering extended mode
-**./praca.tex
-(praca.tex
+**./example.tex
+(example.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 (D:\Pobrane\Texmaker\Miktex\tex\latex\base\report.cls
@@ -536,45 +536,44 @@ LaTeX Info: Redefining \not on input line 1043.
 \c@example=\count102
 \c@corollary=\count103
 
-("C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\praca\build\
-praca.aux")
-\openout1 = `praca.aux'.
+No file example.aux.
+\openout1 = `example.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 22.
-LaTeX Font Info:    Try loading font information for OML+txmi on input line 22.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 27.
+LaTeX Font Info:    Try loading font information for OML+txmi on input line 27.
 
- (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omltxmi.fd
+(D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 22.
-LaTeX Font Info:    Try loading font information for OMS+txsy on input line 22.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 27.
+LaTeX Font Info:    Try loading font information for OMS+txsy on input line 27.
 
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 22.
-LaTeX Font Info:    Try loading font information for OMX+txex on input line 22.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 27.
+LaTeX Font Info:    Try loading font information for OMX+txex on input line 27.
 
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 22.
-LaTeX Font Info:    Try loading font information for U+txexa on input line 22.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 27.
+LaTeX Font Info:    Try loading font information for U+txexa on input line 27.
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Try loading font information for T1+txr on input line 22.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Try loading font information for T1+txr on input line 27.
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\t1txr.fd
 File: t1txr.fd 2000/12/15 v3.1
@@ -636,54 +635,63 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-) [1
+)
+No file example.toc.
+\tf@toc=\write3
+\openout3 = `example.toc'.
+
+[1
+
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\praca\build\
-praca.toc")
-\tf@toc=\write3
-\openout3 = `praca.toc'.
-
- [1
-
-]
 Rozdzia\IeC {\l } 1.
 [2
 
 ] [3
 
 ]
-("C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\praca\build\
-praca.lof")
+No file example.lof.
 \tf@lof=\write4
-\openout4 = `praca.lof'.
+\openout4 = `example.lof'.
 
- [4
+[4
+
+]
+No file example.lot.
+\tf@lot=\write5
+\openout5 = `example.lot'.
+
+[5
+
+] [6
 
 ]
 ("C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\praca\build\
-praca.aux") )
+example.aux")
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 32 ({)
+### simple group (level 1) entered at line 31 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 3339 strings out of 493323
- 40770 string characters out of 3139523
- 94913 words of memory out of 3000000
- 6816 multiletter control sequences out of 15000+200000
- 28246 words of font info for 33 fonts, out of 3000000 for 9000
+ 3326 strings out of 493323
+ 40217 string characters out of 3139523
+ 94896 words of memory out of 3000000
+ 6813 multiletter control sequences out of 15000+200000
+ 15466 words of font info for 26 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,4n,26p,256b,150s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,4n,26p,278b,148s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Pobrane/Texmaker/Miktex/fonts/enc/dvips/base/8r.enc}<D:/Pob
-rane/Texmaker/Miktex/fonts/type1/public/txfonts/rtxi.pfb><D:/Pobrane/Texmaker/M
-iktex/fonts/type1/public/txfonts/rtxsc.pfb><D:/Pobrane/Texmaker/Miktex/fonts/ty
-pe1/urw/times/utmb8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw/times/utmr
-8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw/times/utmri8a.pfb>
+rane/Texmaker/Miktex/fonts/type1/urw/times/utmb8a.pfb><D:/Pobrane/Texmaker/Mikt
+ex/fonts/type1/urw/times/utmr8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw
+/times/utmri8a.pfb>
 Output written on "C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_
-Repo\praca\build\praca.pdf" (5 pages, 48454 bytes).
+Repo\praca\build\example.pdf" (6 pages, 41747 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
+ 34 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

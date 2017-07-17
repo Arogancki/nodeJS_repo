@@ -1,32 +1,54 @@
-\documentclass[12pt]{extreport}
+\documentclass[12pt]{report}
 \usepackage[T1]{fontenc}
-\usepackage{polski}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{txfonts}
 \graphicspath{ {images/} }
+\renewcommand{\chaptername}{Rozdział}
+\renewcommand{\contentsname}{Spis treści}
+\renewcommand{\figurename}{Rys.}
+\renewcommand{\tablename}{Tab.}
+\renewcommand{\listfigurename}{Spis rysunków}
+\renewcommand{\listtablename}{Spis tabel}
+\renewcommand{\bibname}{Bibliografia}
+\pagestyle{headings}
+\setlength{\textwidth}{14cm}
+\setlength{\textheight}{20cm}
+\newtheorem{definition}{Definicja}
+\newtheorem{example}{Przykład}[chapter] 
+\newtheorem{corollary}{Wniosek}[chapter]
 
-\renewcommand{\contentsname}{Spis Treści}
-\renewcommand\bibname{Bibliografia}
 \begin{document}
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Celem pracy jest przedstawienie technologii Node.js na przykładzie zaprojektowaniej aplikacji przeznaczonej do zarządzania codziennymi zadaniami.  \par}
+\end{titlepage}
 
-\tableofcontents %spis tresci
-\section{What is M2M?}
-\subsection{Brief}
-M2M is defined as data communication among devices without the need for human interaction. This may be data communication between devices and a server, or device-to-device either directly or over a network.\\
-Examples of M2M services include security, tracking, payment, smart grid and remote maintenance/monitoring. 
+\tableofcontents
 
 
-\begin{thebibliography}{9}
+\chapter{Wstęp} \label{rozdz.wstep} 
+{\em Praca MUSI stanowić samodzielne opracowanie przez dyplomanta WYBRANEGO TE\-MATU
+
+
+
+\addcontentsline{toc}{chapter}{Bibliografia} 
+\begin{thebibliography}{99}
 \bibitem{Brown} 
 Ethan Brown
 \textit{Web Development with Node and Express: Leveraging the JavaScript Stack 1st Edition ISBN: 9781491949306}
-
 \bibitem{Onodi} 
 Robert Onodi
 \textit{MEAN Blueprints ISBN: 9781783553945}
-
-\bibitem https://nodejs.org/en/docs
+\bibitem{Nodejs} 
+Dokumentacja języka programowania node.js
+\textit{https://nodejs.org/en/docs}
 
 \end{thebibliography}
+
+\addcontentsline{toc}{chapter}{Spis rysunków} 
+\listoffigures
+\addcontentsline{toc}{chapter}{Spis tabel}
 
 \end{document}

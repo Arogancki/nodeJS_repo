@@ -2,3 +2,4 @@
 \contentsline {chapter}{Bibliografia}{2}
 \contentsline {chapter}{Spis rysunk\IeC {\'o}w}{3}
 \contentsline {chapter}{Spis tabel}{4}
+\contentsline {chapter}{Za\IeC {\l }\IeC {\k a}czniki}{5}
