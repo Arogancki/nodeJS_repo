@@ -1,22 +1,22 @@
 \documentclass[12pt]{report}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{adjustbox}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{txfonts}
 \usepackage{listings}
+\usepackage{float}
 \usepackage{color}
-\definecolor{lightgray}{rgb}{.9,.9,.9}
-\definecolor{darkgray}{rgb}{.4,.4,.4}
-\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-\graphicspath{ {images/} }
+\usepackage{xcolor}
+\usepackage{enumitem}
+\graphicspath{{images/}}
 \renewcommand{\chaptername}{Rozdział}
 \renewcommand{\contentsname}{Spis treści}
 \renewcommand{\figurename}{Rysunek}
-\renewcommand{\tablename}{Tabela}
-\renewcommand{\listtablename}{Spis tabel}
+\renewcommand{\listfigurename}{Spis rysunków}
 \renewcommand{\bibname}{Bibliografia}
-\pagestyle{headings}
 \setlength{\textwidth}{14cm}
 \setlength{\textheight}{20cm}
 \newtheorem{definition}{Definicja}
@@ -54,6 +54,61 @@
    captionpos=b
 }
 
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{blue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape
+}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
 \begin{document}
 \begin{titlepage}
 	\centering
@@ -61,7 +116,7 @@
 \end{titlepage}
 \tableofcontents
 
-\chapter{Przedstawienie ogólne, ideologii oraz przeznaczenia technologii Node.js} \label{rozdz.1}
+\chapter{Przedstawienie ogólne, ideologii oraz przeznaczenia technologii Node.js}
 
 \section{Wstęp}
 Node.js czyli cross-platformowy, działajacy niezależnie od środowiska język programowania napisany w jezykach c/c++ oraz javascript wydany 27 marca 2009 roku, zaprojektowany przez Ryan’a Dahl’a. 
@@ -110,8 +165,7 @@ Sytułacja taka miała miejsce, kiedy skrypt zwany ,,left-side'' z którego korz
 Npm korzysta, tak jak i inne globalnie działające narzedzia JavaScriptowe z plików zależności w formacie json. 
 Opisują one wersję wykorzystywanych modułów i pozwalają za pomocą jedno liniowej komendy na szybką i latwą instalację wszystkich używanych pakietów w lokalnnym środowisku. 
 
-
-\chapter{Omówienie architektury Node.js} \label{rozdz.2}
+\chapter{Omówienie architektury Node.js}
 
 \section{Paradygmat}
 Architektura Node.js pozwala na tworzenie oprogramowania sterowanego zdarzeniami (event-driven programming). 
@@ -128,9 +182,9 @@ Wychodzi na przeciw problemowi tworzenia oraz kontrolowania aplikacji współbie
 Język został stworzony na silniku V8 javaScript napisanym w jezyku C++, wyprodukowanym przez Google, wykorzystywanym w przegladarkach Google Chrome który porzuca tradycyjną idee interpretowania kodu javaScriptowego linia po lini zapewniając w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie większą wydajnoscią podczas działania programu. 
 Zapewnia on również odpowiednie zarzadzanie pamięcia dla obiektów, zciągając z programistów odpowiedzialność alokowania oraz zwalniania zajętych zasobów.
 
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{eventLoop.png} 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{eventLoop.png} 
 \caption{Pętla zdarzeń w środowisku Node.js - źródło: http://galaxy.agh.edu.pl}
 \end{figure}
 
@@ -155,10 +209,10 @@ Kiedy watek pochodny zakończy wykonywanie przydzielonego mu zadania informauje 
 Z przyczyny odpowiedzialności przez watek główny do odebrania wszystkich wywołan zwrotnych, funkcja wykonywana przez jeden wątek pochodny moze wstrzymać działanie całej asynchroniczenej opreracji, a co za tym idzie zmniejszyć jej całkowitą wydajność. 
 Biblioteka libuv zajmuję się odpowiednim podziałem zadań oraz przydzieleniem zasobów tak aby w jak najlepszy sposób wywazyc nakład pracy między wieloma wątkami. 
 
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{thread.png} 
-\caption{Model programowania współbieżnego wykorzystywany przez Node.js - źródło: www.tutorialspoint.com/parallel_algorithm/}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{thread.png} 
+\caption{Model programowania współbieżnego wykorzystywany przez Node.js - źródło: www.tutorialspoint.com/parallel\_algorithm/}
 \end{figure}
 
 \section{Architektura komunikacji}
@@ -174,9 +228,9 @@ Wykorzystuje proste zapytania przy użyciu protokolu http, oraz jego popularnie 
 Opis typu zasobów jakie wymieniamy jest określony w nagłówku informacji przez kod statusu http. 
 Poniższa tabelka prezetuje poszczególne typy statusów:
 
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{statuses.png} 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{statuses.png} 
 \caption{Kody statusu protokołu http - źródło: http://mokandra.blogspot.fi/2015/10/http-status-code-definitions.html}
 \end{figure}
 
@@ -184,34 +238,39 @@ W celu wymiany zasobów framework wykorzystuje najpopularniejsze sposoby opisu s
 Róznica pomiędzy dwiema formami jest taka ze xml jest językiem nie zdefiniowanych znacznikow, a json tylko sposobem na prezętacje właściwości obiektu. 
 Porównanie obydwu struktur:
 Struktura w formacie json opisująca listę pracowników:
+\begin{lstlisting}[language=json,firstnumber=1]
 {"employees":[
-\tab{ "firstName":"John", "lastName":"Doe" },
-\tab{ "firstName":"Anna", "lastName":"Smith" },
-\tab{ "firstName":"Peter", "lastName":"Jones" }
+	{ "firstName":"John", "lastName":"Doe" },
+	{ "firstName":"Anna", "lastName":"Smith" },
+	{ "firstName":"Peter", "lastName":"Jones" }
 ]}
+\end{lstlisting}
 
 Ta sama struktura opisana w formacie xml:
 <employees>
-\tab<employee>
-\tab\tab<firstName>John</firstName> <lastName>Doe</lastName>
-\tab</employee>
-\tab<employee>
-\tab\tab<firstName>Anna</firstName> <lastName>Smith</lastName>
-\tab</employee>
-\tab<employee>
-\tab\tab<firstName>Peter</firstName> <lastName>Jones</lastName>
-\tab</employee>
+\begin{lstlisting}[language=XML,firstnumber=1]
+	<employee>
+		<firstName>John</firstName> <lastName>Doe</lastName>
+	</employee>
+	<employee>
+		<firstName>Anna</firstName> <lastName>Smith</lastName>
+	</employee>
+	<employee>
+		<firstName>Peter</firstName> <lastName>Jones</lastName>
+	</employee>
 </employees>
+\end{lstlisting}
 
+\chapter{Założenia i specyfikacja aplikacji} 
+TODO opisac apke w taki sam sposob jak opis na IO, zarowno frontend i backend,, wyznaczyc zadania aplikacji i jak serwer bleble, napisac doczego sluza funkcje i jaka sa wymagania serwisu
 
-\chapter{Założenia i specyfikacja aplikacji} \label{rozdz.3} 
-TODO opisac apke w taki sam sposob jak opis na IO, zarowno frontend i backend,, wyznaczyc zadania aplikacji i jak serwer bleble
+To ponizsze przepisac do realizacji tu napisac tylko zalozenia co ma robic etc
 
-Uniwersalny dla calej aplikacji schemat procesu pobrania statycznych zasobow z serwera wykorzystuje metode get. Do zasobow tych nalezy miedzy innymi plik html zaweirajacy warstwe prezetacji aplikacji, plik css zawieracjacy styl warstwy prezetacji czy plik zawierrajacy funkcje wykorzystywane przez aplikacjie w jezyku javaScript. Proces prezetuje sie nastepujaco:
-\begin{figure}[!t]
+Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobow z serwera wykorzystuje metode get. Do zasobow tych nalezy miedzy innymi plik html zaweirajacy warstwe prezetacji aplikacji, plik css zawieracjacy styl warstwy prezetacji czy plik zawierrajacy funkcje wykorzystywane przez aplikacjie w jezyku javaScript. Proces prezetuje sie nastepujaco:
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{K-S.png} 
-\caption{Pobranie statycznych zasobow xrodlo: Opracowanie wlasne}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{K-S.png} 
+\caption{Pobranie statycznych zasobow źrodlo: Opracowanie wlasne}
 \end{figure}
 \begin{enumerate}
 \item Klient przy uzyciu przegladarki wysyla pod okreslony adres url serwera zapytanie zaweirajace porzadany zasob.
@@ -220,11 +279,11 @@ Uniwersalny dla calej aplikacji schemat procesu pobrania statycznych zasobow z s
 \item Aplikacja odbiera i zaczyna korzystac z zasobow.
 \end{enumerate}
 
- Uniwersalny dla calej aplikacji schemat procesu wymiany danych okreslonych dla specyficznego uzytkownika wykorzystuje metode post. Przykladowe dane wymieniane przez aplikacje to login, haslo, informacje odnosnie zadan uzytkownika, kometarze do zadan uzytkownika. Przeplyw danych wyglada nastepujaco:
- \begin{figure}[!t]
+ Uniwersalny dla aplikacji schemat procesu wymiany danych okreslonych dla specyficznego uzytkownika wykorzystuje metode post. Przykladowe dane wymieniane przez aplikacje to login, haslo, informacje odnosnie zadan uzytkownika, kometarze do zadan uzytkownika. Przeplyw danych wyglada nastepujaco:
+ \begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{U-P-S-B.png} 
-\caption{Wymiana zasobow w formacie Json xrodlo: Opracowanie wlasne}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{U-P-S-B.png} 
+\caption{Wymiana zasobow w formacie Json źrodlo: Opracowanie wlasne}
 \end{figure}
 \begin{enumerate}
 \item Dane zostaja pobrane od uzytkownika w okreslonym formularzu w warstiwe frontendowej.
@@ -239,7 +298,7 @@ Uniwersalny dla calej aplikacji schemat procesu pobrania statycznych zasobow z s
 \end{enumerate}
  
 
-\chapter{Opracowanie aplikacji} \label{rozdz.4}
+\chapter{Opracowanie aplikacji}
 
 \section{Mean Stack}
 
@@ -249,9 +308,9 @@ Skrót odnosi się do frameworków oraz technolgji Mongodb, Express, AngularJS o
 Współpracując razem zapewniają bardzo szybkie efektywne tworzenie skalowalnych aplikacji wielopratformowych. 
 Do użycia wszystkich wymagany jest tylko jeden język programowania - javaScript, zarówno do obsługi warstwy frontend'owej aplikacji jak i backend'owej. 
 Wszystkie technolgie są dostępne w pełni bezpłatnie. 
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{meanStack.png} 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{meanStack.png} 
 \caption{Przedstawienie technologii MEAN Stack - źródło: http://codecondo.com/7-good-reasons-to-use-mean-stack-in-your-next-web-project/}
 \end{figure}
 
@@ -281,9 +340,9 @@ Powyższe frameworki współpracują ze sobą w bardzo intuicyjny i przejrzysty 
 Angular prezetuje dynamiczną aplikacje internetowa użytkownikowi, odpowiada za przyjmowanie danych i z pomoca ajax'a wysyła oraz odbiera dane wysylane do serwera. 
 Serwer NodeJS z użyciem technologii express wykorzystując metode Routingu dopasownuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy współpracy z baza danych zarzadzana przez Mongodb przechowuje informacje użytkowników serwisu oraz w odpowiedzi zwraca odpowiednie dane spowrotem do warsty frontendowej prezentującej dane użytkownikowi. 
 
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics[width=7cm]{Meanex.png} 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Meanex.png}
 \caption{Przepływ komunikacji w MEAN Stack źródło: https://www.dealfuel.com/seller/mean-stack-tutorial/}
 \end{figure}
 
@@ -291,7 +350,7 @@ Serwer NodeJS z użyciem technologii express wykorzystując metode Routingu dopa
 Przykladowy kod wykonywany po stronie klienta wysylajacy zapytanie do serwera, żadające określonego zasobu przy uzyciu frameworku Angularjs:
 Plik w języku javaScript zawierajacy definicje modelu i kontrolera:
 \medskip
-\begin{lstlisting}[caption=My Javascript Example]
+\begin{lstlisting}
 var main = angular.module("main", []); 									// create angular module
 
 main.controller('SignInController', function($scope) { 					// create controller for module
@@ -372,7 +431,7 @@ Plik w języku html zawierajacy definicje widoku:
 \subsection{Kod po stronie serwera}
 Przykładowy kod wykonywany po stronie serwera obsługujący odebrane zapytanie od klienta przy uzyciu technologji Node.js oraz frameworków express i mongodb:
 \medskip
-\begin{lstlisting}[caption=My Javascript Example]
+\begin{lstlisting}
 var express = require('express');					// load express module
 var bodyParser = require('body-parser');    		// load module for parsing json data
 var dataBase = require('mongodb').MongoClient;  	// load MongoDB database module
@@ -486,264 +545,257 @@ Został dostosowany bezpośrednio do obsługi bazy danych dla wykonywanego proje
 Dzięki temu plik głowny serwera nie musi znać budowy, ani wykonywać operacji bezpośrednio na dokumentach bazy danych.
 \item db.js (wykorzystujący zewnętrzny moduł nodemailer) - dostarcza obsługę wysyłania wiadomości email do użytkowników serwisu w przypadku zajścia określonych sytułacji takich jak na przykład otrzymanie nowego zaproszenia czy zmiana statusu zadania. Moduł dostarcza jedną, prostą w obsludze funkcje zapewniającą obsługe wiadomości emial. 
 \end{enumerate}
-
-\section{Diagramy funkcji}
-
-TODO
  
-\chapter{Testy aplikacji} \label{rozdz.5}
+\chapter{Testy aplikacji}
 
 Po wykonaniu aplikacji zostały przeprowadzone testy manualne sprawdzające poprawność dostarczanej przez serwis funkcjonalności.
 Kolejne przypadki testowe:
 
-\subsection{Uzyskanie dostępu do statycznych zasobów serwisu}
-\begin{enumerate}
-\item Użytkownik wysyła żądanie pod adres serwera.
-\begin{figure}[!t]
+\section{Uzyskanie dostępu do statycznych zasobów serwisu}
+\begin{figure}[h]
 \centering
-\includegraphics{11.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{11.png}
+\captionsetup{labelformat=empty}
+\caption[]{Użytkownik wysyła żądanie pod adres serwera.}
 \end{figure}
-\item Użytkownik otrzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.)
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{12.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{12.png}
+\captionsetup{labelformat=empty}
+\caption[]{Użytkownik otrzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
 \end{figure}
-\end{enumerate}
 
-\subsection{Rejerstracja w serwisie}
+\section{Rejerstracja w serwisie}
 \begin{enumerate}
 \item Użytkownik wypełnia formularz rejerstracyjny na stronie serwisu i wysyła dane do serwera. 
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{21.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{21.png}
 \end{figure}
-\begin{enumerate}
 \item Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła strone główną aplikacji dostępna po zalogowaniu na konto lub informację o blędzie.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{22.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{22.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Potwierdzenie adresu email}
+\section{Potwierdzenie adresu email}
 \begin{enumerate}
 \item Po podaniu adresu email użytkowik otrzymuje wiadomość email zawierającą link aktywacyjny.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{31.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{31.png}
 \end{figure}
-\begin{enumerate}
 \item Po kliknieciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawidłowy dla podanego użytkownika. 
 Następnie aktywuje adres email dla odpowiedniego użytkownika i wysyła w odpowiedzi strone główną aplikacji oraz wiadomość email o potwierdzeniu.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{32.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{32.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Logowanie się w serwisie}
+\section{Logowanie się w serwisie}
 \begin{enumerate}
 \item Użytkownik wypełnia formularz na stronie serwisu i przesyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{41.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{41.png}
 \end{figure}
 \item Serwer sprawdza istnienie konta w serwisie. 
 W odpowiedzi użytkownik otrzymuje stronę główną aplikacji lub błąd o niepoprawnych danych.
 W czasie bycia zalogowanym co określony czas zostaje wysłane żądanie aktualizacji danych. 
 Aktualizacja następuje również każdorazowo po otrzymaniu pomyślnego potwierdzenia wykonania operacji przez serwer.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{42.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{42.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Resetowanie hasła użytkowika}
+\section{Resetowanie hasła użytkowika}
 \begin{enumerate}
 \item Funkcja jest dostępna po potwierdzeniu adresu email dla konta. 
 Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkownik wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{51.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{51.png}
 \end{figure}
 \item Serwer sprawdza podane dane. W odpowiedzi wysyła informacje o przetworzeniu żądania i wiadomość email zawierającą nowe hasło do serwisu.
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{52.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{52.png}
 \end{figure}
-\begin{figure}[!t]
+\begin{figure}[h]
 \centering
-\includegraphics{53.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{53.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Zmiana danych użytkownika}
+\section{Zmiana danych użytkownika}
 \begin{enumerate}
 \item Po zalogowaniu się i wypełnieniu odpowiedniego formularza na stronie serwisu użytkownik wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{61.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{61.png}
 \end{figure}
-\begin{enumerate}
 \item Serwer sprawdza poprawność danych. Jeśli są poprawne aktualizuje je.
 W przeciwnym wypadku zwraca komunikat o błędzię. 
 Jeśli zmieni się również adres email użytkownik musi go ponownie zweryfikowac. 
 W odpowiedzi serwer wysyła strone główną aplikacji.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{62.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{62.png}
 \end{figure}
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{63.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{63.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Utworzenie nowej tablicy z zadaniami}
+\section{Utworzenie nowej tablicy z zadaniami}
 \begin{enumerate}
 \item Po zalogowaniu się użytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysyła je do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{71.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{71.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. 
 Jeśli są poprawne serwer tworzy nową tablice dla użytkownika i wysyła potwierdzenie w odpowiedzi.
 W przeciwnym wypadku odpowiada komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{72.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{72.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Wysyłanie zaproszenia do tablicy}
+\section{Wysyłanie zaproszenia do tablicy}
 \begin{enumerate}
 \item Po zalogowaniu się użytkownik wybiera opcje wysłania zaproszenia do wybranej tablicy, wypełnia dane i wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{01.png}
 \end{figure}
 \item Serwer sprawdza poparwność danych. 
 W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{02.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Akceptacja zaproszenia}
+\section{Akceptacja zaproszenia}
 \begin{enumerate}
 \item Po zalogowaniu się użytkownik wybiera opcje zaakceptowania oczekującego zaproszenia i wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{81.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{82.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Odrzucenie zaproszenia}
+\section{Odrzucenie zaproszenia}
 \begin{enumerate}
 \item Po zalogowaniu się użytkownik wybiera opcje odrzucenia oczekującego zaproszenia i wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{A1.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{A2.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Wyrzucenie użytkownika z tablicy}
+\section{Wyrzucenie użytkownika z tablicy}
 \begin{enumerate}
 \item Po zalogowaniu się użytkownik wybiera opcje wyrzucenia użytkownika z określonej tablicy i wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{91.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{91.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{92.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{92.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Dodanie zadania}
+\section{Dodanie zadania}
 \begin{enumerate}
 \item Po zalogowaniu i wybraniu odpowiedniej tablicy użytkownik wybiera opcje dodania zadania, wypelnia dane i przesyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{A1.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{A2.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Dodanie statusu zadania}
+\section{Dodanie statusu zadania}
 \begin{enumerate}
 \item Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania użytkownik wybiera opcje dodania nowego statusu, uzupełnia dane i przesyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{B1.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B1.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{B2.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B2.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Usuwanie zadania}
+\section{Usuwanie zadania}
 \begin{enumerate}
 \item Po zalogowaniu, wybraniu odpowiedniej tablicy i zakończonego zadania użytkownik wybiera opcje usuwania zadania i przesyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C1.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C2.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Opuszczanie tablicy}
+\section{Opuszczanie tablicy}
 \begin{enumerate}
 \item Po zalogowaniu użytkonik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D1.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D2.png}
 \end{figure}
 \end{enumerate}
 
-\subsection{Usuwanie tablicy}
+\section{Usuwanie tablicy}
 \begin{enumerate}
 \item Po zalogowaniu użytkownik wybiera opcje usunięcia własnej tablicy i wysyła żądanie do serwera.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E1.png}
 \end{figure}
 \item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
-\begin{figure}[!t]
+\begin{figure}[!hb]
 \centering
-\includegraphics{E2.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E2.png}
 \end{figure}
 \end{enumerate}
 
 
-\chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska} \label{rozdz.6}
+\chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
 Wykoanana aplikacja spełnia zadana w warunkach funkcjonalnosc. 
 Zostały osiągnięte wszystkie początkowe założenia oraz wymagania aplikacji przy użyciu możliwości dostarczanej przez technologie Node.js. 
 Stworzony projekt doskonale nadaje się do użytkownia przez zorganizowane zespoły do wykonywania określonych zadań. 
@@ -779,6 +831,5 @@ Dokumentacja języka programowania Node.js. Stan na dzień: 2017-07-20
 
 \addcontentsline{toc}{chapter}{Spis rysunków} 
 \listoffigures
-\addcontentsline{toc}{chapter}{Spis tabel}
 
 \end{document}
