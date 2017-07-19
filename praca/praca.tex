@@ -125,9 +125,9 @@ Przed powstaniem języka kod javascriptowy był wykonywany głównie przez przeg
 Środowisko Node.js może działać niezależnie od środowiska uruchomieniowego. 
 Jest ono zgode z wieloma systemami operacyjnymi jak  Linux, macOS, Microsoft Windows, NonStop, czy serwerami Unix. 
 Język ten cieszy się duża popularnością oraz pozytywnym odbiorem wśród użytkowników dzięki czemu mimo względnie krótkiego okresu życia środowiska zaowocowało ogromną ilością projektów open-source, tysiącami członków należących do społeczności okołojęzykowej oraz powstaniem wydarzeń poruszających tematy okołośrodowiskowe takimi jak NodeConf, Node Interactive lub Node Summit. 
-Obecnie wiele największych firm korzysta z serwerów napisanych w języku node.js. 
+Obecnie wiele największych firm korzysta z serwerów napisanych w języku Node.js. 
 Ich przykładami są między innymi Groupon, IBM, Linkedln, Microsoft, Netflix, PayPal, Yahoo. 
-Najpopularniejszymi API (aplication programing interface) wspierającymi edycję oraz debugowanie kodu node.js są Atom, Brackets, JetBrains, Microsoft Visual Studio, NetBeans czy Nodeclipse.
+Najpopularniejszymi API wspierającymi edycję oraz debugowanie kodu Node.js są Atom, Brackets, JetBrains, Microsoft Visual Studio, NetBeans czy Nodeclipse.
 
 \section{Przeznaczenie}
 Node.js zalecany jest do tworzenia aplikacji: 
@@ -142,26 +142,26 @@ Ponieważ jest on szybki i lekki, może być stosowany do pisania między innymi
 API to skrót od Application Programming Interface; opisuje jak poszczególne elementy lub warstwy oprogramowania powinny się komunikować. 
 W praktyce to najczęściej biblioteka oferująca metody, które umożliwiają realizację określonych zadań. 
 Node.js pozwala na zoptymalizowanie pracy oraz uzyskanie skalowalnosci dzięki asynchronicznemu przetwarzaniu danych dostarczanych do aplikacji w związku z czym idealnie nadaje sie do obsługi komunikacji wymagającej pracy w czasie rzeczywistym. 
-Funkcje napisane w node.js wykonują się równolegle, korzystajac z tak zwanych wywołań zwrotnych (ang. callback), przeciwnie jak w językach takich jak np. php gdzie program jest wykonywany synchronicznie - linia po lini. 
+Funkcje napisane w Node.js wykonują się równolegle, korzystajac z tak zwanych wywołań zwrotnych (ang. callback), przeciwnie jak w językach takich jak np. php gdzie program jest wykonywany synchronicznie - linia po lini. 
 Dzięki temu nie powstaję problem blokowania określonych funkcjonalności programu w czasie pracy innych niezależnych jego części. 
-Przy pomocy wywołan zwrotnych możemy zapewnić zasygnalizowanie uzyskanych wyników lub zwrócenie, bądź obsługe błędu powstałego w czasie dzialania bloku kodu.
+Przy pomocy wywołań zwrotnych możemy zapewnić zasygnalizowanie uzyskanych wyników lub zwrócenie, bądź obsługe błędu powstałego w czasie działania bloku kodu.
 
 \section{Modułowość}
 Praca z Node.js opiera się głównie o korzystanie ze zbioru zdefiniowanych w ramach modułów funkcji wspierających określone funkcjonalności. 
-Zapewniają one prace między innymi z plikami systemowymi, z urządzeniami wejścia/wyjścia, protokolami internetowymi (dns, http, tcp, tls/ssl, udp), plikami binarnymi, źródłami danych oraz funckjami kryptograficznymi. 
+Zapewniają one prace między innymi z plikami systemowymi, z urządzeniami wejścia/wyjścia, protokołami internetowymi (dns, http, tcp, tls/ssl, udp), plikami binarnymi, źródłami danych oraz funckjami kryptograficznymi. 
 Zmiejszają one złożoność, a co za tym idzie nakład pracy przy tworzeniu własnej funkcjonalności. 
-Dzięki wsparciu package managera (od roku 2010) nazywanego npm programiści mogą bez przeszkód udostępniać napisane przez siebie moduły i bibiloteki lub w prosty sposób zainportowywać ogólnie dostępne moduły i używac ich w swoich projektach. 
+Dzięki wsparciu package managera (od roku 2010) nazywanego npm programiści mogą bez przeszkód udostępniać napisane przez siebie moduły i biblioteki lub w prosty sposób zainportowywać ogólnie dostępne moduły i używac ich w swoich projektach. 
 Najpopularniejszymi modułami wykorzystywanymi w celu poprawy jakości oraz zmiejszenia nakładów pracy przy wytwarzaniu oprogramowania są Express.js, Socket.IO, Hapi.js, Sails.js czy Meteor. 
 Npm jest automatycznie właczony w środowisko Node.js. 
 Jest obsługiwany za pomocą lini komend systemu operacyjnego. 
 Moduły są zapisane w formacie CommonJS oraz zawierają pliki informacyjne w formacie Json. 
-Ilość ogólno dostępnych modułów przekracza obecnie 477,000. 
+Ilość ogólno dostępnych modułów przekracza obecnie 477000. 
 Jest to spowodowane możliwością przez każdego użytkownika Node.js, bez potrezby wcześniejszej rejerstracji czy przejścia jakiejkolwiek procedury wstępnej udostepnienia napisanego przez siebie kodu. 
 W związku z tym, wiele dostępnych modułów jest niskiej jakości, może zawierać elementy złośliwego oprogramowania lub nie być bezpiecznym dla naszego systemu operacyjnego. 
-Należy bezwzględnie brać te czynniki pod uwagę w przypadku korzystania z nieznanych modułów i najlepiej najnajbardziej znacząco ograniczyć korzystanie z nich bez wcześniejszej weryfikacji kodu źródłowego. 
+Należy bezwzględnie brać te czynniki pod uwagę w przypadku korzystania z nieznanych modułów i najlepiej najbardziej znacząco ograniczyć korzystanie z nich bez wcześniejszej weryfikacji kodu źródłowego. 
 Zabezpieczeniami w celu ochrony użytkownikow, które dostarcza npm jest usuwanie pakietów, które zostały zgłoszone przez użytkowników jako naruszające ogólne zasady bezpieczeństwa oraz możliwość wglądu w raporty statystyczne odnośnie ilości pobrań lub ilości zależnych od modułu innych pakietow. 
-Kolejnym zagrożeniem jakim niesie korzystanie z pakietów udostępnionych przez innych użytkowników jest mozliwosc usunięcia udostępnionego pakietu z repozytorium npm, w konsekwencji uniemożliwiając naszej aplikacji dalesze korzystanie z pakietu. 
-Sytułacja taka miała miejsce, kiedy skrypt zwany ,,left-side'' z którego korzystało ponad 2,486,696 deweloperów został usunięty z repozytorium powodując tak zwany efekt domina będący przyczyną błędów w kolejnych aplikacjach deweloperów. 
+Kolejnym zagrożeniem jakim niesie korzystanie z pakietów udostępnionych przez innych użytkowników jest możliwość usunięcia udostępnionego pakietu z repozytorium npm, w konsekwencji uniemożliwiając naszej aplikacji dalesze korzystanie z pakietu. 
+Sytułacja taka miała miejsce, kiedy skrypt zwany ,,left-side'' z którego korzystało ponad 2486696 deweloperów został usunięty z repozytorium powodując tak zwany efekt domina będący przyczyną błędów w kolejnych aplikacjach deweloperów. 
 Npm korzysta, tak jak i inne globalnie działające narzedzia JavaScriptowe z plików zależności w formacie json. 
 Opisują one wersję wykorzystywanych modułów i pozwalają za pomocą jedno liniowej komendy na szybką i latwą instalację wszystkich używanych pakietów w lokalnnym środowisku. 
 
@@ -170,17 +170,17 @@ Opisują one wersję wykorzystywanych modułów i pozwalają za pomocą jedno li
 \section{Paradygmat}
 Architektura Node.js pozwala na tworzenie oprogramowania sterowanego zdarzeniami (event-driven programming). 
 Jest to paradygmat programowania w którym kolejność wykonywania kodu zależy od zdarzeń mających miejsce w czasie życia aplikacji (run time) na przykład interakcji użytkownika czy otrzymania określonych sygnałów. 
-W przypadku języka Node.js, kiedy aplikacjia pełni role servera paradygmat ten najczęściej dotyczy przetwarzania zapytan otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeń-funckji. 
-W aplikacji sterowanej zdarzeniami należy wyróżnić pętle główną, która jest odpowiedzialna za obsługe zachodzących w czasie rzeczywistym zdarzen czyli wywoływanie trigerow jako wywołań zwrotnych. 
+W przypadku języka Node.js, kiedy aplikacjia pełni role serwera paradygmat ten najczęściej dotyczy przetwarzania zapytań otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeń tzn. funckji. 
+W aplikacji sterowanej zdarzeniami należy wyróżnić pętle główną, która jest odpowiedzialna za obsługe zachodzących w czasie rzeczywistym zdarzeń czyli wywoływanie trigerów jako wywołań zwrotnych. 
 Są to wyodrebnione części kodu, które po wykonaniu swojego zadania zwracają określoną wartość lub obiekt. 
-W Node.js jest to na porzykład funkcja nasłuchująca określonego adresu pod który klienci kieruja określone zapytania. 
+W Node.js jest to na porzykład funkcja nasłuchująca określonego adresu, pod który klienci kieruja określone zapytania. 
 Pozwala to na wykonywanie wielu zadań jednoczesnie i niezależnie. 
 Zapewnia przyśpieszenie wykonywania skomplikownych funkcji programu. 
 Daje możliwość przykladowo jednoczesnego zapisywania danych do bazy, przetważania innej części zapytania i przygotowywanie odpowiedzi w jednym okresie czasu. 
 Node.js zapewnia w ten sposób działanie asynchroniczne, bez bezpośredniego użycia technologii wielowątkowej. 
-Wychodzi na przeciw problemowi tworzenia oraz kontrolowania aplikacji współbieżnych spelniających zadanie serwera, które są trudne do zainplementowacnia w wielu językach programowania oraz często prowdziły do niesatysfakcjonującej wydajności. 
-Język został stworzony na silniku V8 javaScript napisanym w jezyku C++, wyprodukowanym przez Google, wykorzystywanym w przegladarkach Google Chrome który porzuca tradycyjną idee interpretowania kodu javaScriptowego linia po lini zapewniając w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie większą wydajnoscią podczas działania programu. 
-Zapewnia on również odpowiednie zarzadzanie pamięcia dla obiektów, zciągając z programistów odpowiedzialność alokowania oraz zwalniania zajętych zasobów.
+Wychodzi na przeciw problemowi tworzenia oraz kontrolowania aplikacji współbieżnych spełniających zadanie serwera, które są trudne do zainplementowacnia w wielu językach programowania oraz często prowdziły do niesatysfakcjonującej wydajności. 
+Język został stworzony na silniku V8 javaScript napisanym w jezyku C++, wyprodukowanym przez Google, wykorzystywanym w przeglądarkach Google Chrome, który porzuca tradycyjną idee interpretowania kodu javaScriptowego linia po lini zapewniając w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie większą wydajnoscią podczas działania programu. 
+Zapewnia on również odpowiednie zarządzanie pamięcia dla obiektów, zciągając z programistów odpowiedzialność alokowania oraz zwalniania zajętych zasobów.
 
 \begin{figure}[!hb]
 \centering
@@ -189,25 +189,25 @@ Zapewnia on również odpowiednie zarzadzanie pamięcia dla obiektów, zciągaj�
 \end{figure}
 
 \section{Asynchroniczność}
-Node.js pracuje wykorzystując tylko jeden wątek używajac technologi asynchronicznego wejścia/wyjścia. 
+Node.js pracuje wykorzystując tylko jeden wątek używajac technologii asynchronicznego wejścia/wyjścia. 
 Zapewnia to synchronizacje wykonywania wielu operacji bez konieczności czekania na zakończenie operacji i zwolnienie dostepu do zasobu poprzez zarządzanie żądaniami wejścia/wyjścia w oderwaniu od wątków wykonywania. 
-Standardowe operacje synchroniczne powodują zablokowanie dalszego wykonywania wątku do czasu zakonczenia przetwarzania. 
+Standardowe operacje synchroniczne powodują zablokowanie dalszego wykonywania wątku do czasu zakończenia przetwarzania. 
 W rezultacie określony wątek może zainicjowac tylko jedno zadanie wejścia/wyjścia w jednym momencie. 
-Wywołanie funkcji API nie czeka na wyniki, dzięki czemu nie blokujemy wątku wykonawczego. 
+Wywołanie asynchroniczej funkcji nie czeka na wyniki, dzięki czemu nie blokujemy wątku wykonawczego. 
 Po zakończonym wywołaniu uruchomiona zostaje funkcja zwrotna lub ogłoszone zostaje zdarzenie w poszczególnych częściach wykonawczych. 
-Pomimo, że Node.js działa na jednym wątku z pętlą zdarzeń, dzieki asynchroniczności potrafi on obsłużyć więcej zapytań niż np. serwer HTTP Apache. 
-Uzyskanie wielowątkowości pomimo korzystania tylko z jednego wątku jest zapewnione dzięki użyciu wzorca projektowego obserwator, w którym jeden obiekt nazywany przedmiotem obserwowanym określa zależności wzgledem obserwujacych go innych obiektów, poprzez wywoływanie ich metod dla określonych własnych stanow. 
-W celu obsługi wszystkich asynchronicznych funkcji oraz wątku głównego Node.js korzysta z biblioteki multiplatformowej jezyka c - libuv. 
-Biblioteka ta została stworzona specjalnie na potrzebny Node.js, ale jest również wykorzystywana w wielu innych technologiach np racer: (obsługa serweroó w języku ruby), czy Trevi: (silnik do obsługi aplikacji internetowych w języku swift). 
+Pomimo, że Node.js działa na jednym wątku z pętlą zdarzeń, dzięki asynchroniczności potrafi on obsłużyć więcej zapytań niż np. serwer HTTP Apache. 
+Uzyskanie wielowątkowości pomimo korzystania tylko z jednego wątku jest zapewnione dzięki użyciu wzorca projektowego obserwator, w którym jeden obiekt nazywany przedmiotem obserwowanym określa zależności wzgledem obserwujących go innych obiektów, poprzez wywoływanie ich metod dla określonych własnych stanów. 
+W celu obsługi wszystkich asynchronicznych funkcji oraz wątku głównego Node.js korzysta z biblioteki multiplatformowej języka c - libuv. 
+Biblioteka ta została stworzona specjalnie na potrzebny Node.js, ale jest również wykorzystywana w wielu innych technologiach np racer: (obsługa serwerów w języku ruby), czy Trevi: (silnik do obsługi aplikacji internetowych w języku swift). 
 Wykorzystuje ona określony zbiór wątków do równoległej obsługi wielu operacji wejścia/wyjścia bez wzajemnego ich blokowania. 
-Wadą pracy Node.js przy wykorzystaniu tylko jednego wątku jest brak skalowalności pod względem możliwości zwiększenia ilości rdzeni procesorów na których wykonuje sie program, bez użycia dodatkowych modułów takich jak cluster (zapewnia mozliwość latwego tworzenia pochodnych procesów, które współdzielą porty serwera), StrongLoop PM (zapewnia zarządzanie procesem produkcyjnym aplikacji Node.js ze wsparciem odpowiedniego zarzadzania zasobami, wdrożeniami wielo hostowymi oraz interfejsem graficznym), czy PM2 (zarzadzanie procesem produkcyjym, ze wspaciem odpowiedniego zarządzania zasobów z możliwością nieprzerwanego działania aplikacji przy użyciu przenoszenia jej między domenami bez potrzeby zatrzymywania pracy). 
+Wadą pracy Node.js przy wykorzystaniu tylko jednego wątku jest brak skalowalności pod względem możliwości zwiększenia ilości rdzeni procesorów, na których wykonuje sie program, bez użycia dodatkowych modułów takich jak Cluster (zapewnia możliwość łatwego tworzenia pochodnych procesów, które współdzielą porty serwera), StrongLoop PM (zapewnia zarządzanie procesem produkcyjnym aplikacji Node.js ze wsparciem odpowiedniego zarzadzania zasobami, wdrożeniami wielo hostowymi oraz interfejsem graficznym), czy PM2 (zarządzanie procesem produkcyjym, ze wsparciem odpowiedniego zarządzania zasobów z możliwością nieprzerwanego działania aplikacji przy użyciu przenoszenia jej między domenami bez potrzeby zatrzymywania pracy). 
 Kolejną możliwością na uniknięcie tego ograniczenia jest zmiana ilości wątków należących do zbioru wykorzystywanego przez biblioteke libuv. 
 Wątki te działają na wielu rdzeniach systemu na którym działa serwer. 
 Działanie Node.js jednocześnie na wielu procesach jest zapewnione własnie dzięki zbiorowi wątków dostarczanych przez biblioteke libuv.
 Wątek główny przydziela zadania dla wątków kolejno ze współdzielonej kolejki funkcji, które wątki pochodne maja za zadanie wykonać. 
 Kiedy watek pochodny zakończy wykonywanie przydzielonego mu zadania informauje o tym wątek główny poprzez wywołanie określonego wywołania zwrotnego. 
-Z przyczyny odpowiedzialności przez watek główny do odebrania wszystkich wywołan zwrotnych, funkcja wykonywana przez jeden wątek pochodny moze wstrzymać działanie całej asynchroniczenej opreracji, a co za tym idzie zmniejszyć jej całkowitą wydajność. 
-Biblioteka libuv zajmuję się odpowiednim podziałem zadań oraz przydzieleniem zasobów tak aby w jak najlepszy sposób wywazyc nakład pracy między wieloma wątkami. 
+Z przyczyny odpowiedzialności przez watek główny do odebrania wszystkich wywołań zwrotnych, funkcja wykonywana przez jeden wątek pochodny moze wstrzymać działanie całej asynchroniczenej opreracji, a co za tym idzie zmniejszyć jej całkowitą wydajność. 
+Biblioteka libuv zajmuję się odpowiednim podziałem zadań oraz przydzieleniem zasobów tak aby w jak najlepszy sposób wyważyc nakład pracy między wieloma wątkami. 
 
 \begin{figure}[!hb]
 \centering
@@ -217,16 +217,16 @@ Biblioteka libuv zajmuję się odpowiednim podziałem zadań oraz przydzieleniem
 
 \section{Architektura komunikacji}
 W tradycyjnym podejściu odpowiedzialne za obsługe przychodzących połączeń są określone wątki lub procesy sytemu operacyjnego, które w porównaniu z technologią Node.js wymagają względnie więcej zaalokowanych zasobów. 
-W celu obsługi zapytania przychodzącego do aplikacji Node.js, program rejerstruje się w systemie operacyjnym, aby od każdego przychodzacego połączenia otrzymać odpowiednie wywołanie zwrotene, przez co nie potrzebuje procesów czy wątków aby uzyskać możliwość obsługi klientów, a tylko własnej pętli glównej, do której wykonywania powraca po przetworzeniu każdego wywołania wstecznego. 
+W celu obsługi zapytania przychodzącego do aplikacji Node.js, program rejerstruje się w systemie operacyjnym, aby od każdego przychodzącego połączenia otrzymać odpowiednie wywołanie zwrotene, przez co nie potrzebuje procesów czy wątków aby uzyskać możliwość obsługi klientów, a tylko własnej pętli głównej, do której wykonywania powraca po przetworzeniu każdego wywołania wstecznego. 
 W czasie pracy każde przychodzące połączenie otrzymuje odpowiednią ilość zasobów na stercie programu, więc nie ma rownież potrzeby alokowania zasobów dla każdego z wątków czy procesów osobno. 
-Najbardziej popularna metoda na zarzadzanie komunikacją między instancjami korzystajacymi z serwera używającego technologji Node.js jest wykorzystanie frameworku Restful Api popularnie zwanego Rest. 
-Jest to wzorzec architektury oprogramowania który opisuje sposób operowania zapytaniami pomiedzy Api, w prosty sposób poprzez obsługue zadań oraz odpowiedzi. 
+Najbardziej popularna metoda na zarządzanie komunikacją między instancjami korzystajacymi z serwera używającego technologji Node.js jest wykorzystanie frameworku Restful Api popularnie zwanego Rest. 
+Jest to wzorzec architektury oprogramowania, który opisuje sposób operowania zapytaniami pomiedzy Api, w prosty sposób poprzez obsługe zadań oraz odpowiedzi. 
 Został on następnikiem protokołu sieciowego SOAP (Simple object Access protocol), stając się wiodącym standardem. 
-Pozwala on na elimincaje zbędnej pracy i czasu wyymaganego na integracje. 
-Daje możliwość na stworzenie komunikacji bez potrzeby wiedzy na temat instacncji korzystajacych z przesyłanych zasobów - może integrowac środowiska napisane w różnych językach działające na różnych platformach. 
-Wykorzystuje proste zapytania przy użyciu protokolu http, oraz jego popularnie stosowanych metody takich jak post, get, put, delete oraz bardziej zlożonych i używanych żadziej jak options, head, trace oraz connect. 
+Pozwala on na elimincaje zbędnej pracy i czasu wymaganego na integracje. 
+Daje możliwość na stworzenie komunikacji bez potrzeby wiedzy na temat instacncji korzystajacych z przesyłanych zasobów - może integrować środowiska napisane w różnych językach działające na różnych platformach. 
+Wykorzystuje proste zapytania przy użyciu protokolu http, oraz jego popularnie stosowanych metody takich jak post, get, put, delete oraz bardziej złożonych i używanych żadziej jak options, head, trace oraz connect. 
 Opis typu zasobów jakie wymieniamy jest określony w nagłówku informacji przez kod statusu http. 
-Poniższa tabelka prezetuje poszczególne typy statusów:
+Poniższa tabelka prezęuje poszczególne typy statusów:
 
 \begin{figure}[!hb]
 \centering
@@ -234,15 +234,15 @@ Poniższa tabelka prezetuje poszczególne typy statusów:
 \caption{Kody statusu protokołu http - źródło: http://mokandra.blogspot.fi/2015/10/http-status-code-definitions.html}
 \end{figure}
 
-W celu wymiany zasobów framework wykorzystuje najpopularniejsze sposoby opisu struktury służące do opisu obiektów takie jak najcześciej spotykany, najprostszy w użyciu format json (JavaScript Object Notation) oraz ostatnio coraz mniej popularny format xml (eXtensible Markup Language). 
-Róznica pomiędzy dwiema formami jest taka ze xml jest językiem nie zdefiniowanych znacznikow, a json tylko sposobem na prezętacje właściwości obiektu. 
+W celu wymiany zasobów framework wykorzystuje najpopularniejsze sposoby opisu struktury służące do opisu obiektów takie jak najczęściej spotykany, najprostszy w użyciu format json (JavaScript Object Notation) oraz mniej popularny w technologi Rest format xml (eXtensible Markup Language). 
+Różnica pomiędzy dwiema formami jest taka że xml jest językiem nie zdefiniowanych znaczników, a json tylko sposobem na prezęnacje właściwości obiektu. 
 Porównanie obydwu struktur:
 Struktura w formacie json opisująca listę pracowników:
 \begin{lstlisting}[language=json,firstnumber=1]
 {"employees":[
-	{ "firstName":"John", "lastName":"Doe" },
-	{ "firstName":"Anna", "lastName":"Smith" },
-	{ "firstName":"Peter", "lastName":"Jones" }
+	{ "firstName":"James", "lastName":"Bond" },
+	{ "firstName":"David", "lastName":"Klint" },
+	{ "firstName":"Peter", "lastName":"Blom" }
 ]}
 \end{lstlisting}
 
@@ -250,13 +250,13 @@ Ta sama struktura opisana w formacie xml:
 <employees>
 \begin{lstlisting}[language=XML,firstnumber=1]
 	<employee>
-		<firstName>John</firstName> <lastName>Doe</lastName>
+		<firstName>James</firstName> <lastName>Bond</lastName>
 	</employee>
 	<employee>
-		<firstName>Anna</firstName> <lastName>Smith</lastName>
+		<firstName>David</firstName> <lastName>Klint</lastName>
 	</employee>
 	<employee>
-		<firstName>Peter</firstName> <lastName>Jones</lastName>
+		<firstName>Peter</firstName> <lastName>Blom</lastName>
 	</employee>
 </employees>
 \end{lstlisting}
@@ -267,9 +267,9 @@ Ta sama struktura opisana w formacie xml:
 \section{Specyfikacja problemu}
 Potrzebny jest nowoczesny system do zarządzania tablicami zadań, który będzie posiadał autoryzowany dostęp dla użytkowników systemu. 
 Został zauważony problem braku prostej w obsłudzę, intuicyjnej aplikacji pozwalającej we współpracy z innymi użytkownikami na zarządzanie zarówno podziałem jak i procesem realizacji wyszczególnionych zadań.
-W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny pracujący w technologii Node.js, ze względu na możliwą do osiągniećia niezawodność oraz dostępność nawet przy jednoczesnej obsłudze wielu korzystających z aplikacji klientów.
+W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny pracujący w technologii Node.js, ze względu na możliwą do osiągniecia niezawodność oraz dostępność nawet przy jednoczesnej obsłudze wielu korzystających z aplikacji klientów.
 Nie powinien on wymagać żadnych procesów wdrożeniowych w celu zrozumienia obsługi narzędzia, ponieważ celem projektu jest stworzenie narzędzia, które wspiera, a nie dodatkowo komplikuje określone zadania.
-System powinien w przejrzysty sposób prezentować proces realizacji poszczególnych zadań zorganizowanych w tablicach.
+System powinien w przejrzysty sposób prezęować proces realizacji poszczególnych zadań zorganizowanych w tablicach.
 Właściel określonej tablicy powinien mieć możliwość zarządzania dostępem do tablicy poprzez udostępnianie lub ograniczanie jej treści pozostałym użytkowniką.
 Aplikacja zapewni subskrybentą nieprzerwaną możliwość nadzoru, wglądu oraz określania aktualnych statusów dowolnych procesów.
 
@@ -310,7 +310,7 @@ Zdefiniowane zostały następujące wymagania niefunkcjonalne:
 \item Czas uruchomienia jest nie dłuży niż 10 sekund.
 \item Umożliwia efektywne testowanie wprowadzonych zmianach.
 \item Możliwość obsługi poprzez różne przeglądarki internetowe i środowiska.
-\item Zrozumiały dla wszystkich. Czas jego przyswojenia nie przekracza 15 minut.
+\item Zrozumiały dla wszystkich. Czas przyswojenia nie przekracza 15 minut.
 \item Ma możliwość współistnienia z innymi modułami.
 \item Spełnia wszystkie normy prawne w naszym kraju.
 \end{itemize}
@@ -321,7 +321,7 @@ Zdefiniowane zostały następujące wymagania niefunkcjonalne:
 
 \subsection{Wstęp}
 Do opracowania rozwiązania zdecydowałem się skorzystać z Mean Stack. 
-Skrót odnosi się do frameworków oraz technolgji Mongodb, Express, AngularJS oraz NodeJs. 
+Skrót odnosi się do frameworków oraz technolgji Mongodb, Express, AngularJS oraz Node.js. 
 Współpracując razem zapewniają bardzo szybkie efektywne tworzenie skalowalnych aplikacji wielopratformowych. 
 Do użycia wszystkich wymagany jest tylko jeden język programowania - javaScript, zarówno do obsługi warstwy frontend'owej aplikacji jak i backend'owej. 
 Wszystkie technolgie są dostępne w pełni bezpłatnie. 
@@ -336,7 +336,8 @@ Technologia Node.js została już opisana powyżej, więc zajmę się opisem poz
 \subsection{MongoDB}
 Napisany w języku c++ system zarządzania bazą danych zorietowanym na dokumenty. 
 Operuje na nierelacyjnych bazach danych. 
-Używa struktur Json jako schematów budowy bazy danych - więc udostepnia całkowitą dowolność w budowie struktury wymaganej bazy danych. 
+Używa struktur json jako schematów budowy bazy danych.
+Udostepnia całkowitą dowolność w budowie struktury wymaganej bazy danych. 
 Wykorzystuje proste, ale zapewniające szerokie możliwości zapytania bazo danowe.
 
 \subsection{ExpressJS }
@@ -349,13 +350,13 @@ Wykorzystujący wzorzec projektowy MVC (Model View Controler) polegający na odd
 \section{Komunikacja}
 
 \subsection{Rozwiązanie problemu komunikacji}
-Do komunikacji między warstą frontend'ową i backendow'ową po stronie klienta wykorzystałem wysokopoziomową biblioteke ajax oraz technologie Restful api. 
-Ajax polega na zarzadaniu asynchroniczna komunikacja. 
+Do komunikacji między warstą frontend'ową i backendow'ową po stronie klienta wykorzystałem wysokopoziomową biblioteke Ajax oraz technologie Restful api. 
+Ajax polega na zarządzaniu asynchroniczna komunikacja. 
 Dzięki temu aplikacjia może wykonywać inne funkcje mimo oczekiwania na odpowiedź ze strony serwera, za sprawa odseparowania warstwy wymiany danych od pozostałych warstw aplikacji.
 Do opisu wymienianych struktur użyłem standardu json, ponieważ wymaga on mniejszych nakładów pracy od standradu xml. 
 Powyższe frameworki współpracują ze sobą w bardzo intuicyjny i przejrzysty sposób. 
-Angular prezetuje dynamiczną aplikacje internetowa użytkownikowi, odpowiada za przyjmowanie danych i z pomoca ajax'a wysyła oraz odbiera dane wysylane do serwera. 
-Serwer NodeJS z użyciem technologii express wykorzystując metode Routingu dopasownuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy współpracy z baza danych zarzadzana przez Mongodb przechowuje informacje użytkowników serwisu oraz w odpowiedzi zwraca odpowiednie dane spowrotem do warsty frontendowej prezentującej dane użytkownikowi. 
+Angular prezętuje dynamiczną aplikacje internetowa użytkownikowi, odpowiada za przyjmowanie danych i z pomoca ajax'a wysyła oraz odbiera dane wysyłane do serwera. 
+Serwer Node.js z użyciem technologii express wykorzystując metode routingu dopasowuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy współpracy z bazą danych zarządzana przez Mongodb przechowuje informacje użytkowników serwisu oraz w odpowiedzi zwraca odpowiednie dane spowrotem do warsty frontendowej prezęującej dane użytkownikowi. 
 
 \begin{figure}[!hb]
 \centering
@@ -364,48 +365,48 @@ Serwer NodeJS z użyciem technologii express wykorzystując metode Routingu dopa
 \end{figure}
 
 \subsection{Schematy wymiany zasobów}
-Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobow z serwera wykorzystuje metode get. Do zasobow tych nalezy miedzy innymi plik html zaweirajacy warstwe prezetacji aplikacji, plik css zawieracjacy styl warstwy prezetacji czy plik zawierrajacy funkcje wykorzystywane przez aplikacjie w jezyku javaScript. Proces prezetuje sie nastepujaco:
+Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobów z serwera wykorzystuje metode get. Do zasobów tych należy miedzy innymi plik html zawierający warstwe prezęacji aplikacji, plik css zawierający styl warstwy prezętacji czy plik zawierający funkcje wykorzystywane przez aplikacje w języku javaScript. Proces prezęnuje sie nastepujaco:
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{K-S.png} 
-\caption{Pobranie statycznych zasobow źrodlo: Opracowanie wlasne}
+\caption{Pobranie statycznych zasobow źródlo: Opracowanie własne}
 \end{figure}
 \begin{enumerate}
-\item Klient przy uzyciu przegladarki wysyla pod okreslony adres url serwera zapytanie zaweirajace porzadany zasob.
-\item Serwer otrzymuje zapytanie i dopasowuje okreslona funkcje po adresie url serwera.
-\item Funkcja wybiera dopasowane do zapytania zasoby i wysyla odpowiedz do aplikacji.
-\item Aplikacja odbiera i zaczyna korzystac z zasobow.
+\item Klient przy użyciu przeglądarki wysyła pod określony adres url serwera zapytanie zawierające porządany zasób.
+\item Serwer otrzymuje zapytanie i dopasowuje określoną funkcje po adresie url serwera.
+\item Funkcja wybiera dopasowane do zapytania zasoby i wysyła odpowiedź do aplikacji.
+\item Aplikacja odbiera i zaczyna korzystac z zasobów.
 \end{enumerate}
 
- Uniwersalny dla aplikacji schemat procesu wymiany danych okreslonych dla specyficznego uzytkownika wykorzystuje metode post. Przykladowe dane wymieniane przez aplikacje to login, haslo, informacje odnosnie zadan uzytkownika, kometarze do zadan uzytkownika. Przeplyw danych wyglada nastepujaco:
+ Uniwersalny dla aplikacji schemat procesu wymiany danych określonych dla specyficznego użytkownika wykorzystuje metode post. Przykładowe dane wymieniane przez aplikacje to login, hasło, informacje odnośnie żądań użytkownika, komętarze do zadań użytkownika. Przepływ danych wygląda następująco:
  \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{U-P-S-B.png} 
-\caption{Wymiana zasobow w formacie Json źrodlo: Opracowanie wlasne}
+\caption{Wymiana zasobów w formacie Json źródlo: Opracowanie własne}
 \end{figure}
 \begin{enumerate}
-\item Dane zostaja pobrane od uzytkownika w okreslonym formularzu w warstiwe frontendowej.
-\item Dane zostaja zwalidowane pod katem poprawnosci po stronie uzytkownika.
-\item Jesli dane sa poprawne zostaja zorganizowane w obiekcie json i wyslane do serwera, w przeciwnym wypadku zostaje zwrocony blad.
+\item Dane zostaja pobrane od użytkownika w określonym formularzu w warstiwe frontendowej.
+\item Dane zostają zwalidowane pod kątem poprawności po stronie użytkownika.
+\item Jesli dane są poprawne zostaja zorganizowane w obiekcie json i wysłane do serwera, w przeciwnym wypadku zostaje zwrócony błąd.
 \item Serwer odbiera zapytanie i przekazuje je do odpowiedniej funkcji.
-\item Dane zostaja zwalidowane pod katem poprawnosci po stronie serwera.
-\item Jesli dane sa poprawne serwer realizuje okreslona funkcje przy pomocy zapytan bazo danowych, w przeciwnym wypadku zostaje przygotowany komunikat o bledzie.
-\item Odpowiedz na zapytanie bazodanowe zostaje odebrane i zostaja przygotowane dane do wyslanie.
-\item Przygotowane dane zostaje wyslane w okreslonej odpowiedzi.
-\item Warstwa frontendowa otrzymuje odpowiedz i zostaje odsiwezona warsta prezetacji aplikacji.
+\item Dane zostają zwalidowane pod kątem poprawności po stronie serwera.
+\item Jeśli dane są poprawne serwer realizuje określona funkcje przy pomocy zapytań bazo danowych, w przeciwnym wypadku zostaje przygotowany komunikat o błędzie.
+\item Odpowiedź na zapytanie bazodanowe zostaje odebrane i zostają przygotowane dane do wysłania.
+\item Przygotowane dane zostaje wysłane w określonej odpowiedzi.
+\item Warstwa frontendowa otrzymuje odpowiedź i zostaje odświeżona warsta prezętacji aplikacji.
 \end{enumerate}
  
 
-\subsection{Kod po stronie klienta wysylajacy zapytanie}
-Przykladowy kod wykonywany po stronie klienta wysylajacy zapytanie do serwera, żadające określonego zasobu przy uzyciu frameworku Angularjs:
-Plik w języku javaScript zawierajacy definicje modelu i kontrolera:
+\subsection{Kod po stronie klienta wysyłający żądanie}
+Przykładowy kod wykonywany po stronie klienta wysyłający żądanie do serwera, żadające określonego zasobu przy użyciu frameworku Angularjs:
+Plik w języku javaScript zawierający definicje modelu i kontrolera:
 \medskip
 \begin{lstlisting}
 var main = angular.module("main", []); 									// create angular module
 
 main.controller('SignInController', function($scope) { 					// create controller for module
-	$scope.login=""; 													// inicialize login as field in model
-	$scope.password=""; 												// inicialize password as field in model
+	$scope.login=""; 													// initialize login as field in model
+	$scope.password=""; 												// initialize password as field in model
 	$scope.SignIn=function(){ 											// callback function as field in model
 		if ($scope.login && $scope.password) {							// if both field are filled
 			var xhr = new XMLHttpRequest();									//create request object
@@ -435,7 +436,7 @@ main.controller('SignInController', function($scope) { 					// create controller
 }
 \end{lstlisting}
 
-Plik w języku html zawierajacy definicje widoku:
+Plik w języku html zawierający definicje widoku:
 \begin{lstlisting}[language=HTML]
 <!DOCTYPE html> 
 <!-- Apply view to model -->
@@ -478,18 +479,18 @@ Plik w języku html zawierajacy definicje widoku:
 </body>
 \end{lstlisting}
 
-\subsection{Kod po stronie serwera obsługujący odebrane}
-Przykładowy kod wykonywany po stronie serwera obsługujący odebrane zapytanie od klienta przy uzyciu technologji Node.js oraz frameworków express i mongodb:
+\subsection{Kod po stronie serwera obsługujący odebranie żądania}
+Przykładowy kod wykonywany po stronie serwera obsługujący odebrane żądanie od klienta przy użyciu technologii Node.js oraz framework'ów express i mongodb:
 \medskip
 \begin{lstlisting}
 var express = require('express');					// load express module
 var bodyParser = require('body-parser');    		// load module for parsing json data
 var dataBase = require('mongodb').MongoClient;  	// load MongoDB database module
 var Promise = require('promise');               	// load asynchronous returns from functions module
-var dataBaseUrl = "mongodb://localhost:27017/db"; 	//dataBase address
+var dataBaseUrl = "mongodb://localhost:27017/db"; 	// dataBase address
 
-var port = 8081;  									//application port
-var app = express();						        //  create epress configuration object
+var port = 8081;  									// application port
+var app = express();						        // create epress configuration object
 app.use(bodyParser.json());                         // load bodyParser to app object
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -572,19 +573,19 @@ var server = app.listen(port, function () {
 \section{Wykorzystane moduły}
 
 \subsection{Moduły zewnętrzne}
-Zewnetrzne moduły, zainstalowane za pomocą zbioru repozytorium npm ktore użylem do realizacji rozwiazania to:
+Zewnętrzne moduły, zainstalowane za pomocą zbioru repozytorium npm, które użyłem do realizacji rozwiazania to:
 \begin{enumerate}
 \item express - opisany powyżej
-\item fs - file stream, odpowiada za obsluge zapisu oraz wczytywania plikow. 
-Wykorzystywany w celu wczytywania plików statycznych aplikacji takich jak index.htm (strona główna w formacie html), main.js (funkcje w jezyku javaScript), style.css (plik arkuszu stylów, odpowiadający za styl prezetacji), favicon (ikona serwisu wyświetlana w oknie przeglądarki), czy losowo wybieranych zdjęć wyświetlanych w tle serwisu.
+\item fs - file stream, odpowiada za obsługe zapisu oraz wczytywania plików. 
+Wykorzystywany w celu wczytywania plików statycznych aplikacji takich jak index.htm (strona główna w formacie html), main.js (funkcje w języku javaScript), style.css (plik arkuszu stylów, odpowiadający za styl prezętacji), favicon (ikona serwisu wyświetlana w oknie przeglądarki), czy losowo wybieranych zdjęć wyświetlanych w tle serwisu.
 \item path - obsługa różnic między systemami operacyjnymi. 
 Dzięki temu modułowi możemy zapewnić całkowitą sprawność naszego serisu nie zależnie od środowiska uruchomieniowego. 
 Pozwala niwelować różnice w lokalizacji plików systemowych, czy łącznikach pomiędzy poszczególnymi folderami przy specyfikacji scieżki do pliku.
 \item body-parser - dostarcza możliwość analizowania danych załączonych do odebranego przez serwer żądania, wykorzystany został w celu odczytów poszczególnych wartości odebranych w formacie json.
 \item promise - odpowiada za operowanie wynikami otrzymanymi w wyniku asynchronicznych funkcji. 
 Dzięki temu modułowi nie musimy synchronicznie czekać na otrzymanie zwrotu z kolejnych funkcji, natomiast możemy przy użyciu wywołań zwortnych zareagować po otrzymaniu określonego wyjścia.
-\item cookie-parser - zapewnia możliwość wykorzystania plikow cookie dla specyficznego klienta. 
-Dzięki temu modułowi możemy operować, ustawiać, usuwać lub edytować wartości plików cookie, które zostana przydzielone dla konkretnego użytkownmika w ramach całej sesji komunikacji z użytkownikiem lub przez określony przez nasz czas. 
+\item cookie-parser - zapewnia możliwość wykorzystania plików cookie dla specyficznego klienta. 
+Dzięki temu modułowi możemy ustawiać, usuwać lub edytować wartości plików cookie, które zostaną przydzielone dla konkretnego użytkownika w ramach całej sesji komunikacji z użytkownikiem lub przez określony przez nas czas. 
 \end{enumerate}
 
 \subsection{Moduły wewnetrzne}
@@ -592,8 +593,8 @@ Wewnetrzne moduły, czyli takie które zostały napisane przeze mnie specjalnie 
 \begin{enumerate}
 \item emails.js (wykorzystujący zewnętrzny moduł mongodb) - moduł zapewnia komunikacje z baza danych w technologii mongodb, poprzez wywoływanie odpowiednich funkcji. 
 Został dostosowany bezpośrednio do obsługi bazy danych dla wykonywanego projektu. 
-Dzięki temu plik głowny serwera nie musi znać budowy, ani wykonywać operacji bezpośrednio na dokumentach bazy danych.
-\item db.js (wykorzystujący zewnętrzny moduł nodemailer) - dostarcza obsługę wysyłania wiadomości email do użytkowników serwisu w przypadku zajścia określonych sytułacji takich jak na przykład otrzymanie nowego zaproszenia czy zmiana statusu zadania. Moduł dostarcza jedną, prostą w obsludze funkcje zapewniającą obsługe wiadomości emial. 
+Dzięki temu plik główny serwera nie musi znać budowy, ani wykonywać operacji bezpośrednio na dokumentach bazy danych.
+\item db.js (wykorzystujący zewnętrzny moduł nodemailer) - dostarcza obsługę wysyłania wiadomości email do użytkowników serwisu w przypadku zajścia określonych sytułacji takich jak na przykład otrzymanie nowego zaproszenia czy zmiana statusu zadania. Moduł dostarcza jedną, prostą w obsłudze funkcje zapewniającą obsługe wiadomości emial. 
 \end{enumerate}
  
 \chapter{Testy aplikacji}
@@ -626,7 +627,7 @@ Kolejne przypadki testowe:
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{22.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła strone główną aplikacji dostępna po zalogowaniu na konto lub informację o blędzie.}
+\caption[]{Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła strone główną aplikacji dostępna po zalogowaniu na konto lub informacje o blędzie.}
 \end{figure}
 
 
@@ -664,7 +665,7 @@ Aktualizacja następuje również każdorazowo po otrzymaniu pomyślnego potwier
 \end{figure}
 
 
-\section{Resetowanie hasła użytkowika}
+\section{Resetowanie hasła użytkownika}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{51.png}
@@ -698,7 +699,7 @@ Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkowni
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{62.png}
 \captionsetup{labelformat=empty}
 \caption[]{Serwer sprawdza poprawność danych. Jeśli są poprawne aktualizuje je.
-W przeciwnym wypadku zwraca komunikat o błędzię. 
+W przeciwnym wypadku zwraca komunikat o błędzie. 
 W odpowiedzi serwer wysyła strone główną aplikacji.}
 \end{figure}
 \begin{figure}[!hb]
@@ -722,7 +723,7 @@ W odpowiedzi serwer wysyła strone główną aplikacji.}
 \captionsetup{labelformat=empty}
 \caption[]{Serwer sprawdza poprawność danych. 
 Jeśli są poprawne serwer tworzy nową tablice dla użytkownika i wysyła potwierdzenie w odpowiedzi.
-W przeciwnym wypadku odpowiada komunikatem o błędzię.}
+W przeciwnym wypadku odpowiada komunikatem o błędzie.}
 \end{figure}
 
 
@@ -738,7 +739,7 @@ W przeciwnym wypadku odpowiada komunikatem o błędzię.}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{02.png}
 \captionsetup{labelformat=empty}
 \caption[]{Serwer sprawdza poparwność danych. 
-W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o błędzię.}
+W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o błędzie.}
 \end{figure}
 
 
@@ -753,7 +754,7 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{82.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -768,7 +769,7 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -783,7 +784,7 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{92.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -798,7 +799,7 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -813,7 +814,7 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -828,7 +829,7 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -837,13 +838,13 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu użytkonik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera.}
+\caption[]{Po zalogowaniu użytkownik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
@@ -858,16 +859,16 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o bł�
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 
 \chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
-Wykoanana aplikacja spełnia zadana w warunkach funkcjonalnosc. 
+Wykoanana aplikacja spełnia zadana w warunkach funkcjonalność. 
 Zostały osiągnięte wszystkie założenia oraz wymagania aplikacji przy użyciu możliwości dostarczanej przez technologie Node.js. 
 Stworzony projekt doskonale nadaje się do użytkownia przez zorganizowane zespoły do wykonywania określonych zadań. 
 Mógłby być na przykład używany do zarządzania pracą zespołów deweloperskich pracujących w różnych metodykach takich jak scrum czy kanban. 
-Dostarcza przejżysty interfejs oraz nieskomplikowaną prezetacje danych dla końcowych użytkowników, przez co nie wymaga praktycznie żadnych szkoleń lub procesów wdrożenioywch w celu zdobycia umiejętności biegłej obsługi narzędzia. 
+Dostarcza przejrzysty interfejs oraz nieskomplikowaną prezętacje danych dla końcowych użytkowników, przez co nie wymaga praktycznie żadnych szkoleń lub procesów wdrożenioywch w celu zdobycia umiejętności biegłej obsługi narzędzia. 
 Środowisko Node.js wydaje się być bardzo nowoczesnym oraz mającym przed sobą świetlana przyszlość środowiskiem. 
 Niewątpliwie największymi zaletami tej technologii jest łatwość budowania wymagających serwisów internetowych poprzez użycie asynchronicznej obsługi wejścia/wyjścia, które pozwala na przetwarzanie wielu funkcji w jednym czasie tworząc wyjątkowo szybkie w działaniu aplikacje. 
 Zagadnienie to wymaga jednak umiejętności w projektowaniu i analizowaniu funkcji programowania asynchronicznego. 
@@ -890,9 +891,9 @@ Ethan Brown
 \bibitem{Onodi} 
 Robert Onodi
 \textit{MEAN Blueprints ISBN: 9781783553945}
-\bibitem{Nodejs} 
+\bibitem{Node.js} 
 Dokumentacja języka programowania Node.js. Stan na dzień: 2017-07-20
-\textit{https://nodejs.org/en/docs}
+\textit{https://Node.js.org/en/docs}
 
 \end{thebibliography}
 
