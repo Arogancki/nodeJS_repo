@@ -261,42 +261,59 @@ Ta sama struktura opisana w formacie xml:
 </employees>
 \end{lstlisting}
 
-\chapter{Założenia i specyfikacja aplikacji} 
-TODO opisac apke w taki sam sposob jak opis na IO, zarowno frontend i backend,, wyznaczyc zadania aplikacji i jak serwer bleble, napisac doczego sluza funkcje i jaka sa wymagania serwisu
 
-To ponizsze przepisac do realizacji tu napisac tylko zalozenia co ma robic etc
+\chapter{Założenia i specyfikacja aplikacji}
 
-Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobow z serwera wykorzystuje metode get. Do zasobow tych nalezy miedzy innymi plik html zaweirajacy warstwe prezetacji aplikacji, plik css zawieracjacy styl warstwy prezetacji czy plik zawierrajacy funkcje wykorzystywane przez aplikacjie w jezyku javaScript. Proces prezetuje sie nastepujaco:
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{K-S.png} 
-\caption{Pobranie statycznych zasobow źrodlo: Opracowanie wlasne}
-\end{figure}
-\begin{enumerate}
-\item Klient przy uzyciu przegladarki wysyla pod okreslony adres url serwera zapytanie zaweirajace porzadany zasob.
-\item Serwer otrzymuje zapytanie i dopasowuje okreslona funkcje po adresie url serwera.
-\item Funkcja wybiera dopasowane do zapytania zasoby i wysyla odpowiedz do aplikacji.
-\item Aplikacja odbiera i zaczyna korzystac z zasobow.
-\end{enumerate}
+\section{Specyfikacja problemu}
+Potrzebny jest nowoczesny system do zarządzania tablicami zadań, który będzie posiadał autoryzowany dostęp dla użytkowników systemu. 
+Został zauważony problem braku prostej w obsłudzę, intuicyjnej aplikacji pozwalającej we współpracy z innymi użytkownikami na zarządzanie zarówno podziałem jak i procesem realizacji wyszczególnionych zadań.
+W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny pracujący w technologii Node.js, ze względu na możliwą do osiągniećia niezawodność oraz dostępność nawet przy jednoczesnej obsłudze wielu korzystających z aplikacji klientów.
+Nie powinien on wymagać żadnych procesów wdrożeniowych w celu zrozumienia obsługi narzędzia, ponieważ celem projektu jest stworzenie narzędzia, które wspiera, a nie dodatkowo komplikuje określone zadania.
+System powinien w przejrzysty sposób prezentować proces realizacji poszczególnych zadań zorganizowanych w tablicach.
+Właściel określonej tablicy powinien mieć możliwość zarządzania dostępem do tablicy poprzez udostępnianie lub ograniczanie jej treści pozostałym użytkowniką.
+Aplikacja zapewni subskrybentą nieprzerwaną możliwość nadzoru, wglądu oraz określania aktualnych statusów dowolnych procesów.
 
- Uniwersalny dla aplikacji schemat procesu wymiany danych okreslonych dla specyficznego uzytkownika wykorzystuje metode post. Przykladowe dane wymieniane przez aplikacje to login, haslo, informacje odnosnie zadan uzytkownika, kometarze do zadan uzytkownika. Przeplyw danych wyglada nastepujaco:
- \begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{U-P-S-B.png} 
-\caption{Wymiana zasobow w formacie Json źrodlo: Opracowanie wlasne}
-\end{figure}
-\begin{enumerate}
-\item Dane zostaja pobrane od uzytkownika w okreslonym formularzu w warstiwe frontendowej.
-\item Dane zostaja zwalidowane pod katem poprawnosci po stronie uzytkownika.
-\item Jesli dane sa poprawne zostaja zorganizowane w obiekcie json i wyslane do serwera, w przeciwnym wypadku zostaje zwrocony blad.
-\item Serwer odbiera zapytanie i przekazuje je do odpowiedniej funkcji.
-\item Dane zostaja zwalidowane pod katem poprawnosci po stronie serwera.
-\item Jesli dane sa poprawne serwer realizuje okreslona funkcje przy pomocy zapytan bazo danowych, w przeciwnym wypadku zostaje przygotowany komunikat o bledzie.
-\item Odpowiedz na zapytanie bazodanowe zostaje odebrane i zostaja przygotowane dane do wyslanie.
-\item Przygotowane dane zostaje wyslane w okreslonej odpowiedzi.
-\item Warstwa frontendowa otrzymuje odpowiedz i zostaje odsiwezona warsta prezetacji aplikacji.
-\end{enumerate}
- 
+\section{Wymagania funkcjonalne}
+Analiza wymagań funkcjonalnych umożliwia zidentyfikowanie i opisanie pożądanego zachowania systemu. 
+Umożliwiają określenie usług oferowanych przez system, reakcji na dane wejściowe oraz zachowania w określonych sytuacjach.
+\begin{itemize}
+\item Wymiana komunikatów w modelu klient-serwer.
+\item Możliwość utworzenia do 1000000 kont użytkowników.
+\item Możliwość zmiany danych użytkownika.
+\item Weryfikacja adresu email przez aktywacją.
+\item Możliwość resetowania hasła za pomocą adresu email.
+\item Utrzymanie do 100 tablic jednocześnie dla użytkownika.
+\item Możliwość usuwania tablic.
+\item Obsługa do 1000 równoległych członków jednej tablicy.
+\item Możliwość zarządzania członkami tablicy.
+\item Obsługa do 10000 równoległych zadań dla tablicy.
+\item Możliwość usuwania zakończonych zadań.
+\item Utrzymanie do 1000 statusów do jednego zadania.
+\item Zapamiętywanie terminu zmiany statusu zadań.
+\item Walidacja poprawności wprowadzanych przez użytkownika danych zarówno po stronie klienta jak i serwera.
+\item W razie wystąpienia nieprawidłowych danych system powiadamia o błędach.
+\item Zapewnienie okna pomocy opisującego korzystanie z aplikacji.
+\item Możliwość otrzymywania powiadomień o aktualnym statusie tablic oraz poszczególnych zadań.
+\item System współpracuje z bazą danych.
+\end{itemize}
+
+\section{Wymagania pozafunkcjonalne}
+Wymagania niefunkcjonalne opisują kryteria umożliwiające możliwość oceny działania systemu i elementów mających wpływ na satysfakcję użytkownika.
+Zdefiniowane zostały następujące wymagania niefunkcjonalne:
+
+\begin{itemize}
+\item Dostęp do określonych zasobów musi być chroniony poprzez login i hasło użytkownika.
+\item Budowa interfejsu użytkownika musi być możliwie intuicyjna i prosta w obsłudzę.
+\item Proste analizowanie i diagnozowanie błędów oraz sytuacji problemowych.
+\item Budowa zapewnia łatwe wprowadzanie koniecznych zmian.
+\item Jest w stanie obsłużyć jednocześnie do 100.000 użytkowników.
+\item Czas uruchomienia jest nie dłuży niż 10 sekund.
+\item Umożliwia efektywne testowanie wprowadzonych zmianach.
+\item Możliwość obsługi poprzez różne przeglądarki internetowe i środowiska.
+\item Zrozumiały dla wszystkich. Czas jego przyswojenia nie przekracza 15 minut.
+\item Ma możliwość współistnienia z innymi modułami.
+\item Spełnia wszystkie normy prawne w naszym kraju.
+\end{itemize}
 
 \chapter{Opracowanie aplikacji}
 
@@ -346,7 +363,40 @@ Serwer NodeJS z użyciem technologii express wykorzystując metode Routingu dopa
 \caption{Przepływ komunikacji w MEAN Stack źródło: https://www.dealfuel.com/seller/mean-stack-tutorial/}
 \end{figure}
 
-\subsection{Kod po stronie klienta}
+\subsection{Schematy wymiany zasobów}
+Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobow z serwera wykorzystuje metode get. Do zasobow tych nalezy miedzy innymi plik html zaweirajacy warstwe prezetacji aplikacji, plik css zawieracjacy styl warstwy prezetacji czy plik zawierrajacy funkcje wykorzystywane przez aplikacjie w jezyku javaScript. Proces prezetuje sie nastepujaco:
+\begin{figure}[!hb]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{K-S.png} 
+\caption{Pobranie statycznych zasobow źrodlo: Opracowanie wlasne}
+\end{figure}
+\begin{enumerate}
+\item Klient przy uzyciu przegladarki wysyla pod okreslony adres url serwera zapytanie zaweirajace porzadany zasob.
+\item Serwer otrzymuje zapytanie i dopasowuje okreslona funkcje po adresie url serwera.
+\item Funkcja wybiera dopasowane do zapytania zasoby i wysyla odpowiedz do aplikacji.
+\item Aplikacja odbiera i zaczyna korzystac z zasobow.
+\end{enumerate}
+
+ Uniwersalny dla aplikacji schemat procesu wymiany danych okreslonych dla specyficznego uzytkownika wykorzystuje metode post. Przykladowe dane wymieniane przez aplikacje to login, haslo, informacje odnosnie zadan uzytkownika, kometarze do zadan uzytkownika. Przeplyw danych wyglada nastepujaco:
+ \begin{figure}[!hb]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{U-P-S-B.png} 
+\caption{Wymiana zasobow w formacie Json źrodlo: Opracowanie wlasne}
+\end{figure}
+\begin{enumerate}
+\item Dane zostaja pobrane od uzytkownika w okreslonym formularzu w warstiwe frontendowej.
+\item Dane zostaja zwalidowane pod katem poprawnosci po stronie uzytkownika.
+\item Jesli dane sa poprawne zostaja zorganizowane w obiekcie json i wyslane do serwera, w przeciwnym wypadku zostaje zwrocony blad.
+\item Serwer odbiera zapytanie i przekazuje je do odpowiedniej funkcji.
+\item Dane zostaja zwalidowane pod katem poprawnosci po stronie serwera.
+\item Jesli dane sa poprawne serwer realizuje okreslona funkcje przy pomocy zapytan bazo danowych, w przeciwnym wypadku zostaje przygotowany komunikat o bledzie.
+\item Odpowiedz na zapytanie bazodanowe zostaje odebrane i zostaja przygotowane dane do wyslanie.
+\item Przygotowane dane zostaje wyslane w okreslonej odpowiedzi.
+\item Warstwa frontendowa otrzymuje odpowiedz i zostaje odsiwezona warsta prezetacji aplikacji.
+\end{enumerate}
+ 
+
+\subsection{Kod po stronie klienta wysylajacy zapytanie}
 Przykladowy kod wykonywany po stronie klienta wysylajacy zapytanie do serwera, żadające określonego zasobu przy uzyciu frameworku Angularjs:
 Plik w języku javaScript zawierajacy definicje modelu i kontrolera:
 \medskip
@@ -428,7 +478,7 @@ Plik w języku html zawierajacy definicje widoku:
 </body>
 \end{lstlisting}
 
-\subsection{Kod po stronie serwera}
+\subsection{Kod po stronie serwera obsługujący odebrane}
 Przykładowy kod wykonywany po stronie serwera obsługujący odebrane zapytanie od klienta przy uzyciu technologji Node.js oraz frameworków express i mongodb:
 \medskip
 \begin{lstlisting}
@@ -552,13 +602,13 @@ Po wykonaniu aplikacji zostały przeprowadzone testy manualne sprawdzające popr
 Kolejne przypadki testowe:
 
 \section{Uzyskanie dostępu do statycznych zasobów serwisu}
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{11.png}
 \captionsetup{labelformat=empty}
 \caption[]{Użytkownik wysyła żądanie pod adres serwera.}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{12.png}
 \captionsetup{labelformat=empty}
@@ -566,238 +616,255 @@ Kolejne przypadki testowe:
 \end{figure}
 
 \section{Rejerstracja w serwisie}
-\begin{enumerate}
-\item Użytkownik wypełnia formularz rejerstracyjny na stronie serwisu i wysyła dane do serwera. 
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{21.png}
+\captionsetup{labelformat=empty}
+\caption[]{Użytkownik wypełnia formularz rejerstracyjny na stronie serwisu i wysyła dane do serwera. }
 \end{figure}
-\item Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła strone główną aplikacji dostępna po zalogowaniu na konto lub informację o blędzie.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{22.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła strone główną aplikacji dostępna po zalogowaniu na konto lub informację o blędzie.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Potwierdzenie adresu email}
-\begin{enumerate}
-\item Po podaniu adresu email użytkowik otrzymuje wiadomość email zawierającą link aktywacyjny.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{31.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po podaniu adresu email użytkowik otrzymuje wiadomość email zawierającą link aktywacyjny.}
 \end{figure}
-\item Po kliknieciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawidłowy dla podanego użytkownika. 
-Następnie aktywuje adres email dla odpowiedniego użytkownika i wysyła w odpowiedzi strone główną aplikacji oraz wiadomość email o potwierdzeniu.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{32.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po kliknieciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawidłowy dla podanego użytkownika. 
+Następnie aktywuje adres email dla odpowiedniego użytkownika i wysyła w odpowiedzi strone główną aplikacji oraz wiadomość email o potwierdzeniu.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Logowanie się w serwisie}
-\begin{enumerate}
-\item Użytkownik wypełnia formularz na stronie serwisu i przesyła żądanie do serwera.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{41.png}
+\captionsetup{labelformat=empty}
+\caption[]{Użytkownik wypełnia formularz na stronie serwisu i przesyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza istnienie konta w serwisie. 
-W odpowiedzi użytkownik otrzymuje stronę główną aplikacji lub błąd o niepoprawnych danych.
-W czasie bycia zalogowanym co określony czas zostaje wysłane żądanie aktualizacji danych. 
-Aktualizacja następuje również każdorazowo po otrzymaniu pomyślnego potwierdzenia wykonania operacji przez serwer.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{42.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza istnienie konta w serwisie. 
+W odpowiedzi użytkownik otrzymuje stronę główną aplikacji lub błąd o niepoprawnych danych.
+W czasie bycia zalogowanym co określony czas zostaje wysłane żądanie aktualizacji danych. 
+Aktualizacja następuje również każdorazowo po otrzymaniu pomyślnego potwierdzenia wykonania operacji przez serwer.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Resetowanie hasła użytkowika}
-\begin{enumerate}
-\item Funkcja jest dostępna po potwierdzeniu adresu email dla konta. 
-Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkownik wysyła żądanie do serwera.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{51.png}
+\captionsetup{labelformat=empty}
+\caption[]{Funkcja jest dostępna po potwierdzeniu adresu email dla konta. 
+Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkownik wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza podane dane. W odpowiedzi wysyła informacje o przetworzeniu żądania i wiadomość email zawierającą nowe hasło do serwisu.
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{52.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza podane dane. W odpowiedzi wysyła informacje o przetworzeniu żądania.}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{53.png}
+\captionsetup{labelformat=empty}
+\caption[]{Otrzymujemy także wiadomość email zawierającą nowe hasło do serwisu.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Zmiana danych użytkownika}
-\begin{enumerate}
-\item Po zalogowaniu się i wypełnieniu odpowiedniego formularza na stronie serwisu użytkownik wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{61.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu się i wypełnieniu odpowiedniego formularza na stronie serwisu użytkownik wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Jeśli są poprawne aktualizuje je.
-W przeciwnym wypadku zwraca komunikat o błędzię. 
-Jeśli zmieni się również adres email użytkownik musi go ponownie zweryfikowac. 
-W odpowiedzi serwer wysyła strone główną aplikacji.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{62.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Jeśli są poprawne aktualizuje je.
+W przeciwnym wypadku zwraca komunikat o błędzię. 
+W odpowiedzi serwer wysyła strone główną aplikacji.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{63.png}
+\captionsetup{labelformat=empty}
+\caption[]{Jeśli zmieni się również adres email użytkownik musi go ponownie zweryfikowac. }
 \end{figure}
-\end{enumerate}
+
 
 \section{Utworzenie nowej tablicy z zadaniami}
-\begin{enumerate}
-\item Po zalogowaniu się użytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysyła je do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{71.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysyła je do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. 
-Jeśli są poprawne serwer tworzy nową tablice dla użytkownika i wysyła potwierdzenie w odpowiedzi.
-W przeciwnym wypadku odpowiada komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{72.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. 
+Jeśli są poprawne serwer tworzy nową tablice dla użytkownika i wysyła potwierdzenie w odpowiedzi.
+W przeciwnym wypadku odpowiada komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Wysyłanie zaproszenia do tablicy}
-\begin{enumerate}
-\item Po zalogowaniu się użytkownik wybiera opcje wysłania zaproszenia do wybranej tablicy, wypełnia dane i wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{01.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje wysłania zaproszenia do wybranej tablicy, wypełnia dane i wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poparwność danych. 
-W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{02.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poparwność danych. 
+W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu, lub komunikat o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Akceptacja zaproszenia}
-\begin{enumerate}
-\item Po zalogowaniu się użytkownik wybiera opcje zaakceptowania oczekującego zaproszenia i wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{81.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje zaakceptowania oczekującego zaproszenia i wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{82.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Odrzucenie zaproszenia}
-\begin{enumerate}
-\item Po zalogowaniu się użytkownik wybiera opcje odrzucenia oczekującego zaproszenia i wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje odrzucenia oczekującego zaproszenia i wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Wyrzucenie użytkownika z tablicy}
-\begin{enumerate}
-\item Po zalogowaniu się użytkownik wybiera opcje wyrzucenia użytkownika z określonej tablicy i wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{91.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje wyrzucenia użytkownika z określonej tablicy i wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{92.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Dodanie zadania}
-\begin{enumerate}
-\item Po zalogowaniu i wybraniu odpowiedniej tablicy użytkownik wybiera opcje dodania zadania, wypelnia dane i przesyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu i wybraniu odpowiedniej tablicy użytkownik wybiera opcje dodania zadania, wypelnia dane i przesyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Dodanie statusu zadania}
-\begin{enumerate}
-\item Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania użytkownik wybiera opcje dodania nowego statusu, uzupełnia dane i przesyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B1.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania użytkownik wybiera opcje dodania nowego statusu, uzupełnia dane i przesyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B2.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Usuwanie zadania}
-\begin{enumerate}
-\item Po zalogowaniu, wybraniu odpowiedniej tablicy i zakończonego zadania użytkownik wybiera opcje usuwania zadania i przesyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C1.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zakończonego zadania użytkownik wybiera opcje usuwania zadania i przesyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C2.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Opuszczanie tablicy}
-\begin{enumerate}
-\item Po zalogowaniu użytkonik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D1.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu użytkonik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D2.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
+
 
 \section{Usuwanie tablicy}
-\begin{enumerate}
-\item Po zalogowaniu użytkownik wybiera opcje usunięcia własnej tablicy i wysyła żądanie do serwera.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E1.png}
+\captionsetup{labelformat=empty}
+\caption[]{Po zalogowaniu użytkownik wybiera opcje usunięcia własnej tablicy i wysyła żądanie do serwera.}
 \end{figure}
-\item Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E2.png}
+\captionsetup{labelformat=empty}
+\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzię.}
 \end{figure}
-\end{enumerate}
 
 
 \chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
 Wykoanana aplikacja spełnia zadana w warunkach funkcjonalnosc. 
-Zostały osiągnięte wszystkie początkowe założenia oraz wymagania aplikacji przy użyciu możliwości dostarczanej przez technologie Node.js. 
+Zostały osiągnięte wszystkie założenia oraz wymagania aplikacji przy użyciu możliwości dostarczanej przez technologie Node.js. 
 Stworzony projekt doskonale nadaje się do użytkownia przez zorganizowane zespoły do wykonywania określonych zadań. 
 Mógłby być na przykład używany do zarządzania pracą zespołów deweloperskich pracujących w różnych metodykach takich jak scrum czy kanban. 
 Dostarcza przejżysty interfejs oraz nieskomplikowaną prezetacje danych dla końcowych użytkowników, przez co nie wymaga praktycznie żadnych szkoleń lub procesów wdrożenioywch w celu zdobycia umiejętności biegłej obsługi narzędzia. 
