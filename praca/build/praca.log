@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.17)  20 JUL 2017 17:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.17)  20 JUL 2017 17:34
 entering extended mode
 **./praca.tex
 (praca.tex
@@ -668,7 +668,6 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 )
 \c@definition=\count115
 \c@example=\count116
-\c@corollary=\count117
 
 ("C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\praca\build\
 praca.aux"
@@ -678,42 +677,42 @@ LaTeX Warning: Label `libuv' multiply defined.
 )
 \openout1 = `praca.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 112.
-LaTeX Font Info:    Try loading font information for OML+txmi on input line 112
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 111.
+LaTeX Font Info:    Try loading font information for OML+txmi on input line 111
 .
  (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 112.
-LaTeX Font Info:    Try loading font information for OMS+txsy on input line 112
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 111.
+LaTeX Font Info:    Try loading font information for OMS+txsy on input line 111
 .
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 112.
-LaTeX Font Info:    Try loading font information for OMX+txex on input line 112
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 111.
+LaTeX Font Info:    Try loading font information for OMX+txex on input line 111
 .
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 112.
-LaTeX Font Info:    Try loading font information for U+txexa on input line 112.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 111.
+LaTeX Font Info:    Try loading font information for U+txexa on input line 111.
 
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Try loading font information for T1+txr on input line 112.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Try loading font information for T1+txr on input line 111.
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\t1txr.fd
 File: t1txr.fd 2000/12/15 v3.1
@@ -725,16 +724,16 @@ Package caption Info: End \AtBeginDocument code.
 
 (D:\Pobrane\Texmaker\Miktex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count118
+\scratchcounter=\count117
 \scratchdimen=\dimen136
 \scratchbox=\box35
-\nofMPsegments=\count119
-\nofMParguments=\count120
+\nofMPsegments=\count118
+\nofMParguments=\count119
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count121
+\MPscratchCnt=\count120
 \MPscratchDim=\dimen137
-\MPnumerator=\count122
-\makeMPintoPDFobject=\count123
+\MPnumerator=\count121
+\makeMPintoPDFobject=\count122
 \everyMPtoPDFconversion=\toks29
 ) (D:\Pobrane\Texmaker\Miktex\tex\generic\oberdiek\pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
@@ -781,7 +780,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\c@lstlisting=\count124
+\c@lstlisting=\count123
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
@@ -819,43 +818,43 @@ File: utxsyc.fd 2000/12/15 v3.1
  [2]
 Rozdzia\IeC {\l } 1.
 
-Overfull \hbox (4.82547pt too wide) in paragraph at lines 122--131
+Overfull \hbox (4.82547pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 roku, za-pro-jek-towany przez Ryana Dahla. Pozwala na tworze-nie
  ser-w-erów i narz[]dzi
  []
 
 
-Overfull \hbox (2.83345pt too wide) in paragraph at lines 122--131
+Overfull \hbox (2.83345pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 sieciowych dziaªaj[]cych po stronie ser-w-era. Przed pow-staniem
  j[]zyka kod javascrip-
  []
 
 
-Overfull \hbox (22.64542pt too wide) in paragraph at lines 122--131
+Overfull \hbox (22.64542pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 co pozwalaªo na bezproblemow[] ma-nip-u-lacje ko-dem ¹ródªowym s
 trony przez u»ytkown-
  []
 
 
-Overfull \hbox (5.04144pt too wide) in paragraph at lines 122--131
+Overfull \hbox (5.04144pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 ika, daj[]c mo»li-wo±¢ wykony-wa-nia zªo±li-wych skryp-tów, naru
 sze-nie bez-piecze«stwa
  []
 
 
-Overfull \hbox (6.51746pt too wide) in paragraph at lines 122--131
+Overfull \hbox (6.51746pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 Node.js mo»e dzi-aªa¢ nieza-le»nie od ±rodowiska uru-chomieniowe
 go. Jest ono zgodne
  []
 
 
-Overfull \hbox (27.14545pt too wide) in paragraph at lines 122--131
+Overfull \hbox (27.14545pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 okresu »y-cia ±rodowiska za-owocow-aªo ogromn[] ilo±ci[] pro-jek
 -tów open-source, tysi[]cami
  []
 
 
-Overfull \hbox (11.83273pt too wide) in paragraph at lines 122--131
+Overfull \hbox (11.83273pt too wide) in paragraph at lines 121--130
 \T1/txr/m/n/12 Linkedln, Mi-crosoft, Net-flix, Pay-Pal, Ya-hoo. Na-jpop-u-larni
 ejszymi API wspieraj[]cymi
  []
@@ -863,27 +862,27 @@ ejszymi API wspieraj[]cymi
 [3
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+txr on input line 135.
+LaTeX Font Info:    Try loading font information for OMS+txr on input line 134.
 
  (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <12> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 135.
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 134.
 
-Overfull \hbox (33.43272pt too wide) in paragraph at lines 141--148
+Overfull \hbox (33.43272pt too wide) in paragraph at lines 140--147
 \T1/txr/m/n/12 bramki API. API to skrót od Ap-pli-ca-tion Pro-gram-ming In-ter-
 face; opisuje, jak poszczególne
  []
 
 
-Overfull \hbox (15.10947pt too wide) in paragraph at lines 141--148
+Overfull \hbox (15.10947pt too wide) in paragraph at lines 140--147
 \T1/txr/m/n/12 dzi[]ki asyn-chron-icznemu przetwarza-niu danych dostar-czanych 
 do ap-likacji, w zwi[]zku
  []
 
 
-Overfull \hbox (18.43344pt too wide) in paragraph at lines 150--167
+Overfull \hbox (18.43344pt too wide) in paragraph at lines 149--166
 \T1/txr/m/n/12 niejszenia nakªadów pracy przy wyt-warza-niu opro-gramowa-nia s[
 ] Ex-press.js, Socket.IO,
  []
@@ -891,55 +890,55 @@ Overfull \hbox (18.43344pt too wide) in paragraph at lines 150--167
 [4] [5]
 Rozdzia\IeC {\l } 2.
 
-Overfull \hbox (4.45346pt too wide) in paragraph at lines 171--184
+Overfull \hbox (4.45346pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 ap-likacji (run time), na przykªad in-ter-akcji u»ytkown-ika, cz
 y otrzy-ma-nia okre±lonych
  []
 
 
-Overfull \hbox (6.39679pt too wide) in paragraph at lines 171--184
+Overfull \hbox (6.39679pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 syg-naªów. W przy-padku j[]zyka Node.js, kiedy ap-likacjia peªni
  rol[] ser-w-era, paradyg-
  []
 
 
-Overfull \hbox (4.12877pt too wide) in paragraph at lines 171--184
+Overfull \hbox (4.12877pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 oraz uru-chomionych przez nie zdarze« tzn. funkcji. W ap-likacji
  sterowanej zdarzeni-
  []
 
 
-Overfull \hbox (12.34947pt too wide) in paragraph at lines 171--184
+Overfull \hbox (12.34947pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 ami nale»y wyró»ni¢ p[]tl[] gªówn[], która jest odpowiedzialna z
 a obsªug[] zachodz[]cych
  []
 
 
-Overfull \hbox (9.26544pt too wide) in paragraph at lines 171--184
+Overfull \hbox (9.26544pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 nych. S[] to wyodr[]bnione cz[]±ci kodu, które po wyko-na-niu sw
 o-jego zada-nia zwracaj[]
  []
 
 
-Overfull \hbox (52.68143pt too wide) in paragraph at lines 171--184
+Overfull \hbox (52.68143pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 men-towa-nia w wielu j[]zykach pro-gramowa-nia oraz cz[]sto prow
 adz-iªy do niesatysfakcjonuj[]cej
  []
 
 
-Overfull \hbox (5.7614pt too wide) in paragraph at lines 171--184
+Overfull \hbox (5.7614pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 C++, wypro-dukowanym przez Google, wyko-rzysty-wanym w przegl[]d
 arkach Google
  []
 
 
-Overfull \hbox (2.04144pt too wide) in paragraph at lines 171--184
+Overfull \hbox (2.04144pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 kodu maszynowego przed jego wyko-naniem, a co za tym idzie, wi[]
 ksz[] wydajno±ci[]
  []
 
 
-Overfull \hbox (12.03749pt too wide) in paragraph at lines 171--184
+Overfull \hbox (12.03749pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 pod-czas dzi-aªa-nia pro-gramu. Za-pew-nia on równie» odpowied-n
 ie zarz[]dzanie pami[]ci[]
  []
@@ -950,51 +949,51 @@ ie zarz[]dzanie pami[]ci[]
 File: images/eventLoop.png Graphic file (type png)
 
 <use images/eventLoop.png>
-Package pdftex.def Info: images/eventLoop.png used on input line 187.
+Package pdftex.def Info: images/eventLoop.png used on input line 186.
 (pdftex.def)             Requested size: 398.32971pt x 215.32388pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
 []\T1/txr/m/n/12 Rysunek 2.1: |P[]tla zdarze« w ±rodowisku Node.js - ¹ródªo:
  []
 
 
-Overfull \hbox (19.88472pt too wide) in paragraph at lines 192--211
+Overfull \hbox (19.88472pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 szego wykony-wa-nia w[]tku do czasu za-ko«czenia przetwarza-nia.
  W rezulta-cie okre±lony
  []
 
 
-Overfull \hbox (7.57346pt too wide) in paragraph at lines 192--211
+Overfull \hbox (7.57346pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 funkcja zwrotna lub ogªos-zone zostaje zdarze-nie w poszczegól-n
 ych cz[]±ciach wykon-
  []
 
 
-Overfull \hbox (8.02942pt too wide) in paragraph at lines 192--211
+Overfull \hbox (8.02942pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 nazy-wany przed-miotem ob-ser-wowanym okre±la za-le»no±ci wzgl[]
 dem obserwuj[]cych
  []
 
 
-Overfull \hbox (2.06541pt too wide) in paragraph at lines 192--211
+Overfull \hbox (2.06541pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 jed-nego w[]tku jest brak skalowal-no±ci pod wzgl[]dem mo»li-wo±
 ci zwi[]kszenia ilo±ci
  []
 
 
-Overfull \hbox (0.32478pt too wide) in paragraph at lines 192--211
+Overfull \hbox (0.32478pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 pro-cesów, które wspóªdziel[] porty ser-w-era), Stron-gLoop PM (
 za-pew-nia zarz[]dzanie
  []
 
 
-Overfull \hbox (4.34544pt too wide) in paragraph at lines 192--211
+Overfull \hbox (4.34544pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 pro-ce-sem pro-duk-cyjnym ap-likacji Node.js ze ws-par-ciem odpo
 wied-niego zarz[]dzania
  []
 
 
-Overfull \hbox (4.69345pt too wide) in paragraph at lines 192--211
+Overfull \hbox (4.69345pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 za-sobów z mo»liwo±ci[] nieprz-er-wanego dzi-aªa-nia ap-likacji 
 przy u»y-ciu przenoszenia
  []
@@ -1003,40 +1002,40 @@ przy u»y-ciu przenoszenia
 <images/thread.png, id=36, 396.7322pt x 371.13657pt>
 File: images/thread.png Graphic file (type png)
  <use images/thread.png>
-Package pdftex.def Info: images/thread.png used on input line 214.
+Package pdftex.def Info: images/thread.png used on input line 213.
 (pdftex.def)             Requested size: 398.34753pt x 372.64769pt.
 
-Underfull \hbox (badness 1910) in paragraph at lines 215--215
+Underfull \hbox (badness 1910) in paragraph at lines 214--214
 []\T1/txr/m/n/12 Rysunek 2.2: |Model pro-gramowa-nia wspóª-bie»nego wyko-rzysty
 -wany przez
  []
 
 
-Overfull \hbox (4.50145pt too wide) in paragraph at lines 219--230
+Overfull \hbox (4.50145pt too wide) in paragraph at lines 218--229
 \T1/txr/m/n/12 okre±lone w[]tki lub pro-cesy sytemu op-er-a-cyjnego, które w po
 rów-na-niu z technologi[]
  []
 
 
-Overfull \hbox (3.72145pt too wide) in paragraph at lines 219--230
+Overfull \hbox (3.72145pt too wide) in paragraph at lines 218--229
 \T1/txr/m/n/12 pro-gramu, wi[]c nie ma równie» potrzeby alokowa-nia za-sobów dl
 a ka»dego z w[]tków
  []
 
 
-Overfull \hbox (14.40143pt too wide) in paragraph at lines 219--230
+Overfull \hbox (14.40143pt too wide) in paragraph at lines 218--229
 \T1/txr/m/n/12 ar-chitek-tury opro-gramowa-nia, który opisuje sposób oper-owa-n
 ia za-py-ta-ni-ami pomi[]dzy
  []
 
 
-Overfull \hbox (9.72147pt too wide) in paragraph at lines 219--230
+Overfull \hbox (9.72147pt too wide) in paragraph at lines 218--229
 \T1/txr/m/n/12 Api, w prosty sposób poprzez obsªug[] zada« oraz odpowiedzi. Zos
 taª on nast[]pnikiem
  []
 
 
-Overfull \hbox (8.70142pt too wide) in paragraph at lines 219--230
+Overfull \hbox (8.70142pt too wide) in paragraph at lines 218--229
 \T1/txr/m/n/12 temat in-stancji korzystaj[]cych z przesyªanych za-sobów - mo»e 
 in-te-growa¢ ±rodowiska
  []
@@ -1046,27 +1045,27 @@ in-te-growa¢ ±rodowiska
 File: images/statuses.png Graphic file (type png)
 
 <use images/statuses.png>
-Package pdftex.def Info: images/statuses.png used on input line 233.
+Package pdftex.def Info: images/statuses.png used on input line 232.
 (pdftex.def)             Requested size: 398.36153pt x 228.8723pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--234
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/txr/m/n/12 Rysunek 2.3: |Kody sta-tusu pro-tokoªu http - ¹ródªo:
  []
 
-LaTeX Font Info:    Try loading font information for T1+txtt on input line 241.
+LaTeX Font Info:    Try loading font information for T1+txtt on input line 240.
 
 (D:\Pobrane\Texmaker\Miktex\tex\latex\txfonts\t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 ) [11 <./images/statuses.png>] [12]
 Rozdzia\IeC {\l } 3.
 
-Overfull \hbox (9.31343pt too wide) in paragraph at lines 268--275
+Overfull \hbox (9.31343pt too wide) in paragraph at lines 267--274
 \T1/txr/m/n/12 okre±lonej tabl-icy powinien mie¢ mo»li-wo±¢ zarz[]dzania dost[]
 pem do tabl-icy poprzez
  []
 
 
-Overfull \hbox (9.2534pt too wide) in paragraph at lines 277--280
+Overfull \hbox (9.2534pt too wide) in paragraph at lines 276--279
 \T1/txr/m/n/12 Analiza wyma-ga« funkcjon-al-nych umo»li-wia zi-den-ty-fikowanie
  i opisanie po»[]danego
  []
@@ -1074,13 +1073,13 @@ Overfull \hbox (9.2534pt too wide) in paragraph at lines 277--280
 [13
 
 ]
-Overfull \hbox (32.9761pt too wide) in paragraph at lines 296--297
+Overfull \hbox (32.9761pt too wide) in paragraph at lines 295--296
 []\T1/txr/m/n/12 Mo»liwo±¢ otrzymy-wa-nia powiadomie« o ak-tu-al-nym sta-tusie 
 tablic oraz poszczegól-
  []
 
 
-Overfull \hbox (20.44809pt too wide) in paragraph at lines 306--307
+Overfull \hbox (20.44809pt too wide) in paragraph at lines 305--306
 []\T1/txr/m/n/12 Budowa in-ter-fe-jsu u»ytkown-ika musi by¢ mo»li-wie in-tu-icy
 jna i prosta w obsªudz[]. 
  []
@@ -1088,13 +1087,13 @@ jna i prosta w obsªudz[].
 [14] [15]
 Rozdzia\IeC {\l } 4.
 
-Overfull \hbox (15.86545pt too wide) in paragraph at lines 332--337
+Overfull \hbox (15.86545pt too wide) in paragraph at lines 331--336
 \T1/txr/m/n/12 menty. Ope-ruje na nierela-cyjnych bazach danych. U»ywa struk-tu
 r json jako schematów
  []
 
 
-Overfull \hbox (0.2174pt too wide) in paragraph at lines 332--337
+Overfull \hbox (0.2174pt too wide) in paragraph at lines 331--336
 \T1/txr/m/n/12 bu-dowy bazy danych. Udost[]pnia caªkowit[] dowol-no±¢ w bu-dowi
 e struk-tury wyma-
  []
@@ -1102,19 +1101,19 @@ e struk-tury wyma-
 [16
 
 ]
-Overfull \hbox (10.72945pt too wide) in paragraph at lines 348--355
+Overfull \hbox (10.72945pt too wide) in paragraph at lines 347--354
 \T1/txr/m/n/12 on mniejszych nakªadów pracy od stan-dardu xml. Powy»sze frame-w
 orki wspóªpracuj[]
  []
 
 
-Overfull \hbox (11.07741pt too wide) in paragraph at lines 348--355
+Overfull \hbox (11.07741pt too wide) in paragraph at lines 347--354
 \T1/txr/m/n/12 ap-likacje in-ter-ne-towa u»ytkown-ikowi, odpowiada za przyj-mow
 anie danych i z pomoc[]
  []
 
 
-Overfull \hbox (27.76944pt too wide) in paragraph at lines 348--355
+Overfull \hbox (27.76944pt too wide) in paragraph at lines 347--354
 \T1/txr/m/n/12 tech-nologii ex-press, wykorzystuj[]c metod[] routingu, dopa-sow
 uje za-py-tanie do odpowied-
  []
@@ -1122,26 +1121,26 @@ uje za-py-tanie do odpowied-
 [17] <images/Meanex.png, id=69, 1027.84pt x 493.845pt>
 File: images/Meanex.png Graphic file (type png)
  <use images/Meanex.png>
-Package pdftex.def Info: images/Meanex.png used on input line 358.
+Package pdftex.def Info: images/Meanex.png used on input line 357.
 (pdftex.def)             Requested size: 398.34662pt x 191.3931pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 359--359
+Underfull \hbox (badness 10000) in paragraph at lines 358--358
 []\T1/txr/m/n/12 Rysunek 4.1: |Przepªyw ko-mu-nikacji w MEAN Stack ¹ródªo:
  []
 
 <images/K-S.png, id=70, 453.19313pt x 189.70876pt>
 File: images/K-S.png Graphic file (type png)
  <use images/K-S.png>
-Package pdftex.def Info: images/K-S.png used on input line 366.
+Package pdftex.def Info: images/K-S.png used on input line 365.
 (pdftex.def)             Requested size: 398.34094pt x 166.74736pt.
 
-Overfull \hbox (0.22945pt too wide) in paragraph at lines 363--370
+Overfull \hbox (0.22945pt too wide) in paragraph at lines 362--369
 \T1/txr/m/n/12 zawieraj[]cy warstw[] prezen-tacji ap-likacji, plik css zawieraj
 []cy styl warstwy prezen-
  []
 
 
-Overfull \hbox (18.67345pt too wide) in paragraph at lines 363--370
+Overfull \hbox (18.67345pt too wide) in paragraph at lines 362--369
 \T1/txr/m/n/12 tacji, czy plik zawieraj[]cy funkcje wyko-rzysty-wane przez ap-l
 ikacje w j[]zyku javaScript.
  []
@@ -1151,16 +1150,16 @@ ikacje w j[]zyku javaScript.
 File: images/U-P-S-B.png Graphic file (type png)
 
 <use images/U-P-S-B.png>
-Package pdftex.def Info: images/U-P-S-B.png used on input line 379.
+Package pdftex.def Info: images/U-P-S-B.png used on input line 378.
 (pdftex.def)             Requested size: 398.34094pt x 229.60847pt.
 
-Overfull \hbox (1.88542pt too wide) in paragraph at lines 376--383
+Overfull \hbox (1.88542pt too wide) in paragraph at lines 375--382
 \T1/txr/m/n/12 specy-ficznego u»ytkown-ika wyko-rzys-tuje metod[] post. Przykªa
 d-owe dane wymieni-
  []
 
 [19 <./images/U-P-S-B.png>]
-Overfull \hbox (2.68814pt too wide) in paragraph at lines 389--390
+Overfull \hbox (2.68814pt too wide) in paragraph at lines 388--389
 []\T1/txr/m/n/12 Odpowied¹ na za-py-tanie bazo-danowe zostaje ode-brane i zosta
 j[] przy-go-towane
  []
@@ -1171,19 +1170,19 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (D:\Pobrane\Texmaker\Miktex\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) [22] [23] [24]
-Overfull \hbox (3.18015pt too wide) in paragraph at lines 574--576
+Overfull \hbox (3.18015pt too wide) in paragraph at lines 573--575
 []\T1/txr/m/n/12 fs - file stream, odpowiada za obsªug[] za-pisu oraz wczy-ty-w
 a-nia plików. Wyko-
  []
 
 
-Overfull \hbox (12.52814pt too wide) in paragraph at lines 574--576
+Overfull \hbox (12.52814pt too wide) in paragraph at lines 573--575
 \T1/txr/m/n/12 dex.htm (strona gªówna w for-ma-cie html), main.js (funkcje w j[
 ]zyku javaScript),
  []
 
 [25]
-Overfull \hbox (15.24016pt too wide) in paragraph at lines 579--580
+Overfull \hbox (15.24016pt too wide) in paragraph at lines 578--579
 \T1/txr/m/n/12 branego przez ser-wer »[]dania, wyko-rzys-tany zostaª w celu od-
 czytów poszczegól-
  []
@@ -1191,7 +1190,7 @@ czytów poszczegól-
 [26] [27]
 Rozdzia\IeC {\l } 5.
 
-Overfull \hbox (34.70544pt too wide) in paragraph at lines 598--600
+Overfull \hbox (34.70544pt too wide) in paragraph at lines 597--599
 \T1/txr/m/n/12 Po wyko-na-niu ap-likacji zostaªy przeprowad-zone testy man-u-al
 ne, sprawdzaj[]ce poprawno±¢
  []
@@ -1201,136 +1200,136 @@ ne, sprawdzaj[]ce poprawno±¢
 ] <images/11.png, id=108, 1204.5pt x 460.72125pt>
 File: images/11.png Graphic file (type png)
  <use images/11.png>
-Package pdftex.def Info: images/11.png used on input line 604.
+Package pdftex.def Info: images/11.png used on input line 603.
 (pdftex.def)             Requested size: 398.33168pt x 152.36186pt.
 
 <images/12.png, id=109, 1204.5pt x 462.22687pt>
 File: images/12.png Graphic file (type png)
  <use images/12.png>
-Package pdftex.def Info: images/12.png used on input line 610.
+Package pdftex.def Info: images/12.png used on input line 609.
 (pdftex.def)             Requested size: 398.33168pt x 152.85977pt.
  [29 <./images/11.png> <./images/12.png>] <images/21.png, id=113, 1204.5pt x 45
 9.21562pt>
 File: images/21.png Graphic file (type png)
 
 <use images/21.png>
-Package pdftex.def Info: images/21.png used on input line 619.
+Package pdftex.def Info: images/21.png used on input line 618.
 (pdftex.def)             Requested size: 398.33168pt x 151.86394pt.
  <images/22.png, id=114, 1204.5pt x 461.47406pt>
 File: images/22.png Graphic file (type png)
 
 <use images/22.png>
-Package pdftex.def Info: images/22.png used on input line 625.
+Package pdftex.def Info: images/22.png used on input line 624.
 (pdftex.def)             Requested size: 398.33168pt x 152.61081pt.
  [30 <./images/21.png> <./images/22.png>]
 <images/31.png, id=119, 1029.8475pt x 577.40718pt>
 File: images/31.png Graphic file (type png)
  <use images/31.png>
-Package pdftex.def Info: images/31.png used on input line 634.
+Package pdftex.def Info: images/31.png used on input line 633.
 (pdftex.def)             Requested size: 398.33893pt x 223.33769pt.
 
 <images/32.png, id=120, 1204.5pt x 461.47406pt>
 File: images/32.png Graphic file (type png)
  <use images/32.png>
-Package pdftex.def Info: images/32.png used on input line 640.
+Package pdftex.def Info: images/32.png used on input line 639.
 (pdftex.def)             Requested size: 398.33168pt x 152.61081pt.
  [31 <./images/31.png> <./images/32.png>] <images/41.png, id=125, 1204.5pt x 46
 2.22687pt>
 File: images/41.png Graphic file (type png)
 
 <use images/41.png>
-Package pdftex.def Info: images/41.png used on input line 650.
+Package pdftex.def Info: images/41.png used on input line 649.
 (pdftex.def)             Requested size: 398.33168pt x 152.85977pt.
  <images/42.png, id=126, 1204.5pt x 459.96844pt>
 File: images/42.png Graphic file (type png)
 
 <use images/42.png>
-Package pdftex.def Info: images/42.png used on input line 656.
+Package pdftex.def Info: images/42.png used on input line 655.
 (pdftex.def)             Requested size: 398.33168pt x 152.1129pt.
  [32 <./images/41.png> <./images/42.png>]
 <images/51.png, id=130, 1204.5pt x 462.97969pt>
 File: images/51.png Graphic file (type png)
  <use images/51.png>
-Package pdftex.def Info: images/51.png used on input line 668.
+Package pdftex.def Info: images/51.png used on input line 667.
 (pdftex.def)             Requested size: 398.33168pt x 153.10873pt.
 
 <images/52.png, id=131, 1204.5pt x 466.74374pt>
 File: images/52.png Graphic file (type png)
  <use images/52.png>
-Package pdftex.def Info: images/52.png used on input line 675.
+Package pdftex.def Info: images/52.png used on input line 674.
 (pdftex.def)             Requested size: 398.33168pt x 154.35352pt.
  [33 <./images/51.png> <./images/52.png>]
 <images/53.png, id=135, 1029.09468pt x 575.90157pt>
 File: images/53.png Graphic file (type png)
  <use images/53.png>
-Package pdftex.def Info: images/53.png used on input line 682.
+Package pdftex.def Info: images/53.png used on input line 681.
 (pdftex.def)             Requested size: 398.34608pt x 222.92229pt.
 
 [34 <./images/53.png>] <images/61.png, id=140, 1204.5pt x 461.47406pt>
 File: images/61.png Graphic file (type png)
 
 <use images/61.png>
-Package pdftex.def Info: images/61.png used on input line 691.
+Package pdftex.def Info: images/61.png used on input line 690.
 (pdftex.def)             Requested size: 398.33168pt x 152.61081pt.
  <images/62.png, id=141, 1204.5pt x 463.7325pt>
 File: images/62.png Graphic file (type png)
 
 <use images/62.png>
-Package pdftex.def Info: images/62.png used on input line 697.
+Package pdftex.def Info: images/62.png used on input line 696.
 (pdftex.def)             Requested size: 398.33168pt x 153.35768pt.
  [35 <./images/61.png> <./images/62.png>]
 <images/63.png, id=145, 1029.09468pt x 575.90157pt>
 File: images/63.png Graphic file (type png)
  <use images/63.png>
-Package pdftex.def Info: images/63.png used on input line 706.
+Package pdftex.def Info: images/63.png used on input line 705.
 (pdftex.def)             Requested size: 398.34608pt x 222.92229pt.
 
 [36 <./images/63.png>] <images/71.png, id=151, 1204.5pt x 463.7325pt>
 File: images/71.png Graphic file (type png)
 
 <use images/71.png>
-Package pdftex.def Info: images/71.png used on input line 715.
+Package pdftex.def Info: images/71.png used on input line 714.
 (pdftex.def)             Requested size: 398.33168pt x 153.35768pt.
  <images/72.png, id=152, 1528.20938pt x 578.16pt>
 File: images/72.png Graphic file (type png)
 
 <use images/72.png>
-Package pdftex.def Info: images/72.png used on input line 721.
+Package pdftex.def Info: images/72.png used on input line 720.
 (pdftex.def)             Requested size: 398.32777pt x 150.69739pt.
  [37 <./images/71.png> <./images/72.png>]
 <images/01.png, id=157, 1519.92844pt x 575.90157pt>
 File: images/01.png Graphic file (type png)
  <use images/01.png>
-Package pdftex.def Info: images/01.png used on input line 732.
+Package pdftex.def Info: images/01.png used on input line 731.
 (pdftex.def)             Requested size: 398.32622pt x 150.92598pt.
 
 <images/02.png, id=158, 1521.43407pt x 575.90157pt>
 File: images/02.png Graphic file (type png)
  <use images/02.png>
-Package pdftex.def Info: images/02.png used on input line 738.
+Package pdftex.def Info: images/02.png used on input line 737.
 (pdftex.def)             Requested size: 398.32614pt x 150.77658pt.
 
 [38 <./images/01.png> <./images/02.png>]
 <images/81.png, id=164, 1525.95094pt x 575.90157pt>
 File: images/81.png Graphic file (type png)
  <use images/81.png>
-Package pdftex.def Info: images/81.png used on input line 748.
+Package pdftex.def Info: images/81.png used on input line 747.
 (pdftex.def)             Requested size: 398.32121pt x 150.32843pt.
 
 <images/82.png, id=165, 1522.93968pt x 577.40718pt>
 File: images/82.png Graphic file (type png)
  <use images/82.png>
-Package pdftex.def Info: images/82.png used on input line 754.
+Package pdftex.def Info: images/82.png used on input line 753.
 (pdftex.def)             Requested size: 398.32527pt x 151.021pt.
 
 [39 <./images/81.png> <./images/82.png>]
 <images/A1.png, id=171, 1204.5pt x 458.46281pt>
 File: images/A1.png Graphic file (type png)
  <use images/A1.png>
-Package pdftex.def Info: images/A1.png used on input line 763.
+Package pdftex.def Info: images/A1.png used on input line 762.
 (pdftex.def)             Requested size: 398.33168pt x 151.61499pt.
 
-Underfull \hbox (badness 1325) in paragraph at lines 765--765
+Underfull \hbox (badness 1325) in paragraph at lines 764--764
 []|\T1/txr/m/n/12 Po za-l-o-gowa-niu si[] u»ytkownik wybiera opcje odrzuce-nia 
 oczekuj[]cego za-
  []
@@ -1338,17 +1337,17 @@ oczekuj[]cego za-
 <images/A2.png, id=172, 1204.5pt x 462.97969pt>
 File: images/A2.png Graphic file (type png)
  <use images/A2.png>
-Package pdftex.def Info: images/A2.png used on input line 769.
+Package pdftex.def Info: images/A2.png used on input line 768.
 (pdftex.def)             Requested size: 398.33168pt x 153.10873pt.
  [40 <./images/A1.png> <./images/A2.png>] <images/91.png, id=176, 1204.5pt x 46
 4.4853pt>
 File: images/91.png Graphic file (type png)
 
 <use images/91.png>
-Package pdftex.def Info: images/91.png used on input line 778.
+Package pdftex.def Info: images/91.png used on input line 777.
 (pdftex.def)             Requested size: 398.33168pt x 153.60664pt.
 
-Underfull \hbox (badness 2913) in paragraph at lines 780--780
+Underfull \hbox (badness 2913) in paragraph at lines 779--779
 []|\T1/txr/m/n/12 Po za-l-o-gowa-niu si[] u»ytkownik wybiera opcje wyrzuce-nia 
 u»ytkown-ika z
  []
@@ -1356,37 +1355,37 @@ u»ytkown-ika z
 <images/92.png, id=177, 1204.5pt x 466.74374pt>
 File: images/92.png Graphic file (type png)
  <use images/92.png>
-Package pdftex.def Info: images/92.png used on input line 784.
+Package pdftex.def Info: images/92.png used on input line 783.
 (pdftex.def)             Requested size: 398.33168pt x 154.35352pt.
  [41 <./images/91.png> <./images/92.png>]
 File: images/A1.png Graphic file (type png)
  <use images/A1.png>
-Package pdftex.def Info: images/A1.png used on input line 793.
+Package pdftex.def Info: images/A1.png used on input line 792.
 (pdftex.def)             Requested size: 398.33168pt x 151.61499pt.
 File: images/A2.png Graphic file (type png)
  <use images/A2.png>
-Package pdftex.def Info: images/A2.png used on input line 799.
+Package pdftex.def Info: images/A2.png used on input line 798.
 (pdftex.def)             Requested size: 398.33168pt x 153.10873pt.
  [42]
 <images/B1.png, id=185, 1204.5pt x 460.72125pt>
 File: images/B1.png Graphic file (type png)
  <use images/B1.png>
-Package pdftex.def Info: images/B1.png used on input line 808.
+Package pdftex.def Info: images/B1.png used on input line 807.
 (pdftex.def)             Requested size: 398.33168pt x 152.36186pt.
 
 <images/B2.png, id=186, 1204.5pt x 463.7325pt>
 File: images/B2.png Graphic file (type png)
  <use images/B2.png>
-Package pdftex.def Info: images/B2.png used on input line 814.
+Package pdftex.def Info: images/B2.png used on input line 813.
 (pdftex.def)             Requested size: 398.33168pt x 153.35768pt.
  [43 <./images/B1.png> <./images/B2.png>]
 <images/C1.png, id=190, 1510.89468pt x 577.40718pt>
 File: images/C1.png Graphic file (type png)
  <use images/C1.png>
-Package pdftex.def Info: images/C1.png used on input line 823.
+Package pdftex.def Info: images/C1.png used on input line 822.
 (pdftex.def)             Requested size: 398.33334pt x 152.22804pt.
 
-Underfull \hbox (badness 5475) in paragraph at lines 825--825
+Underfull \hbox (badness 5475) in paragraph at lines 824--824
 []|\T1/txr/m/n/12 Po za-l-o-gowa-niu, wybra-niu odpowied-niej tabl-icy i za-ko«
 c-zonego zada-nia
  []
@@ -1394,17 +1393,17 @@ c-zonego zada-nia
 <images/C2.png, id=191, 1516.91719pt x 575.90157pt>
 File: images/C2.png Graphic file (type png)
  <use images/C2.png>
-Package pdftex.def Info: images/C2.png used on input line 829.
+Package pdftex.def Info: images/C2.png used on input line 828.
 (pdftex.def)             Requested size: 398.32404pt x 151.22475pt.
 
 [44 <./images/C1.png> <./images/C2.png>]
 <images/D1.png, id=197, 1536.49031pt x 578.16pt>
 File: images/D1.png Graphic file (type png)
  <use images/D1.png>
-Package pdftex.def Info: images/D1.png used on input line 838.
+Package pdftex.def Info: images/D1.png used on input line 837.
 (pdftex.def)             Requested size: 398.32925pt x 149.88577pt.
 
-Underfull \hbox (badness 2237) in paragraph at lines 840--840
+Underfull \hbox (badness 2237) in paragraph at lines 839--839
 []|\T1/txr/m/n/12 Po za-l-o-gowa-niu u»ytkownik wybiera opcje opuszczenia tabl-
 icy, której jest
  []
@@ -1412,31 +1411,31 @@ icy, której jest
 <images/D2.png, id=198, 1539.50156pt x 578.16pt>
 File: images/D2.png Graphic file (type png)
  <use images/D2.png>
-Package pdftex.def Info: images/D2.png used on input line 844.
+Package pdftex.def Info: images/D2.png used on input line 843.
 (pdftex.def)             Requested size: 398.33472pt x 149.59465pt.
  [45 <./images/D1.png> <./images/D2.png>]
 <images/E1.png, id=203, 1533.47906pt x 575.14874pt>
 File: images/E1.png Graphic file (type png)
  <use images/E1.png>
-Package pdftex.def Info: images/E1.png used on input line 853.
+Package pdftex.def Info: images/E1.png used on input line 852.
 (pdftex.def)             Requested size: 398.32077pt x 149.39473pt.
 
 <images/E2.png, id=204, 1536.49031pt x 581.92406pt>
 File: images/E2.png Graphic file (type png)
  <use images/E2.png>
-Package pdftex.def Info: images/E2.png used on input line 859.
+Package pdftex.def Info: images/E2.png used on input line 858.
 (pdftex.def)             Requested size: 398.32925pt x 150.86159pt.
 
 [46 <./images/E1.png> <./images/E2.png>]
 Rozdzia\IeC {\l } 6.
 
-Overfull \hbox (4.88545pt too wide) in paragraph at lines 866--884
+Overfull \hbox (4.88545pt too wide) in paragraph at lines 865--883
 \T1/txr/m/n/12 Wykonana ap-likacja speª-nia zadan[] w warunk-ach funkcjon-al-no
 ±¢. Zostaªy osi[]gni[]te
  []
 
 
-Overfull \hbox (3.64946pt too wide) in paragraph at lines 866--884
+Overfull \hbox (3.64946pt too wide) in paragraph at lines 865--883
 \T1/txr/m/n/12 wisów in-ter-ne-towych poprzez u»y-cie asyn-chron-icznej ob-sªug
 i we-j±-ci-a/wyj±-cia, które
  []
@@ -1444,12 +1443,12 @@ i we-j±-ci-a/wyj±-cia, które
 [47
 
 ] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 903--905
+Underfull \hbox (badness 10000) in paragraph at lines 902--904
 []\T1/txr/m/n/12 Dokumentacja bib-lioteki libuv. Stan na dzie«: 2017-07-20
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 906--908
+Underfull \hbox (badness 10000) in paragraph at lines 905--907
 []\T1/txr/m/n/12 Dokumentacja Mon-goDB. Stan na dzie«: 2017-07-20
  []
 
@@ -1458,6 +1457,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 906--908
 ]
 ("C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\praca\build\
 praca.lof"
+Overfull \hbox (192.69742pt too wide) in paragraph at lines 3--3
+ [][] []\T1/txr/m/n/12 P[]tla zdarze« w ±rodowisku Node.js - ¹ródªo: https://st
+ackoverflow.com/questions/21607692/understanding- 
+ []
+
+
 Overfull \hbox (11.83348pt too wide) in paragraph at lines 4--4
  [][] []\T1/txr/m/n/12 Model pro-gramowa-nia wspóª-bie»nego wyko-rzysty-wany pr
 zez Node.js 
@@ -1489,10 +1494,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8312 strings out of 493323
- 114056 string characters out of 3139523
- 281642 words of memory out of 3000000
- 11632 multiletter control sequences out of 15000+200000
+ 8306 strings out of 493323
+ 113989 string characters out of 3139523
+ 281576 words of memory out of 3000000
+ 11626 multiletter control sequences out of 15000+200000
  54180 words of font info for 79 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,8n,77p,780b,1917s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1505,7 +1510,7 @@ exmaker/Miktex/fonts/type1/public/txfonts/txsy.pfb><D:/Pobrane/Texmaker/Miktex/
 fonts/type1/urw/times/utmb8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw/ti
 mes/utmr8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_
-Repo\praca\build\praca.pdf" (51 pages, 21921953 bytes).
+Repo\praca\build\praca.pdf" (51 pages, 21922007 bytes).
 PDF statistics:
  255 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
