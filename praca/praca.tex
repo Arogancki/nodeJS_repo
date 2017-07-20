@@ -12,15 +12,15 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \graphicspath{{images/}}
-\renewcommand{\chaptername}{RozdziaÅ‚}
-\renewcommand{\contentsname}{Spis treÅ›ci}
+\renewcommand{\chaptername}{Rozdzia³}
+\renewcommand{\contentsname}{Spis treœci}
 \renewcommand{\figurename}{Rysunek}
-\renewcommand{\listfigurename}{Spis rysunkÃ³w}
+\renewcommand{\listfigurename}{Spis rysunków}
 \renewcommand{\bibname}{Bibliografia}
 \setlength{\textwidth}{14cm}
 \setlength{\textheight}{20cm}
 \newtheorem{definition}{Definicja}
-\newtheorem{example}{PrzykÅ‚ad}[chapter] 
+\newtheorem{example}{Przyk³ad}[chapter] 
 \newtheorem{corollary}{Wniosek}[chapter]
 
 \lstdefinelanguage{JavaScript}{
@@ -112,132 +112,132 @@
 \begin{document}
 \begin{titlepage}
 	\centering
-	{\scshape\LARGE Celem pracy jest przedstawienie technologii Node.js na przykÅ‚adzie zaprojektowaniej aplikacji przeznaczonej do zarzÄ…dzania codziennymi zadaniami.  \par}
+	{\scshape\LARGE Celem pracy jest przedstawienie technologii Node.js na przyk³adzie zaprojektowanej aplikacji przeznaczonej do zarz¹dzania codziennymi zadaniami.  \par}
 \end{titlepage}
 \tableofcontents
 
-\chapter{Przedstawienie ogÃ³lne, ideologii oraz przeznaczenia technologii Node.js}
+\chapter{Przedstawienie ogólne, ideologii oraz przeznaczenia technologii Node.js}
 
-\section{WstÄ™p}
-Node.js czyli cross-platformowy, dziaÅ‚ajÄ…cy niezaleÅ¼nie od Å›rodowiska jÄ™zyk programowania napisany w jezykach c/c++ oraz javascript wydany 27 marca 2009 roku, zaprojektowany przez Ryanâ€™a Dahlâ€™a. 
-Pozwala na tworzenie serwerÃ³w i narzÄ™dzi sieciowych dziaÅ‚ajÄ…cych po stronie serwera. 
-Przed powstaniem jÄ™zyka kod javascriptowy byÅ‚ wykonywany gÅ‚Ã³wnie przez przegladarke internetowÄ… po stronie klienta, co pozwalaÅ‚o na bezproblemowa manipulacje kodem ÅºrÃ³dÅ‚owym strony przez uÅ¼ytkownika dajÄ…c moÅ¼liwoÅ›Ä‡ wykonywania zÅ‚oÅ›liwych skryptÃ³w, naruszenie bezpieczenstwa baz danych lub uzyskania dostÄ™pu do chronionych zasobÃ³w servera. 
-Åšrodowisko Node.js moÅ¼e dziaÅ‚aÄ‡ niezaleÅ¼nie od Å›rodowiska uruchomieniowego. 
-Jest ono zgode z wieloma systemami operacyjnymi jak  Linux, macOS, Microsoft Windows, NonStop, czy serwerami Unix. 
-JÄ™zyk ten cieszy siÄ™ duÅ¼a popularnoÅ›ciÄ… oraz pozytywnym odbiorem wÅ›rÃ³d uÅ¼ytkownikÃ³w dziÄ™ki czemu mimo wzglÄ™dnie krÃ³tkiego okresu Å¼ycia Å›rodowiska zaowocowaÅ‚o ogromnÄ… iloÅ›ciÄ… projektÃ³w open-source, tysiÄ…cami czÅ‚onkÃ³w naleÅ¼Ä…cych do spoÅ‚ecznoÅ›ci okoÅ‚ojÄ™zykowej oraz powstaniem wydarzeÅ„ poruszajÄ…cych tematy okoÅ‚oÅ›rodowiskowe takimi jak NodeConf, Node Interactive lub Node Summit. 
-Obecnie wiele najwiÄ™kszych firm korzysta z serwerÃ³w napisanych w jÄ™zyku Node.js. 
-Ich przykÅ‚adami sÄ… miÄ™dzy innymi Groupon, IBM, Linkedln, Microsoft, Netflix, PayPal, Yahoo. 
-Najpopularniejszymi API wspierajÄ…cymi edycjÄ™ oraz debugowanie kodu Node.js sÄ… Atom, Brackets, JetBrains, Microsoft Visual Studio, NetBeans czy Nodeclipse.
+\section{Wstêp}
+Node.js czyli cross-platformowy, dzia³aj¹cy niezale¿nie od œrodowiska jêzyk programowania napisany w jêzykach c/c++ oraz javascript wydany 27 marca 2009 roku, zaprojektowany przez Ryana Dahla. 
+Pozwala na tworzenie serwerów i narzêdzi sieciowych dzia³aj¹cych po stronie serwera. 
+Przed powstaniem jêzyka kod javascriptowy by³ wykonywany g³ównie przez przegl¹darkê internetow¹ po stronie klienta, co pozwala³o na bezproblemow¹ manipulacje kodem Ÿród³owym strony przez u¿ytkownika, daj¹c mo¿liwoœæ wykonywania z³oœliwych skryptów, naruszenie bezpieczeñstwa baz danych lub uzyskania dostêpu do chronionych zasobów servera. 
+Œrodowisko Node.js mo¿e dzia³aæ niezale¿nie od œrodowiska uruchomieniowego. 
+Jest ono zgodne z wieloma systemami operacyjnymi jak  Linux, macOS, Microsoft Windows, NonStop, czy serwerami Unix. 
+Jêzyk ten cieszy siê du¿¹ popularnoœci¹ oraz pozytywnym odbiorem wœród u¿ytkowników, dziêki czemu mimo wzglêdnie krótkiego okresu ¿ycia œrodowiska zaowocowa³o ogromn¹ iloœci¹ projektów open-source, tysi¹cami cz³onków nale¿¹cych do spo³ecznoœci oko³ojêzykowej oraz powstaniem wydarzeñ poruszaj¹cych tematy oko³oœrodowiskowe, takimi jak NodeConf, Node Interactive lub Node Summit. 
+Obecnie wiele najwiêkszych firm korzysta z serwerów napisanych w jêzyku Node.js. 
+Ich przyk³adami s¹ miêdzy innymi Groupon, IBM, Linkedln, Microsoft, Netflix, PayPal, Yahoo. 
+Najpopularniejszymi API wspieraj¹cymi edycjê oraz debugowanie kodu Node.js s¹ Atom, Brackets, JetBrains, Microsoft Visual Studio, NetBeans czy Nodeclipse.
 
 \section{Przeznaczenie}
 Node.js zalecany jest do tworzenia aplikacji: 
 \begin{itemize}
-\item z duÅ¼Ä… liczbÄ… operacji wejÅ›cia/wyjÅ›cia,
+\item z du¿¹ liczb¹ operacji wejœcia/wyjœcia,
 \item strumieniowania danych np. video, 
 \item Single Page Applications (SPA),
-\item udostÄ™pniajÄ…cych API w formacie JSON,
-\item z intensywnÄ… wymianÄ… danych w czasie rzeczywistym na wielu urzÄ…dzeniach np. portale spoÅ‚ecznoÅ›ciowe.
+\item udostêpniaj¹cych API w formacie JSON,
+\item z intensywn¹ wymian¹ danych w czasie rzeczywistym na wielu urz¹dzeniach, np. portale spo³ecznoœciowe.
 \end{itemize} 
-PoniewaÅ¼ jest on szybki i lekki, moÅ¼e byÄ‡ stosowany do pisania miÄ™dzy innymi bramki API. 
-API to skrÃ³t od Application Programming Interface; opisuje jak poszczegÃ³lne elementy lub warstwy oprogramowania powinny siÄ™ komunikowaÄ‡. 
-W praktyce to najczÄ™Å›ciej biblioteka oferujÄ…ca metody, ktÃ³re umoÅ¼liwiajÄ… realizacjÄ™ okreÅ›lonych zadaÅ„. 
-Node.js pozwala na zoptymalizowanie pracy oraz uzyskanie skalowalnosci dziÄ™ki asynchronicznemu przetwarzaniu danych dostarczanych do aplikacji w zwiÄ…zku z czym idealnie nadaje sie do obsÅ‚ugi komunikacji wymagajÄ…cej pracy w czasie rzeczywistym. 
-Funkcje napisane w Node.js wykonujÄ… siÄ™ rÃ³wnolegle, korzystajac z tak zwanych wywoÅ‚aÅ„ zwrotnych (ang. callback), przeciwnie jak w jÄ™zykach takich jak np. php gdzie program jest wykonywany synchronicznie - linia po lini. 
-DziÄ™ki temu nie powstajÄ™ problem blokowania okreÅ›lonych funkcjonalnoÅ›ci programu w czasie pracy innych niezaleÅ¼nych jego czÄ™Å›ci. 
-Przy pomocy wywoÅ‚aÅ„ zwrotnych moÅ¼emy zapewniÄ‡ zasygnalizowanie uzyskanych wynikÃ³w lub zwrÃ³cenie, bÄ…dÅº obsÅ‚uge bÅ‚Ä™du powstaÅ‚ego w czasie dziaÅ‚ania bloku kodu.
+Poniewa¿ jest on szybki i lekki, mo¿e byæ stosowany do pisania miêdzy innymi bramki API. 
+API to skrót od Application Programming Interface; opisuje, jak poszczególne elementy lub warstwy oprogramowania powinny siê komunikowaæ. 
+W praktyce to najczêœciej biblioteka oferuj¹ca metody, które umo¿liwiaj¹ realizacjê okreœlonych zadañ. 
+Node.js pozwala na zoptymalizowanie pracy oraz uzyskanie skalowalnoœci dziêki asynchronicznemu przetwarzaniu danych dostarczanych do aplikacji, w zwi¹zku z czym idealnie nadaje siê do obs³ugi komunikacji wymagaj¹cej pracy w czasie rzeczywistym. 
+Funkcje napisane w Node.js wykonuj¹ siê równolegle, korzystaj¹c z tak zwanych wywo³añ zwrotnych (ang. callback), przeciwnie do jêzyków takich jak np. php, gdzie program jest wykonywany synchronicznie - linia po linii. 
+Dziêki temu nie powstaje problem blokowania okreœlonych funkcjonalnoœci programu w czasie pracy innych niezale¿nych jego czêœci. 
+Przy pomocy wywo³añ zwrotnych mo¿emy zapewniæ zasygnalizowanie uzyskanych wyników lub zwrócenie, b¹dŸ obs³ugê b³êdu powsta³ego w czasie dzia³ania bloku kodu.
 
-\section{ModuÅ‚owoÅ›Ä‡}
-Praca z Node.js opiera siÄ™ gÅ‚Ã³wnie o korzystanie ze zbioru zdefiniowanych w ramach moduÅ‚Ã³w funkcji wspierajÄ…cych okreÅ›lone funkcjonalnoÅ›ci. 
-ZapewniajÄ… one prace miÄ™dzy innymi z plikami systemowymi, z urzÄ…dzeniami wejÅ›cia/wyjÅ›cia, protokoÅ‚ami internetowymi (dns, http, tcp, tls/ssl, udp), plikami binarnymi, ÅºrÃ³dÅ‚ami danych oraz funckjami kryptograficznymi. 
-ZmiejszajÄ… one zÅ‚oÅ¼onoÅ›Ä‡, a co za tym idzie nakÅ‚ad pracy przy tworzeniu wÅ‚asnej funkcjonalnoÅ›ci. 
-DziÄ™ki wsparciu package managera (od roku 2010) nazywanego npm programiÅ›ci mogÄ… bez przeszkÃ³d udostÄ™pniaÄ‡ napisane przez siebie moduÅ‚y i biblioteki lub w prosty sposÃ³b zainportowywaÄ‡ ogÃ³lnie dostÄ™pne moduÅ‚y i uÅ¼ywac ich w swoich projektach. 
-Najpopularniejszymi moduÅ‚ami wykorzystywanymi w celu poprawy jakoÅ›ci oraz zmiejszenia nakÅ‚adÃ³w pracy przy wytwarzaniu oprogramowania sÄ… Express.js, Socket.IO, Hapi.js, Sails.js czy Meteor. 
-Npm jest automatycznie wÅ‚aczony w Å›rodowisko Node.js. 
-Jest obsÅ‚ugiwany za pomocÄ… lini komend systemu operacyjnego. 
-ModuÅ‚y sÄ… zapisane w formacie CommonJS oraz zawierajÄ… pliki informacyjne w formacie Json. 
-IloÅ›Ä‡ ogÃ³lno dostÄ™pnych moduÅ‚Ã³w przekracza obecnie 477000. 
-Jest to spowodowane moÅ¼liwoÅ›ciÄ… przez kaÅ¼dego uÅ¼ytkownika Node.js, bez potrezby wczeÅ›niejszej rejerstracji czy przejÅ›cia jakiejkolwiek procedury wstÄ™pnej udostepnienia napisanego przez siebie kodu. 
-W zwiÄ…zku z tym, wiele dostÄ™pnych moduÅ‚Ã³w jest niskiej jakoÅ›ci, moÅ¼e zawieraÄ‡ elementy zÅ‚oÅ›liwego oprogramowania lub nie byÄ‡ bezpiecznym dla naszego systemu operacyjnego. 
-NaleÅ¼y bezwzglÄ™dnie braÄ‡ te czynniki pod uwagÄ™ w przypadku korzystania z nieznanych moduÅ‚Ã³w i najlepiej najbardziej znaczÄ…co ograniczyÄ‡ korzystanie z nich bez wczeÅ›niejszej weryfikacji kodu ÅºrÃ³dÅ‚owego. 
-Zabezpieczeniami w celu ochrony uÅ¼ytkownikow, ktÃ³re dostarcza npm jest usuwanie pakietÃ³w, ktÃ³re zostaÅ‚y zgÅ‚oszone przez uÅ¼ytkownikÃ³w jako naruszajÄ…ce ogÃ³lne zasady bezpieczeÅ„stwa oraz moÅ¼liwoÅ›Ä‡ wglÄ…du w raporty statystyczne odnoÅ›nie iloÅ›ci pobraÅ„ lub iloÅ›ci zaleÅ¼nych od moduÅ‚u innych pakietow. 
-Kolejnym zagroÅ¼eniem jakim niesie korzystanie z pakietÃ³w udostÄ™pnionych przez innych uÅ¼ytkownikÃ³w jest moÅ¼liwoÅ›Ä‡ usuniÄ™cia udostÄ™pnionego pakietu z repozytorium npm, w konsekwencji uniemoÅ¼liwiajÄ…c naszej aplikacji dalesze korzystanie z pakietu. 
-SytuÅ‚acja taka miaÅ‚a miejsce, kiedy skrypt zwany ,,left-side'' z ktÃ³rego korzystaÅ‚o ponad 2486696 deweloperÃ³w zostaÅ‚ usuniÄ™ty z repozytorium powodujÄ…c tak zwany efekt domina bÄ™dÄ…cy przyczynÄ… bÅ‚Ä™dÃ³w w kolejnych aplikacjach deweloperÃ³w. 
-Npm korzysta, tak jak i inne globalnie dziaÅ‚ajÄ…ce narzedzia JavaScriptowe z plikÃ³w zaleÅ¼noÅ›ci w formacie json. 
-OpisujÄ… one wersjÄ™ wykorzystywanych moduÅ‚Ã³w i pozwalajÄ… za pomocÄ… jedno liniowej komendy na szybkÄ… i latwÄ… instalacjÄ™ wszystkich uÅ¼ywanych pakietÃ³w w lokalnnym Å›rodowisku. 
+\section{Modu³owoœæ}
+Praca z Node.js opiera siê g³ównie o korzystanie ze zbioru zdefiniowanych w ramach modu³ów funkcji wspieraj¹cych okreœlone funkcjonalnoœci. 
+Zapewniaj¹ one pracê miêdzy innymi z plikami systemowymi, z urz¹dzeniami wejœcia/wyjœcia, protoko³ami internetowymi (dns, http, tcp, tls/ssl, udp), plikami binarnymi, Ÿród³ami danych oraz funkcjami kryptograficznymi. 
+Zmniejszaj¹ one z³o¿onoœæ, a co za tym idzie nak³ad pracy przy tworzeniu w³asnej funkcjonalnoœci. 
+Dziêki wsparciu package managera (od roku 2010) nazywanego npm programiœci mog¹ bez przeszkód udostêpniaæ napisane przez siebie modu³y i biblioteki lub w prosty sposób zaimportowywaæ ogólnie dostêpne modu³y i u¿ywaæ ich w swoich projektach. 
+Najpopularniejszymi modu³ami wykorzystywanymi w celu poprawy jakoœci oraz zmniejszenia nak³adów pracy przy wytwarzaniu oprogramowania s¹ Express.js, Socket.IO, Hapi.js, Sails.js czy Meteor. 
+Npm jest automatycznie w³¹czony w œrodowisko Node.js. 
+Jest obs³ugiwany za pomoc¹ linii komend systemu operacyjnego. 
+Modu³y s¹ zapisane w formacie CommonJS oraz zawieraj¹ pliki informacyjne w formacie Json. 
+Iloœæ ogólnodostêpnych modu³ów przekracza obecnie 477000. 
+Jest to spowodowane mo¿liwoœci¹ przez ka¿dego u¿ytkownika Node.js, bez potrzeby wczeœniejszej rejestracji czy przejœcia jakiejkolwiek procedury wstêpnej, udostepnienia napisanego przez siebie kodu. 
+W zwi¹zku z tym, wiele dostêpnych modu³ów jest niskiej jakoœci, mo¿e zawieraæ elementy z³oœliwego oprogramowania lub nie byæ bezpiecznym dla naszego systemu operacyjnego. 
+Nale¿y bezwzglêdnie braæ te czynniki pod uwagê w przypadku korzystania z nieznanych modu³ów i najlepiej najbardziej znacz¹co ograniczyæ korzystanie z nich bez wczeœniejszej weryfikacji kodu Ÿród³owego. 
+Zabezpieczeniami w celu ochrony u¿ytkowników, które dostarcza npm, jest usuwanie pakietów, które zosta³y zg³oszone przez u¿ytkowników jako naruszaj¹ce ogólne zasady bezpieczeñstwa oraz mo¿liwoœæ wgl¹du w raporty statystyczne odnoœnie iloœci pobrañ lub iloœci zale¿nych od modu³u innych pakietów. 
+Kolejnym zagro¿eniem, jakie niesie korzystanie z pakietów udostêpnionych przez innych u¿ytkowników, jest mo¿liwoœæ usuniêcia udostêpnionego pakietu z repozytorium npm, w konsekwencji uniemo¿liwiaj¹c naszej aplikacji dalsze korzystanie z pakietu. 
+Sytuacja taka mia³a miejsce, kiedy skrypt zwany ,,left-side'', z którego korzysta³o ponad 2486696 deweloperów, zosta³ usuniêty z repozytorium powoduj¹c tak zwany efekt domina, bêd¹cy przyczyn¹ b³êdów w kolejnych aplikacjach deweloperów. 
+Npm korzysta, tak jak i inne globalnie dzia³aj¹ce narzedzia JavaScriptowe, z plików zale¿noœci w formacie json. 
+Opisuj¹ one wersjê wykorzystywanych modu³ów i pozwalaj¹ za pomoc¹ jednoliniowej komendy na szybk¹ i ³atw¹ instalacjê wszystkich u¿ywanych pakietów w lokalnym œrodowisku. 
 
-\chapter{OmÃ³wienie architektury Node.js}
+\chapter{Omówienie architektury Node.js}
 
 \section{Paradygmat}
 Architektura Node.js pozwala na tworzenie oprogramowania sterowanego zdarzeniami (event-driven programming). 
-Jest to paradygmat programowania w ktÃ³rym kolejnoÅ›Ä‡ wykonywania kodu zaleÅ¼y od zdarzeÅ„ majÄ…cych miejsce w czasie Å¼ycia aplikacji (run time) na przykÅ‚ad interakcji uÅ¼ytkownika czy otrzymania okreÅ›lonych sygnaÅ‚Ã³w. 
-W przypadku jÄ™zyka Node.js, kiedy aplikacjia peÅ‚ni role serwera paradygmat ten najczÄ™Å›ciej dotyczy przetwarzania zapytaÅ„ otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeÅ„ tzn. funckji. 
-W aplikacji sterowanej zdarzeniami naleÅ¼y wyrÃ³Å¼niÄ‡ pÄ™tle gÅ‚Ã³wnÄ…, ktÃ³ra jest odpowiedzialna za obsÅ‚uge zachodzÄ…cych w czasie rzeczywistym zdarzeÅ„ czyli wywoÅ‚ywanie trigerÃ³w jako wywoÅ‚aÅ„ zwrotnych. 
-SÄ… to wyodrebnione czÄ™Å›ci kodu, ktÃ³re po wykonaniu swojego zadania zwracajÄ… okreÅ›lonÄ… wartoÅ›Ä‡ lub obiekt. 
-W Node.js jest to na porzykÅ‚ad funkcja nasÅ‚uchujÄ…ca okreÅ›lonego adresu, pod ktÃ³ry klienci kieruja okreÅ›lone zapytania. 
-Pozwala to na wykonywanie wielu zadaÅ„ jednoczesnie i niezaleÅ¼nie. 
-Zapewnia przyÅ›pieszenie wykonywania skomplikownych funkcji programu. 
-Daje moÅ¼liwoÅ›Ä‡ przykladowo jednoczesnego zapisywania danych do bazy, przetwaÅ¼ania innej czÄ™Å›ci zapytania i przygotowywanie odpowiedzi w jednym okresie czasu. 
-Node.js zapewnia w ten sposÃ³b dziaÅ‚anie asynchroniczne, bez bezpoÅ›redniego uÅ¼ycia technologii wielowÄ…tkowej. 
-Wychodzi na przeciw problemowi tworzenia oraz kontrolowania aplikacji wspÃ³Å‚bieÅ¼nych speÅ‚niajÄ…cych zadanie serwera, ktÃ³re sÄ… trudne do zainplementowacnia w wielu jÄ™zykach programowania oraz czÄ™sto prowdziÅ‚y do niesatysfakcjonujÄ…cej wydajnoÅ›ci. 
-JÄ™zyk zostaÅ‚ stworzony na silniku V8 javaScript napisanym w jezyku C++, wyprodukowanym przez Google, wykorzystywanym w przeglÄ…darkach Google Chrome, ktÃ³ry porzuca tradycyjnÄ… idee interpretowania kodu javaScriptowego linia po lini zapewniajÄ…c w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie wiÄ™kszÄ… wydajnosciÄ… podczas dziaÅ‚ania programu. 
-Zapewnia on rÃ³wnieÅ¼ odpowiednie zarzÄ…dzanie pamiÄ™cia dla obiektÃ³w, zciÄ…gajÄ…c z programistÃ³w odpowiedzialnoÅ›Ä‡ alokowania oraz zwalniania zajÄ™tych zasobÃ³w.
+Jest to paradygmat programowania, w którym kolejnoœæ wykonywania kodu zale¿y od zdarzeñ maj¹cych miejsce w czasie ¿ycia aplikacji (run time), na przyk³ad interakcji u¿ytkownika, czy otrzymania okreœlonych sygna³ów. 
+W przypadku jêzyka Node.js, kiedy aplikacjia pe³ni rolê serwera, paradygmat ten najczêœciej dotyczy przetwarzania zapytañ otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeñ tzn. funkcji. 
+W aplikacji sterowanej zdarzeniami nale¿y wyró¿niæ pêtlê g³ówn¹, która jest odpowiedzialna za obs³ugê zachodz¹cych w czasie rzeczywistym zdarzeñ, czyli wywo³ywanie triggerów jako wywo³añ zwrotnych. 
+S¹ to wyodrêbnione czêœci kodu, które po wykonaniu swojego zadania zwracaj¹ okreœlon¹ wartoœæ lub obiekt. 
+W Node.js jest to na przyk³ad funkcja nas³uchuj¹ca okreœlonego adresu, pod który klienci kieruj¹ okreœlone zapytania. 
+Pozwala to na wykonywanie wielu zadañ jednoczeœnie i niezale¿nie. 
+Zapewnia przyspieszenie wykonywania skomplikowanych funkcji programu. 
+Daje mo¿liwoœæ przyk³adowo jednoczesnego zapisywania danych do bazy, przetwarzania innej czêœci zapytania i przygotowywanie odpowiedzi w jednym okresie czasu. 
+Node.js zapewnia w ten sposób dzia³anie asynchroniczne, bez bezpoœredniego u¿ycia technologii wielow¹tkowej. 
+Wychodzi naprzeciw problemowi tworzenia oraz kontrolowania aplikacji wspó³bie¿nych spe³niaj¹cych zadanie serwera, które s¹ trudne do zaimplementowania w wielu jêzykach programowania oraz czêsto prowadzi³y do niesatysfakcjonuj¹cej wydajnoœci. 
+Jêzyk zosta³ stworzony na silniku V8 javaScript napisanym w jêzyku C++, wyprodukowanym przez Google, wykorzystywanym w przegl¹darkach Google Chrome, który porzuca tradycyjn¹ ideê interpretowania kodu javaScriptowego linia po linii, zapewniaj¹c w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie, wiêksz¹ wydajnoœci¹ podczas dzia³ania programu. 
+Zapewnia on równie¿ odpowiednie zarz¹dzanie pamiêci¹ dla obiektów, œci¹gaj¹c z programistów odpowiedzialnoœæ alokowania oraz zwalniania zajêtych zasobów.
 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{eventLoop.png} 
-\caption{PÄ™tla zdarzeÅ„ w Å›rodowisku Node.js - ÅºrÃ³dÅ‚o: http://galaxy.agh.edu.pl}
+\caption{Pêtla zdarzeñ w œrodowisku Node.js - Ÿród³o: http://galaxy.agh.edu.pl}
 \end{figure}
 
-\section{AsynchronicznoÅ›Ä‡}
-Node.js pracuje wykorzystujÄ…c tylko jeden wÄ…tek uÅ¼ywajac technologii asynchronicznego wejÅ›cia/wyjÅ›cia. 
-Zapewnia to synchronizacje wykonywania wielu operacji bez koniecznoÅ›ci czekania na zakoÅ„czenie operacji i zwolnienie dostepu do zasobu poprzez zarzÄ…dzanie Å¼Ä…daniami wejÅ›cia/wyjÅ›cia w oderwaniu od wÄ…tkÃ³w wykonywania. 
-Standardowe operacje synchroniczne powodujÄ… zablokowanie dalszego wykonywania wÄ…tku do czasu zakoÅ„czenia przetwarzania. 
-W rezultacie okreÅ›lony wÄ…tek moÅ¼e zainicjowac tylko jedno zadanie wejÅ›cia/wyjÅ›cia w jednym momencie. 
-WywoÅ‚anie asynchroniczej funkcji nie czeka na wyniki, dziÄ™ki czemu nie blokujemy wÄ…tku wykonawczego. 
-Po zakoÅ„czonym wywoÅ‚aniu uruchomiona zostaje funkcja zwrotna lub ogÅ‚oszone zostaje zdarzenie w poszczegÃ³lnych czÄ™Å›ciach wykonawczych. 
-Pomimo, Å¼e Node.js dziaÅ‚a na jednym wÄ…tku z pÄ™tlÄ… zdarzeÅ„, dziÄ™ki asynchronicznoÅ›ci potrafi on obsÅ‚uÅ¼yÄ‡ wiÄ™cej zapytaÅ„ niÅ¼ np. serwer HTTP Apache. 
-Uzyskanie wielowÄ…tkowoÅ›ci pomimo korzystania tylko z jednego wÄ…tku jest zapewnione dziÄ™ki uÅ¼yciu wzorca projektowego obserwator, w ktÃ³rym jeden obiekt nazywany przedmiotem obserwowanym okreÅ›la zaleÅ¼noÅ›ci wzgledem obserwujÄ…cych go innych obiektÃ³w, poprzez wywoÅ‚ywanie ich metod dla okreÅ›lonych wÅ‚asnych stanÃ³w. 
-W celu obsÅ‚ugi wszystkich asynchronicznych funkcji oraz wÄ…tku gÅ‚Ã³wnego Node.js korzysta z biblioteki multiplatformowej jÄ™zyka c - libuv. 
-Biblioteka ta zostaÅ‚a stworzona specjalnie na potrzebny Node.js, ale jest rÃ³wnieÅ¼ wykorzystywana w wielu innych technologiach np racer: (obsÅ‚uga serwerÃ³w w jÄ™zyku ruby), czy Trevi: (silnik do obsÅ‚ugi aplikacji internetowych w jÄ™zyku swift). 
-Wykorzystuje ona okreÅ›lony zbiÃ³r wÄ…tkÃ³w do rÃ³wnolegÅ‚ej obsÅ‚ugi wielu operacji wejÅ›cia/wyjÅ›cia bez wzajemnego ich blokowania. 
-WadÄ… pracy Node.js przy wykorzystaniu tylko jednego wÄ…tku jest brak skalowalnoÅ›ci pod wzglÄ™dem moÅ¼liwoÅ›ci zwiÄ™kszenia iloÅ›ci rdzeni procesorÃ³w, na ktÃ³rych wykonuje sie program, bez uÅ¼ycia dodatkowych moduÅ‚Ã³w takich jak Cluster (zapewnia moÅ¼liwoÅ›Ä‡ Å‚atwego tworzenia pochodnych procesÃ³w, ktÃ³re wspÃ³Å‚dzielÄ… porty serwera), StrongLoop PM (zapewnia zarzÄ…dzanie procesem produkcyjnym aplikacji Node.js ze wsparciem odpowiedniego zarzadzania zasobami, wdroÅ¼eniami wielo hostowymi oraz interfejsem graficznym), czy PM2 (zarzÄ…dzanie procesem produkcyjym, ze wsparciem odpowiedniego zarzÄ…dzania zasobÃ³w z moÅ¼liwoÅ›ciÄ… nieprzerwanego dziaÅ‚ania aplikacji przy uÅ¼yciu przenoszenia jej miÄ™dzy domenami bez potrzeby zatrzymywania pracy). 
-KolejnÄ… moÅ¼liwoÅ›ciÄ… na unikniÄ™cie tego ograniczenia jest zmiana iloÅ›ci wÄ…tkÃ³w naleÅ¼Ä…cych do zbioru wykorzystywanego przez biblioteke libuv. 
-WÄ…tki te dziaÅ‚ajÄ… na wielu rdzeniach systemu na ktÃ³rym dziaÅ‚a serwer. 
-DziaÅ‚anie Node.js jednoczeÅ›nie na wielu procesach jest zapewnione wÅ‚asnie dziÄ™ki zbiorowi wÄ…tkÃ³w dostarczanych przez biblioteke libuv.
-WÄ…tek gÅ‚Ã³wny przydziela zadania dla wÄ…tkÃ³w kolejno ze wspÃ³Å‚dzielonej kolejki funkcji, ktÃ³re wÄ…tki pochodne maja za zadanie wykonaÄ‡. 
-Kiedy watek pochodny zakoÅ„czy wykonywanie przydzielonego mu zadania informauje o tym wÄ…tek gÅ‚Ã³wny poprzez wywoÅ‚anie okreÅ›lonego wywoÅ‚ania zwrotnego. 
-Z przyczyny odpowiedzialnoÅ›ci przez watek gÅ‚Ã³wny do odebrania wszystkich wywoÅ‚aÅ„ zwrotnych, funkcja wykonywana przez jeden wÄ…tek pochodny moze wstrzymaÄ‡ dziaÅ‚anie caÅ‚ej asynchroniczenej opreracji, a co za tym idzie zmniejszyÄ‡ jej caÅ‚kowitÄ… wydajnoÅ›Ä‡. 
-Biblioteka libuv zajmujÄ™ siÄ™ odpowiednim podziaÅ‚em zadaÅ„ oraz przydzieleniem zasobÃ³w tak aby w jak najlepszy sposÃ³b wywaÅ¼yc nakÅ‚ad pracy miÄ™dzy wieloma wÄ…tkami. 
-
+\section{Asynchronicznoœæ}
+Node.js pracuje wykorzystuj¹c tylko jeden w¹tek, u¿ywaj¹c technologii asynchronicznego wejœcia/wyjœcia. 
+Zapewnia to synchronizacje wykonywania wielu operacji bez koniecznoœci czekania na zakoñczenie operacji i zwolnienie dostêpu do zasobu poprzez zarz¹dzanie ¿¹daniami wejœcia/wyjœcia w oderwaniu od w¹tków wykonywania. 
+Standardowe operacje synchroniczne powoduj¹ zablokowanie dalszego wykonywania w¹tku do czasu zakoñczenia przetwarzania. 
+W rezultacie okreœlony w¹tek mo¿e zainicjowaæ tylko jedno zadanie wejœcia/wyjœcia w jednym momencie. 
+Wywo³anie asynchroniczej funkcji nie czeka na wyniki, dziêki czemu nie blokujemy w¹tku wykonawczego. 
+Po zakoñczonym wywo³aniu uruchomiona zostaje funkcja zwrotna lub og³oszone zostaje zdarzenie w poszczególnych czêœciach wykonawczych. 
+Pomimo, ¿e Node.js dzia³a na jednym w¹tku z pêtl¹ zdarzeñ, dziêki asynchronicznoœci potrafi on obs³u¿yæ wiêcej zapytañ ni¿ np. serwer HTTP Apache. 
+Uzyskanie wielow¹tkowoœci pomimo korzystania tylko z jednego w¹tku jest zapewnione dziêki u¿yciu wzorca projektowego obserwator, w którym jeden obiekt nazywany przedmiotem obserwowanym okreœla zale¿noœci wzglêdem obserwuj¹cych go innych obiektów, poprzez wywo³ywanie ich metod dla okreœlonych w³asnych stanów. 
+W celu obs³ugi wszystkich asynchronicznych funkcji oraz w¹tku g³ównego Node.js korzysta z biblioteki multiplatformowej jêzyka c - libuv. 
+Biblioteka ta zosta³a stworzona specjalnie na potrzebny Node.js, ale jest równie¿ wykorzystywana w wielu innych technologiach, np. racer: (obs³uga serwerów w jêzyku ruby), czy Trevi: (silnik do obs³ugi aplikacji internetowych w jêzyku swift). 
+Wykorzystuje ona okreœlony zbiór w¹tków do równoleg³ej obs³ugi wielu operacji wejœcia/wyjœcia bez wzajemnego ich blokowania. 
+Wad¹ pracy Node.js przy wykorzystaniu tylko jednego w¹tku jest brak skalowalnoœci pod wzglêdem mo¿liwoœci zwiêkszenia iloœci rdzeni procesorów, na których wykonuje siê program, bez u¿ycia dodatkowych modu³ów, takich jak Cluster (zapewnia mo¿liwoœæ ³atwego tworzenia pochodnych procesów, które wspó³dziel¹ porty serwera), StrongLoop PM (zapewnia zarz¹dzanie procesem produkcyjnym aplikacji Node.js ze wsparciem odpowiedniego zarz¹dzania zasobami, wdro¿eniami wielohostowymi oraz interfejsem graficznym), czy PM2 (zarz¹dzanie procesem produkcyjnym, ze wsparciem odpowiedniego zarz¹dzania zasobów z mo¿liwoœci¹ nieprzerwanego dzia³ania aplikacji przy u¿yciu przenoszenia jej miêdzy domenami, bez potrzeby zatrzymywania pracy). 
+Kolejn¹ mo¿liwoœci¹ na unikniêcie tego ograniczenia jest zmiana iloœci w¹tków nale¿¹cych do zbioru wykorzystywanego przez bibliotekê libuv. 
+W¹tki te dzia³aj¹ na wielu rdzeniach systemu, na którym dzia³a serwer. 
+Dzia³anie Node.js jednoczeœnie na wielu procesach jest zapewnione w³aœnie dziêki zbiorowi w¹tków dostarczanych przez bibliotekê libuv.
+W¹tek g³ówny przydziela zadania dla w¹tków kolejno ze wspó³dzielonej kolejki funkcji, które w¹tki pochodne maj¹ za zadanie wykonaæ. 
+Kiedy w¹tek pochodny zakoñczy wykonywanie przydzielonego mu zadania, informuje o tym w¹tek g³ówny poprzez wywo³anie okreœlonego wywo³ania zwrotnego. 
+Z przyczyny odpowiedzialnoœci przez watek g³ówny do odebrania wszystkich wywo³añ zwrotnych, funkcja wykonywana przez jeden w¹tek pochodny mo¿e wstrzymaæ dzia³anie ca³ej asynchronicznej operacji, a co za tym idzie, zmniejszyæ jej ca³kowit¹ wydajnoœæ. 
+Biblioteka libuv zajmujê siê odpowiednim podzia³em zadañ oraz przydzieleniem zasobów tak, aby w jak najlepszy sposób wywa¿yæ nak³ad pracy miêdzy wieloma w¹tkami. 
+\newpage
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{thread.png} 
-\caption{Model programowania wspÃ³Å‚bieÅ¼nego wykorzystywany przez Node.js - ÅºrÃ³dÅ‚o: www.tutorialspoint.com/parallel\_algorithm/}
+\caption{Model programowania wspó³bie¿nego wykorzystywany przez Node.js - Ÿród³o: www.tutorialspoint.com/parallel\_algorithm/}
 \end{figure}
 
 \section{Architektura komunikacji}
-W tradycyjnym podejÅ›ciu odpowiedzialne za obsÅ‚uge przychodzÄ…cych poÅ‚Ä…czeÅ„ sÄ… okreÅ›lone wÄ…tki lub procesy sytemu operacyjnego, ktÃ³re w porÃ³wnaniu z technologiÄ… Node.js wymagajÄ… wzglÄ™dnie wiÄ™cej zaalokowanych zasobÃ³w. 
-W celu obsÅ‚ugi zapytania przychodzÄ…cego do aplikacji Node.js, program rejerstruje siÄ™ w systemie operacyjnym, aby od kaÅ¼dego przychodzÄ…cego poÅ‚Ä…czenia otrzymaÄ‡ odpowiednie wywoÅ‚anie zwrotene, przez co nie potrzebuje procesÃ³w czy wÄ…tkÃ³w aby uzyskaÄ‡ moÅ¼liwoÅ›Ä‡ obsÅ‚ugi klientÃ³w, a tylko wÅ‚asnej pÄ™tli gÅ‚Ã³wnej, do ktÃ³rej wykonywania powraca po przetworzeniu kaÅ¼dego wywoÅ‚ania wstecznego. 
-W czasie pracy kaÅ¼de przychodzÄ…ce poÅ‚Ä…czenie otrzymuje odpowiedniÄ… iloÅ›Ä‡ zasobÃ³w na stercie programu, wiÄ™c nie ma rownieÅ¼ potrzeby alokowania zasobÃ³w dla kaÅ¼dego z wÄ…tkÃ³w czy procesÃ³w osobno. 
-Najbardziej popularna metoda na zarzÄ…dzanie komunikacjÄ… miÄ™dzy instancjami korzystajacymi z serwera uÅ¼ywajÄ…cego technologji Node.js jest wykorzystanie frameworku Restful Api popularnie zwanego Rest. 
-Jest to wzorzec architektury oprogramowania, ktÃ³ry opisuje sposÃ³b operowania zapytaniami pomiedzy Api, w prosty sposÃ³b poprzez obsÅ‚uge zadaÅ„ oraz odpowiedzi. 
-ZostaÅ‚ on nastÄ™pnikiem protokoÅ‚u sieciowego SOAP (Simple object Access protocol), stajÄ…c siÄ™ wiodÄ…cym standardem. 
-Pozwala on na elimincaje zbÄ™dnej pracy i czasu wymaganego na integracje. 
-Daje moÅ¼liwoÅ›Ä‡ na stworzenie komunikacji bez potrzeby wiedzy na temat instacncji korzystajacych z przesyÅ‚anych zasobÃ³w - moÅ¼e integrowaÄ‡ Å›rodowiska napisane w rÃ³Å¼nych jÄ™zykach dziaÅ‚ajÄ…ce na rÃ³Å¼nych platformach. 
-Wykorzystuje proste zapytania przy uÅ¼yciu protokolu http, oraz jego popularnie stosowanych metody takich jak post, get, put, delete oraz bardziej zÅ‚oÅ¼onych i uÅ¼ywanych Å¼adziej jak options, head, trace oraz connect. 
-Opis typu zasobÃ³w jakie wymieniamy jest okreÅ›lony w nagÅ‚Ã³wku informacji przez kod statusu http. 
-PoniÅ¼sza tabelka prezÄ™uje poszczegÃ³lne typy statusÃ³w:
-
+W tradycyjnym podejœciu odpowiedzialne za obs³ugê przychodz¹cych po³¹czeñ s¹ okreœlone w¹tki lub procesy sytemu operacyjnego, które w porównaniu z technologi¹ Node.js wymagaj¹ wzglêdnie wiêcej zaalokowanych zasobów. 
+W celu obs³ugi zapytania przychodz¹cego do aplikacji Node.js, program rejestruje siê w systemie operacyjnym, aby od ka¿dego przychodz¹cego po³¹czenia otrzymaæ odpowiednie wywo³anie zwrotne, przez co nie potrzebuje procesów czy w¹tków, aby uzyskaæ mo¿liwoœæ obs³ugi klientów, a tylko w³asnej pêtli g³ównej, do której wykonywania powraca po przetworzeniu ka¿dego wywo³ania wstecznego. 
+W czasie pracy ka¿de przychodz¹ce po³¹czenie otrzymuje odpowiedni¹ iloœæ zasobów na stercie programu, wiêc nie ma równie¿ potrzeby alokowania zasobów dla ka¿dego z w¹tków czy procesów osobno. 
+Najbardziej popularna metoda na zarz¹dzanie komunikacj¹ miêdzy instancjami korzystaj¹cymi z serwera u¿ywaj¹cego technologii Node.js jest wykorzystanie frameworku Restful Api popularnie zwanego Rest. 
+Jest to wzorzec architektury oprogramowania, który opisuje sposób operowania zapytaniami pomiêdzy Api, w prosty sposób poprzez obs³ugê zadañ oraz odpowiedzi. 
+Zosta³ on nastêpnikiem protoko³u sieciowego SOAP (Simple object Access protocol), staj¹c siê wiod¹cym standardem. 
+Pozwala on na eliminacjê zbêdnej pracy i czasu wymaganego na integracjê. 
+Daje mo¿liwoœæ na stworzenie komunikacji bez potrzeby wiedzy na temat instancji korzystaj¹cych z przesy³anych zasobów - mo¿e integrowaæ œrodowiska napisane w ró¿nych jêzykach, dzia³aj¹ce na ró¿nych platformach. 
+Wykorzystuje proste zapytania przy u¿yciu protoko³u http, oraz jego popularnie stosowanych metod takich jak post, get, put, delete oraz bardziej z³o¿onych i u¿ywanych rzadziej jak options, head, trace oraz connect. 
+Opis typu zasobów, jakie wymieniamy, jest okreœlony w nag³ówku informacji przez kod statusu http. 
+Poni¿sza tabelka prezentuje poszczególne typy statusów:
+\newpage
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{statuses.png} 
-\caption{Kody statusu protokoÅ‚u http - ÅºrÃ³dÅ‚o: http://mokandra.blogspot.fi/2015/10/http-status-code-definitions.html}
+\caption{Kody statusu protoko³u http - Ÿród³o: http://mokandra.blogspot.fi/2015/10/http-status-code-definitions.html}
 \end{figure}
 
-W celu wymiany zasobÃ³w framework wykorzystuje najpopularniejsze sposoby opisu struktury sÅ‚uÅ¼Ä…ce do opisu obiektÃ³w takie jak najczÄ™Å›ciej spotykany, najprostszy w uÅ¼yciu format json (JavaScript Object Notation) oraz mniej popularny w technologi Rest format xml (eXtensible Markup Language). 
-RÃ³Å¼nica pomiÄ™dzy dwiema formami jest taka Å¼e xml jest jÄ™zykiem nie zdefiniowanych znacznikÃ³w, a json tylko sposobem na prezÄ™nacje wÅ‚aÅ›ciwoÅ›ci obiektu. 
-PorÃ³wnanie obydwu struktur:
-Struktura w formacie json opisujÄ…ca listÄ™ pracownikÃ³w:
+W celu wymiany zasobów framework wykorzystuje najpopularniejsze sposoby opisu struktury s³u¿¹ce do opisu obiektów, takie jak najczêœciej spotykany, najprostszy w u¿yciu format json (JavaScript Object Notation) oraz mniej popularny w technologii Rest format xml (eXtensible Markup Language). 
+Ró¿nica pomiêdzy dwiema formami jest taka, ¿e xml jest jêzykiem niezdefiniowanych znaczników, a json tylko sposobem na prezentacjê w³aœciwoœci obiektu. 
+Porównanie obydwu struktur:
+Struktura w formacie json opisuj¹ca listê pracowników:
 \begin{lstlisting}[language=json,firstnumber=1]
 {"employees":[
 	{ "firstName":"James", "lastName":"Bond" },
@@ -262,144 +262,139 @@ Ta sama struktura opisana w formacie xml:
 \end{lstlisting}
 
 
-\chapter{ZaÅ‚oÅ¼enia i specyfikacja aplikacji}
+\chapter{Za³o¿enia i specyfikacja aplikacji}
 
 \section{Specyfikacja problemu}
-Potrzebny jest nowoczesny system do zarzÄ…dzania tablicami zadaÅ„, ktÃ³ry bÄ™dzie posiadaÅ‚ autoryzowany dostÄ™p dla uÅ¼ytkownikÃ³w systemu. 
-ZostaÅ‚ zauwaÅ¼ony problem braku prostej w obsÅ‚udzÄ™, intuicyjnej aplikacji pozwalajÄ…cej we wspÃ³Å‚pracy z innymi uÅ¼ytkownikami na zarzÄ…dzanie zarÃ³wno podziaÅ‚em jak i procesem realizacji wyszczegÃ³lnionych zadaÅ„.
-W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny pracujÄ…cy w technologii Node.js, ze wzglÄ™du na moÅ¼liwÄ… do osiÄ…gniecia niezawodnoÅ›Ä‡ oraz dostÄ™pnoÅ›Ä‡ nawet przy jednoczesnej obsÅ‚udze wielu korzystajÄ…cych z aplikacji klientÃ³w.
-Nie powinien on wymagaÄ‡ Å¼adnych procesÃ³w wdroÅ¼eniowych w celu zrozumienia obsÅ‚ugi narzÄ™dzia, poniewaÅ¼ celem projektu jest stworzenie narzÄ™dzia, ktÃ³re wspiera, a nie dodatkowo komplikuje okreÅ›lone zadania.
-System powinien w przejrzysty sposÃ³b prezÄ™owaÄ‡ proces realizacji poszczegÃ³lnych zadaÅ„ zorganizowanych w tablicach.
-WÅ‚aÅ›ciel okreÅ›lonej tablicy powinien mieÄ‡ moÅ¼liwoÅ›Ä‡ zarzÄ…dzania dostÄ™pem do tablicy poprzez udostÄ™pnianie lub ograniczanie jej treÅ›ci pozostaÅ‚ym uÅ¼ytkownikÄ….
-Aplikacja zapewni subskrybentÄ… nieprzerwanÄ… moÅ¼liwoÅ›Ä‡ nadzoru, wglÄ…du oraz okreÅ›lania aktualnych statusÃ³w dowolnych procesÃ³w.
+Potrzebny jest nowoczesny system do zarz¹dzania tablicami zadañ, który bêdzie posiada³ autoryzowany dostêp dla u¿ytkowników systemu. 
+Zosta³ zauwa¿ony problem braku prostej w obs³udze, intuicyjnej aplikacji pozwalaj¹cej we wspó³pracy z innymi u¿ytkownikami na zarz¹dzanie zarówno podzia³em jak i procesem realizacji wyszczególnionych zadañ.
+W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny pracuj¹cy w technologii Node.js, ze wzglêdu na mo¿liw¹ do osi¹gniecia niezawodnoœæ oraz dostêpnoœæ nawet przy jednoczesnej obs³udze wielu korzystaj¹cych z aplikacji klientów.
+Nie powinien on wymagaæ ¿adnych procesów wdro¿eniowych w celu zrozumienia obs³ugi narzêdzia, poniewa¿ celem projektu jest stworzenie narzêdzia, które wspiera, a nie dodatkowo komplikuje okreœlone zadania.
+System powinien w przejrzysty sposób prezentowaæ proces realizacji poszczególnych zadañ zorganizowanych w tablicach.
+W³aœciciel okreœlonej tablicy powinien mieæ mo¿liwoœæ zarz¹dzania dostêpem do tablicy poprzez udostêpnianie lub ograniczanie jej treœci pozosta³ym u¿ytkownikom.
+Aplikacja zapewni subskrybentom nieprzerwan¹ mo¿liwoœæ nadzoru, wgl¹du oraz okreœlania aktualnych statusów dowolnych procesów.
 
 \section{Wymagania funkcjonalne}
-Analiza wymagaÅ„ funkcjonalnych umoÅ¼liwia zidentyfikowanie i opisanie poÅ¼Ä…danego zachowania systemu. 
-UmoÅ¼liwiajÄ… okreÅ›lenie usÅ‚ug oferowanych przez system, reakcji na dane wejÅ›ciowe oraz zachowania w okreÅ›lonych sytuacjach.
+Analiza wymagañ funkcjonalnych umo¿liwia zidentyfikowanie i opisanie po¿¹danego zachowania systemu. 
+Umo¿liwiaj¹ okreœlenie us³ug oferowanych przez system, reakcji na dane wejœciowe oraz zachowania w okreœlonych sytuacjach.
 \begin{itemize}
-\item Wymiana komunikatÃ³w w modelu klient-serwer.
-\item MoÅ¼liwoÅ›Ä‡ utworzenia do 1000000 kont uÅ¼ytkownikÃ³w.
-\item MoÅ¼liwoÅ›Ä‡ zmiany danych uÅ¼ytkownika.
-\item Weryfikacja adresu email przez aktywacjÄ….
-\item MoÅ¼liwoÅ›Ä‡ resetowania hasÅ‚a za pomocÄ… adresu email.
-\item Utrzymanie do 100 tablic jednoczeÅ›nie dla uÅ¼ytkownika.
-\item MoÅ¼liwoÅ›Ä‡ usuwania tablic.
-\item ObsÅ‚uga do 1000 rÃ³wnolegÅ‚ych czÅ‚onkÃ³w jednej tablicy.
-\item MoÅ¼liwoÅ›Ä‡ zarzÄ…dzania czÅ‚onkami tablicy.
-\item ObsÅ‚uga do 10000 rÃ³wnolegÅ‚ych zadaÅ„ dla tablicy.
-\item MoÅ¼liwoÅ›Ä‡ usuwania zakoÅ„czonych zadaÅ„.
-\item Utrzymanie do 1000 statusÃ³w do jednego zadania.
-\item ZapamiÄ™tywanie terminu zmiany statusu zadaÅ„.
-\item Walidacja poprawnoÅ›ci wprowadzanych przez uÅ¼ytkownika danych zarÃ³wno po stronie klienta jak i serwera.
-\item W razie wystÄ…pienia nieprawidÅ‚owych danych system powiadamia o bÅ‚Ä™dach.
-\item Zapewnienie okna pomocy opisujÄ…cego korzystanie z aplikacji.
-\item MoÅ¼liwoÅ›Ä‡ otrzymywania powiadomieÅ„ o aktualnym statusie tablic oraz poszczegÃ³lnych zadaÅ„.
-\item System wspÃ³Å‚pracuje z bazÄ… danych.
+\item Wymiana komunikatów w modelu klient-serwer.
+\item Mo¿liwoœæ utworzenia do 1000000 kont u¿ytkowników.
+\item Mo¿liwoœæ zmiany danych u¿ytkownika.
+\item Weryfikacja adresu email przed aktywacj¹.
+\item Mo¿liwoœæ resetowania has³a za pomoc¹ adresu email.
+\item Utrzymanie do 100 tablic jednoczeœnie dla u¿ytkownika.
+\item Mo¿liwoœæ usuwania tablic.
+\item Obs³uga do 1000 równoleg³ych cz³onków jednej tablicy.
+\item Mo¿liwoœæ zarz¹dzania cz³onkami tablicy.
+\item Obs³uga do 10000 równoleg³ych zadañ dla tablicy.
+\item Mo¿liwoœæ usuwania zakoñczonych zadañ.
+\item Utrzymanie do 1000 statusów do jednego zadania.
+\item Zapamiêtywanie terminu zmiany statusu zadañ.
+\item Walidacja poprawnoœci wprowadzanych przez u¿ytkownika danych zarówno po stronie klienta jak i serwera.
+\item W razie wyst¹pienia nieprawid³owych danych system powiadamia o b³êdach.
+\item Zapewnienie okna pomocy opisuj¹cego korzystanie z aplikacji.
+\item Mo¿liwoœæ otrzymywania powiadomieñ o aktualnym statusie tablic oraz poszczególnych zadañ.
+\item System wspó³pracuje z baz¹ danych.
 \end{itemize}
 
 \section{Wymagania pozafunkcjonalne}
-Wymagania niefunkcjonalne opisujÄ… kryteria umoÅ¼liwiajÄ…ce moÅ¼liwoÅ›Ä‡ oceny dziaÅ‚ania systemu i elementÃ³w majÄ…cych wpÅ‚yw na satysfakcjÄ™ uÅ¼ytkownika.
-Zdefiniowane zostaÅ‚y nastÄ™pujÄ…ce wymagania niefunkcjonalne:
+Wymagania niefunkcjonalne opisuj¹ kryteria umo¿liwiaj¹ce dokonanie oceny dzia³ania systemu i elementów maj¹cych wp³yw na satysfakcjê u¿ytkownika.
+Zdefiniowane zosta³y nastêpuj¹ce wymagania niefunkcjonalne:
 
 \begin{itemize}
-\item DostÄ™p do okreÅ›lonych zasobÃ³w musi byÄ‡ chroniony poprzez login i hasÅ‚o uÅ¼ytkownika.
-\item Budowa interfejsu uÅ¼ytkownika musi byÄ‡ moÅ¼liwie intuicyjna i prosta w obsÅ‚udzÄ™.
-\item Proste analizowanie i diagnozowanie bÅ‚Ä™dÃ³w oraz sytuacji problemowych.
-\item Budowa zapewnia Å‚atwe wprowadzanie koniecznych zmian.
-\item Jest w stanie obsÅ‚uÅ¼yÄ‡ jednoczeÅ›nie do 100.000 uÅ¼ytkownikÃ³w.
-\item Czas uruchomienia jest nie dÅ‚uÅ¼y niÅ¼ 10 sekund.
-\item UmoÅ¼liwia efektywne testowanie wprowadzonych zmianach.
-\item MoÅ¼liwoÅ›Ä‡ obsÅ‚ugi poprzez rÃ³Å¼ne przeglÄ…darki internetowe i Å›rodowiska.
-\item ZrozumiaÅ‚y dla wszystkich. Czas przyswojenia nie przekracza 15 minut.
-\item Ma moÅ¼liwoÅ›Ä‡ wspÃ³Å‚istnienia z innymi moduÅ‚ami.
-\item SpeÅ‚nia wszystkie normy prawne w naszym kraju.
+\item Dostêp do okreœlonych zasobów musi byæ chroniony poprzez login i has³o u¿ytkownika.
+\item Budowa interfejsu u¿ytkownika musi byæ mo¿liwie intuicyjna i prosta w obs³udzê.
+\item Proste analizowanie i diagnozowanie b³êdów oraz sytuacji problemowych.
+\item Budowa zapewnia ³atwe wprowadzanie koniecznych zmian.
+\item Jest w stanie obs³u¿yæ jednoczeœnie do 100.000 u¿ytkowników.
+\item Czas uruchomienia jest nied³u¿y ni¿ 10 sekund.
+\item Umo¿liwia efektywne testowanie wprowadzonych zmian.
+\item Mo¿liwoœæ obs³ugi poprzez ró¿ne przegl¹darki internetowe i œrodowiska.
+\item Zrozumia³y dla wszystkich. Czas przyswojenia nie przekracza 15 minut.
+\item Ma mo¿liwoœæ wspó³istnienia z innymi modu³ami.
+\item Spe³nia wszystkie normy prawne w naszym kraju.
 \end{itemize}
 
 \chapter{Opracowanie aplikacji}
 
 \section{Mean Stack}
 
-\subsection{WstÄ™p}
-Do opracowania rozwiÄ…zania zdecydowaÅ‚em siÄ™ skorzystaÄ‡ z Mean Stack. 
-SkrÃ³t odnosi siÄ™ do frameworkÃ³w oraz technolgji Mongodb, Express, AngularJS oraz Node.js. 
-WspÃ³Å‚pracujÄ…c razem zapewniajÄ… bardzo szybkie efektywne tworzenie skalowalnych aplikacji wielopratformowych. 
-Do uÅ¼ycia wszystkich wymagany jest tylko jeden jÄ™zyk programowania - javaScript, zarÃ³wno do obsÅ‚ugi warstwy frontend'owej aplikacji jak i backend'owej. 
-Wszystkie technolgie sÄ… dostÄ™pne w peÅ‚ni bezpÅ‚atnie. 
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{meanStack.png} 
-\caption{Przedstawienie technologii MEAN Stack - ÅºrÃ³dÅ‚o: http://codecondo.com/7-good-reasons-to-use-mean-stack-in-your-next-web-project/}
-\end{figure}
+\subsection{Wstêp}
+Do opracowania rozwi¹zania zdecydowa³em siê skorzystaæ z Mean Stack. 
+Skrót odnosi siê do frameworków oraz technolgji Mongodb, Express, AngularJS oraz Node.js. 
+Wspó³pracuj¹c razem zapewniaj¹ bardzo szybkie efektywne tworzenie skalowalnych aplikacji wieloplatformowych. 
+Do u¿ycia wszystkich wymagany jest tylko jeden jêzyk programowania - javaScript, zarówno do obs³ugi warstwy frontendowej aplikacji jak i backendowej. 
+Wszystkie technologie s¹ dostêpne w pe³ni bezp³atnie. 
 
-Technologia Node.js zostaÅ‚a juÅ¼ opisana powyÅ¼ej, wiÄ™c zajmÄ™ siÄ™ opisem pozostaÅ‚ych.
+Jako i¿ Technologia Node.js zosta³a ju¿ opisana, przejdê do opisu pozosta³ych technologii.
 
 \subsection{MongoDB}
-Napisany w jÄ™zyku c++ system zarzÄ…dzania bazÄ… danych zorietowanym na dokumenty. 
+Napisany w jêzyku c++ system zarz¹dzania baz¹ danych zorientowanym na dokumenty. 
 Operuje na nierelacyjnych bazach danych. 
-UÅ¼ywa struktur json jako schematÃ³w budowy bazy danych.
-Udostepnia caÅ‚kowitÄ… dowolnoÅ›Ä‡ w budowie struktury wymaganej bazy danych. 
-Wykorzystuje proste, ale zapewniajÄ…ce szerokie moÅ¼liwoÅ›ci zapytania bazo danowe.
+U¿ywa struktur json jako schematów budowy bazy danych.
+Udostêpnia ca³kowit¹ dowolnoœæ w budowie struktury wymaganej bazy danych. 
+Wykorzystuje proste, ale zapewniaj¹ce szerokie mo¿liwoœci zapytania bazodanowe.
 
 \subsection{ExpressJS }
-Framework sluÅ¼Ä…cy do szybkiego wymagajÄ…cego jak najmniejszych nakÅ‚adÃ³w pracy wytwarzania zarÃ³wno backendâ€™u aplikacji internetowych jak i aplikacji mobilnych.
-Dostarcza zbiÃ³r okreÅ›lonych klass i metod. Jest to najpopularniejszy framework do tworzenia serwerÃ³w w technologi Node.js.
+Framework s³u¿¹cy do szybkiego wymagaj¹cego jak najmniejszych nak³adów pracy wytwarzania zarówno backendu aplikacji internetowych, jak i aplikacji mobilnych.
+Dostarcza zbiór okreœlonych klas i metod. Jest to najpopularniejszy framework do tworzenia serwerów w technologii Node.js.
 
 \subsection{AngularJS}
-WykorzystujÄ…cy wzorzec projektowy MVC (Model View Controler) polegajÄ…cy na oddzieleniu od siebie poszczegolnych warstw aplikacji - logiki, widoku oraz modelu komunikacji, framework wykorzystujacy dodatkowe tagi w jÄ™zyku html w celu prostego w obsÅ‚udze i nie wymagajÄ…cego dodatkowej logiki napisanej w jÄ™zyku javaScript tworzenia dynamicznych stron internetowych.
+Wykorzystuj¹cy wzorzec projektowy MVC (Model View Controler) polegaj¹cy na oddzieleniu od siebie poszczególnych warstw aplikacji - logiki, widoku oraz modelu komunikacji, framework wykorzystuj¹cy dodatkowe tagi w jêzyku html w celu prostego w obs³udze i niewymagaj¹cego dodatkowej logiki napisanej w jêzyku javaScript tworzenia dynamicznych stron internetowych.
 
 \section{Komunikacja}
 
-\subsection{RozwiÄ…zanie problemu komunikacji}
-Do komunikacji miÄ™dzy warstÄ… frontend'owÄ… i backendow'owÄ… po stronie klienta wykorzystaÅ‚em wysokopoziomowÄ… biblioteke Ajax oraz technologie Restful api. 
-Ajax polega na zarzÄ…dzaniu asynchroniczna komunikacja. 
-DziÄ™ki temu aplikacjia moÅ¼e wykonywaÄ‡ inne funkcje mimo oczekiwania na odpowiedÅº ze strony serwera, za sprawa odseparowania warstwy wymiany danych od pozostaÅ‚ych warstw aplikacji.
-Do opisu wymienianych struktur uÅ¼yÅ‚em standardu json, poniewaÅ¼ wymaga on mniejszych nakÅ‚adÃ³w pracy od standradu xml. 
-PowyÅ¼sze frameworki wspÃ³Å‚pracujÄ… ze sobÄ… w bardzo intuicyjny i przejrzysty sposÃ³b. 
-Angular prezÄ™tuje dynamicznÄ… aplikacje internetowa uÅ¼ytkownikowi, odpowiada za przyjmowanie danych i z pomoca ajax'a wysyÅ‚a oraz odbiera dane wysyÅ‚ane do serwera. 
-Serwer Node.js z uÅ¼yciem technologii express wykorzystujÄ…c metode routingu dopasowuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy wspÃ³Å‚pracy z bazÄ… danych zarzÄ…dzana przez Mongodb przechowuje informacje uÅ¼ytkownikÃ³w serwisu oraz w odpowiedzi zwraca odpowiednie dane spowrotem do warsty frontendowej prezÄ™ujÄ…cej dane uÅ¼ytkownikowi. 
-
+\subsection{Rozwi¹zanie problemu komunikacji}
+Do komunikacji miêdzy warstw¹ frontendow¹ i backendowow¹ po stronie klienta wykorzysta³em wysokopoziomow¹ bibliotekê Ajax oraz technologiê Restful api. 
+Ajax polega na zarz¹dzaniu asynchroniczn¹ komunikacj¹. 
+Dziêki temu aplikacja mo¿e wykonywaæ inne funkcje, mimo oczekiwania na odpowiedŸ ze strony serwera, za spraw¹ odseparowania warstwy wymiany danych od pozosta³ych warstw aplikacji.
+Do opisu wymienianych struktur u¿y³em standardu json, poniewa¿ wymaga on mniejszych nak³adów pracy od standardu xml. 
+Powy¿sze frameworki wspó³pracuj¹ ze sob¹ w bardzo intuicyjny i przejrzysty sposób. 
+Angular prezentuje dynamiczn¹ aplikacje internetowa u¿ytkownikowi, odpowiada za przyjmowanie danych i z pomoc¹ ajaxa wysy³a oraz odbiera dane wysy³ane do serwera. 
+Serwer Node.js z u¿yciem technologii express, wykorzystuj¹c metodê routingu, dopasowuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy wspó³pracy z baz¹ danych zarz¹dzana przez Mongodb przechowuje informacje u¿ytkowników serwisu oraz w odpowiedzi zwraca odpowiednie dane z powrotem do warstwy frontendowej prezentuj¹cej dane u¿ytkownikowi. 
+\newpage
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Meanex.png}
-\caption{PrzepÅ‚yw komunikacji w MEAN Stack ÅºrÃ³dÅ‚o: https://www.dealfuel.com/seller/mean-stack-tutorial/}
+\caption{Przep³yw komunikacji w MEAN Stack Ÿród³o: https://www.dealfuel.com/seller/mean-stack-tutorial/}
 \end{figure}
 
-\subsection{Schematy wymiany zasobÃ³w}
-Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobÃ³w z serwera wykorzystuje metode get. Do zasobÃ³w tych naleÅ¼y miedzy innymi plik html zawierajÄ…cy warstwe prezÄ™acji aplikacji, plik css zawierajÄ…cy styl warstwy prezÄ™tacji czy plik zawierajÄ…cy funkcje wykorzystywane przez aplikacje w jÄ™zyku javaScript. Proces prezÄ™nuje sie nastepujaco:
+\subsection{Schematy wymiany zasobów}
+Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobów z serwera wykorzystuje metodê get. Do zasobów tych nale¿y miedzy innymi plik html zawieraj¹cy warstwê prezentacji aplikacji, plik css zawieraj¹cy styl warstwy prezentacji, czy plik zawieraj¹cy funkcje wykorzystywane przez aplikacje w jêzyku javaScript. Proces prezentuje siê nastêpuj¹co:
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{K-S.png} 
-\caption{Pobranie statycznych zasobow ÅºrÃ³dlo: Opracowanie wÅ‚asne}
+\caption{Pobranie statycznych zasobów, Ÿród³o: Opracowanie w³asne}
 \end{figure}
 \begin{enumerate}
-\item Klient przy uÅ¼yciu przeglÄ…darki wysyÅ‚a pod okreÅ›lony adres url serwera zapytanie zawierajÄ…ce porzÄ…dany zasÃ³b.
-\item Serwer otrzymuje zapytanie i dopasowuje okreÅ›lonÄ… funkcje po adresie url serwera.
-\item Funkcja wybiera dopasowane do zapytania zasoby i wysyÅ‚a odpowiedÅº do aplikacji.
-\item Aplikacja odbiera i zaczyna korzystac z zasobÃ³w.
+\item Klient przy u¿yciu przegl¹darki wysy³a pod okreœlony adres url serwera zapytanie zawieraj¹ce po¿¹dany zasób.
+\item Serwer otrzymuje zapytanie i dopasowuje okreœlon¹ funkcjê po adresie url serwera.
+\item Funkcja wybiera dopasowane do zapytania zasoby i wysy³a odpowiedŸ do aplikacji.
+\item Aplikacja odbiera i zaczyna korzystaæ z zasobów.
 \end{enumerate}
 
- Uniwersalny dla aplikacji schemat procesu wymiany danych okreÅ›lonych dla specyficznego uÅ¼ytkownika wykorzystuje metode post. PrzykÅ‚adowe dane wymieniane przez aplikacje to login, hasÅ‚o, informacje odnoÅ›nie Å¼Ä…daÅ„ uÅ¼ytkownika, komÄ™tarze do zadaÅ„ uÅ¼ytkownika. PrzepÅ‚yw danych wyglÄ…da nastÄ™pujÄ…co:
+ Uniwersalny dla aplikacji schemat procesu wymiany danych okreœlonych dla specyficznego u¿ytkownika wykorzystuje metodê post. Przyk³adowe dane wymieniane przez aplikacje to login, has³o, informacje odnoœnie ¿¹dañ u¿ytkownika, komentarze do zadañ u¿ytkownika. Przep³yw danych wygl¹da nastêpuj¹co:
  \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{U-P-S-B.png} 
-\caption{Wymiana zasobÃ³w w formacie Json ÅºrÃ³dlo: Opracowanie wÅ‚asne}
+\caption{Wymiana zasobów w formacie Json Ÿródlo: Opracowanie w³asne}
 \end{figure}
 \begin{enumerate}
-\item Dane zostaja pobrane od uÅ¼ytkownika w okreÅ›lonym formularzu w warstiwe frontendowej.
-\item Dane zostajÄ… zwalidowane pod kÄ…tem poprawnoÅ›ci po stronie uÅ¼ytkownika.
-\item Jesli dane sÄ… poprawne zostaja zorganizowane w obiekcie json i wysÅ‚ane do serwera, w przeciwnym wypadku zostaje zwrÃ³cony bÅ‚Ä…d.
+\item Dane zostaj¹ pobrane od u¿ytkownika w okreœlonym formularzu w warstwie frontendowej.
+\item Dane zostaj¹ zwalidowane pod k¹tem poprawnoœci po stronie u¿ytkownika.
+\item Jesli dane s¹ poprawne, zostaja zorganizowane w obiekcie json i wys³ane do serwera, w przeciwnym wypadku zostaje zwrócony b³¹d.
 \item Serwer odbiera zapytanie i przekazuje je do odpowiedniej funkcji.
-\item Dane zostajÄ… zwalidowane pod kÄ…tem poprawnoÅ›ci po stronie serwera.
-\item JeÅ›li dane sÄ… poprawne serwer realizuje okreÅ›lona funkcje przy pomocy zapytaÅ„ bazo danowych, w przeciwnym wypadku zostaje przygotowany komunikat o bÅ‚Ä™dzie.
-\item OdpowiedÅº na zapytanie bazodanowe zostaje odebrane i zostajÄ… przygotowane dane do wysÅ‚ania.
-\item Przygotowane dane zostaje wysÅ‚ane w okreÅ›lonej odpowiedzi.
-\item Warstwa frontendowa otrzymuje odpowiedÅº i zostaje odÅ›wieÅ¼ona warsta prezÄ™tacji aplikacji.
+\item Dane zostaj¹ zwalidowane pod k¹tem poprawnoœci po stronie serwera.
+\item Jeœli dane s¹ poprawne, serwer realizuje okreœlon¹ funkcjê przy pomocy zapytañ bazodanowych, w przeciwnym wypadku zostaje przygotowany komunikat o b³êdzie.
+\item OdpowiedŸ na zapytanie bazodanowe zostaje odebrane i zostaj¹ przygotowane dane do wys³ania.
+\item Przygotowane dane zostaje wys³ane w okreœlonej odpowiedzi.
+\item Warstwa frontendowa otrzymuje odpowiedŸ i zostaje odœwie¿ona warstwa prezentacji aplikacji.
 \end{enumerate}
  
 
-\subsection{Kod po stronie klienta wysyÅ‚ajÄ…cy Å¼Ä…danie}
-PrzykÅ‚adowy kod wykonywany po stronie klienta wysyÅ‚ajÄ…cy Å¼Ä…danie do serwera, Å¼adajÄ…ce okreÅ›lonego zasobu przy uÅ¼yciu frameworku Angularjs:
-Plik w jÄ™zyku javaScript zawierajÄ…cy definicje modelu i kontrolera:
+\subsection{Kod po stronie klienta wysy³aj¹cy ¿¹danie}
+Przyk³adowy kod wykonywany po stronie klienta, wysy³aj¹cy ¿¹danie do serwera, ¿¹daj¹ce okreœlonego zasobu przy u¿yciu frameworku Angularjs:
+Plik w jêzyku javaScript zawieraj¹cy definicje modelu i kontrolera:
 \medskip
 \begin{lstlisting}
 var main = angular.module("main", []); 									// create angular module
@@ -435,8 +430,8 @@ main.controller('SignInController', function($scope) { 					// create controller
 	}
 }
 \end{lstlisting}
-
-Plik w jÄ™zyku html zawierajÄ…cy definicje widoku:
+\newpage
+Plik w jêzyku html zawieraj¹cy definicje widoku:
 \begin{lstlisting}[language=HTML]
 <!DOCTYPE html> 
 <!-- Apply view to model -->
@@ -479,8 +474,8 @@ Plik w jÄ™zyku html zawierajÄ…cy definicje widoku:
 </body>
 \end{lstlisting}
 
-\subsection{Kod po stronie serwera obsÅ‚ugujÄ…cy odebranie Å¼Ä…dania}
-PrzykÅ‚adowy kod wykonywany po stronie serwera obsÅ‚ugujÄ…cy odebrane Å¼Ä…danie od klienta przy uÅ¼yciu technologii Node.js oraz framework'Ã³w express i mongodb:
+\subsection{Kod po stronie serwera obs³uguj¹cy odebranie ¿¹dania}
+Przyk³adowy kod wykonywany po stronie serwera obs³uguj¹cy odebrane ¿¹danie od klienta przy u¿yciu technologii Node.js oraz frameworków express i mongodb:
 \medskip
 \begin{lstlisting}
 var express = require('express');					// load express module
@@ -570,318 +565,322 @@ var server = app.listen(port, function () {
 });
 \end{lstlisting}
 
-\section{Wykorzystane moduÅ‚y}
+\section{Wykorzystane modu³y}
 
-\subsection{ModuÅ‚y zewnÄ™trzne}
-ZewnÄ™trzne moduÅ‚y, zainstalowane za pomocÄ… zbioru repozytorium npm, ktÃ³re uÅ¼yÅ‚em do realizacji rozwiazania to:
+\subsection{Modu³y zewnêtrzne}
+Zewnêtrzne modu³y, zainstalowane za pomoc¹ zbioru repozytorium npm, które u¿y³em do realizacji rozwi¹zania to:
 \begin{enumerate}
-\item express - opisany powyÅ¼ej
-\item fs - file stream, odpowiada za obsÅ‚uge zapisu oraz wczytywania plikÃ³w. 
-Wykorzystywany w celu wczytywania plikÃ³w statycznych aplikacji takich jak index.htm (strona gÅ‚Ã³wna w formacie html), main.js (funkcje w jÄ™zyku javaScript), style.css (plik arkuszu stylÃ³w, odpowiadajÄ…cy za styl prezÄ™tacji), favicon (ikona serwisu wyÅ›wietlana w oknie przeglÄ…darki), czy losowo wybieranych zdjÄ™Ä‡ wyÅ›wietlanych w tle serwisu.
-\item path - obsÅ‚uga rÃ³Å¼nic miÄ™dzy systemami operacyjnymi. 
-DziÄ™ki temu moduÅ‚owi moÅ¼emy zapewniÄ‡ caÅ‚kowitÄ… sprawnoÅ›Ä‡ naszego serisu nie zaleÅ¼nie od Å›rodowiska uruchomieniowego. 
-Pozwala niwelowaÄ‡ rÃ³Å¼nice w lokalizacji plikÃ³w systemowych, czy Å‚Ä…cznikach pomiÄ™dzy poszczegÃ³lnymi folderami przy specyfikacji scieÅ¼ki do pliku.
-\item body-parser - dostarcza moÅ¼liwoÅ›Ä‡ analizowania danych zaÅ‚Ä…czonych do odebranego przez serwer Å¼Ä…dania, wykorzystany zostaÅ‚ w celu odczytÃ³w poszczegÃ³lnych wartoÅ›ci odebranych w formacie json.
+\item express - opisany powy¿ej
+\item fs - file stream, odpowiada za obs³ugê zapisu oraz wczytywania plików. 
+Wykorzystywany w celu wczytywania plików statycznych aplikacji takich jak index.htm (strona g³ówna w formacie html), main.js (funkcje w jêzyku javaScript), style.css (plik arkuszu stylów, odpowiadaj¹cy za styl prezentacji), favicon (ikona serwisu wyœwietlana w oknie przegl¹darki), czy losowo wybieranych zdjêæ wyœwietlanych w tle serwisu.
+\item path - obs³uga ró¿nic miêdzy systemami operacyjnymi. 
+Dziêki temu modu³owi mo¿emy zapewniæ ca³kowit¹ sprawnoœæ naszego serwisu niezale¿nie od œrodowiska uruchomieniowego. 
+Pozwala niwelowaæ ró¿nice w lokalizacji plików systemowych, czy ³¹cznikach pomiêdzy poszczególnymi folderami przy specyfikacji œcie¿ki do pliku.
+\item body-parser - dostarcza mo¿liwoœæ analizowania danych za³¹czonych do odebranego przez serwer ¿¹dania, wykorzystany zosta³ w celu odczytów poszczególnych wartoœci odebranych w formacie json.
 \item promise - odpowiada za operowanie wynikami otrzymanymi w wyniku asynchronicznych funkcji. 
-DziÄ™ki temu moduÅ‚owi nie musimy synchronicznie czekaÄ‡ na otrzymanie zwrotu z kolejnych funkcji, natomiast moÅ¼emy przy uÅ¼yciu wywoÅ‚aÅ„ zwortnych zareagowaÄ‡ po otrzymaniu okreÅ›lonego wyjÅ›cia.
-\item cookie-parser - zapewnia moÅ¼liwoÅ›Ä‡ wykorzystania plikÃ³w cookie dla specyficznego klienta. 
-DziÄ™ki temu moduÅ‚owi moÅ¼emy ustawiaÄ‡, usuwaÄ‡ lub edytowaÄ‡ wartoÅ›ci plikÃ³w cookie, ktÃ³re zostanÄ… przydzielone dla konkretnego uÅ¼ytkownika w ramach caÅ‚ej sesji komunikacji z uÅ¼ytkownikiem lub przez okreÅ›lony przez nas czas. 
+Dziêki temu modu³owi nie musimy synchronicznie czekaæ na otrzymanie zwrotu z kolejnych funkcji, natomiast mo¿emy przy u¿yciu wywo³añ zwrotnych zareagowaæ po otrzymaniu okreœlonego wyjœcia.
+\item cookie-parser - zapewnia mo¿liwoœæ wykorzystania plików cookie dla specyficznego klienta. 
+Dziêki temu modu³owi mo¿emy ustawiaæ, usuwaæ lub edytowaæ wartoœci plików cookie, które zostan¹ przydzielone dla konkretnego u¿ytkownika w ramach ca³ej sesji komunikacji z u¿ytkownikiem lub przez okreœlony przez nas czas. 
 \end{enumerate}
 
-\subsection{ModuÅ‚y wewnetrzne}
-Wewnetrzne moduÅ‚y, czyli takie ktÃ³re zostaÅ‚y napisane przeze mnie specjalnie na uÅ¼ytek projektu to:
+\subsection{Modu³y wewnetrzne}
+Wewnêtrzne modu³y, czyli takie, które zosta³y napisane przeze mnie specjalnie na u¿ytek projektu, to:
 \begin{enumerate}
-\item emails.js (wykorzystujÄ…cy zewnÄ™trzny moduÅ‚ mongodb) - moduÅ‚ zapewnia komunikacje z baza danych w technologii mongodb, poprzez wywoÅ‚ywanie odpowiednich funkcji. 
-ZostaÅ‚ dostosowany bezpoÅ›rednio do obsÅ‚ugi bazy danych dla wykonywanego projektu. 
-DziÄ™ki temu plik gÅ‚Ã³wny serwera nie musi znaÄ‡ budowy, ani wykonywaÄ‡ operacji bezpoÅ›rednio na dokumentach bazy danych.
-\item db.js (wykorzystujÄ…cy zewnÄ™trzny moduÅ‚ nodemailer) - dostarcza obsÅ‚ugÄ™ wysyÅ‚ania wiadomoÅ›ci email do uÅ¼ytkownikÃ³w serwisu w przypadku zajÅ›cia okreÅ›lonych sytuÅ‚acji takich jak na przykÅ‚ad otrzymanie nowego zaproszenia czy zmiana statusu zadania. ModuÅ‚ dostarcza jednÄ…, prostÄ… w obsÅ‚udze funkcje zapewniajÄ…cÄ… obsÅ‚uge wiadomoÅ›ci emial. 
+\item emails.js (wykorzystuj¹cy zewnêtrzny modu³ mongodb) - modu³ zapewnia komunikacjê z baz¹ danych w technologii mongodb, poprzez wywo³ywanie odpowiednich funkcji. 
+Zosta³ dostosowany bezpoœrednio do obs³ugi bazy danych dla wykonywanego projektu. 
+Dziêki temu plik g³ówny serwera nie musi znaæ budowy, ani wykonywaæ operacji bezpoœrednio na dokumentach bazy danych.
+\item db.js (wykorzystuj¹cy zewnêtrzny modu³ nodemailer) - dostarcza obs³ugê wysy³ania wiadomoœci email do u¿ytkowników serwisu w przypadku zajœcia okreœlonych sytuacji, takich jak na przyk³ad otrzymanie nowego zaproszenia czy zmiana statusu zadania. Modu³ dostarcza jedn¹, prost¹ w obs³udze funkcjê zapewniaj¹c¹ obs³ugê wiadomoœci email. 
 \end{enumerate}
- 
+
+
 \chapter{Testy aplikacji}
 
-Po wykonaniu aplikacji zostaÅ‚y przeprowadzone testy manualne sprawdzajÄ…ce poprawnoÅ›Ä‡ dostarczanej przez serwis funkcjonalnoÅ›ci.
+Po wykonaniu aplikacji zosta³y przeprowadzone testy manualne, sprawdzaj¹ce poprawnoœæ dostarczanej przez serwis funkcjonalnoœci.
 Kolejne przypadki testowe:
-
-\section{Uzyskanie dostÄ™pu do statycznych zasobÃ³w serwisu}
+\newpage 
+\section{Uzyskanie dostêpu do statycznych zasobów serwisu}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{11.png}
 \captionsetup{labelformat=empty}
-\caption[]{UÅ¼ytkownik wysyÅ‚a Å¼Ä…danie pod adres serwera.}
+\caption[]{U¿ytkownik wysy³a ¿¹danie pod adres serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{12.png}
 \captionsetup{labelformat=empty}
-\caption[]{UÅ¼ytkownik otrzymuje odpowiedÅº zawierajÄ…ca pliki statyczne serwisu (plik html, css, js, zdjÄ™cie w tle i favicon.}
+\caption[]{U¿ytkownik otrzymuje odpowiedŸ zawieraj¹ca pliki statyczne serwisu (plik html, css, js, zdjêcie w tle i favicon.}
 \end{figure}
 
+\newpage 
 \section{Rejerstracja w serwisie}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{21.png}
 \captionsetup{labelformat=empty}
-\caption[]{UÅ¼ytkownik wypeÅ‚nia formularz rejerstracyjny na stronie serwisu i wysyÅ‚a dane do serwera. }
+\caption[]{U¿ytkownik wype³nia formularz rejestracyjny na stronie serwisu i wysy³a dane do serwera. }
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{22.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ otrzymanych danych i w odpowiedzi przesyÅ‚a strone gÅ‚Ã³wnÄ… aplikacji dostÄ™pna po zalogowaniu na konto lub informacje o blÄ™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ otrzymanych danych i w odpowiedzi przesy³a stronê g³ówn¹ aplikacji dostêpn¹ po zalogowaniu na konto lub informacje o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Potwierdzenie adresu email}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{31.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po podaniu adresu email uÅ¼ytkowik otrzymuje wiadomoÅ›Ä‡ email zawierajÄ…cÄ… link aktywacyjny.}
+\caption[]{Po podaniu adresu email u¿ytkownik otrzymuje wiadomoœæ email zawieraj¹c¹ link aktywacyjny.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{32.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po kliknieciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawidÅ‚owy dla podanego uÅ¼ytkownika. 
-NastÄ™pnie aktywuje adres email dla odpowiedniego uÅ¼ytkownika i wysyÅ‚a w odpowiedzi strone gÅ‚Ã³wnÄ… aplikacji oraz wiadomoÅ›Ä‡ email o potwierdzeniu.}
+\caption[]{Po klikniêciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawid³owy dla podanego u¿ytkownika. 
+Nastêpnie aktywuje adres email dla odpowiedniego u¿ytkownika, wysy³a w odpowiedzi stronê g³ówn¹ aplikacji oraz wiadomoœæ email o potwierdzeniu.}
 \end{figure}
 
-
-\section{Logowanie siÄ™ w serwisie}
+\newpage 
+\section{Logowanie siê w serwisie}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{41.png}
 \captionsetup{labelformat=empty}
-\caption[]{UÅ¼ytkownik wypeÅ‚nia formularz na stronie serwisu i przesyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{U¿ytkownik wype³nia formularz na stronie serwisu i przesy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{42.png}
 \captionsetup{labelformat=empty}
 \caption[]{Serwer sprawdza istnienie konta w serwisie. 
-W odpowiedzi uÅ¼ytkownik otrzymuje stronÄ™ gÅ‚Ã³wnÄ… aplikacji lub bÅ‚Ä…d o niepoprawnych danych.
-W czasie bycia zalogowanym co okreÅ›lony czas zostaje wysÅ‚ane Å¼Ä…danie aktualizacji danych. 
-Aktualizacja nastÄ™puje rÃ³wnieÅ¼ kaÅ¼dorazowo po otrzymaniu pomyÅ›lnego potwierdzenia wykonania operacji przez serwer.}
+W odpowiedzi u¿ytkownik otrzymuje stronê g³ówn¹ aplikacji lub b³¹d o niepoprawnych danych.
+W czasie bycia zalogowanym, co okreœlony czas zostaje wys³ane ¿¹danie aktualizacji danych. 
+Aktualizacja nastêpuje równie¿ ka¿dorazowo po otrzymaniu pomyœlnego potwierdzenia wykonania operacji przez serwer.}
 \end{figure}
 
-
-\section{Resetowanie hasÅ‚a uÅ¼ytkownika}
+\newpage 
+\section{Resetowanie has³a u¿ytkownika}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{51.png}
 \captionsetup{labelformat=empty}
-\caption[]{Funkcja jest dostÄ™pna po potwierdzeniu adresu email dla konta. 
-Po wypeÅ‚nieniu odpowiedniego formularza na stronie gÅ‚Ã³wnej serwisu uÅ¼ytkownik wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Funkcja jest dostêpna po potwierdzeniu adresu email dla konta. 
+Po wype³nieniu odpowiedniego formularza na stronie g³ównej serwisu u¿ytkownik wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{52.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza podane dane. W odpowiedzi wysyÅ‚a informacje o przetworzeniu Å¼Ä…dania.}
+\caption[]{Serwer sprawdza podane dane. W odpowiedzi wysy³a informacje o przetworzeniu ¿¹dania.}
 \end{figure}
+\newpage 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{53.png}
 \captionsetup{labelformat=empty}
-\caption[]{Otrzymujemy takÅ¼e wiadomoÅ›Ä‡ email zawierajÄ…cÄ… nowe hasÅ‚o do serwisu.}
+\caption[]{Otrzymujemy tak¿e wiadomoœæ email zawieraj¹c¹ nowe has³o do serwisu.}
 \end{figure}
 
-
-\section{Zmiana danych uÅ¼ytkownika}
+\newpage 
+\section{Zmiana danych u¿ytkownika}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{61.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu siÄ™ i wypeÅ‚nieniu odpowiedniego formularza na stronie serwisu uÅ¼ytkownik wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu siê i wype³nieniu odpowiedniego formularza na stronie serwisu u¿ytkownik wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{62.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. JeÅ›li sÄ… poprawne aktualizuje je.
-W przeciwnym wypadku zwraca komunikat o bÅ‚Ä™dzie. 
-W odpowiedzi serwer wysyÅ‚a strone gÅ‚Ã³wnÄ… aplikacji.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Jeœli s¹ poprawne, aktualizuje je.
+W przeciwnym wypadku, zwraca komunikat o b³êdzie. 
+W odpowiedzi serwer wysy³a stronê g³ówn¹ aplikacji.}
 \end{figure}
+\newpage 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{63.png}
 \captionsetup{labelformat=empty}
-\caption[]{JeÅ›li zmieni siÄ™ rÃ³wnieÅ¼ adres email uÅ¼ytkownik musi go ponownie zweryfikowac. }
+\caption[]{Jeœli zmieni siê równie¿ adres email u¿ytkownik musi go ponownie zweryfikowaæ. }
 \end{figure}
 
-
+\newpage 
 \section{Utworzenie nowej tablicy z zadaniami}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{71.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu siÄ™ uÅ¼ytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysyÅ‚a je do serwera.}
+\caption[]{Po zalogowaniu siê u¿ytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysy³a je do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{72.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. 
-JeÅ›li sÄ… poprawne serwer tworzy nowÄ… tablice dla uÅ¼ytkownika i wysyÅ‚a potwierdzenie w odpowiedzi.
-W przeciwnym wypadku odpowiada komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. 
+Jeœli s¹ poprawne, serwer tworzy now¹ tablicê dla u¿ytkownika i wysy³a potwierdzenie w odpowiedzi.
+W przeciwnym wypadku odpowiada komunikatem o b³êdzie.}
 \end{figure}
 
-
-\section{WysyÅ‚anie zaproszenia do tablicy}
+\newpage 
+\section{Wysy³anie zaproszenia do tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{01.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu siÄ™ uÅ¼ytkownik wybiera opcje wysÅ‚ania zaproszenia do wybranej tablicy, wypeÅ‚nia dane i wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu siê u¿ytkownik wybiera opcje wys³ania zaproszenia do wybranej tablicy, wype³nia dane i wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{02.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poparwnoÅ›Ä‡ danych. 
-W odpowiedzi wysyÅ‚a potwierdzenie o wysÅ‚anym zaproszeniu, lub komunikat o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. 
+W odpowiedzi wysy³a potwierdzenie o wys³anym zaproszeniu lub komunikat o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Akceptacja zaproszenia}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{81.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu siÄ™ uÅ¼ytkownik wybiera opcje zaakceptowania oczekujÄ…cego zaproszenia i wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu siê u¿ytkownik wybiera opcje zaakceptowania oczekuj¹cego zaproszenia i wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{82.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Odrzucenie zaproszenia}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu siÄ™ uÅ¼ytkownik wybiera opcje odrzucenia oczekujÄ…cego zaproszenia i wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu siê u¿ytkownik wybiera opcje odrzucenia oczekuj¹cego zaproszenia i wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
-\section{Wyrzucenie uÅ¼ytkownika z tablicy}
+\newpage 
+\section{Wyrzucenie u¿ytkownika z tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{91.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu siÄ™ uÅ¼ytkownik wybiera opcje wyrzucenia uÅ¼ytkownika z okreÅ›lonej tablicy i wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu siê u¿ytkownik wybiera opcje wyrzucenia u¿ytkownika z okreœlonej tablicy i wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{92.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Dodanie zadania}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu i wybraniu odpowiedniej tablicy uÅ¼ytkownik wybiera opcje dodania zadania, wypelnia dane i przesyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu i wybraniu odpowiedniej tablicy u¿ytkownik wybiera opcje dodania zadania, wype³nia dane i przesy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Dodanie statusu zadania}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania uÅ¼ytkownik wybiera opcje dodania nowego statusu, uzupeÅ‚nia dane i przesyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania u¿ytkownik wybiera opcje dodania nowego statusu, uzupe³nia dane i przesy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Usuwanie zadania}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zakoÅ„czonego zadania uÅ¼ytkownik wybiera opcje usuwania zadania i przesyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zakoñczonego zadania u¿ytkownik wybiera opcje usuwania zadania i przesy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Opuszczanie tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu uÅ¼ytkownik wybiera opcje opuszczenia tablicy, ktÃ³rej jest czÅ‚onkiem i wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu u¿ytkownik wybiera opcje opuszczenia tablicy, której jest cz³onkiem i wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
-
+\newpage 
 \section{Usuwanie tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E1.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu uÅ¼ytkownik wybiera opcje usuniÄ™cia wÅ‚asnej tablicy i wysyÅ‚a Å¼Ä…danie do serwera.}
+\caption[]{Po zalogowaniu u¿ytkownik wybiera opcje usuniêcia w³asnej tablicy i wysy³a ¿¹danie do serwera.}
 \end{figure}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawnoÅ›Ä‡ danych. Odpowiada potwierdzeniem lub komunikatem o bÅ‚Ä™dzie.}
+\caption[]{Serwer sprawdza poprawnoœæ danych. Odpowiada potwierdzeniem lub komunikatem o b³êdzie.}
 \end{figure}
 
 
-\chapter{Podsumowanie otrzymanych wynikÃ³w i wnioski na temat Å›rodowiska}
-Wykoanana aplikacja speÅ‚nia zadana w warunkach funkcjonalnoÅ›Ä‡. 
-ZostaÅ‚y osiÄ…gniÄ™te wszystkie zaÅ‚oÅ¼enia oraz wymagania aplikacji przy uÅ¼yciu moÅ¼liwoÅ›ci dostarczanej przez technologie Node.js. 
-Stworzony projekt doskonale nadaje siÄ™ do uÅ¼ytkownia przez zorganizowane zespoÅ‚y do wykonywania okreÅ›lonych zadaÅ„. 
-MÃ³gÅ‚by byÄ‡ na przykÅ‚ad uÅ¼ywany do zarzÄ…dzania pracÄ… zespoÅ‚Ã³w deweloperskich pracujÄ…cych w rÃ³Å¼nych metodykach takich jak scrum czy kanban. 
-Dostarcza przejrzysty interfejs oraz nieskomplikowanÄ… prezÄ™tacje danych dla koÅ„cowych uÅ¼ytkownikÃ³w, przez co nie wymaga praktycznie Å¼adnych szkoleÅ„ lub procesÃ³w wdroÅ¼enioywch w celu zdobycia umiejÄ™tnoÅ›ci biegÅ‚ej obsÅ‚ugi narzÄ™dzia. 
-Åšrodowisko Node.js wydaje siÄ™ byÄ‡ bardzo nowoczesnym oraz majÄ…cym przed sobÄ… Å›wietlana przyszloÅ›Ä‡ Å›rodowiskiem. 
-NiewÄ…tpliwie najwiÄ™kszymi zaletami tej technologii jest Å‚atwoÅ›Ä‡ budowania wymagajÄ…cych serwisÃ³w internetowych poprzez uÅ¼ycie asynchronicznej obsÅ‚ugi wejÅ›cia/wyjÅ›cia, ktÃ³re pozwala na przetwarzanie wielu funkcji w jednym czasie tworzÄ…c wyjÄ…tkowo szybkie w dziaÅ‚aniu aplikacje. 
-Zagadnienie to wymaga jednak umiejÄ™tnoÅ›ci w projektowaniu i analizowaniu funkcji programowania asynchronicznego. 
-Kod pisany jest w szeroko uÅ¼ywanym jÄ™zyku javaScript co zbudowaÅ‚o ogromnÄ… spoÅ‚ecznoÅ›Ä‡ zainteresowanÄ… technologiÄ… Node.js. 
-DziÄ™ki temu moÅ¼emy z Å‚atwoÅ›ciÄ… zdobyÄ‡ materiaÅ‚y przydatne w procesie poznwaczym Å›rodowiska. 
-Globalne repozytorium npm gwarantuje obsÅ‚uge wielu funkcjonalnoÅ›ci, bez potrzeby dÅ‚ugiego szukania moÅ¼liwych rozwiÄ…zaÅ„. 
-Wszystko jest dostÄ™pne bezpÅ‚atnie, gotowe do wdroÅ¼enia w tworzonej aplikacji. 
-Mimo Å¼e jest to technologia stosunkowo mÅ‚oda obecnie Node.js jest uÅ¼ywany, a co za tym idzie sprawdzony przez najwiÄ™ksze firmy IT w celu obsÅ‚ugi ich aplikacji i serwerÃ³w. 
-NaleÅ¼y byÄ‡ Å›wiadomym wszytkich zalet i wad przy wyborze okreÅ›lonej technologii. 
-Node.js nie nadaje siÄ™ niestety do kaÅ¼dego typu projektu. 
-Nie jest efektywnym Å›rodowiskiem jeÅ›li chodzi o korzystanie z obliczeÅ„ intensywnie wykorzystujÄ…cych procesor. 
-Jest on jednak Å¼e idealnym rozwiÄ…zaniem w przypadku pracy nad wieloma rozwiÄ…zaniami webowymi. 
-OsobiÅ›cie praca w Node.js sprawiÅ‚a mi wielkÄ… radoÅ›Ä‡ i staÅ‚a siÄ™ mojÄ… ulubionÄ… technologiÄ… dziÄ™ki zapewnionej prostocie i moÅ¼liwych do uzyskania bez wiÄ™kszego wysiÅ‚ku ogromnych moÅ¼liwoÅ›ciach.
+\chapter{Podsumowanie otrzymanych wyników i wnioski na temat œrodowiska}
+Wykonana aplikacja spe³nia zadan¹ w warunkach funkcjonalnoœæ. 
+Zosta³y osi¹gniête wszystkie za³o¿enia oraz wymagania aplikacji przy u¿yciu mo¿liwoœci dostarczanej przez technologiê Node.js. 
+Stworzony projekt doskonale nadaje siê do u¿ytkowania przez zorganizowane zespo³y do wykonywania okreœlonych zadañ. 
+Móg³by byæ na przyk³ad u¿ywany do zarz¹dzania prac¹ zespo³ów deweloperskich pracuj¹cych w ró¿nych metodykach takich jak scrum czy kanban. 
+Dostarcza przejrzysty interfejs oraz nieskomplikowan¹ prezentacjê danych dla koñcowych u¿ytkowników, przez co nie wymaga praktycznie ¿adnych szkoleñ lub procesów wdro¿eniowych w celu zdobycia umiejêtnoœci bieg³ej obs³ugi narzêdzia. 
+Œrodowisko Node.js wydaje siê byæ bardzo nowoczesnym oraz przysz³oœciowym œrodowiskiem. 
+Niew¹tpliwie najwiêkszymi zaletami tej technologii jest ³atwoœæ budowania wymagaj¹cych serwisów internetowych poprzez u¿ycie asynchronicznej obs³ugi wejœcia/wyjœcia, które pozwala na przetwarzanie wielu funkcji w jednym czasie tworz¹c wyj¹tkowo szybkie w dzia³aniu aplikacje. 
+Zagadnienie to wymaga jednak umiejêtnoœci w projektowaniu i analizowaniu funkcji programowania asynchronicznego. 
+Kod pisany jest w szeroko u¿ywanym jêzyku JavaScript, co zbudowa³o ogromn¹ spo³ecznoœæ zainteresowan¹ technologi¹ Node.js. 
+Dziêki temu mo¿emy z ³atwoœci¹ zdobyæ materia³y przydatne w procesie poznawczym œrodowiska. 
+Globalne repozytorium npm gwarantuje obs³ugê wielu funkcjonalnoœci, bez potrzeby d³ugiego szukania mo¿liwych rozwi¹zañ. 
+Wszystko jest dostêpne bezp³atnie, gotowe do wdro¿enia w tworzonej aplikacji. 
+Mimo, ¿e jest to technologia stosunkowo m³oda, obecnie Node.js jest u¿ywany, a co za tym idzie, sprawdzony przez najwiêksze firmy IT w celu obs³ugi ich aplikacji i serwerów. 
+Nale¿y byæ œwiadomym wszystkich zalet i wad przy wyborze okreœlonej technologii. 
+Node.js nie nadaje siê do ka¿dego typu projektu. 
+Nie jest efektywnym œrodowiskiem w korzystaniu z obliczeñ intensywnie wykorzystuj¹cych procesor. 
+Jest on jednak¿e idealnym rozwi¹zaniem w przypadku pracy nad wieloma rozwi¹zaniami webowymi. 
+Osobiœcie praca w Node.js sprawi³a mi wielk¹ radoœæ i sta³a siê moj¹ ulubion¹ technologi¹ dziêki zapewnionej prostocie i mo¿liwych do uzyskania bez wiêkszego wysi³ku ogromnych mo¿liwoœciach.
 
 \addcontentsline{toc}{chapter}{Bibliografia} 
 \begin{thebibliography}{99}
@@ -891,13 +890,25 @@ Ethan Brown
 \bibitem{Onodi} 
 Robert Onodi
 \textit{MEAN Blueprints ISBN: 9781783553945}
+\bibitem{AngulrJS} 
+Pawel Kozlowski, Peter Bacon Darwin
+\textit{Mastering Web Application Development with AngularJS ISBN: 9781782161820}
 \bibitem{Node.js} 
-Dokumentacja jÄ™zyka programowania Node.js. Stan na dzieÅ„: 2017-07-20
+Dokumentacja jêzyka programowania Node.js. Stan na dzieñ: 2017-07-20
 \textit{https://Node.js.org/en/docs}
+\bibitem{Node.js wiki}
+Artyku³ poœwiêcony technolgii Node.js w serwisie wikipedia. Stan na dzieñ: 2017-07-20
+\textit{https://en.wikipedia.org/wiki/Node.js}
+\bibitem{libuv}
+Dokumentacja biblioteki libuv. Stan na dzieñ: 2017-07-20
+\textit{https://github.com/libuv/libuv}
+\bibitem{libuv}
+Dokumentacja MongoDB. Stan na dzieñ: 2017-07-20
+\textit{https://docs.mongodb.com/}
 
 \end{thebibliography}
 
-\addcontentsline{toc}{chapter}{Spis rysunkÃ³w} 
+\addcontentsline{toc}{chapter}{Spis rysunków} 
 \listoffigures
 
 \end{document}
