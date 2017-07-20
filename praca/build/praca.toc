@@ -5,39 +5,42 @@
 \contentsline {chapter}{\numberline {2}Om\IeC {\'o}wienie architektury Node.js}{6}
 \contentsline {section}{\numberline {2.1}Paradygmat}{6}
 \contentsline {section}{\numberline {2.2}Asynchroniczno\IeC {\'s}\IeC {\'c}}{7}
-\contentsline {section}{\numberline {2.3}Architektura komunikacji}{8}
-\contentsline {chapter}{\numberline {3}Za\IeC {\l }o\IeC {\.z}enia i specyfikacja aplikacji}{12}
-\contentsline {chapter}{\numberline {4}Opracowanie aplikacji}{15}
-\contentsline {section}{\numberline {4.1}Mean Stack}{15}
-\contentsline {subsection}{\numberline {4.1.1}Wst\IeC {\k e}p}{15}
-\contentsline {subsection}{\numberline {4.1.2}MongoDB}{15}
-\contentsline {subsection}{\numberline {4.1.3}ExpressJS }{15}
-\contentsline {subsection}{\numberline {4.1.4}AngularJS}{16}
-\contentsline {section}{\numberline {4.2}Komunikacja}{16}
-\contentsline {subsection}{\numberline {4.2.1}Rozwi\IeC {\k a}zanie problemu komunikacji}{16}
-\contentsline {subsection}{\numberline {4.2.2}Kod po stronie klienta}{17}
-\contentsline {subsection}{\numberline {4.2.3}Kod po stronie serwera}{20}
-\contentsline {section}{\numberline {4.3}Wykorzystane modu\IeC {\l }y}{23}
-\contentsline {subsection}{\numberline {4.3.1}Modu\IeC {\l }y zewn\IeC {\k e}trzne}{23}
-\contentsline {subsection}{\numberline {4.3.2}Modu\IeC {\l }y wewnetrzne}{24}
-\contentsline {section}{\numberline {4.4}Diagramy funkcji}{24}
-\contentsline {chapter}{\numberline {5}Testy aplikacji}{25}
-\contentsline {section}{\numberline {5.1}Uzyskanie dost\IeC {\k e}pu do statycznych zasob\IeC {\'o}w serwisu}{25}
-\contentsline {section}{\numberline {5.2}Rejerstracja w serwisie}{25}
-\contentsline {section}{\numberline {5.3}Potwierdzenie adresu email}{26}
-\contentsline {section}{\numberline {5.4}Logowanie si\IeC {\k e} w serwisie}{27}
-\contentsline {section}{\numberline {5.5}Resetowanie has\IeC {\l }a u\IeC {\.z}ytkowika}{28}
-\contentsline {section}{\numberline {5.6}Zmiana danych u\IeC {\.z}ytkownika}{28}
-\contentsline {section}{\numberline {5.7}Utworzenie nowej tablicy z zadaniami}{29}
-\contentsline {section}{\numberline {5.8}Wysy\IeC {\l }anie zaproszenia do tablicy}{30}
-\contentsline {section}{\numberline {5.9}Akceptacja zaproszenia}{31}
-\contentsline {section}{\numberline {5.10}Odrzucenie zaproszenia}{31}
-\contentsline {section}{\numberline {5.11}Wyrzucenie u\IeC {\.z}ytkownika z tablicy}{32}
-\contentsline {section}{\numberline {5.12}Dodanie zadania}{33}
-\contentsline {section}{\numberline {5.13}Dodanie statusu zadania}{35}
-\contentsline {section}{\numberline {5.14}Usuwanie zadania}{37}
-\contentsline {section}{\numberline {5.15}Opuszczanie tablicy}{37}
-\contentsline {section}{\numberline {5.16}Usuwanie tablicy}{38}
-\contentsline {chapter}{\numberline {6}Podsumowanie otrzymanych wynik\IeC {\'o}w i wnioski na temat \IeC {\'s}rodowiska}{40}
-\contentsline {chapter}{Bibliografia}{41}
-\contentsline {chapter}{Spis rysunk\IeC {\'o}w}{42}
+\contentsline {section}{\numberline {2.3}Architektura komunikacji}{9}
+\contentsline {chapter}{\numberline {3}Za\IeC {\l }o\IeC {\.z}enia i specyfikacja aplikacji}{13}
+\contentsline {section}{\numberline {3.1}Specyfikacja problemu}{13}
+\contentsline {section}{\numberline {3.2}Wymagania funkcjonalne}{13}
+\contentsline {section}{\numberline {3.3}Wymagania pozafunkcjonalne}{14}
+\contentsline {chapter}{\numberline {4}Opracowanie aplikacji}{16}
+\contentsline {section}{\numberline {4.1}Mean Stack}{16}
+\contentsline {subsection}{\numberline {4.1.1}Wst\IeC {\k e}p}{16}
+\contentsline {subsection}{\numberline {4.1.2}MongoDB}{16}
+\contentsline {subsection}{\numberline {4.1.3}ExpressJS }{16}
+\contentsline {subsection}{\numberline {4.1.4}AngularJS}{17}
+\contentsline {section}{\numberline {4.2}Komunikacja}{17}
+\contentsline {subsection}{\numberline {4.2.1}Rozwi\IeC {\k a}zanie problemu komunikacji}{17}
+\contentsline {subsection}{\numberline {4.2.2}Schematy wymiany zasob\IeC {\'o}w}{18}
+\contentsline {subsection}{\numberline {4.2.3}Kod po stronie klienta wysy\IeC {\l }aj\IeC {\k a}cy \IeC {\.z}\IeC {\k a}danie}{20}
+\contentsline {subsection}{\numberline {4.2.4}Kod po stronie serwera obs\IeC {\l }uguj\IeC {\k a}cy odebranie \IeC {\.z}\IeC {\k a}dania}{23}
+\contentsline {section}{\numberline {4.3}Wykorzystane modu\IeC {\l }y}{25}
+\contentsline {subsection}{\numberline {4.3.1}Modu\IeC {\l }y zewn\IeC {\k e}trzne}{25}
+\contentsline {subsection}{\numberline {4.3.2}Modu\IeC {\l }y wewnetrzne}{26}
+\contentsline {chapter}{\numberline {5}Testy aplikacji}{28}
+\contentsline {section}{\numberline {5.1}Uzyskanie dost\IeC {\k e}pu do statycznych zasob\IeC {\'o}w serwisu}{29}
+\contentsline {section}{\numberline {5.2}Rejerstracja w serwisie}{30}
+\contentsline {section}{\numberline {5.3}Potwierdzenie adresu email}{31}
+\contentsline {section}{\numberline {5.4}Logowanie si\IeC {\k e} w serwisie}{32}
+\contentsline {section}{\numberline {5.5}Resetowanie has\IeC {\l }a u\IeC {\.z}ytkownika}{33}
+\contentsline {section}{\numberline {5.6}Zmiana danych u\IeC {\.z}ytkownika}{35}
+\contentsline {section}{\numberline {5.7}Utworzenie nowej tablicy z zadaniami}{37}
+\contentsline {section}{\numberline {5.8}Wysy\IeC {\l }anie zaproszenia do tablicy}{38}
+\contentsline {section}{\numberline {5.9}Akceptacja zaproszenia}{39}
+\contentsline {section}{\numberline {5.10}Odrzucenie zaproszenia}{40}
+\contentsline {section}{\numberline {5.11}Wyrzucenie u\IeC {\.z}ytkownika z tablicy}{41}
+\contentsline {section}{\numberline {5.12}Dodanie zadania}{42}
+\contentsline {section}{\numberline {5.13}Dodanie statusu zadania}{43}
+\contentsline {section}{\numberline {5.14}Usuwanie zadania}{44}
+\contentsline {section}{\numberline {5.15}Opuszczanie tablicy}{45}
+\contentsline {section}{\numberline {5.16}Usuwanie tablicy}{46}
+\contentsline {chapter}{\numberline {6}Podsumowanie otrzymanych wynik\IeC {\'o}w i wnioski na temat \IeC {\'s}rodowiska}{47}
+\contentsline {chapter}{Bibliografia}{48}
+\contentsline {chapter}{Spis rysunk\IeC {\'o}w}{49}
