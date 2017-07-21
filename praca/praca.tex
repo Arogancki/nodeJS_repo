@@ -260,6 +260,34 @@ Ta sama struktura opisana w formacie xml:
 </employees>
 \end{lstlisting}
 
+\section{Alternatywne rozwiązania}
+\subsection{Vert.x}
+Pierwszą alternatywą dla technologii Node.js jest framework Vert.xm.
+Pracuje on na środowisku JVM (Java Virtual Machine) i tak jak i Node.js jest środowiskiem sterowanym zdarzeniami.
+Został napisany w 2011 roku przez zainspirowanego technologią Node.js Tim Foxa przy użyciu między innymi języków Java, JavaScript, Python, Ruby.
+Dzięki platformie JVM aplikacje mogą być stworzone dla wielu systemów operacyjnych.
+Wykorzystuje on niskopoziomową biblioteke Netty, służącą do asynchronicznej obsługi użądzeń wejścia/wyjścia w celu obsługi aplikacji w architekturze klient-serwer.
+Do wytwarzania oprogramowania w Vert.x możemy użyć różnych języków programowania - Java, Javascript, Groovy, Ruby, Ceylon, Scala lub Kotlin.
+Jest więc dobra alternatywą w przypadku potrzeby użycia języka innego niż javascript.
+Potrafi on szybciej od technologii Node.js odpowiedzieć na proste żadania, natomiast jest mniej efektywny na przykład przy pracy z gniazdami sieciowymi.
+
+\subsection{Twisted}
+Kolejną alternatywą dla technologii Node.js jest framework Twisted.
+Został stworzony w 2002 roku przez Glyph Lefkowitz'a przy użyciu technologii Python.
+Wspiera koncepcje środowiska sterowanego zdarzeniami, więc nie wymaga tworzenia osobnych wątków dla obsługi wielu procesów w jednym czasie. 
+Do procesu wytwarzania oprogramowania przy jego użyciu niezbędna jest umiejętność pisania w języku python.
+Działanie framework'u twisted opiera się głównie na wykorzystaniu protokołów sieciowych, między innymi HTTP, XMPP, TCP, IMAP, SSH czy Udp.
+Dzięki długiemu okresu rozwoju framework oferuje wsparcie wielu rozwiązań sieciowych.
+Nie oferuję tak efektywanej pracy jak technologia Node.js, jednak może okazać się lepszym wyborem jeśli zachodzi potrzeba wykorzystania specyficznego protokołu sieciowego, który nie został jeszcze zaimplementowany w Node.js.
+
+\subsection(Ringojs)
+Ostatnią wymienioną alternatywą jest platforma Ringojs.
+Napisany został w języku java przez Hannesa Wallnöfer w 2010 roku.
+Służy do tworzenia aplikacji w języku javascript po stronie serwera działających również w koncerpcji środowiska sterowanego zdarzeniami dzięki wykorzystaniu technologi Rhino, która zajmuje się obsługą wielowątkowości. 
+Niewątpliwą zaletą Ringojs jest możliwość wykorzystania kodów w języku java przez serwer, zapewniając integracje frameworka z istniejącymi środowiskami java'owymi.
+W porównaniu z technologią Node.js Ringojs jest efektywniejszy dla rozwiązań obsługujących mniejszą ilość jednoczesnych zapytań, oraz w przypadku alokacji dużych plików
+dzięki pracy w środowisku JVM. 
+Oznacza że zyskuje przewage w przypadku prostych narzędzi, natomiast nie gwarantuje takiej skalowalności jak Node.js.
 
 \chapter{Założenia i specyfikacja aplikacji}
 
@@ -306,7 +334,7 @@ Zdefiniowane zostały następujące wymagania niefunkcjonalne:
 \item Proste analizowanie i diagnozowanie błędów oraz sytuacji problemowych.
 \item Budowa zapewnia łatwe wprowadzanie koniecznych zmian.
 \item Jest w stanie obsłużyć jednocześnie do 100.000 użytkowników.
-\item Czas uruchomienia jest niedłuży niż 10 sekund.
+\item Czas uruchomienia jest nie dłuży niż 10 sekund.
 \item Umożliwia efektywne testowanie wprowadzonych zmian.
 \item Możliwość obsługi poprzez różne przeglądarki internetowe i środowiska.
 \item Zrozumiały dla wszystkich. Czas przyswojenia nie przekracza 15 minut.
@@ -399,8 +427,6 @@ Plik w języku javaScript zawierający definicje modelu i kontrolera:
 var main = angular.module("main", []); 									// create angular module
 
 main.controller('SignInController', function($scope) { 					// create controller for module
-	$scope.login=""; 													// initialize login as field in model
-	$scope.password=""; 												// initialize password as field in model
 	$scope.SignIn=function(){ 											// callback function as field in model
 		if ($scope.login && $scope.password) {							// if both field are filled
 			var xhr = new XMLHttpRequest();									//create request object
@@ -415,10 +441,6 @@ main.controller('SignInController', function($scope) { 					// create controller
 						$scope.login=resObj.login;						// set password from response
 						$scope.password=$resObj.password;				// set password from response
 						alert("Login and password are valid");			// alert user
-					}
-					else if (req.status === 401){						// http status code 200 -  Unauthorized
-						$scope.invalid=req.responseText;  				// set response message containing error in view model
-						$scope.$apply(); 								// apply changes on view model
 					}
 					else{ 												// all other http statusses
 						alert(req.status+":"req.responseText); // alert user
@@ -437,38 +459,14 @@ Plik w języku html zawierający definicje widoku:
 <body ng-app = "main">
 	<!-- Create form for request -->
 	<form class="main" name="form"> 
-		<table>
-			<tr>
-				<td style="width:50%;">
-					Login
-				</td>
-				<td style="width:50%">
-						<!-- Get user login -->
-						<input type = "text" ng-model = "login" name="login"
-							<!-- Set field validation -->
-							required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
-				</td>
-			</tr>
-			<tr>
-				<td style="width:50%;">
-					Password
-				</td>
-				<td style="width:50%">
-						<!-- Get user password -->
-						<input type = "text" ng-model = "password" name="password"
-						<!-- Set field validation -->
-							required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<!-- show error message field from server only if invalid field exist -->
-					<p ng-show="invalid">{{invalid}}</p>
-					<!-- show static error message only if one of user field are invalid -->
-					<p ng-show="form.login.$invalid || form.password.$invalid">Invalid login or password</p>
-				</td>	
-			</tr>
-		</table>
+		<!-- Get user login -->
+		<input type = "text" ng-model = "login" name="login"
+			<!-- Set field validation -->
+			required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
+		<!-- Get user password -->
+		<input type = "text" ng-model = "password" name="password"
+		<!-- Set field validation -->
+			required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
 	</form>
 </body>
 \end{lstlisting}
@@ -481,39 +479,20 @@ var express = require('express');					// load express module
 var bodyParser = require('body-parser');    		// load module for parsing json data
 var dataBase = require('mongodb').MongoClient;  	// load MongoDB database module
 var Promise = require('promise');               	// load asynchronous returns from functions module
-var dataBaseUrl = "mongodb://localhost:27017/db"; 	// dataBase address
 
-var port = 8081;  									// application port
 var app = express();						        // create epress configuration object
 app.use(bodyParser.json());                         // load bodyParser to app object
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-// connect to database function, returns database handler
-function Connect() {
-    return new Promise(function (fulfill, reject) {
-        dataBase.connect(dataBaseUrl, function(err, db) {
-            if (err) {
-                reject(err);
-            }
-            fulfill(db);
-        });
-    });
-}
 
 // check if database contains given user
 var Authorization=function (login, password) {
     return new Promise(function (fulfill, reject) {
-        Connect().done(function (db) {
+        dataBase.connect(mongodb://localhost:27017/db, function(err, db).done(function (db) {
             db.collection("Users").findOne({ login: login, password: password }, function (err, result) {
-                if (err) {
-                    reject(err);
-                } else {
-                    if (result != null) {
-                        fulfill(true);
-                    }
-                    else {
-                        fulfill(false);
-                    }
+                if (result != null) {
+                    fulfill(true);
+                }
+                else {
+                    fulfill(false);
                 }
                 db.close();
             });
@@ -525,7 +504,7 @@ var Authorization=function (login, password) {
 function TextValidation(text, min, max) {
     if (min === undefined) min = 0;
     if (max === undefined) max = Infinity;
-    return (text !== undefined) && (/^[a-zA-Z0-9._-]+$/).test(text) && text.length >= min && text.length <= max;
+    return (text !== undefined) && (/(^[a-zA-Z0-9._-]+$){min, max}/).test(text);
 }
 
 // check is user credentials data correct
@@ -544,24 +523,20 @@ function UserValidation(body) {
 //funtion run when server gets post request with url /authorization
 app.post('/authorization', function (req, res) {
 	UserValidation(req.body).done(function(valid) {
+		res.setHeader('Content-Type', "text/html");
 	    if (valid) {
-	  	    res.setHeader('Content-Type', "text/html");
 			res.statusCode = 200;
-			res.end();
 	   	}
         else {
-            res.setHeader('Content-Type', "text/html");
 			res.statusCode = 401; // error has happend
 			res.write("Invalid login or password");
-			res.end();
 		}
+		res.end();
     });
 });
 
 //start server
-var server = app.listen(port, function () {
-	MakeLog('Server listening');
-});
+var server = app.listen(8081, function () {});
 \end{lstlisting}
 
 \section{Wykorzystane moduły}
@@ -594,88 +569,60 @@ Dzięki temu plik główny serwera nie musi znać budowy, ani wykonywać operacj
 
 \chapter{Testy aplikacji}
 
+\section{Testy manualne}
 Po wykonaniu aplikacji zostały przeprowadzone testy manualne, sprawdzające poprawność dostarczanej przez serwis funkcjonalności.
-Kolejne przypadki testowe:
-\newpage 
-\section{Uzyskanie dostępu do statycznych zasobów serwisu}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{11.png}
-\captionsetup{labelformat=empty}
-\caption[]{Użytkownik wysyła żądanie pod adres serwera.}
-\end{figure}
+\subsection{Uzyskanie dostępu do statycznych zasobów serwisu}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{12.png}
 \captionsetup{labelformat=empty}
-\caption[]{Użytkownik otrzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
+\caption[]{Użytkownik wysyła żądanie pod adres serwera. 
+trzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
 \end{figure}
 
 \newpage 
-\section{Rejerstracja w serwisie}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{21.png}
-\captionsetup{labelformat=empty}
-\caption[]{Użytkownik wypełnia formularz rejestracyjny na stronie serwisu i wysyła dane do serwera. }
-\end{figure}
+\subsection{Rejerstracja w serwisie}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{22.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła stronę główną aplikacji dostępną po zalogowaniu na konto lub informacje o błędzie.}
+\caption[]{Użytkownik wypełnia formularz rejestracyjny na stronie serwisu i wysyła dane do serwera. 
+Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła stronę główną aplikacji dostępną po zalogowaniu na konto lub informacje o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Potwierdzenie adresu email}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{31.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po podaniu adresu email użytkownik otrzymuje wiadomość email zawierającą link aktywacyjny.}
-\end{figure}
+\subsection{Potwierdzenie adresu email}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{32.png}
 \captionsetup{labelformat=empty}
-\caption[]{Po kliknięciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawidłowy dla podanego użytkownika. 
+\caption[]{Po podaniu adresu email użytkownik otrzymuje wiadomość email zawierającą link aktywacyjny. 
+Po kliknięciu w link. Serwer sprawdza czy otrzymany w linku kod jest prawidłowy dla podanego użytkownika. 
 Następnie aktywuje adres email dla odpowiedniego użytkownika, wysyła w odpowiedzi stronę główną aplikacji oraz wiadomość email o potwierdzeniu.}
 \end{figure}
 
 \newpage 
-\section{Logowanie się w serwisie}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{41.png}
-\captionsetup{labelformat=empty}
-\caption[]{Użytkownik wypełnia formularz na stronie serwisu i przesyła żądanie do serwera.}
-\end{figure}
+\subsection{Logowanie się w serwisie}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{42.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza istnienie konta w serwisie. 
+\caption[]{Użytkownik wypełnia formularz na stronie serwisu i przesyła żądanie do serwera. Serwer sprawdza istnienie konta w serwisie. 
 W odpowiedzi użytkownik otrzymuje stronę główną aplikacji lub błąd o niepoprawnych danych.
 W czasie bycia zalogowanym, co określony czas zostaje wysłane żądanie aktualizacji danych. 
 Aktualizacja następuje również każdorazowo po otrzymaniu pomyślnego potwierdzenia wykonania operacji przez serwer.}
 \end{figure}
 
 \newpage 
-\section{Resetowanie hasła użytkownika}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{51.png}
-\captionsetup{labelformat=empty}
-\caption[]{Funkcja jest dostępna po potwierdzeniu adresu email dla konta. 
-Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkownik wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Resetowanie hasła użytkownika}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{52.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza podane dane. W odpowiedzi wysyła informacje o przetworzeniu żądania.}
+\caption[]{Funkcja jest dostępna po potwierdzeniu adresu email dla konta. 
+Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkownik wysyła żądanie do serwera. 
+Serwer sprawdza podane dane. W odpowiedzi wysyła informacje o przetworzeniu żądania.}
 \end{figure}
-\newpage 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{53.png}
@@ -684,22 +631,16 @@ Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkowni
 \end{figure}
 
 \newpage 
-\section{Zmiana danych użytkownika}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{61.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu się i wypełnieniu odpowiedniego formularza na stronie serwisu użytkownik wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Zmiana danych użytkownika}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{62.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Jeśli są poprawne, aktualizuje je.
+\caption[]{Po zalogowaniu się i wypełnieniu odpowiedniego formularza na stronie serwisu użytkownik wysyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Jeśli są poprawne, aktualizuje je.
 W przeciwnym wypadku, zwraca komunikat o błędzie. 
 W odpowiedzi serwer wysyła stronę główną aplikacji.}
 \end{figure}
-\newpage 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{63.png}
@@ -708,157 +649,145 @@ W odpowiedzi serwer wysyła stronę główną aplikacji.}
 \end{figure}
 
 \newpage 
-\section{Utworzenie nowej tablicy z zadaniami}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{71.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu się użytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysyła je do serwera.}
-\end{figure}
+\subsection{Utworzenie nowej tablicy z zadaniami}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{72.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. 
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje dodania tablicy, wpisuje wymagane dane i wysyła je do serwera. 
+Serwer sprawdza poprawność danych. 
 Jeśli są poprawne, serwer tworzy nową tablicę dla użytkownika i wysyła potwierdzenie w odpowiedzi.
 W przeciwnym wypadku odpowiada komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Wysyłanie zaproszenia do tablicy}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{01.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu się użytkownik wybiera opcje wysłania zaproszenia do wybranej tablicy, wypełnia dane i wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Wysyłanie zaproszenia do tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{02.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. 
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje wysłania zaproszenia do wybranej tablicy, wypełnia dane i wysyła żądanie do serwera. Serwer sprawdza poprawność danych. 
 W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu lub komunikat o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Akceptacja zaproszenia}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{81.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu się użytkownik wybiera opcje zaakceptowania oczekującego zaproszenia i wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Akceptacja zaproszenia}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{82.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje zaakceptowania oczekującego zaproszenia i wysyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Odrzucenie zaproszenia}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu się użytkownik wybiera opcje odrzucenia oczekującego zaproszenia i wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Odrzucenie zaproszenia}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje odrzucenia oczekującego zaproszenia i wysyła żądanie do serwera. Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Wyrzucenie użytkownika z tablicy}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{91.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu się użytkownik wybiera opcje wyrzucenia użytkownika z określonej tablicy i wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Wyrzucenie użytkownika z tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{92.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu się użytkownik wybiera opcje wyrzucenia użytkownika z określonej tablicy i wysyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Dodanie zadania}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A1.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu i wybraniu odpowiedniej tablicy użytkownik wybiera opcje dodania zadania, wypełnia dane i przesyła żądanie do serwera.}
-\end{figure}
+\subsection{Dodanie zadania}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{A2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu i wybraniu odpowiedniej tablicy użytkownik wybiera opcje dodania zadania, wypełnia dane i przesyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Dodanie statusu zadania}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B1.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania użytkownik wybiera opcje dodania nowego statusu, uzupełnia dane i przesyła żądanie do serwera.}
-\end{figure}
+\subsection{Dodanie statusu zadania}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{B2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zadania użytkownik wybiera opcje dodania nowego statusu, uzupełnia dane i przesyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Usuwanie zadania}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C1.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zakończonego zadania użytkownik wybiera opcje usuwania zadania i przesyła żądanie do serwera.}
-\end{figure}
+\subsection{Usuwanie zadania}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{C2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu, wybraniu odpowiedniej tablicy i zakończonego zadania użytkownik wybiera opcje usuwania zadania i przesyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Opuszczanie tablicy}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D1.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu użytkownik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Opuszczanie tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{D2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu użytkownik wybiera opcje opuszczenia tablicy, której jest członkiem i wysyła żądanie do serwera. 
+Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
 \newpage 
-\section{Usuwanie tablicy}
-\begin{figure}[!hb]
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E1.png}
-\captionsetup{labelformat=empty}
-\caption[]{Po zalogowaniu użytkownik wybiera opcje usunięcia własnej tablicy i wysyła żądanie do serwera.}
-\end{figure}
+\subsection{Usuwanie tablicy}
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{E2.png}
 \captionsetup{labelformat=empty}
-\caption[]{Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
+\caption[]{Po zalogowaniu użytkownik wybiera opcje usunięcia własnej tablicy i wysyła żądanie do serwera. Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
+
+
+\section{Testy wydajnościowe}
+Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnej szerokości zakresie danych. 
+
+\subsection{Mała ilość danych}
+Testy dla bazdy danych przy 5 uzytkownikach, kazdy po 2 tablice po 3 zadania po 2 komentarze
+Wydajnosc aplikacji:
+czas logowania:
+wyslanie odpowiedzi z informacjiami:
+dodanie boardu
+doddanie taska
+dodanie kometarza
+wyszukanie uzytkownika
+czas przeslania odpowiedzi do uzytkownika:
+
+\subsection{Średnia ilość danych}
+Do bazy danych została dodana duża ilość danych: 500 userow kazdy po 10 tablic po 20 zadan z 5 komentarzami. 
+
+\subsection{Duża ilość danych}
+Do bazy danych została dodana duża ilość danych: 5000 userow kazdy po 50 tablic po 50 zadan z 10 komentarzami. 
+
+\subsection{Podsumowanie testów}
+Czy serwis spelnia funkcjonalnosc w roznych obicaizeniach czy korzystanie z serwisu jest komfortowe i satysfakcjonujace?
+
+
+\section{Testy obciazeniowe serwera}
+Przeprowadzone testy pozwalają określic zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań.
+
+\subsection{Mała ilość danych}
+Wyslanie 100 logowan uzytkownikow naraz i otrzymanie ich informacji
+
+\subsection{Średnia ilość danych}
+Wyslanie 1000 logowan uzytkownikow naraz i otrzymanie ich informacji
+
+\subsection{Duża ilość danych}
+Wyslanie 10000 logowan uzytkownikow naraz i otrzymanie ich informacji
+
+\subsection{Podsumowanie testów}
+Czy serwis spelnia funkcjonalnosc w roznych obicaizeniach czy korzystanie z serwisu jest komfortowe i satysfakcjonujace? Czy serwis jest skalowalny?
+
 
 
 \chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
@@ -904,8 +833,19 @@ Dokumentacja biblioteki libuv. Stan na dzień: 2017-07-20
 \bibitem{libuv}
 Dokumentacja MongoDB. Stan na dzień: 2017-07-20
 \textit{https://docs.mongodb.com/}
+\bibitem{Vert.x}
+Artykuł poświęcony technolgii Vert.x w serwisie wikipedia. Stan na dzień: 2017-07-20
+\textit{https://en.wikipedia.org/wiki/Vert.x}
+\bibitem{Twisted}
+Artykuł poświęcony technolgii Twisted w serwisie wikipedia. Stan na dzień: 2017-07-20
+\textit{https://en.wikipedia.org/wiki/Twisted_(software)}
+\bibitem{Ringojs}
+Dokumentacja Ringojs. Stan na dzień: 2017-07-20
+\textit{https://ringojs.org/}
+\bibitem{Node vs Ringojs}
+Porównanie technologii Node.js i Ringojs. Stan na dzień: 2017-07-20
+\textit{http://hns.github.io/2010/09/21/benchmark.html}
 \end{thebibliography}
-
 \addcontentsline{toc}{chapter}{Spis rysunków} 
 \listoffigures
 
