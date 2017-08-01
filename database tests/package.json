@@ -1,0 +1,12 @@
+{
+  "name": "server-console",
+  "version": "0.0.0",
+  "description": "ServerConsole",
+  "main": "app.js",
+  "author": {
+    "name": "Artur"
+  },
+  "dependencies": {
+	"request": "*"
+  }
+}

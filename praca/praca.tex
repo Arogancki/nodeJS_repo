@@ -577,7 +577,7 @@ Po wykonaniu aplikacji zostały przeprowadzone testy manualne, sprawdzające pop
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{12.png}
 \captionsetup{labelformat=empty}
 \caption[]{Użytkownik wysyła żądanie pod adres serwera. 
-trzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
+Otrzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
 \end{figure}
 
 \newpage 
@@ -590,7 +590,6 @@ trzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zd
 Serwer sprawdza poprawność otrzymanych danych i w odpowiedzi przesyła stronę główną aplikacji dostępną po zalogowaniu na konto lub informacje o błędzie.}
 \end{figure}
 
-\newpage 
 \subsection{Potwierdzenie adresu email}
 \begin{figure}[!hb]
 \centering
@@ -660,7 +659,6 @@ Jeśli są poprawne, serwer tworzy nową tablicę dla użytkownika i wysyła pot
 W przeciwnym wypadku odpowiada komunikatem o błędzie.}
 \end{figure}
 
-\newpage 
 \subsection{Wysyłanie zaproszenia do tablicy}
 \begin{figure}[!hb]
 \centering
@@ -680,7 +678,6 @@ W odpowiedzi wysyła potwierdzenie o wysłanym zaproszeniu lub komunikat o błę
 Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
-\newpage 
 \subsection{Odrzucenie zaproszenia}
 \begin{figure}[!hb]
 \centering
@@ -699,7 +696,6 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
-\newpage 
 \subsection{Dodanie zadania}
 \begin{figure}[!hb]
 \centering
@@ -719,7 +715,6 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
-\newpage 
 \subsection{Usuwanie zadania}
 \begin{figure}[!hb]
 \centering
@@ -739,7 +734,6 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
-\newpage 
 \subsection{Usuwanie tablicy}
 \begin{figure}[!hb]
 \centering
@@ -750,44 +744,50 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 
 
 \section{Testy wydajnościowe}
-Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnej szerokości zakresie danych. 
+Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Zostały wykonane za pomocą technologii node.js oraz modułu request, pozwalającego na wysyłanie zapytań.
 
 \subsection{Mała ilość danych}
-Testy dla bazdy danych przy 5 uzytkownikach, kazdy po 2 tablice po 3 zadania po 2 komentarze
-Wydajnosc aplikacji:
-czas logowania:
-wyslanie odpowiedzi z informacjiami:
-dodanie boardu
-doddanie taska
-dodanie kometarza
-wyszukanie uzytkownika
-czas przeslania odpowiedzi do uzytkownika:
+Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych z 5 użytkownikami, każdy po 2 tablice po 3 zadania po 2 komentarze: \newline
+logowanie - xx\newline
+otrzymanie informacji o tablicach i zaproszeniach - xx\newline
+dodanie nowej tablicy - xx\newline
+dodanie nowego zadania - xx\newline
+dodanie komentarza - xx
 
 \subsection{Średnia ilość danych}
-Do bazy danych została dodana duża ilość danych: 500 userow kazdy po 10 tablic po 20 zadan z 5 komentarzami. 
+Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych z 100 użytkownikami, każdy po 10 tablic po 3 zadania po 2 komentarze: \newline
+logowanie - xx\newline
+otrzymanie informacji o tablicach i zaproszeniach - xx\newline
+dodanie nowej tablicy - xx\newline
+dodanie nowego zadania - xx\newline
+dodanie komentarza - xx
 
 \subsection{Duża ilość danych}
-Do bazy danych została dodana duża ilość danych: 5000 userow kazdy po 50 tablic po 50 zadan z 10 komentarzami. 
+Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych z 5000 użytkownikami, każdy po 50 tablic po 50 zadań po 10 komentarzy: \newline
+logowanie - xx\newline
+otrzymanie informacji o tablicach i zaproszeniach - xx\newline
+dodanie nowej tablicy - xx\newline
+dodanie nowego zadania - xx\newline
+dodanie komentarza - xx
 
 \subsection{Podsumowanie testów}
-Czy serwis spelnia funkcjonalnosc w roznych obicaizeniach czy korzystanie z serwisu jest komfortowe i satysfakcjonujace?
+Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości danych korzystanie z serwisu jest komfortowe.
 
 
-\section{Testy obciazeniowe serwera}
-Przeprowadzone testy pozwalają określic zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań.
+\section{Testy obciążeniowe serwera}
+Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Zostały wykonane za pomocą technologii node.js oraz modułu request, pozwalającego na wysyłanie zapytań.
 
 \subsection{Mała ilość danych}
-Wyslanie 100 logowan uzytkownikow naraz i otrzymanie ich informacji
+Czas otrzymania odpowiedzi na 100 jednocześnie wysłanych zapytań - .
 
 \subsection{Średnia ilość danych}
-Wyslanie 1000 logowan uzytkownikow naraz i otrzymanie ich informacji
+Czas otrzymania odpowiedzi na 1000 jednocześnie wysłanych zapytań - .
 
 \subsection{Duża ilość danych}
-Wyslanie 10000 logowan uzytkownikow naraz i otrzymanie ich informacji
+Czas otrzymania odpowiedzi na 10000 jednocześnie wysłanych zapytań - .
 
 \subsection{Podsumowanie testów}
-Czy serwis spelnia funkcjonalnosc w roznych obicaizeniach czy korzystanie z serwisu jest komfortowe i satysfakcjonujace? Czy serwis jest skalowalny?
-
+Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwera. Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest komfortowe. Aplikacja wykazuje się skalowalnością.
 
 
 \chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
@@ -838,7 +838,7 @@ Artykuł poświęcony technolgii Vert.x w serwisie wikipedia. Stan na dzień: 20
 \textit{https://en.wikipedia.org/wiki/Vert.x}
 \bibitem{Twisted}
 Artykuł poświęcony technolgii Twisted w serwisie wikipedia. Stan na dzień: 2017-07-20
-\textit{https://en.wikipedia.org/wiki/Twisted_(software)}
+\textit{https://en.wikipedia.org/wiki/Twisted\_(software)}
 \bibitem{Ringojs}
 Dokumentacja Ringojs. Stan na dzień: 2017-07-20
 \textit{https://ringojs.org/}

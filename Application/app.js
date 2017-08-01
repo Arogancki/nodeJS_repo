@@ -303,24 +303,26 @@ app.post('/registration', function (req, res) {
 });
 
 app.use(function (req, res, next) {
-    if (req.method == 'POST') {
-        db.GetRealName(req.body.login).done(function (realLogin) {
-            if (realLogin==null) {
-                Send401(req, res);
-      	    	return;
-            } else {
-                req.body.login = realLogin;
-            }
-	        UserValidation(req.body).done(function(valid) {
-	        	if (valid) {
-	  	    		next();
-	   	    	}
-                else {
-                    Send401(req,res);
-      	    	    return;
+    try {
+        if (req.method == 'POST') {
+            db.GetRealName(req.body.login).done(function(realLogin) {
+                if (realLogin == null) {
+                    Send401(req, res);
+                    return;
+                } else {
+                    req.body.login = realLogin;
                 }
+                UserValidation(req.body).done(function(valid) {
+                    if (valid) {
+                        next();
+                    } else {
+                        Send401(req, res);
+                        return;
+                    }
+                });
             });
-        });
+        }
+    } catch (e) {
     }
 });
 
