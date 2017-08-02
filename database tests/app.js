@@ -14,34 +14,80 @@ function MakeLog(text,req){
 		console.log(GetDate()+">"+text);
 }
 
-// test size
-var size = 2;
-var complete = [];
-for (var i = 0; i < size; i++)
-    complete[i] = false;
-
-function check() {
-    for (var i = 0; i < size; i++)
-        if (complete[i] === false)
-            return false;
-    return true;
-}
-
-function SendRequest(id) {
+function SendRequest(path,json,doneFunction) {
     request.post(
-        'http://192.168.0.189:8081/authorization',
-        { json: { login: "test", password: "12345678" } },
+        'http://192.168.0.189:8081/'+path,
+        { json: json },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                complete[id] = true;
-                if (check())
-                    MakeLog("Test finished.");
+		if (typeof doneFunction !== 'undefined')
+			doneFunction(json);
             }
         }
     );
 }
 
-function Test() {
-   // TODO
+function AddLoad(users,boards,task,comments){
+	for (var i=0; i<users; i++){
+		json={ login: "testUser"+i, password: "12345678" , password2: "12345678" };
+		SendRequest('registration', json, function(json) {
+			for (var j=0; j<boards; j++){
+				json2=json;
+				json2.board="board"+j;
+				SendRequest('CreateNewBoard', json2,function(json) {
+					for (var k=0; k<task; k++){
+						json2=json;
+						json2.owner=json2.login;
+						json2.task="task"+k;
+						json2.info="New issue";
+						SendRequest('CreateNewTask', json2,function(json) {
+							for (var l=0; l<comments; l++){
+								json2=json;
+								json2.type='In progress';
+								json2.info="Status"+l;
+								SendRequest('AddStatus', json2);
+							}
+						});
+					}
+				});
+			}
+		});
+	}
 }
-Test();
+
+function LoadTest(){
+	MakeLog("Test authorization started.");
+	json={ login: "testUser0", password: "12345678" , password2: "12345678" };
+	SendRequest('authorization', json, function(json) {
+		MakeLog("Test authorization finished.");
+		MakeLog("Test getBoardsAndInvitations started.");
+		SendRequest('getBoardsAndInvitations', json, function(json) {
+			MakeLog("Test getBoardsAndInvitations finished.");
+			json2=json;
+			json2.board="newBoardX";
+			MakeLog("Test CreateNewBoard started.");
+			SendRequest('CreateNewBoard', json2, function(json) {
+				MakeLog("Test CreateNewBoard finished.");
+				json2=json;
+				json2.owner=json2.login;
+				json2.task="newTaskX";
+				json2.info="new issue";
+				MakeLog("Test CreateNewTask started.");
+				SendRequest('CreateNewTask', json2, function(json) {
+					MakeLog("Test CreateNewTask finished.");
+					json2=json;
+					json2.info="new InfoX";
+					json2.type='In progress';
+					MakeLog("Test AddStatus started.");
+					SendRequest('AddStatus', json2, function(json) {
+						MakeLog("Test AddStatus finished.");
+					});
+				});
+			});
+		});
+	});
+}
+
+//use AddLoad(int,int,int,int);
+//then
+//use LoadTest();
