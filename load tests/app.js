@@ -15,7 +15,7 @@ function MakeLog(text,req){
 }
 
 // test size
-var size = 300;
+var size = 50;
 var complete = 0;
 
 function check() {

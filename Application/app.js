@@ -275,7 +275,8 @@ app.post('/registration', function (req, res) {
     if (TextValidation(req.body.login, 3, 20) && TextValidation(req.body.password, 3, 20) && req.body.password === req.body.password2) {
 		if (req.body.email != "") {
 			if (!EmailValidation(req.body.email)) {
-				Send403("Invalid address email",req,res);
+                Send403("Invalid address email", req, res);
+			    return;
 			}
 		}
 		else {
