@@ -16,24 +16,21 @@ function MakeLog(text,req){
 
 // test size
 var size = 300;
-var complete = [];
-for (var i = 0; i < size; i++)
-    complete[i] = false;
+var complete = 0;
 
 function check() {
-    for (var i = 0; i < size; i++)
-        if (complete[i] === false)
-            return false;
-    return true;
+    if (complete === size)
+    	return true;
+    return false;
 }
 
-function SendRequest(id) {
+function SendRequest() {
     request.post(
         'http://192.168.0.189:8081/authorization',
         { json: { login: "test", password: "12345678" } },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                complete[id] = true;
+                complete=complete+1;
                 if (check())
                     MakeLog("Test finished.");
             }
@@ -41,9 +38,7 @@ function SendRequest(id) {
     );
 }
 
-function Test() {
-    MakeLog("Test started for " + size + " requests.");
-    for (var i = 0; i < size; i++)
-        SendRequest(i);
-}
-Test();
+// Test start
+MakeLog("Test started for " + size + " requests.");
+for (var i = 0; i < size; i++)
+    SendRequest();
