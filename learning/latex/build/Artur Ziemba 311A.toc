@@ -1,0 +1,19 @@
+\contentsline {section}{\numberline {1}What is M2M?}{1}
+\contentsline {subsection}{\numberline {1.1}Brief}{1}
+\contentsline {subsection}{\numberline {1.2}Technical information}{1}
+\contentsline {subsection}{\numberline {1.3}Why Cat-M}{2}
+\contentsline {section}{\numberline {2}Requirements}{2}
+\contentsline {subsection}{\numberline {2.1}Wide spectrum of devices}{2}
+\contentsline {subsection}{\numberline {2.2}Low devices cost}{3}
+\contentsline {subsection}{\numberline {2.3}Long battery life}{3}
+\contentsline {subsection}{\numberline {2.4}Enhanced coverage}{4}
+\contentsline {subsection}{\numberline {2.5}Large volumes - low data rates}{4}
+\contentsline {subsection}{\numberline {2.6}Low deployment cost}{4}
+\contentsline {section}{\numberline {3}CatM Frequency Hopping}{4}
+\contentsline {subsection}{\numberline {3.1}Narrowbands}{4}
+\contentsline {subsection}{\numberline {3.2}Narrowbands per bandwidth}{5}
+\contentsline {subsection}{\numberline {3.3}Frequency hopping}{5}
+\contentsline {subsection}{\numberline {3.4}Technical information}{5}
+\contentsline {subsection}{\numberline {3.5}Frequency hoping pattern}{5}
+\contentsline {paragraph}{where:\\}{5}
+\contentsline {section}{\numberline {4}Conclusions}{6}

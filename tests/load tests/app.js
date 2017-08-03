@@ -8,10 +8,7 @@ function GetDate() {
 
 // same format logs
 function MakeLog(text,req){
-	if (req!==undefined)
-        console.log(GetDate() + ">" + req.ip +">"+text);
-	else
-		console.log(GetDate()+">"+text);
+	console.log(GetDate()+">"+text);
 }
 
 var complete = 0;
@@ -45,7 +42,7 @@ function dexterityTest(size){
 }
 
 //dex test 
-dexterityTest(1000);
+dexterityTest(1500);
 
 //load test
 //loadTest(1500);
