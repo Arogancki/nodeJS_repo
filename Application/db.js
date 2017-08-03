@@ -1,6 +1,6 @@
 var dataBase = require('mongodb').MongoClient;   // MongoDB databases
 var Promise = require('promise');               // asynchronous returns from functions
-var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerAppTestSec"; //dataBase address
+var dataBaseUrl = "mongodb://localhost:27017/TaskMenagerA"; //dataBase address
 
 var usersTable = "users";
 var boardsTable = "boards";

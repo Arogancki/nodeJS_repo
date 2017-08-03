@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');    // parse jsondata
 var Promise = require('promise');           // asynchronous returns from functions
 var cookieParser = require('cookie-parser');// cookies handling
 
-var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = true;	// constant variable if true json objects will be printed in logs after sending response
+var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = false;	// constant variable if true json objects will be printed in logs after sending response
 var port = 8081;                                // default port for listening
 var address = 'http://192.168.0.189:' + port;   // address site
 var public = path.join(__dirname, "public");	// path with public files

@@ -28,21 +28,30 @@ function loadTest(size) {
         );
 }
 
-function dexterityTest(size){
+function dexterityTestPRIVATE(time){
 	request.post(
         'http://192.168.0.189:8081/authorization',
         { json: { login: "test", password: "12345678" } },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                if (++complete<size)
-                    dexterityTest(size);
+                complete++;
+                if (new Date().getTime() - start >= time) {
+                    MakeLog("Test Complete: " + complete);
+                } else
+                    dexterityTestPRIVATE(time);
             }
         }
     );
 }
 
+function dexterityTest(time) {
+    MakeLog("Test Started");
+    start = new Date().getTime();
+    dexterityTestPRIVATE(time);
+}
+
 //dex test 
-dexterityTest(1500);
+dexterityTest(300000);
 
 //load test
 //loadTest(1500);

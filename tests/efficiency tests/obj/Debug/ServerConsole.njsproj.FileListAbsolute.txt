@@ -2,3 +2,5 @@ C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\Tests\obj\Debug
 C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\Tests\bin\Microsoft.NodejsTools.WebRole.dll
 C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\efficiency tests\obj\Debug\ServerConsole.njsprojResolveAssemblyReference.cache
 C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\efficiency tests\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\tests\efficiency tests\obj\Debug\ServerConsole.njsprojResolveAssemblyReference.cache
+C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\tests\efficiency tests\bin\Microsoft.NodejsTools.WebRole.dll

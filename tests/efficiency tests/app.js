@@ -1,10 +1,11 @@
 var request = require('request');
 
 var testNumber = 15;
-var users = 200; //3000
-var boards = 10; //30
-var tasks = 7; //25
-var comments = 4 //10
+var users = 500;// 5 50; //500
+var boards = 8;//2 4; //8
+var tasks = 12;// 3 6; //12
+var comments = 11;// 2 5 //11
+var timepause = 0;
 
 // get Date for logs
 function GetDate() {               
@@ -29,7 +30,8 @@ function SendRequest(path, json) {
 }
 
 function AddLoad(){
-	MakeLog("Adding load started\nregistration");
+	MakeLog("Adding load started");
+	MakeLog("registration");
 	user=0;
 	AddLoadPrivate('registration');
 }
@@ -55,105 +57,101 @@ function AddLoadPrivate(path) {
 		};
 	}
     request.post('http://192.168.0.189:8081/' + path, { json: json },
-        function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-				if (path == 'registration'){
-					user++;
-					if (user<users){
-						user++;
-						AddLoadPrivate('registration');
-					}
-					else{
-						user=0;
-						board=0;
-						MakeLog("CreateNewBoard");
-						AddLoadPrivate('CreateNewBoard');
-					}
-				}
-				else if (path == 'CreateNewBoard'){
-					board++;
-					if (board<boards){
-						AddLoadPrivate('CreateNewBoard');  
-					}
-					else{
-						user++;
-						if (user<users){
-							board=0;
-							MakeLog("User= "+user);
-							AddLoadPrivate('CreateNewBoard');
-						}
-						else{
-							user=0;
-							board=0;
-							task=0;
-							MakeLog("CreateNewTask");
-							AddLoadPrivate('CreateNewTask');  
-						}
-					}
-				}
-				else if (path == 'CreateNewTask'){
-					task++;
-					if (task<tasks){
-						AddLoadPrivate('CreateNewTask'); 
-					}
-					else{
-						board++;
-						if (board<boards){
-								task=0;
-								AddLoadPrivate('CreateNewTask');
-							}
-							else{
-								user++;
-								if (user<users){
-									task=0;
-									board=0;
-									MakeLog("User= "+user);
-									AddLoadPrivate('CreateNewTask');
-								}
-							else{
-								user=0;
-								board=0;
-								task=0;
-								info=0;
-								MakeLog("AddStatus");
-								AddLoadPrivate('AddStatus');
-							}
-						}
-					}
-				}
-				else if (path == 'AddStatus'){
-					info++;
-					if (info<comments){
-						AddLoadPrivate('AddStatus');
-					}
-					else{
-						task++;
-						if (task<tasks){
-							info=0;
-							AddLoadPrivate('AddStatus'); 
-						}
-						else{
-							board++;
-							if (board<boards){
-								info=0;
-								task=0;
-								AddLoadPrivate('AddStatus');
-							}
-							else{
-								user++;
-								if (user<users){
-									info=0;
-									task=0;
-									board=0;
-									MakeLog("User= "+user);
-									AddLoadPrivate('AddStatus');
-								}
-								MakeLog("Adding load finished");
-							}
-						}
-					}
-				}
-            }
+        function (error, response, body) {
+            setTimeout(function () {
+                if (error) {
+                    MakeLog("ERROR!!!!!");
+                    setTimeout(function() {
+                        AddLoadPrivate(path);
+                    }, 25000);
+                }
+                if (!error && response.statusCode == 200) {
+                    if (path == 'registration') {
+                        user++;
+                        if (user < users) {
+                            AddLoadPrivate('registration');
+                        } else {
+                            user = 0;
+                            board = 0;
+                            MakeLog("CreateNewBoard");
+                            AddLoadPrivate('CreateNewBoard');
+                        }
+                    } else if (path == 'CreateNewBoard') {
+                        board++;
+                        if (board < boards) {
+                            AddLoadPrivate('CreateNewBoard');
+                        } else {
+                            user++;
+                            if (user < users) {
+                                board = 0;
+                                MakeLog("User= " + user);
+                                AddLoadPrivate('CreateNewBoard');
+                            } else {
+                                user = 0;
+                                board = 0;
+                                task = 0;
+                                MakeLog("CreateNewTask");
+                                AddLoadPrivate('CreateNewTask');
+                            }
+                        }
+                    } else if (path == 'CreateNewTask') {
+                        task++;
+                        if (task < tasks) {
+                            AddLoadPrivate('CreateNewTask');
+                        } else {
+                            board++;
+                            if (board < boards) {
+                                task = 0;
+                                AddLoadPrivate('CreateNewTask');
+                            } else {
+                                user++;
+                                if (user < users) {
+                                    task = 0;
+                                    board = 0;
+                                    MakeLog("User= " + user);
+                                    AddLoadPrivate('CreateNewTask');
+                                } else {
+                                    user = 0;
+                                    board = 0;
+                                    task = 0;
+                                    info = 0;
+                                    MakeLog("AddStatus");
+                                    AddLoadPrivate('AddStatus');
+                                }
+                            }
+                        }
+                    } else if (path == 'AddStatus') {
+                        info++;
+                        if (info < comments) {
+                            AddLoadPrivate('AddStatus');
+                        } else {
+                            task++;
+                            if (task < tasks) {
+                                info = 0;
+                                AddLoadPrivate('AddStatus');
+                            } else {
+                                board++;
+                                if (board < boards) {
+                                    info = 0;
+                                    task = 0;
+                                    AddLoadPrivate('AddStatus');
+                                } else {
+                                    user++;
+                                    if (user < users) {
+                                        info = 0;
+                                        task = 0;
+                                        board = 0;
+                                        MakeLog("User= " + user);
+                                        AddLoadPrivate('AddStatus');
+                                    }
+                                    else 
+                                        MakeLog("Adding load finished");
+                                }
+                            }
+                        }
+                    }
+                }
+            }, timepause);
         }
     );
 }
@@ -187,6 +185,6 @@ function AddStatus() {
 
 //authorization();
 //getBoardsAndInvitations();
-//CreateNewBoard();
+CreateNewBoard();
 //CreateNewTask();
 //AddStatus();

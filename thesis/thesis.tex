@@ -244,7 +244,7 @@ Struktura w formacie json opisująca listę pracowników:
 	{ "firstName":"Peter", "lastName":"Blom" }
 ]}
 \end{lstlisting}
-
+\newpage
 Ta sama struktura opisana w formacie xml:
 <employees>
 \begin{lstlisting}[language=XML,firstnumber=1]
@@ -280,7 +280,7 @@ Działanie framework'u twisted opiera się głównie na wykorzystaniu protokoł�
 Dzięki długiemu okresu rozwoju framework oferuje wsparcie wielu rozwiązań sieciowych.
 Nie oferuję tak efektywanej pracy jak technologia Node.js, jednak może okazać się lepszym wyborem jeśli zachodzi potrzeba wykorzystania specyficznego protokołu sieciowego, który nie został jeszcze zaimplementowany w Node.js.
 
-\subsection(Ringojs)
+\subsection{Ringojs}
 Ostatnią wymienioną alternatywą jest platforma Ringojs.
 Napisany został w języku java przez Hannesa Wallnöfer w 2010 roku.
 Służy do tworzenia aplikacji w języku javascript po stronie serwera działających również w koncerpcji środowiska sterowanego zdarzeniami dzięki wykorzystaniu technologi Rhino, która zajmuje się obsługą wielowątkowości. 
@@ -299,7 +299,7 @@ Nie powinien on wymagać żadnych procesów wdrożeniowych w celu zrozumienia ob
 System powinien w przejrzysty sposób prezentować proces realizacji poszczególnych zadań zorganizowanych w tablicach.
 Właściciel określonej tablicy powinien mieć możliwość zarządzania dostępem do tablicy poprzez udostępnianie lub ograniczanie jej treści pozostałym użytkownikom.
 Aplikacja zapewni subskrybentom nieprzerwaną możliwość nadzoru, wglądu oraz określania aktualnych statusów dowolnych procesów.
-
+\newpage
 \section{Wymagania funkcjonalne}
 Analiza wymagań funkcjonalnych umożliwia zidentyfikowanie i opisanie pożądanego zachowania systemu. 
 Umożliwiają określenie usług oferowanych przez system, reakcji na dane wejściowe oraz zachowania w określonych sytuacjach.
@@ -744,38 +744,38 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 
 
 \section{Testy wydajnościowe}
-Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Zostały wykonane za pomocą technologii node.js oraz modułu request, pozwalającego na wysyłanie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na wysyłanie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
 \subsection{Mała ilość danych}
 Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 5 użytkowników, każdy po 2 tablice po 3 zadania po 2 komentarze:\newline
-logowanie - ms \newline
-otrzymanie informacji o tablicach i zaproszeniach - ms \newline
-dodanie nowej tablicy - ms \newline
-dodanie nowego zadania - ms \newline
-dodanie komentarza - ms
+logowanie - 22ms \newline
+otrzymanie informacji o tablicach i zaproszeniach - 29ms \newline
+dodanie nowej tablicy - 20ms \newline
+dodanie nowego zadania - 27ms \newline
+dodanie komentarza - 26ms
 
 \subsection{Średnia ilość danych}
-Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 200 użytkowników, każdy po 10 tablic po 7 zadania po 4 komentarze:\newline
-logowanie - ms \newline
-otrzymanie informacji o tablicach i zaproszeniach - ms \newline
-dodanie nowej tablicy - ms \newline
-dodanie nowego zadania - ms \newline
-dodanie komentarza - ms
+Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 50 użytkowników, każdy po 4 tablice po 6 zadań po 5 komentarzy:\newline
+logowanie - 26ms \newline
+otrzymanie informacji o tablicach i zaproszeniach - 33ms \newline
+dodanie nowej tablicy - 27ms \newline
+dodanie nowego zadania - 35ms \newline
+dodanie komentarza - 30ms
 
 \subsection{Duża ilość danych}
-Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 3000 użytkowników, każdy po 30 tablic po 30 zadań po 10 komentarzy: \newline
-logowanie - ms\newline
-otrzymanie informacji o tablicach i zaproszeniach - ms\newline
-dodanie nowej tablicy - ms\newline
-dodanie nowego zadania - ms\newline
-dodanie komentarza - ms
+Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 500 użytkowników, każdy po 8 tablic po 12 zadań po 11 komentarzy: \newline
+logowanie - 32ms\newline
+otrzymanie informacji o tablicach i zaproszeniach - 39ms\newline
+dodanie nowej tablicy - 31ms\newline
+dodanie nowego zadania - 37ms\newline
+dodanie komentarza - 32ms
 
 \subsection{Podsumowanie testu}
-Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe.
+Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe, ponieważ czas obsługi zapytania nie zostaje znacząco wydłużony.
 
 
 \section{Testy obciążeniowe serwera}
-Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Zostały wykonane za pomocą technologii node.js oraz modułu request, pozwalającego na wysyłanie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na wysyłanie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
 \subsection{Mała ilość danych}
 Czas otrzymania odpowiedzi na 50 jednocześnie wysłanych zapytań - 45ms.
@@ -791,21 +791,21 @@ Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwe
 
 
 \section{Testy sprawnościowe serwera}
-Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Zostały wykonane za pomocą technologii node.js oraz modułu request, pozwalającego na tworzenie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na tworzenie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
 \subsection{Krótki okres czasu}
-Otrzymane odpowiedzi w czasie 1 sekundy - .
+Otrzymane odpowiedzi w czasie 1 sekundy - 139.
 
 \subsection{Średni okres czasu}
-Otrzymane odpowiedzi w czasie 30 sekund - .
+Otrzymane odpowiedzi w czasie 30 sekund - 4723.
 
 \subsection{Duży okres czasu}
-Otrzymane odpowiedzi w czasie 10 minut - .
+Otrzymane odpowiedzi w czasie 5 minut - 48031.
 
 \subsection{Podsumowanie testu}
-Przedstawione wyniki prezentują możliwości obsługi kolejnych zapytań serwera node.js. 
-Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć że technologia ta wykazuje się największą sprawnością przy obsłudzę równoległych zapytań. 
-Średni uzyskany czas dla obsługi 1500 zapytań równoległych to ms, natomiast dla wysyłanych kolejno wynosi ms.
+Przedstawione wyniki prezentują możliwości obsługi kolejnych zapytań serwera Node.js. 
+Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć, że technologia ta wykazuje się największą sprawnością przy obsłudzę równoległych zapytań. 
+Średni uzyskany czas dla obsługi 1500 zapytań równoległych to 674 ms, natomiast dla wysyłanych kolejno wynosi 940 ms.
 
 
 \chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
