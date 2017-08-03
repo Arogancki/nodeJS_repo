@@ -790,6 +790,22 @@ Czas otrzymania odpowiedzi na 1500 jednocześnie wysłanych zapytań - 674ms.
 Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwera. Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest wciąż komfortowe. Aplikacja wykazuje się skalowalnością.
 
 
+\section{Testy sprawnościowe serwera}
+Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Zostały wykonane za pomocą technologii node.js oraz modułu request, pozwalającego na tworzenie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+
+\subsection{Krótki okres czasu}
+Otrzymane odpowiedzi w czasie 1 sekundy - ms.
+
+\subsection{Średni okres czasu}
+Otrzymane odpowiedzi w czasie 30 sekund - ms.
+
+\subsection{Duży okres czasu}
+Otrzymane odpowiedzi w czasie 10 minut - ms.
+
+\subsection{Podsumowanie testów}
+Przedstawione wyniki prezentują możliwości obsługi kolejnych zapytań serwera node.js. Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć że technologia ta wykazuje się największą sprawnością przy obsłudzę równoległych zapytań. Uzyskany czas dla obsługi 1000  zapytań równoległych to około xxx, natomiast dla wysyłanych kolejno wynosi yyy.
+
+
 \chapter{Podsumowanie otrzymanych wyników i wnioski na temat środowiska}
 Wykonana aplikacja spełnia zadaną w warunkach funkcjonalność. 
 Zostały osiągnięte wszystkie założenia oraz wymagania aplikacji przy użyciu możliwości dostarczanej przez technologię Node.js. 
