@@ -1,10 +1,10 @@
-﻿var request = require('request');
+var request = require('request');
 
-var testNumber = 14;
-var users = 100;
-var boards = 10;
-var task = 7;
-var comments = 4;
+var testNumber = 15;
+var users = 200; //3000
+var boards = 10; //30
+var tasks = 7; //25
+var comments = 4 //10
 
 // get Date for logs
 function GetDate() {               
@@ -35,44 +35,134 @@ function SendRequest(path, json, done) {
         request.post('http://192.168.0.189:8081/' + path, { json: json });
 }
 
-function AddUsers() {
-    for (var i = 0; i < users; i++) {
-        json = { login: testNumber+"testUser" + i, password: "12345678", password2: "12345678", email: "" };
-        SendRequest('registration', json);
-    }
+function DoTest(){
+	MakeLog("Adding load started\nregistration");
+	user=0;
+	Test('registration');
 }
 
-function AddBoards() {
-    for (var j = 0; j < users; j++)
-        for (var i = 0; i < boards; i++)
-                {
-                    json = { login: testNumber+"testUser" + j, password: "12345678", board: "board"+i };
-                    SendRequest('CreateNewBoard', json);
-                }
-}
-
-function AddTasks() {
-    for (var j = 0; j < 100; j++)
-        for (var i = 0; i < boards; i++)
-            for (var k = 0; k < task; k++) {
-                json = {
-                    login: testNumber + "testUser" + j, password: "12345678", board: "board" + i, owner: testNumber + "testUser" + j,
-                    task: "task" + k, info: "New issue"
+function Test(path) {
+	var json = {};
+	if (path == 'registration'){
+		json = { login: testNumber+"testUser" + user, password: "12345678", password2: "12345678", email: "" };
+	}
+	else if (path == 'CreateNewBoard'){
+		json = { login: testNumber+"testUser" + user, password: "12345678", board: "board"+board };
+	}
+	else if (path == 'CreateNewTask'){
+		json = {
+                    login: testNumber + "testUser" + user, password: "12345678", board: "board" + board, owner: testNumber + "testUser" + user,
+                    task: "task" + task, info: "New issue"
                 };
-                SendRequest('CreateNewTask', json);
+	}
+	else if (path == 'AddStatus'){
+		json = {
+                    login: testNumber + "testUser" + user, password: "12345678", board: "board" + board, owner: testNumber + "testUser" + user,
+                    task: "task" + task, info: "Status" + info, type: 'In progress'
+		};
+	}
+    request.post('http://192.168.0.189:8081/' + path, { json: json },
+        function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+		    if (path == 'registration'){
+			    user++;
+			    if (user<users){
+			    	user++;
+				Test('registration');
+			    }
+			    else{
+				    user=0;
+				    board=0;
+				    MakeLog("CreateNewBoard");
+				    Test('CreateNewBoard');
+			    }
+		    }
+		    else if (path == 'CreateNewBoard'){
+			    board++;
+			    if (board<boards){
+			    	Test('CreateNewBoard');  
+			    }
+			    else{
+				user++;
+				if (user<users){
+					board=0;
+					MakeLog("User="+user);
+					Test('CreateNewBoard');
+			    	}
+				else{
+					user=0;
+					board=0;
+					task=0;
+					MakeLog("CreateNewTask");
+					Test('CreateNewTask');  
+				}
+			    }
+		    }
+		    else if (path == 'CreateNewTask'){
+			    task++;
+			    if (task<tasks){
+				    Test('CreateNewTask'); 
+			    }
+			    else{
+			    	board++;
+				if (board<boards){
+				    task=0;
+			            Test('CreateNewTask');
+			    	}
+				else{
+				    user++;
+				    if (user<users){
+					task=0;
+				    	board=0;
+					MakeLog("User="+user);
+				    	Test('CreateNewTask');
+			    	    }
+				    else{
+					user=0;
+					board=0;
+					task=0;
+					info=0;
+					MakeLog("AddStatus");
+					Test('AddStatus');
+				    }
+				}
+			    }
+		    }
+		    else if (path == 'AddStatus'){
+			    info++;
+			    if (info<comments){
+			        Test('AddStatus');
+			    }
+			    else{
+			        task++;
+			    	if (task<tasks){
+				    info=0;
+				    Test('AddStatus'); 
+			    	}
+				else{
+				    board++;
+				    if (board<boards){
+					info=0;
+				    	task=0;
+			            	Test('AddStatus');
+			    	    }
+				    else{
+					user++;
+				    	if (user<users){
+				             info=0;
+					     task=0;
+				    	     board=0;
+					     MakeLog("User="+user);
+				    	     Test('AddStatus');
+					}
+					   MakeLog("Adding load finished");
+				    }
+				}
+			    }
+		    }
             }
-}
-
-function AddInfos() {
-    for (var j = 0; j < users; j++)
-        for (var i = 0; i < boards; i++)
-            for (var k = 0; k < task; k++)
-                for (var l = 0; l < comments; l++){
-                    json = {
-                        login: testNumber + "testUser" + j, password: "12345678", board: "board" + i, owner: testNumber + "testUser" + j,
-                        task: "task" + k, info: "Status" + l, type: 'In progress'};
-                    SendRequest('AddStatus', json);
-                }
+        }
+    );
 }
 
 function authorization() {
@@ -100,10 +190,7 @@ function AddStatus() {
     SendRequest("AddStatus", json, "AddStatus");
 }
 
-//AddUsers();
-//AddBoards();
-AddTasks();
-//AddInfos();
+//DoTest();
 
 //authorization();
 //getBoardsAndInvitations();
