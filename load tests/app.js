@@ -38,7 +38,26 @@ function SendRequest() {
     );
 }
 
-// Test start
+function dexterityTest(size){
+	request.post(
+        'http://192.168.0.189:8081/authorization',
+        { json: { login: "test", password: "12345678" } },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                if (++complete<size)
+                    dexterityTest(size);
+            }
+        }
+    );
+}
+
+// dex test 
+dexterityTest(1000);
+
+// Laod Test
+/*
 MakeLog("Test started for " + size + " requests.");
 for (var i = 0; i < size; i++)
     SendRequest();
+
+*/
