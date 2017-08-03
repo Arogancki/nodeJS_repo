@@ -1,4 +1,4 @@
-﻿var request = require('request');
+var request = require('request');
 
 // get Date for logs
 function GetDate() {               
@@ -14,28 +14,21 @@ function MakeLog(text,req){
 		console.log(GetDate()+">"+text);
 }
 
-// test size
-var size = 50;
 var complete = 0;
 
-function check() {
-    if (complete === size)
-    	return true;
-    return false;
-}
-
-function SendRequest() {
-    request.post(
-        'http://192.168.0.189:8081/authorization',
-        { json: { login: "test", password: "12345678" } },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                complete=complete+1;
-                if (check())
-                    MakeLog("Test finished.");
+function loadTest(size) {
+    MakeLog("Test started for " + size + " requests.");
+    for (var i = 0; i < size; i++)
+        request.post(
+            'http://192.168.0.189:8081/authorization',
+            { json: { login: "test", password: "12345678" } },
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                     if (++complete === size)
+                         MakeLog("Test finished.");
+                }
             }
-        }
-    );
+        );
 }
 
 function dexterityTest(size){
@@ -51,13 +44,8 @@ function dexterityTest(size){
     );
 }
 
-// dex test 
+//dex test 
 dexterityTest(1000);
 
-// Laod Test
-/*
-MakeLog("Test started for " + size + " requests.");
-for (var i = 0; i < size; i++)
-    SendRequest();
-
-*/
+//load test
+//loadTest(1500);
