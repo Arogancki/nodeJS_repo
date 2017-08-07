@@ -118,12 +118,12 @@
 \chapter{Przedstawienie ogólne, ideologii oraz przeznaczenia technologii Node.js}
 
 \section{Wstęp}
-Node.js czyli cross-platformowy, działający niezależnie od środowiska język programowania napisany w językach c/c++ oraz javascript wydany 27 marca 2009 roku, zaprojektowany przez Ryana Dahla. 
-Pozwala na tworzenie serwerów i narzędzi sieciowych działających po stronie serwera. 
-Przed powstaniem języka kod javascriptowy był wykonywany głównie przez przeglądarkę internetową po stronie klienta, co pozwalało na bezproblemową manipulacje kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów servera. 
+Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach c/c++ oraz javascript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla. 
+Pozwala na tworzenie serwerów i narzędzi sieciowych, działających po stronie serwera. 
+Przed powstaniem języka kod javascriptowy był wykonywany głównie przez przeglądarkę internetową po stronie klienta, co pozwalało na bezproblemową manipulację kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów servera. 
 Środowisko Node.js może działać niezależnie od środowiska uruchomieniowego. 
 Jest ono zgodne z wieloma systemami operacyjnymi jak  Linux, macOS, Microsoft Windows, NonStop, czy serwerami Unix. 
-Język ten cieszy się dużą popularnością oraz pozytywnym odbiorem wśród użytkowników, dzięki czemu mimo względnie krótkiego okresu życia środowiska zaowocowało ogromną ilością projektów open-source, tysiącami członków należących do społeczności okołojęzykowej oraz powstaniem wydarzeń poruszających tematy okołośrodowiskowe, takimi jak NodeConf, Node Interactive lub Node Summit. 
+Język ten cieszy się dużą popularnością oraz pozytywnym odbiorem wśród użytkowników, dzięki czemu, mimo względnie krótkiego okresu życia środowiska, zaowocowało ogromną ilością projektów open-source, tysiącami członków należących do społeczności okołojęzykowej oraz powstaniem wydarzeń poruszających tematy okołośrodowiskowe, takimi jak NodeConf, Node Interactive lub Node Summit. 
 Obecnie wiele największych firm korzysta z serwerów napisanych w języku Node.js. 
 Ich przykładami są między innymi Groupon, IBM, Linkedln, Microsoft, Netflix, PayPal, Yahoo. 
 Najpopularniejszymi API wspierającymi edycję oraz debugowanie kodu Node.js są Atom, Brackets, JetBrains, Microsoft Visual Studio, NetBeans czy Nodeclipse.
@@ -135,33 +135,33 @@ Node.js zalecany jest do tworzenia aplikacji:
 \item strumieniowania danych np. video, 
 \item Single Page Applications (SPA),
 \item udostępniających API w formacie JSON,
-\item z intensywną wymianą danych w czasie rzeczywistym na wielu urządzeniach, np. portale społecznościowe.
+\item z intensywną wymianą danych w czasie rzeczywistym na wielu urządzeniach, np. portalach społecznościowych.
 \end{itemize} 
 Ponieważ jest on szybki i lekki, może być stosowany do pisania między innymi bramki API. 
 API to skrót od Application Programming Interface; opisuje, jak poszczególne elementy lub warstwy oprogramowania powinny się komunikować. 
 W praktyce to najczęściej biblioteka oferująca metody, które umożliwiają realizację określonych zadań. 
 Node.js pozwala na zoptymalizowanie pracy oraz uzyskanie skalowalności dzięki asynchronicznemu przetwarzaniu danych dostarczanych do aplikacji, w związku z czym idealnie nadaje się do obsługi komunikacji wymagającej pracy w czasie rzeczywistym. 
-Funkcje napisane w Node.js wykonują się równolegle, korzystając z tak zwanych wywołań zwrotnych (ang. callback), przeciwnie do języków takich jak np. php, gdzie program jest wykonywany synchronicznie - linia po linii. 
+Funkcje napisane w Node.js wykonują się równolegle, korzystając z tak zwanych wywołań zwrotnych (ang. callback), przeciwnie do języków takich jak php, gdzie program jest wykonywany synchronicznie - linia po linii. 
 Dzięki temu nie powstaje problem blokowania określonych funkcjonalności programu w czasie pracy innych niezależnych jego części. 
 Przy pomocy wywołań zwrotnych możemy zapewnić zasygnalizowanie uzyskanych wyników lub zwrócenie, bądź obsługę błędu powstałego w czasie działania bloku kodu.
 
 \section{Modułowość}
 Praca z Node.js opiera się głównie o korzystanie ze zbioru zdefiniowanych w ramach modułów funkcji wspierających określone funkcjonalności. 
 Zapewniają one pracę między innymi z plikami systemowymi, z urządzeniami wejścia/wyjścia, protokołami internetowymi (dns, http, tcp, tls/ssl, udp), plikami binarnymi, źródłami danych oraz funkcjami kryptograficznymi. 
-Zmniejszają one złożoność, a co za tym idzie nakład pracy przy tworzeniu własnej funkcjonalności. 
-Dzięki wsparciu package managera (od roku 2010) nazywanego npm programiści mogą bez przeszkód udostępniać napisane przez siebie moduły i biblioteki lub w prosty sposób zaimportowywać ogólnie dostępne moduły i używać ich w swoich projektach. 
+Zmniejszają one złożoność, a co za tym idzie, nakład pracy przy tworzeniu własnej funkcjonalności. 
+Dzięki wsparciu package managera (od roku 2010) nazywanego npm, programiści mogą bez przeszkód udostępniać napisane przez siebie moduły i biblioteki lub w prosty sposób zaimportowywać ogólnie dostępne moduły i używać ich w swoich projektach. 
 Najpopularniejszymi modułami wykorzystywanymi w celu poprawy jakości oraz zmniejszenia nakładów pracy przy wytwarzaniu oprogramowania są Express.js, Socket.IO, Hapi.js, Sails.js czy Meteor. 
 Npm jest automatycznie włączony w środowisko Node.js. 
 Jest obsługiwany za pomocą linii komend systemu operacyjnego. 
 Moduły są zapisane w formacie CommonJS oraz zawierają pliki informacyjne w formacie Json. 
 Ilość ogólnodostępnych modułów przekracza obecnie 477000. 
-Jest to spowodowane możliwością przez każdego użytkownika Node.js, bez potrzeby wcześniejszej rejestracji czy przejścia jakiejkolwiek procedury wstępnej, udostepnienia napisanego przez siebie kodu. 
+Jest to spowodowane możliwością przez każdego użytkownika Node.js, bez potrzeby wcześniejszej rejestracji czy przejścia jakiejkolwiek procedury wstępnej, udostępnienia napisanego przez siebie kodu. 
 W związku z tym, wiele dostępnych modułów jest niskiej jakości, może zawierać elementy złośliwego oprogramowania lub nie być bezpiecznym dla naszego systemu operacyjnego. 
 Należy bezwzględnie brać te czynniki pod uwagę w przypadku korzystania z nieznanych modułów i najlepiej najbardziej znacząco ograniczyć korzystanie z nich bez wcześniejszej weryfikacji kodu źródłowego. 
 Zabezpieczeniami w celu ochrony użytkowników, które dostarcza npm, jest usuwanie pakietów, które zostały zgłoszone przez użytkowników jako naruszające ogólne zasady bezpieczeństwa oraz możliwość wglądu w raporty statystyczne odnośnie ilości pobrań lub ilości zależnych od modułu innych pakietów. 
 Kolejnym zagrożeniem, jakie niesie korzystanie z pakietów udostępnionych przez innych użytkowników, jest możliwość usunięcia udostępnionego pakietu z repozytorium npm, w konsekwencji uniemożliwiając naszej aplikacji dalsze korzystanie z pakietu. 
-Sytuacja taka miała miejsce, kiedy skrypt zwany ,,left-side'', z którego korzystało ponad 2486696 deweloperów, został usunięty z repozytorium powodując tak zwany efekt domina, będący przyczyną błędów w kolejnych aplikacjach deweloperów. 
-Npm korzysta, tak jak i inne globalnie działające narzedzia JavaScriptowe, z plików zależności w formacie json. 
+Sytuacja taka miała miejsce, kiedy skrypt zwany ,,left-side'', z którego korzystało ponad 2486696 deweloperów, został usunięty z repozytorium, powodując tak zwany efekt domina, będący przyczyną błędów w kolejnych aplikacjach deweloperów. 
+Npm korzysta, tak jak i inne globalnie działające narzędzia JavaScriptowe, z plików zależności w formacie json. 
 Opisują one wersję wykorzystywanych modułów i pozwalają za pomocą jednoliniowej komendy na szybką i łatwą instalację wszystkich używanych pakietów w lokalnym środowisku. 
 
 \chapter{Omówienie architektury Node.js}
@@ -169,7 +169,7 @@ Opisują one wersję wykorzystywanych modułów i pozwalają za pomocą jednolin
 \section{Paradygmat}
 Architektura Node.js pozwala na tworzenie oprogramowania sterowanego zdarzeniami (event-driven programming). 
 Jest to paradygmat programowania, w którym kolejność wykonywania kodu zależy od zdarzeń mających miejsce w czasie życia aplikacji (run time), na przykład interakcji użytkownika, czy otrzymania określonych sygnałów. 
-W przypadku języka Node.js, kiedy aplikacjia pełni rolę serwera, paradygmat ten najczęściej dotyczy przetwarzania zapytań otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeń tzn. funkcji. 
+W przypadku języka Node.js, kiedy aplikacja pełni rolę serwera, paradygmat ten najczęściej dotyczy przetwarzania zapytań otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeń, tzn. funkcji. 
 W aplikacji sterowanej zdarzeniami należy wyróżnić pętlę główną, która jest odpowiedzialna za obsługę zachodzących w czasie rzeczywistym zdarzeń, czyli wywoływanie triggerów jako wywołań zwrotnych. 
 Są to wyodrębnione części kodu, które po wykonaniu swojego zadania zwracają określoną wartość lub obiekt. 
 W Node.js jest to na przykład funkcja nasłuchująca określonego adresu, pod który klienci kierują określone zapytania. 
@@ -178,7 +178,7 @@ Zapewnia przyspieszenie wykonywania skomplikowanych funkcji programu.
 Daje możliwość przykładowo jednoczesnego zapisywania danych do bazy, przetwarzania innej części zapytania i przygotowywanie odpowiedzi w jednym okresie czasu. 
 Node.js zapewnia w ten sposób działanie asynchroniczne, bez bezpośredniego użycia technologii wielowątkowej. 
 Wychodzi naprzeciw problemowi tworzenia oraz kontrolowania aplikacji współbieżnych spełniających zadanie serwera, które są trudne do zaimplementowania w wielu językach programowania oraz często prowadziły do niesatysfakcjonującej wydajności. 
-Język został stworzony na silniku V8 javaScript napisanym w języku C++, wyprodukowanym przez Google, wykorzystywanym w przeglądarkach Google Chrome, który porzuca tradycyjną ideę interpretowania kodu javaScriptowego linia po linii, zapewniając w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie, większą wydajnością podczas działania programu. 
+Język został stworzony na silniku V8 javaScript napisanym w języku C++, wyprodukowanym przez Google, wykorzystywanym w przeglądarkach Google Chrome, który porzuca tradycyjną ideę interpretowania kodu javaScriptowego linia po linii, zapewniając w zamian kompilacje do odpowiednio zoptymalizowanego kodu maszynowego przed jego wykonaniem, a co za tym idzie, większą wydajność podczas działania programu. 
 Zapewnia on również odpowiednie zarządzanie pamięcią dla obiektów, ściągając z programistów odpowiedzialność alokowania oraz zwalniania zajętych zasobów.
 
 \begin{figure}[!hb]
@@ -189,24 +189,24 @@ Zapewnia on również odpowiednie zarządzanie pamięcią dla obiektów, ściąg
 
 \section{Asynchroniczność}
 Node.js pracuje wykorzystując tylko jeden wątek, używając technologii asynchronicznego wejścia/wyjścia. 
-Zapewnia to synchronizacje wykonywania wielu operacji bez konieczności czekania na zakończenie operacji i zwolnienie dostępu do zasobu poprzez zarządzanie żądaniami wejścia/wyjścia w oderwaniu od wątków wykonywania. 
+Zapewnia to synchronizację wykonywania wielu operacji bez konieczności czekania na zakończenie operacji i zwolnienie dostępu do zasobu poprzez zarządzanie żądaniami wejścia/wyjścia w oderwaniu od wątków wykonywania. 
 Standardowe operacje synchroniczne powodują zablokowanie dalszego wykonywania wątku do czasu zakończenia przetwarzania. 
 W rezultacie określony wątek może zainicjować tylko jedno zadanie wejścia/wyjścia w jednym momencie. 
 Wywołanie asynchroniczej funkcji nie czeka na wyniki, dzięki czemu nie blokujemy wątku wykonawczego. 
 Po zakończonym wywołaniu uruchomiona zostaje funkcja zwrotna lub ogłoszone zostaje zdarzenie w poszczególnych częściach wykonawczych. 
 Pomimo, że Node.js działa na jednym wątku z pętlą zdarzeń, dzięki asynchroniczności potrafi on obsłużyć więcej zapytań niż np. serwer HTTP Apache. 
-Uzyskanie wielowątkowości pomimo korzystania tylko z jednego wątku jest zapewnione dzięki użyciu wzorca projektowego obserwator, w którym jeden obiekt nazywany przedmiotem obserwowanym określa zależności względem obserwujących go innych obiektów, poprzez wywoływanie ich metod dla określonych własnych stanów. 
-W celu obsługi wszystkich asynchronicznych funkcji oraz wątku głównego Node.js korzysta z biblioteki multiplatformowej języka c - libuv. 
+Uzyskanie wielowątkowości, pomimo korzystania tylko z jednego wątku, jest zapewnione dzięki użyciu wzorca projektowego obserwator, w którym jeden obiekt nazywany przedmiotem obserwowanym określa zależności względem obserwujących go innych obiektów, poprzez wywoływanie ich metod dla określonych własnych stanów. 
+W celu obsługi wszystkich asynchronicznych funkcji oraz wątku głównego, Node.js korzysta z biblioteki multiplatformowej języka c - libuv. 
 Biblioteka ta została stworzona specjalnie na potrzebny Node.js, ale jest również wykorzystywana w wielu innych technologiach, np. racer: (obsługa serwerów w języku ruby), czy Trevi: (silnik do obsługi aplikacji internetowych w języku swift). 
 Wykorzystuje ona określony zbiór wątków do równoległej obsługi wielu operacji wejścia/wyjścia bez wzajemnego ich blokowania. 
-Wadą pracy Node.js przy wykorzystaniu tylko jednego wątku jest brak skalowalności pod względem możliwości zwiększenia ilości rdzeni procesorów, na których wykonuje się program, bez użycia dodatkowych modułów, takich jak Cluster (zapewnia możliwość łatwego tworzenia pochodnych procesów, które współdzielą porty serwera), StrongLoop PM (zapewnia zarządzanie procesem produkcyjnym aplikacji Node.js ze wsparciem odpowiedniego zarządzania zasobami, wdrożeniami wielohostowymi oraz interfejsem graficznym), czy PM2 (zarządzanie procesem produkcyjnym, ze wsparciem odpowiedniego zarządzania zasobów z możliwością nieprzerwanego działania aplikacji przy użyciu przenoszenia jej między domenami, bez potrzeby zatrzymywania pracy). 
+Wadą pracy Node.js przy wykorzystaniu tylko jednego wątku jest brak skalowalności pod względem możliwości zwiększenia ilości rdzeni procesorów, na których wykonuje się program, bez użycia dodatkowych modułów, takich jak Cluster (zapewnia możliwość łatwego tworzenia pochodnych procesów, które współdzielą porty serwera), StrongLoop PM (zapewnia zarządzanie procesem produkcyjnym aplikacji Node.js ze wsparciem odpowiedniego zarządzania zasobami, wdrożeniami wielohostowymi oraz interfejsem graficznym), czy PM2 (zarządzanie procesem produkcyjnym, ze wsparciem odpowiedniego zarządzania zasobów, z możliwością nieprzerwanego działania aplikacji przy użyciu przenoszenia jej między domenami, bez potrzeby zatrzymywania pracy). 
 Kolejną możliwością na uniknięcie tego ograniczenia jest zmiana ilości wątków należących do zbioru wykorzystywanego przez bibliotekę libuv. 
 Wątki te działają na wielu rdzeniach systemu, na którym działa serwer. 
 Działanie Node.js jednocześnie na wielu procesach jest zapewnione właśnie dzięki zbiorowi wątków dostarczanych przez bibliotekę libuv.
 Wątek główny przydziela zadania dla wątków kolejno ze współdzielonej kolejki funkcji, które wątki pochodne mają za zadanie wykonać. 
 Kiedy wątek pochodny zakończy wykonywanie przydzielonego mu zadania, informuje o tym wątek główny poprzez wywołanie określonego wywołania zwrotnego. 
 Z przyczyny odpowiedzialności przez watek główny do odebrania wszystkich wywołań zwrotnych, funkcja wykonywana przez jeden wątek pochodny może wstrzymać działanie całej asynchronicznej operacji, a co za tym idzie, zmniejszyć jej całkowitą wydajność. 
-Biblioteka libuv zajmuję się odpowiednim podziałem zadań oraz przydzieleniem zasobów tak, aby w jak najlepszy sposób wyważyć nakład pracy między wieloma wątkami. 
+Biblioteka libuv zajmuje się odpowiednim podziałem zadań oraz przydzieleniem zasobów tak, aby w jak najlepszy sposób wyważyć nakład pracy między wieloma wątkami. 
 \newpage
 \begin{figure}[!hb]
 \centering
@@ -223,7 +223,7 @@ Jest to wzorzec architektury oprogramowania, który opisuje sposób operowania z
 Został on następnikiem protokołu sieciowego SOAP (Simple object Access protocol), stając się wiodącym standardem. 
 Pozwala on na eliminację zbędnej pracy i czasu wymaganego na integrację. 
 Daje możliwość na stworzenie komunikacji bez potrzeby wiedzy na temat instancji korzystających z przesyłanych zasobów - może integrować środowiska napisane w różnych językach, działające na różnych platformach. 
-Wykorzystuje proste zapytania przy użyciu protokołu http, oraz jego popularnie stosowanych metod takich jak post, get, put, delete oraz bardziej złożonych i używanych rzadziej jak options, head, trace oraz connect. 
+Wykorzystuje on proste zapytania przy użyciu protokołu http oraz jego popularnie stosowanych metod takich jak post, get, put, delete, a także bardziej złożonych i używanych rzadziej jak options, head, trace oraz connect. 
 Opis typu zasobów, jakie wymieniamy, jest określony w nagłówku informacji przez kod statusu http. 
 Poniższa tabelka prezentuje poszczególne typy statusów:
 \newpage
@@ -263,13 +263,13 @@ Ta sama struktura opisana w formacie xml:
 \section{Alternatywne rozwiązania}
 \subsection{Vert.x}
 Pierwszą alternatywą dla technologii Node.js jest framework Vert.xm.
-Pracuje on na środowisku JVM (Java Virtual Machine) i tak jak i Node.js jest środowiskiem sterowanym zdarzeniami.
+Pracuje on na środowisku JVM (Java Virtual Machine) i tak jak i Node.js, jest środowiskiem sterowanym zdarzeniami.
 Został napisany w 2011 roku przez zainspirowanego technologią Node.js Tim Foxa przy użyciu między innymi języków Java, JavaScript, Python, Ruby.
 Dzięki platformie JVM aplikacje mogą być stworzone dla wielu systemów operacyjnych.
-Wykorzystuje on niskopoziomową biblioteke Netty, służącą do asynchronicznej obsługi użądzeń wejścia/wyjścia w celu obsługi aplikacji w architekturze klient-serwer.
+Wykorzystuje on niskopoziomową bibliotekę Netty, służącą do asynchronicznej obsługi urządzeń wejścia/wyjścia w celu obsługi aplikacji w architekturze klient-serwer.
 Do wytwarzania oprogramowania w Vert.x możemy użyć różnych języków programowania - Java, Javascript, Groovy, Ruby, Ceylon, Scala lub Kotlin.
-Jest więc dobra alternatywą w przypadku potrzeby użycia języka innego niż javascript.
-Potrafi on szybciej od technologii Node.js odpowiedzieć na proste żadania, natomiast jest mniej efektywny na przykład przy pracy z gniazdami sieciowymi.
+Jest więc dobrą alternatywą w przypadku potrzeby użycia języka innego niż javascript.
+Potrafi on szybciej od technologii Node.js odpowiedzieć na proste żądania, natomiast jest mniej efektywny na przykład przy pracy z gniazdami sieciowymi.
 
 \subsection{Twisted}
 Kolejną alternatywą dla technologii Node.js jest framework Twisted.
@@ -278,23 +278,23 @@ Wspiera koncepcje środowiska sterowanego zdarzeniami, więc nie wymaga tworzeni
 Do procesu wytwarzania oprogramowania przy jego użyciu niezbędna jest umiejętność pisania w języku python.
 Działanie framework'u twisted opiera się głównie na wykorzystaniu protokołów sieciowych, między innymi HTTP, XMPP, TCP, IMAP, SSH czy Udp.
 Dzięki długiemu okresu rozwoju framework oferuje wsparcie wielu rozwiązań sieciowych.
-Nie oferuję tak efektywanej pracy jak technologia Node.js, jednak może okazać się lepszym wyborem jeśli zachodzi potrzeba wykorzystania specyficznego protokołu sieciowego, który nie został jeszcze zaimplementowany w Node.js.
+Nie oferuje tak efektywnej pracy jak technologia Node.js, jednak może okazać się lepszym wyborem, jeśli zachodzi potrzeba wykorzystania specyficznego protokołu sieciowego, który nie został jeszcze zaimplementowany w Node.js.
 
 \subsection{Ringojs}
 Ostatnią wymienioną alternatywą jest platforma Ringojs.
 Napisany został w języku java przez Hannesa Wallnöfer w 2010 roku.
-Służy do tworzenia aplikacji w języku javascript po stronie serwera działających również w koncerpcji środowiska sterowanego zdarzeniami dzięki wykorzystaniu technologi Rhino, która zajmuje się obsługą wielowątkowości. 
+Służy do tworzenia aplikacji w języku javascript po stronie serwera działających również w koncepcji środowiska sterowanego zdarzeniami dzięki wykorzystaniu technologii Rhino, która zajmuje się obsługą wielowątkowości. 
 Niewątpliwą zaletą Ringojs jest możliwość wykorzystania kodów w języku java przez serwer, zapewniając integracje frameworka z istniejącymi środowiskami java'owymi.
-W porównaniu z technologią Node.js Ringojs jest efektywniejszy dla rozwiązań obsługujących mniejszą ilość jednoczesnych zapytań, oraz w przypadku alokacji dużych plików
+W porównaniu z technologią Node.js, Ringojs jest efektywniejszy dla rozwiązań obsługujących mniejszą ilość jednoczesnych zapytań, oraz w przypadku alokacji dużych plików
 dzięki pracy w środowisku JVM. 
-Oznacza że zyskuje przewage w przypadku prostych narzędzi, natomiast nie gwarantuje takiej skalowalności jak Node.js.
+Oznacza to, że zyskuje przewagę w przypadku prostych narzędzi, natomiast nie gwarantuje takiej skalowalności jak Node.js.
 
 \chapter{Założenia i specyfikacja aplikacji}
 
 \section{Specyfikacja problemu}
 Potrzebny jest nowoczesny system do zarządzania tablicami zadań, który będzie posiadał autoryzowany dostęp dla użytkowników systemu. 
 Został zauważony problem braku prostej w obsłudze, intuicyjnej aplikacji pozwalającej we współpracy z innymi użytkownikami na zarządzanie zarówno podziałem jak i procesem realizacji wyszczególnionych zadań.
-W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny pracujący w technologii Node.js, ze względu na możliwą do osiągniecia niezawodność oraz dostępność nawet przy jednoczesnej obsłudze wielu korzystających z aplikacji klientów.
+W celu reakcji na zapotrzebowanie zostanie zaprojektowany system informatyczny, pracujący w technologii Node.js, ze względu na możliwą do osiągnięcia niezawodność oraz dostępność nawet przy jednoczesnej obsłudze wielu korzystających z aplikacji klientów.
 Nie powinien on wymagać żadnych procesów wdrożeniowych w celu zrozumienia obsługi narzędzia, ponieważ celem projektu jest stworzenie narzędzia, które wspiera, a nie dodatkowo komplikuje określone zadania.
 System powinien w przejrzysty sposób prezentować proces realizacji poszczególnych zadań zorganizowanych w tablicach.
 Właściciel określonej tablicy powinien mieć możliwość zarządzania dostępem do tablicy poprzez udostępnianie lub ograniczanie jej treści pozostałym użytkownikom.
@@ -330,13 +330,13 @@ Zdefiniowane zostały następujące wymagania niefunkcjonalne:
 
 \begin{itemize}
 \item Dostęp do określonych zasobów musi być chroniony poprzez login i hasło użytkownika.
-\item Budowa interfejsu użytkownika musi być możliwie intuicyjna i prosta w obsłudzę.
+\item Budowa interfejsu użytkownika musi być możliwie intuicyjna i prosta w obsłudze.
 \item Proste analizowanie i diagnozowanie błędów oraz sytuacji problemowych.
 \item Budowa zapewnia łatwe wprowadzanie koniecznych zmian.
 \item Jest w stanie obsłużyć jednocześnie do 100.000 użytkowników.
-\item Czas uruchomienia jest nie dłuży niż 10 sekund.
+\item Czas uruchomienia jest nie dłuższy niż 10 sekund.
 \item Umożliwia efektywne testowanie wprowadzonych zmian.
-\item Możliwość obsługi poprzez różne przeglądarki internetowe i środowiska.
+\item Posiada możliwość obsługi poprzez różne przeglądarki internetowe i środowiska.
 \item Zrozumiały dla wszystkich. Czas przyswojenia nie przekracza 15 minut.
 \item Ma możliwość współistnienia z innymi modułami.
 \item Spełnia wszystkie normy prawne w naszym kraju.
@@ -348,15 +348,15 @@ Zdefiniowane zostały następujące wymagania niefunkcjonalne:
 
 \subsection{Wstęp}
 Do opracowania rozwiązania zdecydowałem się skorzystać z Mean Stack. 
-Skrót odnosi się do frameworków oraz technolgji Mongodb, Express, AngularJS oraz Node.js. 
-Współpracując razem zapewniają bardzo szybkie efektywne tworzenie skalowalnych aplikacji wieloplatformowych. 
+Skrót odnosi się do frameworków oraz technolgii Mongodb, Express, AngularJS oraz Node.js. 
+Współpracując razem zapewniają bardzo szybkie, efektywne tworzenie skalowalnych aplikacji wieloplatformowych. 
 Do użycia wszystkich wymagany jest tylko jeden język programowania - javaScript, zarówno do obsługi warstwy frontendowej aplikacji jak i backendowej. 
 Wszystkie technologie są dostępne w pełni bezpłatnie. 
 
 Jako iż Technologia Node.js została już opisana, przejdę do opisu pozostałych technologii.
 
 \subsection{MongoDB}
-Napisany w języku c++ system zarządzania bazą danych zorientowanym na dokumenty. 
+Napisany w języku c++ system zarządzania bazą danych zorientowany na dokumenty. 
 Operuje na nierelacyjnych bazach danych. 
 Używa struktur json jako schematów budowy bazy danych.
 Udostępnia całkowitą dowolność w budowie struktury wymaganej bazy danych. 
@@ -377,7 +377,7 @@ Ajax polega na zarządzaniu asynchroniczną komunikacją.
 Dzięki temu aplikacja może wykonywać inne funkcje, mimo oczekiwania na odpowiedź ze strony serwera, za sprawą odseparowania warstwy wymiany danych od pozostałych warstw aplikacji.
 Do opisu wymienianych struktur użyłem standardu json, ponieważ wymaga on mniejszych nakładów pracy od standardu xml. 
 Powyższe frameworki współpracują ze sobą w bardzo intuicyjny i przejrzysty sposób. 
-Angular prezentuje dynamiczną aplikacje internetowa użytkownikowi, odpowiada za przyjmowanie danych i z pomocą ajaxa wysyła oraz odbiera dane wysyłane do serwera. 
+Angular prezentuje użytkownikowi dynamiczną aplikację internetową, odpowiada za przyjmowanie danych i z pomocą ajaxa wysyła oraz odbiera dane wysyłane do serwera. 
 Serwer Node.js z użyciem technologii express, wykorzystując metodę routingu, dopasowuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy współpracy z bazą danych zarządzana przez Mongodb przechowuje informacje użytkowników serwisu oraz w odpowiedzi zwraca odpowiednie dane z powrotem do warstwy frontendowej prezentującej dane użytkownikowi. 
 \newpage
 \begin{figure}[!hb]
@@ -387,7 +387,7 @@ Serwer Node.js z użyciem technologii express, wykorzystując metodę routingu, 
 \end{figure}
 
 \subsection{Schematy wymiany zasobów}
-Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobów z serwera wykorzystuje metodę get. Do zasobów tych należy miedzy innymi plik html zawierający warstwę prezentacji aplikacji, plik css zawierający styl warstwy prezentacji, czy plik zawierający funkcje wykorzystywane przez aplikacje w języku javaScript. Proces prezentuje się następująco:
+Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobów z serwera wykorzystuje metodę get. Do zasobów tych należy między innymi plik html, zawierający warstwę prezentacji aplikacji, plik css zawierający styl warstwy prezentacji, czy plik zawierający funkcje wykorzystywane przez aplikacje w języku javaScript. Proces prezentuje się następująco:
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{K-S.png} 
@@ -409,12 +409,12 @@ Uniwersalny dla aplikacji schemat procesu pobrania statycznych zasobów z serwer
 \begin{enumerate}
 \item Dane zostają pobrane od użytkownika w określonym formularzu w warstwie frontendowej.
 \item Dane zostają zwalidowane pod kątem poprawności po stronie użytkownika.
-\item Jesli dane są poprawne, zostaja zorganizowane w obiekcie json i wysłane do serwera, w przeciwnym wypadku zostaje zwrócony błąd.
+\item Jesli dane są poprawne, zostają zorganizowane w obiekcie json i wysłane do serwera, w przeciwnym wypadku zostaje zwrócony błąd.
 \item Serwer odbiera zapytanie i przekazuje je do odpowiedniej funkcji.
 \item Dane zostają zwalidowane pod kątem poprawności po stronie serwera.
 \item Jeśli dane są poprawne, serwer realizuje określoną funkcję przy pomocy zapytań bazodanowych, w przeciwnym wypadku zostaje przygotowany komunikat o błędzie.
-\item Odpowiedź na zapytanie bazodanowe zostaje odebrane i zostają przygotowane dane do wysłania.
-\item Przygotowane dane zostaje wysłane w określonej odpowiedzi.
+\item Odpowiedź na zapytanie bazodanowe zostaje odebrana i zostają przygotowane dane do wysłania.
+\item Przygotowane dane zostają wysłane w określonej odpowiedzi.
 \item Warstwa frontendowa otrzymuje odpowiedź i zostaje odświeżona warstwa prezentacji aplikacji.
 \end{enumerate}
  
@@ -452,7 +452,7 @@ main.controller('SignInController', function($scope) { 					// create controller
 }
 \end{lstlisting}
 \newpage
-Plik w języku html zawierający definicje widoku:
+Plik w języku html zawierający definicję widoku:
 \begin{lstlisting}[language=HTML]
 <!DOCTYPE html> 
 <!-- Apply view to model -->
@@ -472,7 +472,7 @@ Plik w języku html zawierający definicje widoku:
 \end{lstlisting}
 
 \subsection{Kod po stronie serwera obsługujący odebranie żądania}
-Przykładowy kod wykonywany po stronie serwera obsługujący odebrane żądanie od klienta przy użyciu technologii Node.js oraz frameworków express i mongodb:
+Przykładowy kod, wykonywany po stronie serwera, obsługujący odebrane żądanie od klienta przy użyciu technologii Node.js oraz frameworków express i mongodb:
 \medskip
 \begin{lstlisting}
 var express = require('express');					// load express module
@@ -542,15 +542,15 @@ var server = app.listen(8081, function () {});
 \section{Wykorzystane moduły}
 
 \subsection{Moduły zewnętrzne}
-Zewnętrzne moduły, zainstalowane za pomocą zbioru repozytorium npm, które użyłem do realizacji rozwiązania to:
+Zewnętrzne moduły, zainstalowane za pomocą zbioru repozytorium npm, które użyłem do realizacji rozwiązania, to:
 \begin{enumerate}
 \item express - opisany powyżej
 \item fs - file stream, odpowiada za obsługę zapisu oraz wczytywania plików. 
-Wykorzystywany w celu wczytywania plików statycznych aplikacji takich jak index.htm (strona główna w formacie html), main.js (funkcje w języku javaScript), style.css (plik arkuszu stylów, odpowiadający za styl prezentacji), favicon (ikona serwisu wyświetlana w oknie przeglądarki), czy losowo wybieranych zdjęć wyświetlanych w tle serwisu.
+Wykorzystywany w celu wczytywania plików statycznych aplikacji, takich jak index.htm (strona główna w formacie html), main.js (funkcje w języku javaScript), style.css (plik arkuszu stylów, odpowiadający za styl prezentacji), favicon (ikona serwisu wyświetlana w oknie przeglądarki), czy losowo wybieranych zdjęć wyświetlanych w tle serwisu.
 \item path - obsługa różnic między systemami operacyjnymi. 
-Dzięki temu modułowi możemy zapewnić całkowitą sprawność naszego serwisu niezależnie od środowiska uruchomieniowego. 
+Dzięki temu modułowi możemy zapewnić całkowitą sprawność naszego serwisu, niezależnie od środowiska uruchomieniowego. 
 Pozwala niwelować różnice w lokalizacji plików systemowych, czy łącznikach pomiędzy poszczególnymi folderami przy specyfikacji ścieżki do pliku.
-\item body-parser - dostarcza możliwość analizowania danych załączonych do odebranego przez serwer żądania, wykorzystany został w celu odczytów poszczególnych wartości odebranych w formacie json.
+\item body-parser - dostarcza możliwość analizowania danych, załączonych do odebranego przez serwer żądania, wykorzystany został w celu odczytu poszczególnych wartości odebranych w formacie json.
 \item promise - odpowiada za operowanie wynikami otrzymanymi w wyniku asynchronicznych funkcji. 
 Dzięki temu modułowi nie musimy synchronicznie czekać na otrzymanie zwrotu z kolejnych funkcji, natomiast możemy przy użyciu wywołań zwrotnych zareagować po otrzymaniu określonego wyjścia.
 \item cookie-parser - zapewnia możliwość wykorzystania plików cookie dla specyficznego klienta. 
@@ -577,7 +577,7 @@ Po wykonaniu aplikacji zostały przeprowadzone testy manualne, sprawdzające pop
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{12.png}
 \captionsetup{labelformat=empty}
 \caption[]{Użytkownik wysyła żądanie pod adres serwera. 
-Otrzymuje odpowiedź zawierająca pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
+Otrzymuje odpowiedź zawierającą pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
 \end{figure}
 
 \newpage 
@@ -619,7 +619,7 @@ Aktualizacja następuje również każdorazowo po otrzymaniu pomyślnego potwier
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{52.png}
 \captionsetup{labelformat=empty}
 \caption[]{Funkcja jest dostępna po potwierdzeniu adresu email dla konta. 
-Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu użytkownik wysyła żądanie do serwera. 
+Po wypełnieniu odpowiedniego formularza na stronie głównej serwisu, użytkownik wysyła żądanie do serwera. 
 Serwer sprawdza podane dane. W odpowiedzi wysyła informacje o przetworzeniu żądania.}
 \end{figure}
 \begin{figure}[!hb]
@@ -644,7 +644,7 @@ W odpowiedzi serwer wysyła stronę główną aplikacji.}
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{63.png}
 \captionsetup{labelformat=empty}
-\caption[]{Jeśli zmieni się również adres email użytkownik musi go ponownie zweryfikować. }
+\caption[]{Jeśli zmieni się również adres email, użytkownik musi go ponownie zweryfikować. }
 \end{figure}
 
 \newpage 
@@ -790,6 +790,7 @@ Czas otrzymania odpowiedzi na 1500 jednocześnie wysłanych zapytań - 674ms.
 Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwera. Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest wciąż komfortowe. Aplikacja wykazuje się skalowalnością.
 
 
+\newpage
 \section{Testy sprawnościowe serwera}
 Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na tworzenie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
@@ -804,7 +805,7 @@ Otrzymane odpowiedzi w czasie 5 minut - 48031.
 
 \subsection{Podsumowanie testu}
 Przedstawione wyniki prezentują możliwości obsługi kolejnych zapytań serwera Node.js. 
-Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć, że technologia ta wykazuje się największą sprawnością przy obsłudzę równoległych zapytań. 
+Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć, że technologia ta wykazuje się największą sprawnością przy obsłudze równoległych zapytań. 
 Średni uzyskany czas dla obsługi 1500 zapytań równoległych to 674 ms, natomiast dla wysyłanych kolejno wynosi 940 ms.
 
 
@@ -815,7 +816,7 @@ Stworzony projekt doskonale nadaje się do użytkowania przez zorganizowane zesp
 Mógłby być na przykład używany do zarządzania pracą zespołów deweloperskich pracujących w różnych metodykach takich jak scrum czy kanban. 
 Dostarcza przejrzysty interfejs oraz nieskomplikowaną prezentację danych dla końcowych użytkowników, przez co nie wymaga praktycznie żadnych szkoleń lub procesów wdrożeniowych w celu zdobycia umiejętności biegłej obsługi narzędzia. 
 Środowisko Node.js wydaje się być bardzo nowoczesnym oraz przyszłościowym środowiskiem. 
-Niewątpliwie największymi zaletami tej technologii jest łatwość budowania wymagających serwisów internetowych poprzez użycie asynchronicznej obsługi wejścia/wyjścia, które pozwala na przetwarzanie wielu funkcji w jednym czasie tworząc wyjątkowo szybkie w działaniu aplikacje. 
+Niewątpliwie największymi zaletami tej technologii jest łatwość budowania wymagających serwisów internetowych poprzez użycie asynchronicznej obsługi wejścia/wyjścia, które pozwala na przetwarzanie wielu funkcji w jednym czasie, tworząc wyjątkowo szybkie w działaniu aplikacje. 
 Zagadnienie to wymaga jednak umiejętności w projektowaniu i analizowaniu funkcji programowania asynchronicznego. 
 Kod pisany jest w szeroko używanym języku JavaScript, co zbudowało ogromną społeczność zainteresowaną technologią Node.js. 
 Dzięki temu możemy z łatwością zdobyć materiały przydatne w procesie poznawczym środowiska. 
@@ -843,7 +844,7 @@ Pawel Kozlowski, Peter Bacon Darwin
 Dokumentacja języka programowania Node.js. Stan na dzień: 2017-07-20
 \textit{https://Node.js.org/en/docs}
 \bibitem{Node.js wiki}
-Artykuł poświęcony technolgii Node.js w serwisie wikipedia. Stan na dzień: 2017-07-20
+Artykuł poświęcony technolgii Node.js w serwisie Wikipedia. Stan na dzień: 2017-07-20
 \textit{https://en.wikipedia.org/wiki/Node.js}
 \bibitem{libuv}
 Dokumentacja biblioteki libuv. Stan na dzień: 2017-07-20
@@ -852,10 +853,10 @@ Dokumentacja biblioteki libuv. Stan na dzień: 2017-07-20
 Dokumentacja MongoDB. Stan na dzień: 2017-07-20
 \textit{https://docs.mongodb.com/}
 \bibitem{Vert.x}
-Artykuł poświęcony technolgii Vert.x w serwisie wikipedia. Stan na dzień: 2017-07-20
+Artykuł poświęcony technolgii Vert.x w serwisie Wikipedia. Stan na dzień: 2017-07-20
 \textit{https://en.wikipedia.org/wiki/Vert.x}
 \bibitem{Twisted}
-Artykuł poświęcony technolgii Twisted w serwisie wikipedia. Stan na dzień: 2017-07-20
+Artykuł poświęcony technolgii Twisted w serwisie Wikipedia. Stan na dzień: 2017-07-20
 \textit{https://en.wikipedia.org/wiki/Twisted\_(software)}
 \bibitem{Ringojs}
 Dokumentacja Ringojs. Stan na dzień: 2017-07-20

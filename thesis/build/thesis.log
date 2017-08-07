@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.17)  3 AUG 2017 19:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.17)  7 AUG 2017 15:56
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -818,45 +818,15 @@ File: utxsyc.fd 2000/12/15 v3.1
  [3]
 Rozdzia\IeC {\l } 1.
 
-Overfull \hbox (4.82547pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 roku, za-pro-jek-towany przez Ryana Dahla. Pozwala na tworze-nie
- ser-w-erów i narz[]dzi
+Overfull \hbox (0.12144pt too wide) in paragraph at lines 121--130
+\T1/txr/m/n/12 czemu, mimo wzgl[]dnie krótkiego okresu »y-cia ±rodowiska, za-ow
+ocow-aªo ogromn[]
  []
 
 
-Overfull \hbox (2.83345pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 sieciowych dziaªaj[]cych po stronie ser-w-era. Przed pow-staniem
- j[]zyka kod javascrip-
- []
-
-
-Overfull \hbox (22.64542pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 co pozwalaªo na bezproblemow[] ma-nip-u-lacje ko-dem ¹ródªowym s
-trony przez u»ytkown-
- []
-
-
-Overfull \hbox (5.04144pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 ika, daj[]c mo»li-wo±¢ wykony-wa-nia zªo±li-wych skryp-tów, naru
-sze-nie bez-piecze«stwa
- []
-
-
-Overfull \hbox (6.51746pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 Node.js mo»e dzi-aªa¢ nieza-le»nie od ±rodowiska uru-chomieniowe
-go. Jest ono zgodne
- []
-
-
-Overfull \hbox (27.14545pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 okresu »y-cia ±rodowiska za-owocow-aªo ogromn[] ilo±ci[] pro-jek
--tów open-source, tysi[]cami
- []
-
-
-Overfull \hbox (11.83273pt too wide) in paragraph at lines 121--130
-\T1/txr/m/n/12 Linkedln, Mi-crosoft, Net-flix, Pay-Pal, Ya-hoo. Na-jpop-u-larni
-ejszymi API wspieraj[]cymi
+Overfull \hbox (56.89345pt too wide) in paragraph at lines 121--130
+\T1/txr/m/n/12 ilo±ci[] pro-jek-tów open-source, tysi[]cami czªonków nale»[]cyc
+h do spoªeczno±ci okoªoj[]zykowej
  []
 
 [4
@@ -887,6 +857,12 @@ Overfull \hbox (18.43344pt too wide) in paragraph at lines 149--166
 ] Ex-press.js, Socket.IO,
  []
 
+
+Overfull \hbox (16.41747pt too wide) in paragraph at lines 149--166
+\T1/txr/m/n/12 wcze±niejszej re-jes-tracji czy prze-j±-cia jakiejkol-wiek pro-c
+e-dury wst[]pnej, udost[]pnienia
+ []
+
 [5] [6]
 Rozdzia\IeC {\l } 2.
 
@@ -896,15 +872,15 @@ y otrzy-ma-nia okre±lonych
  []
 
 
-Overfull \hbox (6.39679pt too wide) in paragraph at lines 170--183
-\T1/txr/m/n/12 syg-naªów. W przy-padku j[]zyka Node.js, kiedy ap-likacjia peªni
- rol[] ser-w-era, paradyg-
+Overfull \hbox (3.06079pt too wide) in paragraph at lines 170--183
+\T1/txr/m/n/12 syg-naªów. W przy-padku j[]zyka Node.js, kiedy ap-likacja peªni 
+rol[] ser-w-era, paradyg-
  []
 
 
-Overfull \hbox (4.12877pt too wide) in paragraph at lines 170--183
-\T1/txr/m/n/12 oraz uru-chomionych przez nie zdarze« tzn. funkcji. W ap-likacji
- sterowanej zdarzeni-
+Overfull \hbox (7.27278pt too wide) in paragraph at lines 170--183
+\T1/txr/m/n/12 oraz uru-chomionych przez nie zdarze«, tzn. funkcji. W ap-likacj
+i sterowanej zdarzeni-
  []
 
 
@@ -929,18 +905,6 @@ adz-iªy do niesatysfakcjonuj[]cej
 Overfull \hbox (5.7614pt too wide) in paragraph at lines 170--183
 \T1/txr/m/n/12 C++, wypro-dukowanym przez Google, wyko-rzysty-wanym w przegl[]d
 arkach Google
- []
-
-
-Overfull \hbox (2.04144pt too wide) in paragraph at lines 170--183
-\T1/txr/m/n/12 kodu maszynowego przed jego wyko-naniem, a co za tym idzie, wi[]
-ksz[] wydajno±ci[]
- []
-
-
-Overfull \hbox (12.03749pt too wide) in paragraph at lines 170--183
-\T1/txr/m/n/12 pod-czas dzi-aªa-nia pro-gramu. Za-pew-nia on równie» odpowied-n
-ie zarz[]dzanie pami[]ci[]
  []
 
 [7
@@ -975,6 +939,12 @@ dem obserwuj[]cych
  []
 
 
+Overfull \hbox (0.16873pt too wide) in paragraph at lines 191--210
+\T1/txr/m/n/12 stanów. W celu ob-sªugi wszys-t-kich asyn-chron-icznych funkcji 
+oraz w[]tku gªównego,
+ []
+
+
 Overfull \hbox (2.06541pt too wide) in paragraph at lines 191--210
 \T1/txr/m/n/12 jed-nego w[]tku jest brak skalowal-no±ci pod wzgl[]dem mo»li-wo±
 ci zwi[]kszenia ilo±ci
@@ -993,9 +963,9 @@ wied-niego zarz[]dzania
  []
 
 
-Overfull \hbox (4.69345pt too wide) in paragraph at lines 191--210
-\T1/txr/m/n/12 za-sobów z mo»liwo±ci[] nieprz-er-wanego dzi-aªa-nia ap-likacji 
-przy u»y-ciu przenoszenia
+Overfull \hbox (7.05746pt too wide) in paragraph at lines 191--210
+\T1/txr/m/n/12 za-sobów, z mo»liwo±ci[] nieprz-er-wanego dzi-aªa-nia ap-likacji
+ przy u»y-ciu przenoszenia
  []
 
 [8 <./images/eventLoop.png>] [9]
@@ -1075,21 +1045,21 @@ wielu rozwi[]za« sieciowych.
  []
 
 [13]
-Overfull \hbox (22.32143pt too wide) in paragraph at lines 284--291
-\T1/txr/m/n/12 javascript po stronie ser-w-era dziaªaj[]cych równie» w kon-cer-
-pcji ±rodowiska sterowanego
+Overfull \hbox (18.32542pt too wide) in paragraph at lines 284--291
+\T1/txr/m/n/12 javascript po stronie ser-w-era dziaªaj[]cych równie» w kon-cepc
+ji ±rodowiska sterowanego
  []
 
 
-Overfull \hbox (63.30142pt too wide) in paragraph at lines 284--291
-\T1/txr/m/n/12 zdarzeni-ami dzi[]ki wyko-rzys-ta-niu tech-nologi Rhino, która z
-a-j-muje si[] obsªug[] wielow[]tkowo±ci.
+Overfull \hbox (2.2694pt too wide) in paragraph at lines 284--291
+\T1/txr/m/n/12 wielow[]tkowo±ci. Niew[]tpliw[] zalet[] Ringojs jest mo»li-wo±¢ 
+wyko-rzys-ta-nia kodów
  []
 
 
-Overfull \hbox (34.54944pt too wide) in paragraph at lines 284--291
-\T1/txr/m/n/12 przez ser-wer, zapewniaj[]c in-te-gracje frame-worka z istniej[]
-cymi ±rodowiskami java'owymi.
+Overfull \hbox (39.73344pt too wide) in paragraph at lines 284--291
+\T1/txr/m/n/12 w j[]zyku java przez ser-wer, zapewniaj[]c in-te-gracje frame-wo
+rka z istniej[]cymi ±rodowiskami
  []
 
 [14]
@@ -1115,9 +1085,9 @@ tablic oraz poszczegól-
  []
 
 [16]
-Overfull \hbox (20.44809pt too wide) in paragraph at lines 333--334
-[]\T1/txr/m/n/12 Budowa in-ter-fe-jsu u»ytkown-ika musi by¢ mo»li-wie in-tu-icy
-jna i prosta w obsªudz[]. 
+Overfull \hbox (15.30013pt too wide) in paragraph at lines 339--340
+[]\T1/txr/m/n/12 Posiada mo»li-wo±¢ ob-sªugi poprzez ró»ne przegl[]darki in-ter
+-ne-towe i ±rodowiska. 
  []
 
 [17]
@@ -1143,15 +1113,9 @@ orki wspóªpracuj[]
  []
 
 
-Overfull \hbox (11.07741pt too wide) in paragraph at lines 375--382
-\T1/txr/m/n/12 ap-likacje in-ter-ne-towa u»ytkown-ikowi, odpowiada za przyj-mow
-anie danych i z pomoc[]
- []
-
-
-Overfull \hbox (27.76944pt too wide) in paragraph at lines 375--382
-\T1/txr/m/n/12 tech-nologii ex-press, wykorzystuj[]c metod[] routingu, dopa-sow
-uje za-py-tanie do odpowied-
+Overfull \hbox (4.42947pt too wide) in paragraph at lines 375--382
+\T1/txr/m/n/12 tanie do odpowied-nich funkcji ser-wisu, przetwarza otrzy-mane d
+ane, przy wspóªpracy
  []
 
 [19] <images/Meanex.png, id=76, 1027.84pt x 493.845pt>
@@ -1196,7 +1160,7 @@ d-owe dane wymieni-
 
 [21 <./images/U-P-S-B.png>]
 Overfull \hbox (2.68814pt too wide) in paragraph at lines 416--417
-[]\T1/txr/m/n/12 Odpowied¹ na za-py-tanie bazo-danowe zostaje ode-brane i zosta
+[]\T1/txr/m/n/12 Odpowied¹ na za-py-tanie bazo-danowe zostaje ode-brana i zosta
 j[] przy-go-towane
  []
 
@@ -1218,9 +1182,15 @@ Overfull \hbox (12.52814pt too wide) in paragraph at lines 548--550
  []
 
 
-Overfull \hbox (15.24016pt too wide) in paragraph at lines 553--554
+Overfull \hbox (0.73215pt too wide) in paragraph at lines 553--554
+[]\T1/txr/m/n/12 body-parser - dostar-cza mo»li-wo±¢ anal-i-zowa-nia danych, za
+ª[]czonych do ode-
+ []
+
+
+Overfull \hbox (6.57616pt too wide) in paragraph at lines 553--554
 \T1/txr/m/n/12 branego przez ser-wer »[]dania, wyko-rzys-tany zostaª w celu od-
-czytów poszczegól-
+czytu poszczegól-
  []
 
 [26] [27]
@@ -1390,13 +1360,13 @@ w przy-padku równoczes-
 [39] [40]
 Rozdzia\IeC {\l } 6.
 
-Overfull \hbox (4.88545pt too wide) in paragraph at lines 812--830
+Overfull \hbox (4.88545pt too wide) in paragraph at lines 813--831
 \T1/txr/m/n/12 Wykonana ap-likacja speª-nia zadan[] w warunk-ach funkcjon-al-no
 ±¢. Zostaªy osi[]gni[]te
  []
 
 
-Overfull \hbox (3.64946pt too wide) in paragraph at lines 812--830
+Overfull \hbox (3.64946pt too wide) in paragraph at lines 813--831
 \T1/txr/m/n/12 wisów in-ter-ne-towych poprzez u»y-cie asyn-chron-icznej ob-sªug
 i we-j±-ci-a/wyj±-cia, które
  []
@@ -1404,17 +1374,17 @@ i we-j±-ci-a/wyj±-cia, które
 [41
 
 ] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 849--851
+Underfull \hbox (badness 10000) in paragraph at lines 850--852
 []\T1/txr/m/n/12 Dokumentacja bib-lioteki libuv. Stan na dzie«: 2017-07-20
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 852--854
+Underfull \hbox (badness 10000) in paragraph at lines 853--855
 []\T1/txr/m/n/12 Dokumentacja Mon-goDB. Stan na dzie«: 2017-07-20
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 864--866
+Underfull \hbox (badness 1264) in paragraph at lines 865--867
 []\T1/txr/m/n/12 Porównanie tech-nologii Node.js i Ringojs. Stan na dzie«: 2017
 -07-20
  []
@@ -1463,11 +1433,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  8232 strings out of 493323
  112852 string characters out of 3139523
- 294590 words of memory out of 3000000
+ 295591 words of memory out of 3000000
  11567 multiletter control sequences out of 15000+200000
  54180 words of font info for 79 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,8n,77p,781b,1613s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,8n,77p,782b,1613s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Pobrane/Texmaker/Miktex/fonts/enc/dvips/base/8r.enc}<D:/Pobrane/Texmaker/
 Miktex/fonts/type1/public/txfonts/rtxi.pfb><D:/Pobrane/Texmaker/Miktex/fonts/ty
 pe1/public/txfonts/rtxr.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/public/txfo
@@ -1477,7 +1447,7 @@ exmaker/Miktex/fonts/type1/public/txfonts/txsy.pfb><D:/Pobrane/Texmaker/Miktex/
 fonts/type1/urw/times/utmb8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw/ti
 mes/utmr8a.pfb><D:/Pobrane/Texmaker/Miktex/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_
-Repo\thesis\build\thesis.pdf" (45 pages, 12057357 bytes).
+Repo\thesis\build\thesis.pdf" (45 pages, 12057562 bytes).
 PDF statistics:
  227 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
