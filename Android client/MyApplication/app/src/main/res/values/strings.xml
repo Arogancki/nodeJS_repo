@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Task Menager</string>
+    <string name="type_login">Login:</string>
+    <string name="type_password">Password:</string>
+    <string name="type_password2">Confirm password:</string>
+    <string name="type_email">Email:</string>
+    <string name="button_accept">Accept</string>
+    <string name="button_sign_in">Sign in</string>
+    <string name="button_reset_password">Reset password</string>
+    <color name="background_color">#3399FF</color>
+</resources>
