@@ -7,5 +7,6 @@
     <string name="button_accept">Accept</string>
     <string name="button_sign_in">Sign in</string>
     <string name="button_reset_password">Reset password</string>
+    <string name="go_back"><![CDATA[<- go back]]></string>
     <color name="background_color">#3399FF</color>
 </resources>

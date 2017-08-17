@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:background="@color/background_color"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_settings"
+                android:textColor="#ffffff"
+                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.5"
+                android:text="Settings" />
+
+            <Button
+                android:id="@+id/button_sign_out"
+                android:textColor="#ffffff"
+                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.5"
+                android:text="Sign out"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_active_boards"
+            android:textColor="#ffffff"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="0.5"
+            android:text="@string/go_back"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/button_newboard"
+                android:layout_width="27dp"
+                android:layout_height="31dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="49dp"
+                android:layout_height="47dp"
+                android:gravity="center"
+                android:text="Tasks"
+                android:textColor="#ffffff"></TextView>
+
+            <Button
+                android:id="@+id/button_active_members"
+                android:layout_width="34dp"
+                android:layout_height="29dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                tools:background="@drawable/ppp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.5"
+                android:text="status" />
+
+            <TextView
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.5"
+                android:text="task"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+<!--
+task template
+<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.5"
+                android:text="status" />
+
+            <Button
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.5"
+                android:text="task's name"/>
+
+        </LinearLayout>
+
+-->
