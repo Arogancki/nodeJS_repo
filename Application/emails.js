@@ -2,10 +2,10 @@
 var nodemailer = require('nodemailer');
 
 //email sender data
-var SERVER_EMAIL_ADDRESS = 'nodejstaskmenagerapplication@gmail.com';
+var SERVER_EMAIL_ADDRESS = 'nodejstaskmanagerapplication@gmail.com';
 var SERVER_EMAIL_SERVICE = 'gmail';
 var SERVER_EMAIL_PASSWORD = 'Secred_password1';
-var SERVER_NAME = 'NodeJS Task Menager <nodejstaskmenagerapplication@gmail.com>';
+var SERVER_NAME = 'NodeJS Task manager <nodejstaskmanagerapplication@gmail.com>';
 
 //set email sender data
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
