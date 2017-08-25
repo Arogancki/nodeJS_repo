@@ -747,68 +747,49 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 \caption[]{Po zalogowaniu użytkownik wybiera opcje usunięcia własnej tablicy i wysyła żądanie do serwera. Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o błędzie.}
 \end{figure}
 
-
 \section{Testy wydajnościowe}
 Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
-
-\subsection{Mała ilość danych}
-Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 5 użytkowników, każdy po 2 tablice po 3 zadania po 2 komentarze:\newline
-logowanie - 22ms \newline
-otrzymanie informacji o tablicach i zaproszeniach - 29ms \newline
-dodanie nowej tablicy - 20ms \newline
-dodanie nowego zadania - 27ms \newline
-dodanie komentarza - 26ms
-
-\subsection{Średnia ilość danych}
-Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 50 użytkowników, każdy po 4 tablice po 6 zadań po 5 komentarzy:\newline
-logowanie - 26ms \newline
-otrzymanie informacji o tablicach i zaproszeniach - 33ms \newline
-dodanie nowej tablicy - 27ms \newline
-dodanie nowego zadania - 35ms \newline
-dodanie komentarza - 30ms
-
-\subsection{Duża ilość danych}
-Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 500 użytkowników, każdy po 8 tablic po 12 zadań po 11 komentarzy: \newline
-logowanie - 32ms\newline
-otrzymanie informacji o tablicach i zaproszeniach - 39ms\newline
-dodanie nowej tablicy - 31ms\newline
-dodanie nowego zadania - 37ms\newline
-dodanie komentarza - 32ms
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | c | }
+    \hline
+    & logowanie & otrzymanie informacji o tablicach i zaproszeniach & dodanie nowej tablicy & dodanie nowego zadania & dodanie komentarza \\
+	Mała ilość danych \newline 5 użytkowników po 2 tablice po 3 zadania po 2 komentarze & 22ms & 29ms & 20ms & 27ms & 26ms \\
+	Średnia ilość danych \newline 50 użytkowników po 4 tablice po 6 zadań po 5 komentarzy: & 26ms & 33ms & 27ms & 35ms & 30ms \\
+	Duża ilość danych \newline 500 użytkowników po 8 tablic po 12 zadań po 11 komentarzy & 32ms & 39ms & 31ms & 37ms & 32ms \\
+    \hline
+  \end{tabular}
+\end{center}
+Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe, ponieważ czas obsługi zapytania nie zostaje znacząco wydłużony.
 
 \subsection{Podsumowanie testu}
 Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe, ponieważ czas obsługi zapytania nie zostaje znacząco wydłużony.
 
-
 \section{Testy obciążeniowe serwera}
 Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
-
-\subsection{Mała ilość danych}
-Czas otrzymania odpowiedzi na 50 jednocześnie wysłanych zapytań - 45ms.
-
-\subsection{Średnia ilość danych}
-Czas otrzymania odpowiedzi na 300 jednocześnie wysłanych zapytań - 121ms.
-
-\subsection{Duża ilość danych}
-Czas otrzymania odpowiedzi na 1500 jednocześnie wysłanych zapytań - 674ms.
-
-\subsection{Podsumowanie testu}
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline
+    & czas otrzymania odpowiedzi\\
+	Mała ilość danych \newline 50 jednocześnie wysłanych zapytań & 45ms \\
+	Średnia ilość danych \newline 300 jednocześnie wysłanych zapytań & 121ms \\
+	Duża ilość danych \newline 1500 jednocześnie wysłanych zapytań & 674ms \\
+    \hline
+  \end{tabular}
+\end{center}
 Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwera. Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest wciąż komfortowe. Aplikacja wykazuje się skalowalnością.
 
-
-\newpage
 \section{Testy sprawnościowe serwera}
 Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
-
-\subsection{Krótki okres czasu}
-Otrzymane odpowiedzi w czasie 1 sekundy - 139.
-
-\subsection{Średni okres czasu}
-Otrzymane odpowiedzi w czasie 30 sekund - 4723.
-
-\subsection{Duży okres czasu}
-Otrzymane odpowiedzi w czasie 5 minut - 48031.
-
-\subsection{Podsumowanie testu}
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline
+    & ilość otrzymanych odpowiedzi\\
+	Mały okres czasu \newline 1 sekunda & 139 \\
+	Średni okres czasu \newline 30 sekund & 4723 \\
+	Duży okres czasu \newline 5 minut & 48031 \\
+    \hline
+  \end{tabular}
+\end{center}
 Przedstawione wyniki prezentują możliwości obsługi kolejnych zapytań serwera Node.js. 
 Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć, że technologia ta wykazuje się największą sprawnością przy obsłudze równoległych zapytań. 
 Średni uzyskany czas dla obsługi 1500 zapytań równoległych to 674 ms, natomiast dla wysyłanych kolejno wynosi 940 ms.
