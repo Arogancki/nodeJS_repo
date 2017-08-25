@@ -11,6 +11,7 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{pdfpages}
 \graphicspath{{images/}}
 \renewcommand{\chaptername}{Rozdział}
 \renewcommand{\contentsname}{Spis treści}
@@ -109,6 +110,9 @@
 }
 
 \begin{document}
+
+\includepdf[pages={-}]{title.pdf}
+
 \begin{titlepage}
 	\centering
 	{\scshape\LARGE Celem pracy jest przedstawienie technologii Node.js na przykładzie zaprojektowanej aplikacji przeznaczonej do zarządzania codziennymi zadaniami.  \par}
@@ -752,10 +756,10 @@ Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu prz
 \begin{center}
   \begin{tabular}{ | c | c | c | c | c | c | }
     \hline
-    & logowanie & otrzymanie informacji o tablicach i zaproszeniach & dodanie nowej tablicy & dodanie nowego zadania & dodanie komentarza \\
-	Mała ilość danych \newline 5 użytkowników po 2 tablice po 3 zadania po 2 komentarze & 22ms & 29ms & 20ms & 27ms & 26ms \\
-	Średnia ilość danych \newline 50 użytkowników po 4 tablice po 6 zadań po 5 komentarzy: & 26ms & 33ms & 27ms & 35ms & 30ms \\
-	Duża ilość danych \newline 500 użytkowników po 8 tablic po 12 zadań po 11 komentarzy & 32ms & 39ms & 31ms & 37ms & 32ms \\
+    & logowanie & otrzymanie informacji o tablicach i zaproszeniach & dodanie nowej tablicy & dodanie nowego zadania & dodanie komentarza \\ \hline
+	Mała ilość danych \newline 5 użytkowników po 2 tablice po 3 zadania po 2 komentarze & 22ms & 29ms & 20ms & 27ms & 26ms \\ \hline
+	Średnia ilość danych \\  50 użytkowników po 4 tablice po 6 zadań po 5 komentarzy: & 26ms & 33ms & 27ms & 35ms & 30ms \\ \hline
+	Duża ilość danych \\  500 użytkowników po 8 tablic po 12 zadań po 11 komentarzy & 32ms & 39ms & 31ms & 37ms & 32ms 
     \hline
   \end{tabular}
 \end{center}
@@ -769,13 +773,17 @@ Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku rów
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline
-    & czas otrzymania odpowiedzi\\
-	Mała ilość danych \newline 50 jednocześnie wysłanych zapytań & 45ms \\
-	Średnia ilość danych \newline 300 jednocześnie wysłanych zapytań & 121ms \\
-	Duża ilość danych \newline 1500 jednocześnie wysłanych zapytań & 674ms \\
+    & czas otrzymania odpowiedzi \\
+    \hline
+	Mała ilość danych 50 jednocześnie wysłanych zapytań & 45ms \\
+	\hline
+	Średnia ilość danych 300 jednocześnie wysłanych zapytań & 121ms \\
+	\hline
+	Duża ilość danych 1500 jednocześnie wysłanych zapytań & 674ms \\
     \hline
   \end{tabular}
 \end{center}
+\newline
 Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwera. Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest wciąż komfortowe. Aplikacja wykazuje się skalowalnością.
 
 \section{Testy sprawnościowe serwera}
