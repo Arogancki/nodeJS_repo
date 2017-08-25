@@ -555,6 +555,8 @@ Pozwala niwelować różnice w lokalizacji plików systemowych, czy łącznikach
 Dzięki temu modułowi nie musimy synchronicznie czekać na otrzymanie zwrotu z kolejnych funkcji, natomiast możemy przy użyciu wywołań zwrotnych zareagować po otrzymaniu określonego wyjścia.
 \item cookie-parser - zapewnia możliwość wykorzystania plików cookie dla specyficznego klienta. 
 Dzięki temu modułowi możemy ustawiać, usuwać lub edytować wartości plików cookie, które zostaną przydzielone dla konkretnego użytkownika w ramach całej sesji komunikacji z użytkownikiem lub przez określony przez nas czas. 
+\item request - dostarcza możliwość wysyłania prostych zapytań http pod wskazany adres zawierających strukturę w formacie json oraz odebranie na nie odpowiedzi. 
+Moduł został użyty wyłącznie do testów aplikacji.
 \end{enumerate}
 
 \subsection{Moduły wewnetrzne}
@@ -568,9 +570,12 @@ Dzięki temu plik główny serwera nie musi znać budowy, ani wykonywać operacj
 
 
 \chapter{Testy aplikacji}
+Na wykonanej aplikacji zostały wykonane poniższe testy, sprawdzające poprawność dostarczanej przez serwis funkcjonalności.
+Do testów została użyta przeglądarka Google Chrome oraz skrypty node.js korzystające z modułu request.
+Bardziej zaawansowaną technologią do testowania aplikacji webowych jest framework Selenium, pozwalający na automatyzacje testów. 
+Dostarcza on możliwość nagrania lub zaprogramowania określonego testu, a po jego odegraniu sprawdzania przychodzące odpowiedzi lub reakcję aplikacji.
 
 \section{Testy manualne}
-Po wykonaniu aplikacji zostały przeprowadzone testy manualne, sprawdzające poprawność dostarczanej przez serwis funkcjonalności.
 \subsection{Uzyskanie dostępu do statycznych zasobów serwisu}
 \begin{figure}[!hb]
 \centering
@@ -744,7 +749,7 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 
 
 \section{Testy wydajnościowe}
-Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na wysyłanie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
 \subsection{Mała ilość danych}
 Czas otrzymania odpowiedzi dla poszczególnych funkcjonalności od aplikacji z bazą danych zawierającą 5 użytkowników, każdy po 2 tablice po 3 zadania po 2 komentarze:\newline
@@ -775,7 +780,7 @@ Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danyc
 
 
 \section{Testy obciążeniowe serwera}
-Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na wysyłanie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
 \subsection{Mała ilość danych}
 Czas otrzymania odpowiedzi na 50 jednocześnie wysłanych zapytań - 45ms.
@@ -792,7 +797,7 @@ Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwe
 
 \newpage
 \section{Testy sprawnościowe serwera}
-Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Zostały wykonane za pomocą technologii Node.js oraz modułu request, pozwalającego na tworzenie zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
 
 \subsection{Krótki okres czasu}
 Otrzymane odpowiedzi w czasie 1 sekundy - 139.
