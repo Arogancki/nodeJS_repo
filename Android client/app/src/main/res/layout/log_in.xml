@@ -66,10 +66,10 @@
             android:background="@android:color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="Sign in" />
+            android:text="Sign in"/>
 
         <Button
-            android:id="@+id/button_reset_password"
+            android:id="@+id/button_reset_password_view"
             android:textColor="#ffffff"
             android:background="@android:color/transparent"
             android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
             android:text="Reset password" />
 
         <Button
-            android:id="@+id/button_sign_up"
+            android:id="@+id/button_sign_up_view"
             android:textColor="#ffffff"
             android:background="@android:color/transparent"
             android:layout_height="wrap_content"

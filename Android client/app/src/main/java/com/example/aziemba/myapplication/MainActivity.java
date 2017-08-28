@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.SharedPreferences;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,12 +31,29 @@ import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String SERVER_ADDRESS=""; //TODO
+
     private JSONObject activeBoard=null;
     private JSONObject activeTask=null;
 
+    private boolean SignUp(){
+        try {
+            return sendRequest("registration",
+                    "{\"login\":\""+((EditText)findViewById(R.id.user_login)).getText().toString()+"\"," +
+                            "\"password\":\""+((EditText)findViewById(R.id.user_password)).getText().toString()+"\"," +
+                            "\"password2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString()+"\"," +
+                            "\"email\":\""+((EditText)findViewById(R.id.user_email)).getText().toString()+"\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private void SignIn(){
         try {
-            if (sendRequest("adresurl","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\"}")) {
+            savePreferences();
+            loadPreferences();
+            if (sendRequest("authorization","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\"}")) {
                 activeTask=null;
                 activeBoard=null;
                 try {
@@ -47,7 +66,14 @@ public class MainActivity extends AppCompatActivity {
                         myButton.setGravity(Gravity.CENTER);
                         myButton.setTextColor(Color.WHITE);
                         myButton.setTag("boa$"+board.getString("name")+"$"+board.getString("owner"));
-
+                        // button onclik
+                        myButton.setOnClickListener(new View.OnClickListener()
+                        {
+                            public void onClick(View v)
+                            {
+                                setContentView(R.layout.log_in);
+                            }
+                        });
                         LinearLayout ll = (LinearLayout)findViewById(R.id.l_boards);
                         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                         ll.addView(myButton, lp);
@@ -62,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         myButton.setGravity(Gravity.CENTER);
                         myButton.setTextColor(Color.WHITE);
                         myButton.setTag("inv$"+invitation.getString("name")+"$"+invitation.getString("owner"));
-
+                        // todo set button onclick
                         LinearLayout ll = (LinearLayout)findViewById(R.id.l_invitations);
                         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                         ll.addView(myButton, lp);
@@ -87,6 +113,81 @@ public class MainActivity extends AppCompatActivity {
         else{
             setContentView(R.layout.log_in);
         }
+        Button button;
+        //sign in button
+        button = (Button) findViewById(R.id.button_accept_sign_in);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 && ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7)
+                    SignIn();
+                else
+                    makeToast("Type logn and password first!");
+            }
+        });
+        // reset password button view
+        button = (Button) findViewById(R.id.button_reset_password_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                setContentView(R.layout.reset_password);
+            }
+        });
+        // sign up button view
+        button = (Button) findViewById(R.id.button_sign_up_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                setContentView(R.layout.sign_up);
+            }
+        });
+        // sign in button view
+        button = (Button) findViewById(R.id.button_sign_in_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                setContentView(R.layout.log_in);
+            }
+        });
+        // sign up button
+        button = (Button) findViewById(R.id.button_accept_sign_up);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 &&
+                        ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
+                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString())
+                    if(SignUp()) //TODO
+                        SignIn();
+                    else
+                        makeToast("letters and numbers only, login 3, password 8 to 20 length, passwords must be equal");
+            }
+        });
+        // reset password button
+        button = (Button) findViewById(R.id.button_accept_reset_password);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                String log_=((EditText)findViewById(R.id.user_login)).getText().toString();
+                String ema_=((EditText)findViewById(R.id.user_email)).getText().toString();
+                if (log_.length()>0 && ema_.length()>0){
+                    try {
+                        sendRequest("resetpassword","{\"login\":\""+log_+"\",\"email\":\""+ema_+"\"}");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    makeToast("If they're right, you recived mail");
+                }
+                else
+                    makeToast("Fill the fields!");
+            }
+        });
     }
     @Override
     public void onPause() {
@@ -105,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         DataOutputStream printout;
         DataInputStream input;
         try {
-            url = new URL(""+"/getBoardsAndInvitations");
+            url = new URL(SERVER_ADDRESS+"/getBoardsAndInvitations");
             urlConn = url.openConnection();
         } catch (IOException e) {
             System.out.print("Zly url");
@@ -135,7 +236,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
-
         try {
             int HttpResult = ((HttpURLConnection) urlConn).getResponseCode();
             String text = ((HttpURLConnection) urlConn).getResponseMessage();
@@ -169,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
             DataOutputStream printout;
             DataInputStream input;
             try {
-                url = new URL(urlAddress);
+                url = new URL(SERVER_ADDRESS+"/"+urlAddress);
                 urlConn = url.openConnection();
             } catch (IOException e) {
                 System.out.print("Zly url");
@@ -262,8 +362,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
 
         // Edit and commit
-        UnameValue = edt_username;
-        PasswordValue = edt_password;
+        UnameValue = ((EditText)findViewById(R.id.user_login)).getText().toString();
+        PasswordValue = ((EditText)findViewById(R.id.user_password)).getText().toString();;
         System.out.println("onPause save name: " + UnameValue);
         System.out.println("onPause save password: " + PasswordValue);
         editor.putString(PREF_UNAME, UnameValue);
