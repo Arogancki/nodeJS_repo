@@ -11,7 +11,6 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{enumitem}
-\usepackage{pdfpages}
 \graphicspath{{images/}}
 \renewcommand{\chaptername}{Rozdział}
 \renewcommand{\contentsname}{Spis treści}
@@ -110,8 +109,6 @@
 }
 
 \begin{document}
-
-\includepdf[pages={-}]{title.pdf}
 
 \begin{titlepage}
 	\centering
@@ -579,6 +576,7 @@ Do testów została użyta przeglądarka Google Chrome oraz skrypty node.js korz
 Bardziej zaawansowaną technologią do testowania aplikacji webowych jest framework Selenium, pozwalający na automatyzacje testów. 
 Dostarcza on możliwość nagrania lub zaprogramowania określonego testu, a po jego odegraniu sprawdzania przychodzące odpowiedzi lub reakcję aplikacji.
 
+\newpage
 \section{Testy manualne}
 \subsection{Uzyskanie dostępu do statycznych zasobów serwisu}
 \begin{figure}[!hb]
@@ -589,7 +587,6 @@ Dostarcza on możliwość nagrania lub zaprogramowania określonego testu, a po 
 Otrzymuje odpowiedź zawierającą pliki statyczne serwisu (plik html, css, js, zdjęcie w tle i favicon.}
 \end{figure}
 
-\newpage 
 \subsection{Rejerstracja w serwisie}
 \begin{figure}[!hb]
 \centering
@@ -753,51 +750,75 @@ Serwer sprawdza poprawność danych. Odpowiada potwierdzeniem lub komunikatem o 
 
 \section{Testy wydajnościowe}
 Przeprowadzone testy wydajnościowe pozwalają sprawdzić zachowanie serwisu przy różnym obciążeniu bazy danych. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | c | c | }
-    \hline
-    & logowanie & otrzymanie informacji o tablicach i zaproszeniach & dodanie nowej tablicy & dodanie nowego zadania & dodanie komentarza \\ \hline
-	Mała ilość danych \newline 5 użytkowników po 2 tablice po 3 zadania po 2 komentarze & 22ms & 29ms & 20ms & 27ms & 26ms \\ \hline
-	Średnia ilość danych \\  50 użytkowników po 4 tablice po 6 zadań po 5 komentarzy: & 26ms & 33ms & 27ms & 35ms & 30ms \\ \hline
-	Duża ilość danych \\  500 użytkowników po 8 tablic po 12 zadań po 11 komentarzy & 32ms & 39ms & 31ms & 37ms & 32ms 
-    \hline
-  \end{tabular}
-\end{center}
-Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe, ponieważ czas obsługi zapytania nie zostaje znacząco wydłużony.
 
-\subsection{Podsumowanie testu}
+\begin{enumerate} 
+	\item
+	Mała ilość danych - 5 użytkowników po 2 tablice, po 3 zadania, po 2 komentarze
+	\begin{itemize}
+	  \item logowanie - 22ms
+	  \item otrzymanie informacji o tablicach i zaproszeniach - 29ms
+	  \item dodanie nowej tablicy - 20ms
+	  \item dodanie nowego zadania - 27ms
+	  \item dodanie komentarza - 26ms
+	\end{itemize}
+	\item
+	Średnia ilość danych - 50 użytkowników po 4 tablice, po 6 zadań, po 5 komentarzy
+	\begin{itemize}
+	  \item logowanie - 26ms
+	  \item otrzymanie informacji o tablicach i zaproszeniach - 33ms
+	  \item dodanie nowej tablicy - 27ms
+	  \item dodanie nowego zadania - 35ms
+	  \item dodanie komentarza - 30ms
+	\end{itemize}
+	\item
+	Duża ilość danych - 500 użytkowników po 8 tablic, po 12 zadań, po 11 komentarzy
+	\begin{itemize}
+	  \item logowanie - 32ms
+	  \item otrzymanie informacji o tablicach i zaproszeniach - 39ms
+	  \item dodanie nowej tablicy - 31ms
+	  \item dodanie nowego zadania - 37ms
+	  \item dodanie komentarza - 32ms
+	\end{itemize}
+\end{enumerate} 
 Serwis oferuje pełną funkcjonalność przy różnych obciążeniach bazy danych. Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe, ponieważ czas obsługi zapytania nie zostaje znacząco wydłużony.
 
 \section{Testy obciążeniowe serwera}
 Przeprowadzone testy pozwalają określić zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+\smallskip
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline
     & czas otrzymania odpowiedzi \\
     \hline
-	Mała ilość danych 50 jednocześnie wysłanych zapytań & 45ms \\
+	Mała ilość danych - 50 jednocześnie wysłanych zapytań & 45ms \\
 	\hline
-	Średnia ilość danych 300 jednocześnie wysłanych zapytań & 121ms \\
+	Średnia ilość danych - 300 jednocześnie wysłanych zapytań & 121ms \\
 	\hline
-	Duża ilość danych 1500 jednocześnie wysłanych zapytań & 674ms \\
+	Duża ilość danych - 1500 jednocześnie wysłanych zapytań & 674ms \\
     \hline
   \end{tabular}
 \end{center}
-\newline
+\bigskip\medskip
+
 Serwis oferuje pełną funkcjonalność przy różnym stopniu obciążenia serwera. Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest wciąż komfortowe. Aplikacja wykazuje się skalowalnością.
 
 \section{Testy sprawnościowe serwera}
 Przeprowadzone testy pozwalają określić ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+\bigskip \medskip
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline
     & ilość otrzymanych odpowiedzi\\
-	Mały okres czasu \newline 1 sekunda & 139 \\
-	Średni okres czasu \newline 30 sekund & 4723 \\
-	Duży okres czasu \newline 5 minut & 48031 \\
+    \hline
+	Mały okres czasu - 1 sekunda & 139 \\
+	\hline
+	Średni okres czasu - 30 sekund & 4723 \\
+	\hline
+	Duży okres czasu - 5 minut & 48031 \\
     \hline
   \end{tabular}
 \end{center}
+\bigskip \medskip
 Przedstawione wyniki prezentują możliwości obsługi kolejnych zapytań serwera Node.js. 
 Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć, że technologia ta wykazuje się największą sprawnością przy obsłudze równoległych zapytań. 
 Średni uzyskany czas dla obsługi 1500 zapytań równoległych to 674 ms, natomiast dla wysyłanych kolejno wynosi 940 ms.
