@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -243,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.boards);
     }
 
-    private String SERVER_ADDRESS=""; //TODO
+    private String SERVER_ADDRESS=" http://192.168.0.189:8081"; //TODO
 
     private int activeBoard=-1;
     private int activeTask=-1;
@@ -277,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadPreferences();
-        if (edt_username!=null && edt_password!=null){
+        if (edt_username!="" && edt_password!=""){
             SignIn();
         }
         else{
@@ -293,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 && ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7)
                     SignIn();
                 else
-                    makeToast("Type logn and password first!");
+                    makeToast("Type correct login and password first! - "+((EditText)findViewById(R.id.user_login)).getText().toString());
             }
         });
         // reset password button view
@@ -315,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // sign in button view
+        /*
         button = (Button) findViewById(R.id.button_sign_in_view);
         button.setOnClickListener(new View.OnClickListener()
         {
@@ -593,6 +597,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        */
     }
 
     private void addStatus(String type){
@@ -709,28 +714,39 @@ public class MainActivity extends AppCompatActivity {
 
     //json np "{\"phonetype\":\"N95\",\"cat\":\"WP\"}"
     private boolean sendRequest(String urlAddress, String json) throws IOException {
+
+
+        int TIMEOUT_MILLISEC = 10000;  // = 10 seconds
+        String postMessage="{}"; //HERE_YOUR_POST_STRING.
+        HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, TIMEOUT_MILLISEC);
+        HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
+        HttpClient client = new DefaultHttpClient(httpParams);
+
+        HttpPost request = new HttpPost(serverUrl);
+        request.setEntity(new ByteArrayEntity(
+                postMessage.toString().getBytes("UTF8")));
+        HttpResponse response = client.execute(request);
+
             URL url;
             URLConnection urlConn;
             DataOutputStream printout;
             DataInputStream input;
             try {
-                url = new URL(SERVER_ADDRESS+"/"+urlAddress);
+                String ad=SERVER_ADDRESS+"/"+urlAddress;
+                url = new URL(ad);
                 urlConn = url.openConnection();
             } catch (IOException e) {
                 System.out.print("Zly url");
                 return false;
             }
+            urlConn = (HttpURLConnection) url.openConnection();
             urlConn.setDoInput(true);
             urlConn.setDoOutput(true);
             urlConn.setUseCaches(false);
             urlConn.setRequestProperty("Content-Type", "application/json");
             urlConn.setRequestProperty("Host", "android.schoolportal.gr");
-            try {
-                urlConn.connect();
-            } catch (IOException e) {
-                System.out.print("Brak polaczenia");
-                return false;
-            }
+
             //Create JSONObject here
             try {
                 JSONObject jsonObj = new JSONObject(json);
@@ -806,9 +822,7 @@ public class MainActivity extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        // Edit and commit
-        UnameValue = ((EditText)findViewById(R.id.user_login)).getText().toString();
-        PasswordValue = ((EditText)findViewById(R.id.user_password)).getText().toString();;
+
         System.out.println("onPause save name: " + UnameValue);
         System.out.println("onPause save password: " + PasswordValue);
         editor.putString(PREF_UNAME, UnameValue);
