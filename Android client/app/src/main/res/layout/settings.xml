@@ -84,20 +84,20 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button_accept_sign_up"
+            android:id="@+id/button_accept_change"
             android:textColor="#ffffff"
             android:background="@android:color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="Sign up" />
+            android:text="Change" />
 
         <Button
-            android:id="@+id/button_sign_in"
+            android:id="@+id/button_active_boards_view"
             android:textColor="#ffffff"
             android:background="@android:color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="Sign in" />
+            android:text="Cancel" />
 
     </LinearLayout>
 
