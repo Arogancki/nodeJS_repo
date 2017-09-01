@@ -3,6 +3,7 @@ package com.example.aziemba.myapplication;
 import android.content.Context;
 import android.graphics.Color;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -17,8 +18,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -37,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button_accept_sign_in);
         button.setOnClickListener(new View.OnClickListener()
         {
-            public void onClick(View v)
-            {
-                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 && ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7)
-                    SignIn();
+            public void onClick(View v) {
+                if (((EditText) findViewById(R.id.user_login)).getText().toString().trim().length() > 2 && ((EditText) findViewById(R.id.user_password)).getText().toString().trim().length() > 7)
+                {       savePreferences();
+                if (!SignIn())
+                    makeToast("Type correct login and password first! - ");
+            }
                 else
-                    makeToast("Type correct login and password first! - "+((EditText)findViewById(R.id.user_login)).getText().toString());
+                    makeToast("Type correct login and password first! - ");
             }
         });
         // reset password button view
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                         ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + infoT + "\"}"))
 
                                     Ltask();
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -157,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                             sendRequest("LeaveBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                                     ",\"owner\":\"" + owner + "\"}");
                         Lboards();
-                    } catch (JSONException | IOException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -200,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         if (sendRequest("CreateNewBoard","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+lastInput+"\"}"))
                             Lboards();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -258,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                                     ",\"owner\":\"" + owner + "\",\"member\":\"" + member + "\"}"))
 
                                 Lmembers();
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -283,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 if (log_.length()>0 && ema_.length()>0){
                     try {
                         sendRequest("resetpassword","{\"login\":\""+log_+"\",\"email\":\""+ema_+"\"}");
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     makeToast("If they're right, you recived mail");
@@ -322,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
                                         "\"newPassword\":\""+((EditText)findViewById(R.id.user_password)).getText().toString()+"\"," +
                                         "\"newPassword2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString()+"\"," +
                                         "\"newEmail\":\""+((EditText)findViewById(R.id.user_email)).getText().toString()+"\"}");
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -455,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
                         sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                                 ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\"}");
                         Lboard();
-                    } catch (JSONException | IOException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -644,7 +649,7 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
                                     Lboards();
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -653,7 +658,7 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
                                     Lboards();
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -675,32 +680,30 @@ public class MainActivity extends AppCompatActivity {
     private boolean SignUp(){
         try {
             return sendRequest("registration",
-                    "{\"login\":\""+((EditText)findViewById(R.id.user_login)).getText().toString()+"\"," +
-                            "\"password\":\""+((EditText)findViewById(R.id.user_password)).getText().toString()+"\"," +
-                            "\"password2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString()+"\"," +
-                            "\"email\":\""+((EditText)findViewById(R.id.user_email)).getText().toString()+"\"}");
-        } catch (IOException e) {
+                    "{\"login\":\""+((EditText)findViewById(R.id.user_login)).getText().toString().trim()+"\"," +
+                            "\"password\":\""+((EditText)findViewById(R.id.user_password)).getText().toString().trim()+"\"," +
+                            "\"password2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString().trim()+"\"," +
+                            "\"email\":\""+((EditText)findViewById(R.id.user_email)).getText().toString().trim()+"\"}");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-    private void SignIn(){
-        try {
-            savePreferences();
+    private boolean SignIn(){
             loadPreferences();
-            if (sendRequest("authorization","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\"}")) {
+        makeToast("x"+edt_password+"xx"+edt_username+"x");
+            if (sendRequest("authorization","{\"login\":\""+edt_username.trim()+"\",\"password\":\""+edt_password.trim()+"\"}")) {
                 Lboards();
+                return true;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            return false;
     }
     private void LogOut(){
         clearPreferences();
     }
 
     //send json np "{\"phonetype\":\"N95\",\"cat\":\"WP\"}"
-    private boolean sendRequest(String urlAddress, String json) throws IOException {
+    private boolean sendRequestMain(String urlAddress, String json) throws IOException {
         boolean _return=false;
         URL url;
         HttpURLConnection connection = null;
@@ -745,6 +748,44 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+    private boolean flagasend=false;
+    private boolean result=false;
+    private boolean sendRequest(String urlAddress, String json){
+        urlAddress2=urlAddress;
+        jsonMySon=json;
+        flagasend=true;
+        result=false;
+        new Asynch().execute("");
+        while (flagasend)
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        return result;
+    }
+    private String urlAddress2;
+    private String jsonMySon;
+    private class Asynch extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            result=false;
+            try {
+                result=sendRequestMain(urlAddress2,jsonMySon);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            flagasend=false;
+            return "";
+        }
+        @Override
+        protected void onPostExecute(String result) {        }
+        @Override
+        protected void onPreExecute() {}
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+    }
+
     private boolean sendGetAll(){
         boolean _return=false;
         URL url;
@@ -753,8 +794,11 @@ public class MainActivity extends AppCompatActivity {
             url = new URL(SERVER_ADDRESS+"/getBoardsAndInvitations");
             connection = (HttpURLConnection)url.openConnection();
             connection.setDoOutput(true);
+            connection.setDoInput(true);
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
+            connection.setReadTimeout(10000 /* milliseconds */ );
+            connection.setConnectTimeout(15000 /* milliseconds */ );
             connection.connect();
 
             //Send request
@@ -767,7 +811,17 @@ public class MainActivity extends AppCompatActivity {
             String response = connection.getResponseMessage();
             if (connection.getResponseCode()==200) {
                 System.out.println("coonection ok");
-                data=new JSONObject(response);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+
+                data=new JSONObject( sb.toString().trim());
                 _return= true;
             } else {
                 System.out.println(response);
@@ -796,7 +850,7 @@ public class MainActivity extends AppCompatActivity {
                 sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                         ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+type+"\"}");
                 Lboard();
-            } catch (JSONException | IOException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -823,7 +877,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 String input =((EditText)findViewById(R.id.input_text)).getText().toString();
                 if (input.length()>0)
-                    lastInput=input;
+                    lastInput=input.trim();
                 else
                     lastInput="";
                 setContentView(currentView);
@@ -835,8 +889,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadPreferences();
-        if (edt_username!="" && edt_password!=""){
-            SignIn();
+        if (edt_username!="" && edt_password!="" && SignIn()){
+            Lboards();
         }
         else{
             Llog_in();
@@ -863,10 +917,8 @@ public class MainActivity extends AppCompatActivity {
     String edt_username=null;
     String edt_password=null;
     private void loadPreferences() {
-
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
-
         // Get value
         UnameValue = settings.getString(PREF_UNAME, DefaultUnameValue);
         PasswordValue = settings.getString(PREF_PASSWORD, DefaultPasswordValue);
@@ -880,11 +932,8 @@ public class MainActivity extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-
-        System.out.println("onPause save name: " + UnameValue);
-        System.out.println("onPause save password: " + PasswordValue);
-        editor.putString(PREF_UNAME, UnameValue);
-        editor.putString(PREF_PASSWORD, PasswordValue);
+        editor.putString(PREF_UNAME, ((EditText)findViewById(R.id.user_login)).getText().toString().trim());
+        editor.putString(PREF_PASSWORD, ((EditText)findViewById(R.id.user_password)).getText().toString().trim());
         editor.commit();
     }
     private  void clearPreferences() {
