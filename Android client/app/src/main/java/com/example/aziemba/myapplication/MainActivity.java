@@ -1,12 +1,10 @@
 package com.example.aziemba.myapplication;
 
-
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -15,25 +13,455 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String SERVER_ADDRESS=" http://192.168.0.189:8081"; //TODO
+    private int activeBoard=-1;
+    private int activeTask=-1;
+    JSONObject data=null;
+
+    //load loyout methods
+    private void Llog_in(){
+        setContentView(R.layout.log_in);
+        Button button;
+        //sign in button
+        button = (Button) findViewById(R.id.button_accept_sign_in);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 && ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7)
+                    SignIn();
+                else
+                    makeToast("Type correct login and password first! - "+((EditText)findViewById(R.id.user_login)).getText().toString());
+            }
+        });
+        // reset password button view
+        button = (Button) findViewById(R.id.button_reset_password_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lreset_pass();
+            }
+        });
+        // sign up button view
+        button = (Button) findViewById(R.id.button_sign_up_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lsign_up();
+            }
+        });
+    }
+    private void Lboard(){
+        setContentView(R.layout.board);
+        relodeBoard();
+        Button button;
+        // settings button
+        button = (Button) findViewById(R.id.button_settings_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lsett();
+            }
+        });
+        //sign out button
+        button = (Button) findViewById(R.id.button_sign_out_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                clearPreferences();
+                data =null;
+                Llog_in();
+            }
+        });
+        //active members view
+        button = (Button) findViewById(R.id.button_active_members_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lmembers();
+            }
+        });
+        //add new task button
+        button = (Button) findViewById(R.id.button_newTASKT);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                getInput("Enter new task name");
+                if (lastInput!=""){
+                    String nameT=lastInput;
+                    getInput("Write first comment");
+                    if (lastInput!=""){
+                        String infoT=lastInput;
+                        try {
+                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                            String owner = BOARD.getString("owner");
+                            String board = BOARD.getString("board");
+                            try {
+                                if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + infoT + "\"}"))
+
+                                    Ltask();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        catch (JSONException e)
+                        {   e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        //new button_active_boards_view
+        button = (Button) findViewById(R.id.button_active_boards_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lboards();
+            }
+        });
+        // button leafe/delete board
+        button = (Button) findViewById(R.id.LEAVE_BOARD);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                getInput("Type yes if you want to delate board");
+                if (lastInput.toLowerCase()!="yes"){
+                    try {
+                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                        String owner = BOARD.getString("owner");
+                        String board = BOARD.getString("board");
+                        if (owner.toLowerCase()==edt_username.toLowerCase())
+                            sendRequest("DeleteBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                    ",\"owner\":\"" + owner + "\"}");
+                        else
+                            sendRequest("LeaveBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                    ",\"owner\":\"" + owner + "\"}");
+                        Lboards();
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+    private void Lboards(){
+        setContentView(R.layout.boards);
+        relodeBoards();
+        Button button;
+        // settings button
+        button = (Button) findViewById(R.id.button_settings_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lsett();
+            }
+        });
+        //sign out button
+        button = (Button) findViewById(R.id.button_sign_out_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                clearPreferences();
+                data =null;
+                Llog_in();
+            }
+        });
+        // button_newboard button
+        button = (Button) findViewById(R.id.button_newboard);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                getInput("Enter new board name");
+                if (lastInput!="")
+                {
+                    try {
+                        if (sendRequest("CreateNewBoard","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+lastInput+"\"}"))
+                            Lboards();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+    private void Lmembers(){
+        setContentView(R.layout.members);
+        reloadMembers();
+        Button button;
+        // settings button
+        button = (Button) findViewById(R.id.button_settings_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lsett();
+            }
+        });
+        //sign out button
+        button = (Button) findViewById(R.id.button_sign_out_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                clearPreferences();
+                data =null;
+                Llog_in();
+            }
+        });
+        //active members view
+        button = (Button) findViewById(R.id.button_active_board_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lboard();
+            }
+        });
+        //new member button
+        button = (Button) findViewById(R.id.button_newmember);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                getInput("Who you want to invite?");
+                if (lastInput!=""){
+                    String member = lastInput;
+                    try {
+                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                        String owner = BOARD.getString("owner");
+                        String board = BOARD.getString("board");
+                        try {
+                            if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                    ",\"owner\":\"" + owner + "\",\"member\":\"" + member + "\"}"))
+
+                                Lmembers();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    catch (JSONException e)
+                    {   e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+    private void Lreset_pass(){
+        setContentView(R.layout.reset_password);
+        Button button;
+        // reset password button
+        button = (Button) findViewById(R.id.button_accept_reset_password);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                String log_=((EditText)findViewById(R.id.user_login)).getText().toString();
+                String ema_=((EditText)findViewById(R.id.user_email)).getText().toString();
+                if (log_.length()>0 && ema_.length()>0){
+                    try {
+                        sendRequest("resetpassword","{\"login\":\""+log_+"\",\"email\":\""+ema_+"\"}");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    makeToast("If they're right, you recived mail");
+                }
+                else
+                    makeToast("Fill the fields!");
+            }
+        });
+        // sign in button view
+        button = (Button) findViewById(R.id.button_sign_in_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Llog_in();
+            }
+        });
+    }
+    private void Lsett(){
+        setContentView(R.layout.settings);
+        Button button;
+        //new button_accept_change
+        button = (Button) findViewById(R.id.button_accept_change);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if ((((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
+                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString()) ||
+                        ((EditText)findViewById(R.id.user_password)).getText().toString().length()==0 && ((EditText)findViewById(R.id.user_password2)).getText().toString().length()==0 &&
+                                ((EditText)findViewById(R.id.user_email)).getText().toString().length()!=0)
+                {
+                    try {
+                        sendRequest("changeUserData",
+                                "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\"," +
+                                        "\"newPassword\":\""+((EditText)findViewById(R.id.user_password)).getText().toString()+"\"," +
+                                        "\"newPassword2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString()+"\"," +
+                                        "\"newEmail\":\""+((EditText)findViewById(R.id.user_email)).getText().toString()+"\"}");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                    makeToast("letters and numbers only, password 8 to 20 length, passwords must be equal");
+                Lboards();
+            }
+        });
+        //new button_active_boards_view
+        button = (Button) findViewById(R.id.button_active_boards_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lboards();
+            }
+        });
+    }
+    private void Lsign_up(){
+        setContentView(R.layout.sign_up);
+        Button button;
+        // sign up button
+        button = (Button) findViewById(R.id.button_accept_sign_up);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 &&
+                        ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
+                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString()) {
+                    if (SignUp())
+                        SignIn();
+                }
+                else
+                    makeToast("letters and numbers only, login 3, password 8 to 20 length, passwords must be equal");
+            }
+        });
+        // sign in button view
+        button = (Button) findViewById(R.id.button_sign_in_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Llog_in();
+            }
+        });
+    }
+    private void Ltask(){
+        setContentView(R.layout.task);
+        relodeTask();
+        Button button;
+        // settings button
+        button = (Button) findViewById(R.id.button_settings_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lsett();
+            }
+        });
+        //sign out button
+        button = (Button) findViewById(R.id.button_sign_out_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                clearPreferences();
+                data =null;
+                Llog_in();
+            }
+        });
+        //active members view
+        button = (Button) findViewById(R.id.button_active_board_view);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Lboard();
+            }
+        });
+        // button_button_inprogres
+        button = (Button) findViewById(R.id.button_inprogres);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                addStatus("In progress");
+            }
+        });
+        // button_button_blocked
+        button = (Button) findViewById(R.id.button_blocked);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                addStatus("Blocked");
+            }
+        });
+        // button_button_finished
+        button = (Button) findViewById(R.id.button_finished);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                addStatus("Finished");
+            }
+        });
+        // button_button_resumed
+        button = (Button) findViewById(R.id.button_resumed);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                addStatus("Resumed");
+            }
+        });
+        // button_button_delete
+        button = (Button) findViewById(R.id.button_delete);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                getInput("Type yes if you want to delate task");
+                if (lastInput.toLowerCase()!="yes"){
+                    try {
+                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                        String owner = BOARD.getString("owner");
+                        String board = BOARD.getString("board");
+                        String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
+                        sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\"}");
+                        Lboard();
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
 
     //relode methods
     private void relodeTask(){
@@ -92,7 +520,6 @@ public class MainActivity extends AppCompatActivity {
         catch (JSONException e) {
             e.printStackTrace();
         }
-        setContentView(R.layout.task);
     };
     private void reloadMembers(){
         LinearLayout ll = (LinearLayout)findViewById(R.id.l_invited);
@@ -103,6 +530,7 @@ public class MainActivity extends AppCompatActivity {
             ((LinearLayout) l2).removeAllViews();
         try {
             JSONObject board = data.getJSONArray("boards").getJSONObject(activeBoard);
+            ((TextView) findViewById(R.id.members_owner)).setText("Owner: "+board.getString("owner"));
             JSONArray members = board.getJSONArray("members");
             for (int i = 0; i < members.length(); i++) {
                 LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -129,7 +557,6 @@ public class MainActivity extends AppCompatActivity {
         catch (JSONException e) {
             e.printStackTrace();
         }
-        setContentView(R.layout.members);
     }
     private void relodeBoard(){
         LinearLayout ll = (LinearLayout)findViewById(R.id.l_tasks);
@@ -152,7 +579,7 @@ public class MainActivity extends AppCompatActivity {
                 myButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         activeTask = Integer.parseInt(v.getTag().toString());
-                        relodeTask();
+                        Ltask();
                     }
                 });
                 ll.addView(myButton, bp);
@@ -161,7 +588,6 @@ public class MainActivity extends AppCompatActivity {
         catch (JSONException e) {
             e.printStackTrace();
         }
-        setContentView(R.layout.board);
     }
     private void relodeBoards(){
         LinearLayout ll = (LinearLayout)findViewById(R.id.l_boards);
@@ -188,7 +614,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v)
                     {
                         activeBoard= Integer.parseInt(v.getTag().toString());
-                        relodeBoard();
+                        Lboard();
                     }
                 });
                 LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -217,7 +643,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             try {
                                 if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
-                                    relodeBoards();
+                                    Lboards();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -226,7 +652,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             try {
                                 if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
-                                    relodeBoards();
+                                    Lboards();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -243,14 +669,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        setContentView(R.layout.boards);
     }
 
-    private String SERVER_ADDRESS=" http://192.168.0.189:8081"; //TODO
-
-    private int activeBoard=-1;
-    private int activeTask=-1;
-
+    //user/account methods
     private boolean SignUp(){
         try {
             return sendRequest("registration",
@@ -263,368 +684,139 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-
     private void SignIn(){
         try {
             savePreferences();
             loadPreferences();
             if (sendRequest("authorization","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\"}")) {
-                relodeBoards();
+                Lboards();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        loadPreferences();
-        if (edt_username!="" && edt_password!=""){
-            SignIn();
-        }
-        else{
-            setContentView(R.layout.log_in);
-        }
-        Button button;
-        //sign in button
-        button = (Button) findViewById(R.id.button_accept_sign_in);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 && ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7)
-                    SignIn();
-                else
-                    makeToast("Type correct login and password first! - "+((EditText)findViewById(R.id.user_login)).getText().toString());
-            }
-        });
-        // reset password button view
-        button = (Button) findViewById(R.id.button_reset_password_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                setContentView(R.layout.reset_password);
-            }
-        });
-        // sign up button view
-        button = (Button) findViewById(R.id.button_sign_up_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                setContentView(R.layout.sign_up);
-            }
-        });
-        // sign in button view
-        /*
-        button = (Button) findViewById(R.id.button_sign_in_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                setContentView(R.layout.log_in);
-            }
-        });
-        // sign up button
-        button = (Button) findViewById(R.id.button_accept_sign_up);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 &&
-                        ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
-                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString()) {
-                    if (SignUp())
-                        SignIn();
-                }
-                    else
-                        makeToast("letters and numbers only, login 3, password 8 to 20 length, passwords must be equal");
-            }
-        });
-        // reset password button
-        button = (Button) findViewById(R.id.button_accept_reset_password);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                String log_=((EditText)findViewById(R.id.user_login)).getText().toString();
-                String ema_=((EditText)findViewById(R.id.user_email)).getText().toString();
-                if (log_.length()>0 && ema_.length()>0){
-                    try {
-                        sendRequest("resetpassword","{\"login\":\""+log_+"\",\"email\":\""+ema_+"\"}");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    makeToast("If they're right, you recived mail");
-                }
-                else
-                    makeToast("Fill the fields!");
-            }
-        });
-        // settings button
-        button = (Button) findViewById(R.id.button_settings_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                setContentView(R.layout.settings);
-            }
-        });
-        //sign out button
-        button = (Button) findViewById(R.id.button_sign_out_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                clearPreferences();
-                data =null;
-                setContentView(R.layout.log_in);
-            }
-        });
-        // button_newboard button
-        button = (Button) findViewById(R.id.button_newboard);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                getInput("Enter new board name");
-                if (lastInput!="")
-                {
-                    try {
-                        if (sendRequest("CreateNewBoard","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+lastInput+"\"}"))
-                            relodeBoards();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        //add new task button
-        button = (Button) findViewById(R.id.button_newTASKT);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                getInput("Enter new task name");
-                if (lastInput!=""){
-                    String nameT=lastInput;
-                    getInput("Write first comment");
-                    if (lastInput!=""){
-                        String infoT=lastInput;
-                        try {
-                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                            String owner = BOARD.getString("owner");
-                            String board = BOARD.getString("board");
-                            try {
-                                if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + infoT + "\"}"))
-
-                                relodeTask();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        catch (JSONException e)
-                        {   e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        });
-        //active members view
-        button = (Button) findViewById(R.id.button_active_members_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                reloadMembers();
-            }
-        });
-        //active members view
-        button = (Button) findViewById(R.id.button_active_board_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                relodeBoard();
-            }
-        });
-        //new member button
-        button = (Button) findViewById(R.id.button_newmember);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                getInput("Who you want to invite?");
-                if (lastInput!=""){
-                    String member = lastInput;
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        try {
-                            if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                    ",\"owner\":\"" + owner + "\",\"member\":\"" + member + "\"}"))
-
-                            reloadMembers();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    catch (JSONException e)
-                    {   e.printStackTrace();
-                    }
-                }
-            }
-        });
-        //new button_accept_change
-        button = (Button) findViewById(R.id.button_accept_change);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                if ((((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
-                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString()) ||
-                        ((EditText)findViewById(R.id.user_password)).getText().toString().length()==0 && ((EditText)findViewById(R.id.user_password2)).getText().toString().length()==0 &&
-                                ((EditText)findViewById(R.id.user_email)).getText().toString().length()!=0)
-                {
-                    try {
-                        sendRequest("changeUserData",
-                                "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\"," +
-                                        "\"newPassword\":\""+((EditText)findViewById(R.id.user_password)).getText().toString()+"\"," +
-                                        "\"newPassword2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString()+"\"," +
-                                        "\"newEmail\":\""+((EditText)findViewById(R.id.user_email)).getText().toString()+"\"}");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                else
-                    makeToast("letters and numbers only, password 8 to 20 length, passwords must be equal");
-                relodeBoards();
-            }
-        });
-        //new button_active_boards_view
-        button = (Button) findViewById(R.id.button_active_boards_view);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-               relodeBoards();
-            }
-        });
-        // button_button_inprogres
-        button = (Button) findViewById(R.id.button_inprogres);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                addStatus("In progress");
-            }
-        });
-        // button_button_blocked
-        button = (Button) findViewById(R.id.button_blocked);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                addStatus("Blocked");
-            }
-        });
-        // button_button_finished
-        button = (Button) findViewById(R.id.button_finished);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                addStatus("Finished");
-            }
-        });
-        // button_button_resumed
-        button = (Button) findViewById(R.id.button_resumed);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                addStatus("Resumed");
-            }
-        });
-        // button_button_delete
-        button = (Button) findViewById(R.id.button_delete);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                getInput("Type yes if you want to delate task");
-                if (lastInput.toLowerCase()!="yes"){
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
-                        sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\"}");
-                        relodeBoard();
-                    } catch (JSONException | IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        // button leafe/delete board
-        button = (Button) findViewById(R.id.LEAVE_BOARD);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                getInput("Type yes if you want to delate board");
-                if (lastInput.toLowerCase()!="yes"){
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        if (owner.toLowerCase()==edt_username.toLowerCase())
-                            sendRequest("DeleteBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                    ",\"owner\":\"" + owner + "\"}");
-                        else
-                            sendRequest("LeaveBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                    ",\"owner\":\"" + owner + "\"}");
-                        relodeBoards();
-                    } catch (JSONException | IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        */
+    private void LogOut(){
+        clearPreferences();
     }
 
+    //send json np "{\"phonetype\":\"N95\",\"cat\":\"WP\"}"
+    private boolean sendRequest(String urlAddress, String json) throws IOException {
+        boolean _return=false;
+        URL url;
+        HttpURLConnection connection = null;
+        try {
+            url = new URL(SERVER_ADDRESS+"/"+urlAddress);
+            connection = (HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.connect();
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes((new JSONObject(json)).toString());
+            wr.flush();
+            wr.close ();
+
+            //InputStream is; //return is = connection.getErrorStream();
+            if (connection.getResponseCode()==200) {
+                System.out.println("coonection ok");
+                _return= true;
+            } else {
+                String text = (connection).getResponseMessage();
+                System.out.println(text);
+                makeToast(text);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(connection != null) {
+                connection.disconnect();
+            }
+        }
+        if (_return) {
+            if (sendGetAll())
+                return true;
+            else {
+                LogOut();
+                makeToast("Something's gone wrong. Try again.");
+                Llog_in();
+            }
+        }
+        return false;
+    }
+    private boolean sendGetAll(){
+        boolean _return=false;
+        URL url;
+        HttpURLConnection connection = null;
+        try {
+            url = new URL(SERVER_ADDRESS+"/getBoardsAndInvitations");
+            connection = (HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.connect();
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes((new JSONObject(("{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\"}"))).toString());
+            wr.flush();
+            wr.close ();
+
+            //InputStream is; //return is = connection.getErrorStream();
+            String response = connection.getResponseMessage();
+            if (connection.getResponseCode()==200) {
+                System.out.println("coonection ok");
+                data=new JSONObject(response);
+                _return= true;
+            } else {
+                System.out.println(response);
+                makeToast(response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(connection != null) {
+                connection.disconnect();
+            }
+        }
+        return _return;
+    }
+
+    // other helpers
     private void addStatus(String type){
         getInput("Write command");
         if (lastInput!=""){
             String info = lastInput;
             try {
-            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-            String owner = BOARD.getString("owner");
-            String board = BOARD.getString("board");
-            String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
-            sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                    ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+type+"\"}");
-            relodeBoard();
+                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                String owner = BOARD.getString("owner");
+                String board = BOARD.getString("board");
+                String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
+                sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+type+"\"}");
+                Lboard();
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    private void makeToast(String text){
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    //get custom input
     private View currentView=null;
     private String lastInput="";
     private void getInput(String text){
-        ((EditText)findViewById(R.id.input_text)).setTag("");
-        ((TextView)findViewById(R.id.input_static_text)).setText(text);
         currentView = this.getWindow().getDecorView().findViewById(android.R.id.content);
         setContentView(R.layout.input);
+        ((EditText)findViewById(R.id.input_text)).setTag("");
+        ((TextView)findViewById(R.id.input_static_text)).setText(text);
         ((Button) findViewById(R.id.input_ok_button)).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -640,6 +832,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        loadPreferences();
+        if (edt_username!="" && edt_password!=""){
+            SignIn();
+        }
+        else{
+            Llog_in();
+        }
+    }
+    @Override
     public void onPause() {
         super.onPause();
         savePreferences();
@@ -649,161 +852,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         loadPreferences();
     }
-
-    private boolean sendGetAll(){
-        URL url;
-        URLConnection urlConn;
-        DataOutputStream printout;
-        DataInputStream input;
-        try {
-            url = new URL(SERVER_ADDRESS+"/getBoardsAndInvitations");
-            urlConn = url.openConnection();
-        } catch (IOException e) {
-            System.out.print("Zly url");
-            return false;
-        }
-        urlConn.setDoInput(true);
-        urlConn.setDoOutput(true);
-        urlConn.setUseCaches(false);
-        urlConn.setRequestProperty("Content-Type", "application/json");
-        urlConn.setRequestProperty("Host", "android.schoolportal.gr");
-        try {
-            urlConn.connect();
-        } catch (IOException e) {
-            System.out.print("Brak polaczenia");
-            return false;
-        }
-        //Create JSONObject here
-        try {
-            JSONObject jsonObj = new JSONObject("{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\"}");
-            OutputStreamWriter out = new OutputStreamWriter(urlConn.getOutputStream());
-            out.write(jsonObj.toString());
-            out.close();
-        } catch (JSONException e) {
-            System.out.print("zly json");
-            return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-        try {
-            int HttpResult = ((HttpURLConnection) urlConn).getResponseCode();
-            String text = ((HttpURLConnection) urlConn).getResponseMessage();
-            if (HttpResult == HttpURLConnection.HTTP_OK) {
-             System.out.println("getAll ok");
-                data = new JSONObject(text);
-                //TODO rozlozyc odebrane jsony - board, invitations, activeBoard, activetask - nie bedziemy je rozkladac w kazdym unicie osobno! :D
-
-                return true;
-            } else {
-             System.out.println(text);
-             makeToast(text);
-             return false;
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    JSONObject data=null;
-
-    //json np "{\"phonetype\":\"N95\",\"cat\":\"WP\"}"
-    private boolean sendRequest(String urlAddress, String json) throws IOException {
-
-
-        int TIMEOUT_MILLISEC = 10000;  // = 10 seconds
-        String postMessage="{}"; //HERE_YOUR_POST_STRING.
-        HttpParams httpParams = new BasicHttpParams();
-        HttpConnectionParams.setConnectionTimeout(httpParams, TIMEOUT_MILLISEC);
-        HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
-        HttpClient client = new DefaultHttpClient(httpParams);
-
-        HttpPost request = new HttpPost(serverUrl);
-        request.setEntity(new ByteArrayEntity(
-                postMessage.toString().getBytes("UTF8")));
-        HttpResponse response = client.execute(request);
-
-            URL url;
-            URLConnection urlConn;
-            DataOutputStream printout;
-            DataInputStream input;
-            try {
-                String ad=SERVER_ADDRESS+"/"+urlAddress;
-                url = new URL(ad);
-                urlConn = url.openConnection();
-            } catch (IOException e) {
-                System.out.print("Zly url");
-                return false;
-            }
-            urlConn = (HttpURLConnection) url.openConnection();
-            urlConn.setDoInput(true);
-            urlConn.setDoOutput(true);
-            urlConn.setUseCaches(false);
-            urlConn.setRequestProperty("Content-Type", "application/json");
-            urlConn.setRequestProperty("Host", "android.schoolportal.gr");
-
-            //Create JSONObject here
-            try {
-                JSONObject jsonObj = new JSONObject(json);
-                OutputStreamWriter out = new OutputStreamWriter(urlConn.getOutputStream());
-                out.write(jsonObj.toString());
-                out.close();
-            } catch (JSONException e) {
-                System.out.print("zly json");
-                return false;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-
-            int HttpResult = ((HttpURLConnection) urlConn).getResponseCode();
-            if (HttpResult == HttpURLConnection.HTTP_OK) {
-                System.out.println("ok");
-                if (sendGetAll())
-                    return true;
-                else{
-                    LogOut();
-                    makeToast("Something's gone wrong. Try to sign again.");
-                    setContentView(R.layout.log_in);
-                    return false;
-                }
-            } else {
-                String text = ((HttpURLConnection) urlConn).getResponseMessage();
-                System.out.println(text);
-                makeToast(text);
-                return false;
-            }
-    }
-
-    //TODO logout function - forget everything
-    private void LogOut(){
-        clearPreferences();
-    }
-
-    private void makeToast(String text){
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
-
+    // preferences method
     private static final String PREFS_NAME = "preferences";
     private static final String PREF_UNAME = "Username";
     private static final String PREF_PASSWORD = "Password";
-
     private final String DefaultUnameValue = "";
     private String UnameValue;
-
     private final String DefaultPasswordValue = "";
     private String PasswordValue;
     String edt_username=null;
     String edt_password=null;
-
     private void loadPreferences() {
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,

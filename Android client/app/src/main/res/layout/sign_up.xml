@@ -19,122 +19,121 @@
 
 
             <TextView
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="@string/type_login"></TextView>
+                android:text="@string/type_login"
+                android:textColor="#ffffff"></TextView>
 
             <EditText
                 android:id="@+id/user_login"
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:gravity="center"></EditText>
+                android:gravity="center"
+                android:textColor="#ffffff"></EditText>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
 
             <TextView
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="@string/type_password"></TextView>
+                android:text="@string/type_password"
+                android:textColor="#ffffff"></TextView>
 
             <EditText
                 android:id="@+id/user_password"
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:gravity="center"></EditText>
+                android:gravity="center"
+                android:textColor="#ffffff"></EditText>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
 
             <TextView
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="@string/type_password2"></TextView>
+                android:text="@string/type_password2"
+                android:textColor="#ffffff"></TextView>
 
             <EditText
                 android:id="@+id/user_password2"
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:gravity="center"></EditText>
+                android:gravity="center"
+                android:textColor="#ffffff"></EditText>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
 
             <TextView
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="@string/type_email"></TextView>
+                android:text="@string/type_email"
+                android:textColor="#ffffff"></TextView>
 
             <EditText
                 android:id="@+id/user_email"
-                android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:gravity="center"></EditText>
+                android:gravity="center"
+                android:textColor="#ffffff"></EditText>
 
         </LinearLayout>
 
         <TextView
-            android:textColor="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="Type email only if you want to receive notifications and have an opportunity to reset your password"></TextView>
+            android:text="Type email only if you want to receive notifications and have an opportunity to reset your password"
+            android:textColor="#ffffff"></TextView>
 
 
         <Button
             android:id="@+id/button_accept_sign_up"
-            android:textColor="#ffffff"
-            android:background="@android:color/transparent"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="Sign up" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Sign up"
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/button_sign_in_view"
-            android:textColor="#ffffff"
-            android:background="@android:color/transparent"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="Sign in" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Sign in"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>
