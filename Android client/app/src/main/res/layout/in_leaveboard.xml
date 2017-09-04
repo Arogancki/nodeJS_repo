@@ -12,30 +12,39 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/input_static_text2"
+            android:id="@+id/input_static_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="SOME TEXT TO CHANGE:"
+            android:text="Do you want to leave board?"
             android:textColor="#ffffff"></TextView>
 
-        <EditText
-            android:id="@+id/input_text33"
-            android:textColor="#ffffff"
+        <LinearLayout
+            android:layout_marginTop="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center"></EditText>
+            android:orientation="horizontal">
 
         <Button
-            android:id="@+id/input_ok_button"
+            android:id="@+id/input_no"
             android:textColor="#ffffff"
             android:background="@android:color/transparent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="ok" />
+            android:layout_width="177dp"
+            android:text="no" />
 
+        <Button
+            android:id="@+id/input_yes"
+            android:textColor="#ffffff"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_width="179dp"
+            android:text="yes" />
+
+
+
+    </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

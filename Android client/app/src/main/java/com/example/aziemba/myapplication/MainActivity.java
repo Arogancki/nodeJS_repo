@@ -108,30 +108,51 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                getInput("Enter new task name");
-                if (lastInput!=""){
-                    String nameT=lastInput;
-                    getInput("Write first comment");
-                    if (lastInput!=""){
-                        String infoT=lastInput;
-                        try {
-                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                            String owner = BOARD.getString("owner");
-                            String board = BOARD.getString("board");
-                            try {
-                                if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + infoT + "\"}"))
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Enter new task name");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                        if (lastInput!="")
+                        {
+                            nameTTTT=lastInput;
+                            setContentView(R.layout.input);
+                            Button button3;
+                            ((TextView)findViewById(R.id.input_static_text2)).setText("Write first comment");
+                            button3= (Button) findViewById(R.id.input_ok_button);
+                            button3.setOnClickListener(new View.OnClickListener()
+                            {
+                                public void onClick(View v)
+                                {
+                                    String infoT=checkInput();
+                                    try {
+                                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                        String owner = BOARD.getString("owner");
+                                        String board = BOARD.getString("board");
+                                        try {
+                                            if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                                    ",\"owner\":\"" + owner + "\",\"task\":\"" + nameTTTT + "\",\"info\":\"" + infoT + "\"}"))
 
-                                    Ltask();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                                                Ltask();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    catch (JSONException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
                         }
-                        catch (JSONException e)
-                        {   e.printStackTrace();
-                        }
+                        else
+                            Lboard();
                     }
-                }
+                });
             }
         });
         //new button_active_boards_view
@@ -149,26 +170,39 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                getInput("Type yes if you want to delate board");
-                if (lastInput.toLowerCase()!="yes"){
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        if (owner.toLowerCase()==edt_username.toLowerCase())
-                            sendRequest("DeleteBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                    ",\"owner\":\"" + owner + "\"}");
-                        else
-                            sendRequest("LeaveBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                    ",\"owner\":\"" + owner + "\"}");
+                setContentView(R.layout.in_leaveboard);
+                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to leave board?");
+                Button button2 = (Button) findViewById(R.id.input_no);
+                button2.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
                         Lboards();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                }
+                });
+                button2 = (Button) findViewById(R.id.input_yes);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        try {
+                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                            String owner = BOARD.getString("owner");
+                            String board = BOARD.getString("board");
+                            if (owner.toLowerCase()==edt_username.toLowerCase())
+                                sendRequest("DeleteBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\"}");
+                            else
+                                sendRequest("LeaveBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\"}");
+                            Lboards();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
+    private  String nameTTTT;
     private void Lboards(){
         setContentView(R.layout.boards);
         relodeBoards();
@@ -199,16 +233,28 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                getInput("Enter new board name");
-                if (lastInput!="")
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Write new board name");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
                 {
-                    try {
-                        if (sendRequest("CreateNewBoard","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+lastInput+"\"}"))
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                        if (lastInput!="")
+                        {
+                            try {
+                                if (sendRequest("CreateNewBoard","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+lastInput+"\"}"))
+                                    Lboards();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else
                             Lboards();
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
-                }
+                });
             }
         });
     }
@@ -251,26 +297,39 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                getInput("Who you want to invite?");
-                if (lastInput!=""){
-                    String member = lastInput;
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        try {
-                            if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                    ",\"owner\":\"" + owner + "\",\"member\":\"" + member + "\"}"))
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Who you want to invite?");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                        if (lastInput!="")
+                        {
+                            String member = lastInput;
+                            try {
+                                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                String owner = BOARD.getString("owner");
+                                String board = BOARD.getString("board");
+                                try {
+                                    if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                            ",\"owner\":\"" + owner + "\",\"member\":\"" + member + "\"}"))
 
-                                Lmembers();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                                        Lmembers();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            catch (JSONException e)
+                            {   e.printStackTrace();
+                            }
                         }
+                        else
+                            Lmembers();
                     }
-                    catch (JSONException e)
-                    {   e.printStackTrace();
-                    }
-                }
+                });
             }
         });
     }
@@ -450,20 +509,32 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                getInput("Type yes if you want to delate task");
-                if (lastInput.toLowerCase()!="yes"){
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
-                        sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\"}");
-                        Lboard();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                setContentView(R.layout.in_leaveboard);
+                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to delete this task?");
+                Button button2 = (Button) findViewById(R.id.input_no);
+                button2.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Ltask();
                     }
-                }
+                });
+                button2 = (Button) findViewById(R.id.input_yes);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        try {
+                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                            String owner = BOARD.getString("owner");
+                            String board = BOARD.getString("board");
+                            String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
+                            sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                    ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\"}");
+                            Lboard();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
@@ -643,25 +714,38 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
                             String board=invitation.getString("board");
                             String owner=invitation.getString("owner");
-                        getInput("Type yes or no");
-                        if (lastInput.toLowerCase()!="yes")
-                        {
-                            try {
-                                if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
-                                    Lboards();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        if (lastInput.toLowerCase()!="no")
-                        {
-                            try {
-                                if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
-                                    Lboards();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
+                            setContentView(R.layout.in_leaveboard);
+                            ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to delete Task?");
+                            Button button2 = (Button) findViewById(R.id.input_no);
+                            button2.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    try {
+                                        JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
+                                        String board=invitation.getString("board");
+                                        String owner=invitation.getString("owner");
+                                        if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
+                                            Lboards();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            button2 = (Button) findViewById(R.id.input_yes);
+                            button2.setOnClickListener(new View.OnClickListener()
+                            {
+                                public void onClick(View v)
+                                {
+                                    try {
+                                        JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
+                                        String board=invitation.getString("board");
+                                        String owner=invitation.getString("owner");
+                                        if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
+                                            Lboards();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -837,23 +921,38 @@ public class MainActivity extends AppCompatActivity {
         return _return;
     }
 
+    String TYPEG="";
     // other helpers
     private void addStatus(String type){
-        getInput("Write command");
-        if (lastInput!=""){
-            String info = lastInput;
-            try {
-                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                String owner = BOARD.getString("owner");
-                String board = BOARD.getString("board");
-                String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
-                sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+type+"\"}");
-                Lboard();
-            } catch (JSONException e) {
-                e.printStackTrace();
+        TYPEG=type;
+        setContentView(R.layout.input);
+        Button button2;
+        ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+        button2= (Button) findViewById(R.id.input_ok_button);
+        button2.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                lastInput=checkInput();
+                if (lastInput!="")
+                {
+                    String info = lastInput;
+                    try {
+                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                        String owner = BOARD.getString("owner");
+                        String board = BOARD.getString("board");
+                        String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
+                        sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
+                        Lboard();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                    Lboard();
             }
-        }
+        });
     }
 
     private void makeToast(String text){
@@ -866,23 +965,11 @@ public class MainActivity extends AppCompatActivity {
     //get custom input
     private View currentView=null;
     private String lastInput="";
-    private void getInput(String text){
-        currentView = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        setContentView(R.layout.input);
-        ((EditText)findViewById(R.id.input_text)).setTag("");
-        ((TextView)findViewById(R.id.input_static_text)).setText(text);
-        ((Button) findViewById(R.id.input_ok_button)).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                String input =((EditText)findViewById(R.id.input_text)).getText().toString();
-                if (input.length()>0)
-                    lastInput=input.trim();
-                else
-                    lastInput="";
-                setContentView(currentView);
-            }
-        });
+    private String checkInput(){
+        String input =((EditText)findViewById(R.id.input_text33)).getText().toString().trim();
+        if (input.length()>0)
+            return input;
+        return "";
     }
 
     @Override
