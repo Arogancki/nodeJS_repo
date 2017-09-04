@@ -86,13 +86,6 @@
             android:orientation="vertical">
             android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/members_owner"
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#ffffff"></TextView>
 
         </LinearLayout>
 

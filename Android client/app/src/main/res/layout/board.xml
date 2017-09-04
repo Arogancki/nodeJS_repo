@@ -66,7 +66,7 @@
 
                 <Button
                     android:id="@+id/button_newTASKT"
-                    android:layout_width="27dp"
+                    android:layout_width="78dp"
                     android:layout_height="31dp"
                     android:background="@android:color/transparent"
                     android:gravity="center"
@@ -74,20 +74,20 @@
                     android:textColor="#ffffff" />
 
                 <TextView
-                    android:layout_width="49dp"
+                    android:layout_width="84dp"
                     android:layout_height="47dp"
                     android:gravity="center"
-                    android:text="Tasks"
+                    android:text=""
                     android:textColor="#ffffff"></TextView>
 
                 <Button
                     android:id="@+id/button_active_members_view"
-                    android:layout_width="34dp"
+                    android:layout_width="77dp"
                     android:layout_height="29dp"
                     android:background="@android:color/transparent"
                     android:gravity="center"
-                    android:textColor="#ffffff"
-                    tools:background="@drawable/ppp" />
+                    android:text="members"
+                    android:textColor="#ffffff" />
 
 
             </LinearLayout>
@@ -116,9 +116,7 @@
             android:orientation="vertical">
 
 
-
         </LinearLayout>
-
 
 
     </LinearLayout>

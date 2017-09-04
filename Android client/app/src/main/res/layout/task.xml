@@ -18,38 +18,37 @@
 
             <Button
                 android:id="@+id/button_settings_view"
-                android:textColor="#ffffff"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="Settings" />
+                android:background="@android:color/transparent"
+                android:text="Settings"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/button_sign_out_view"
-                android:textColor="#ffffff"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="Sign out"/>
+                android:background="@android:color/transparent"
+                android:text="Sign out"
+                android:textColor="#ffffff" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/button_active_board_view"
-            android:textColor="#ffffff"
-            android:background="@android:color/transparent"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/go_back"/>
+            android:background="@android:color/transparent"
+            android:text="@string/go_back"
+            android:textColor="#ffffff" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -65,63 +64,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
-            android:gravity="center">
+            android:gravity="center"
+            android:weightSum="1">
 
 
             <Button
                 android:id="@+id/button_inprogres"
-                android:layout_width="32dp"
-                android:layout_height="29dp"
+                android:layout_width="49dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                tools:background="@drawable/inprogres" />
+                tools:text="+IP" />
 
             <Button
                 android:id="@+id/button_blocked"
-                android:layout_width="34dp"
-                android:layout_height="29dp"
-                android:layout_marginRight="10sp"
+                android:layout_width="49dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                tools:background="@drawable/blocked" />
+                tools:text="+B" />
 
             <Button
                 android:id="@+id/button_finished"
-                android:layout_width="34dp"
-                android:layout_height="29dp"
-                android:layout_marginRight="10sp"
+                android:layout_width="53dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                tools:background="@drawable/finished" />
+                tools:text="+F" />
 
             <Button
                 android:id="@+id/button_resumed"
-                android:layout_width="34dp"
-                android:layout_marginRight="10sp"
+                android:layout_width="53dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
-                android:layout_height="29dp"
+                android:layout_marginRight="10sp"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                tools:background="@drawable/resumed" />
+                tools:text="+R" />
 
             <Button
                 android:id="@+id/button_delete"
-                android:layout_width="34dp"
-                android:layout_height="29dp"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
 
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                tools:background="@drawable/delete" />
+                tools:text="!D" />
 
         </LinearLayout>
 
@@ -133,40 +133,40 @@
             android:weightSum="1">
 
             <TextView
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="status" />
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="status"
+                android:textColor="#ffffff" />
 
             <TextView
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="user"/>
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="user"
+                android:textColor="#ffffff" />
 
             <TextView
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="comment"/>
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="comment"
+                android:textColor="#ffffff" />
 
             <TextView
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="time"/>
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="time"
+                android:textColor="#ffffff" />
 
         </LinearLayout>
 
@@ -180,7 +180,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

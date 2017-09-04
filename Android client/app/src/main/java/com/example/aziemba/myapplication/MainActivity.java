@@ -26,7 +26,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-
     private String SERVER_ADDRESS=" http://192.168.0.189:8081"; //TODO
     private int activeBoard=-1;
     private int activeTask=-1;
@@ -42,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v) {
                 if (((EditText) findViewById(R.id.user_login)).getText().toString().trim().length() > 2 && ((EditText) findViewById(R.id.user_password)).getText().toString().trim().length() > 7)
-                {       savePreferences();
-                if (!SignIn())
-                    makeToast("Type correct login and password first! - ");
-            }
+                {
+                    savePreferences();
+                    if (!SignIn())
+                        makeToast("Type correct login and password first! - ");
+                    else
+                        Lboards();
+                }
                 else
                     makeToast("Type correct login and password first! - ");
             }
@@ -132,12 +134,12 @@ public class MainActivity extends AppCompatActivity {
                                     try {
                                         JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
                                         String owner = BOARD.getString("owner");
-                                        String board = BOARD.getString("board");
+                                        String board = BOARD.getString("name");
                                         try {
                                             if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                                                     ",\"owner\":\"" + owner + "\",\"task\":\"" + nameTTTT + "\",\"info\":\"" + infoT + "\"}"))
 
-                                                Ltask();
+                                                Lboard();
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
                             String owner = BOARD.getString("owner");
-                            String board = BOARD.getString("board");
+                            String board = BOARD.getString("name");
                             if (owner.toLowerCase()==edt_username.toLowerCase())
                                 sendRequest("DeleteBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                                         ",\"owner\":\"" + owner + "\"}");
@@ -312,12 +314,13 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
                                 String owner = BOARD.getString("owner");
-                                String board = BOARD.getString("board");
+                                String board = BOARD.getString("name");
                                 try {
-                                    if (sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                    if (sendRequest("InviteToBoard", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                                             ",\"owner\":\"" + owner + "\",\"member\":\"" + member + "\"}"))
 
                                         Lmembers();
+                                    else Lmembers();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -376,16 +379,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 if ((((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
-                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString()) ||
+                        ((EditText)findViewById(R.id.user_password2)).getText().toString().equals(((EditText)findViewById(R.id.user_password)).getText().toString())) ||
                         ((EditText)findViewById(R.id.user_password)).getText().toString().length()==0 && ((EditText)findViewById(R.id.user_password2)).getText().toString().length()==0 &&
-                                ((EditText)findViewById(R.id.user_email)).getText().toString().length()!=0)
+                                ((EditText)findViewById(R.id.user_email)).getText().toString().length()!=0 || (((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
+                        ((EditText)findViewById(R.id.user_password2)).getText().toString().equals(((EditText)findViewById(R.id.user_password)).getText().toString())) && ((EditText)findViewById(R.id.user_email)).getText().toString().length()!=0)
                 {
                     try {
-                        sendRequest("changeUserData",
-                                "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\"," +
+                        String passso=edt_password;
+                        edt_password=((EditText)findViewById(R.id.user_password)).getText().toString();
+                        savePreferences();
+                        boolean xxxxxx=sendRequest("changeUserData",
+                                "{\"login\":\"" + edt_username + "\",\"password\":\"" + passso + "\"," +
                                         "\"newPassword\":\""+((EditText)findViewById(R.id.user_password)).getText().toString()+"\"," +
                                         "\"newPassword2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString()+"\"," +
                                         "\"newEmail\":\""+((EditText)findViewById(R.id.user_email)).getText().toString()+"\"}");
+                        if (!xxxxxx) {
+                            edt_password = passso;
+                            savePreferences();
+                        }
+                        else
+                            makeToast("saved!");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -414,11 +427,15 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                if (((EditText)findViewById(R.id.user_login)).getText().toString().length()>2 &&
-                        ((EditText)findViewById(R.id.user_password)).getText().toString().length()>7 &&
-                        ((EditText)findViewById(R.id.user_password2)).getText().toString()==((EditText)findViewById(R.id.user_password)).getText().toString()) {
+                if (((EditText)findViewById(R.id.user_login)).getText().toString().trim().length()>2 &&
+                        ((EditText)findViewById(R.id.user_password)).getText().toString().trim().length()>7 &&
+                        ((EditText)findViewById(R.id.user_password2)).getText().toString().trim().equals(((EditText)findViewById(R.id.user_password)).getText().toString().trim())) {
+
                     if (SignUp())
-                        SignIn();
+                        {
+                            makeToast("Created account");
+                            Llog_in();
+                        }
                 }
                 else
                     makeToast("letters and numbers only, login 3, password 8 to 20 length, passwords must be equal");
@@ -474,6 +491,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 addStatus("In progress");
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                            String info = lastInput;
+                            try {
+                                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                String owner = BOARD.getString("owner");
+                                String board = BOARD.getString("name");
+                                String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
+                                sendRequest("AddStatus", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Lboard();
+                    }
+                });
             }
         });
         // button_button_blocked
@@ -483,6 +524,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 addStatus("Blocked");
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                        if (lastInput!="")
+                        {
+                            String info = lastInput;
+                            try {
+                                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                String owner = BOARD.getString("owner");
+                                String board = BOARD.getString("name");
+                                String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
+                                sendRequest("AddStatus", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
+                                Lboard();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Lboard();
+                            }
+                        }
+                        else
+                            Lboard();
+                    }
+                });
             }
         });
         // button_button_finished
@@ -492,6 +562,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 addStatus("Finished");
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                        if (lastInput!="")
+                        {
+                            String info = lastInput;
+                            try {
+                                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                String owner = BOARD.getString("owner");
+                                String board = BOARD.getString("name");
+                                String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
+                                sendRequest("AddStatus", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
+                                Lboard();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Lboard();
+                            }
+                        }
+                        else
+                            Lboard();
+                    }
+                });
             }
         });
         // button_button_resumed
@@ -501,6 +600,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 addStatus("Resumed");
+                setContentView(R.layout.input);
+                Button button2;
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                button2= (Button) findViewById(R.id.input_ok_button);
+                button2.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        lastInput=checkInput();
+                        if (lastInput!="")
+                        {
+                            String info = lastInput;
+                            try {
+                                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                String owner = BOARD.getString("owner");
+                                String board = BOARD.getString("name");
+                                String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
+                                sendRequest("AddStatus", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
+                                Lboard();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Lboard();
+                            }
+                        }
+                        else
+                            Lboard();
+                    }
+                });
             }
         });
         // button_button_delete
@@ -525,9 +653,9 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
                             String owner = BOARD.getString("owner");
-                            String board = BOARD.getString("board");
-                            String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
-                            sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                            String board = BOARD.getString("name");
+                            String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
+                            sendRequest("RemoveTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
                                     ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\"}");
                             Lboard();
                         } catch (JSONException e) {
@@ -606,8 +734,15 @@ public class MainActivity extends AppCompatActivity {
             ((LinearLayout) l2).removeAllViews();
         try {
             JSONObject board = data.getJSONArray("boards").getJSONObject(activeBoard);
-            ((TextView) findViewById(R.id.members_owner)).setText("Owner: "+board.getString("owner"));
             JSONArray members = board.getJSONArray("members");
+            LinearLayout.LayoutParams bpXX = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            String memberXX = board.getString("owner");
+            final Button myButtonXX = new Button(this);
+            myButtonXX.setText("Owner: "+memberXX);
+            myButtonXX.setBackgroundColor(Color.TRANSPARENT);
+            myButtonXX.setGravity(Gravity.CENTER);
+            myButtonXX.setTextColor(Color.WHITE);
+            l2.addView(myButtonXX, bpXX);
             for (int i = 0; i < members.length(); i++) {
                 LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 String member = members.getString(i);
@@ -748,6 +883,7 @@ public class MainActivity extends AppCompatActivity {
                             });
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Lboards();
                         }
                     }
                 });
@@ -763,11 +899,12 @@ public class MainActivity extends AppCompatActivity {
     //user/account methods
     private boolean SignUp(){
         try {
-            return sendRequest("registration",
+            boolean ressss=sendRequest("registration",
                     "{\"login\":\""+((EditText)findViewById(R.id.user_login)).getText().toString().trim()+"\"," +
                             "\"password\":\""+((EditText)findViewById(R.id.user_password)).getText().toString().trim()+"\"," +
                             "\"password2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString().trim()+"\"," +
                             "\"email\":\""+((EditText)findViewById(R.id.user_email)).getText().toString().trim()+"\"}");
+            return ressss;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -775,17 +912,16 @@ public class MainActivity extends AppCompatActivity {
     }
     private boolean SignIn(){
             loadPreferences();
-        makeToast("x"+edt_password+"xx"+edt_username+"x");
             if (sendRequest("authorization","{\"login\":\""+edt_username.trim()+"\",\"password\":\""+edt_password.trim()+"\"}")) {
-                Lboards();
                 return true;
             }
-            return false;
+            else
+                return false;
     }
     private void LogOut(){
         clearPreferences();
     }
-
+    public String error="";
     //send json np "{\"phonetype\":\"N95\",\"cat\":\"WP\"}"
     private boolean sendRequestMain(String urlAddress, String json) throws IOException {
         boolean _return=false;
@@ -794,8 +930,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             url = new URL(SERVER_ADDRESS+"/"+urlAddress);
             connection = (HttpURLConnection)url.openConnection();
-            connection.setDoOutput(true);
             connection.setRequestMethod("POST");
+            connection.setDoInput(true);
+            connection.setReadTimeout(10000 /* milliseconds */ );
+            connection.setConnectTimeout(15000 /* milliseconds */ );
             connection.setRequestProperty("Content-Type", "application/json");
             connection.connect();
 
@@ -810,9 +948,15 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("coonection ok");
                 _return= true;
             } else {
-                String text = (connection).getResponseMessage();
-                System.out.println(text);
-                makeToast(text);
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+                error=sb.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -846,6 +990,11 @@ public class MainActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        if (error!="")
+        {
+            makeToast(error);
+            error="";
+        }
         return result;
     }
     private String urlAddress2;
@@ -925,34 +1074,6 @@ public class MainActivity extends AppCompatActivity {
     // other helpers
     private void addStatus(String type){
         TYPEG=type;
-        setContentView(R.layout.input);
-        Button button2;
-        ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
-        button2= (Button) findViewById(R.id.input_ok_button);
-        button2.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                lastInput=checkInput();
-                if (lastInput!="")
-                {
-                    String info = lastInput;
-                    try {
-                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                        String owner = BOARD.getString("owner");
-                        String board = BOARD.getString("board");
-                        String nameT = BOARD.getJSONArray("tasks").getString(activeTask);
-                        sendRequest("CreateNewTask", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
-                        Lboard();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                else
-                    Lboard();
-            }
-        });
     }
 
     private void makeToast(String text){
@@ -963,7 +1084,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //get custom input
-    private View currentView=null;
+    public int gloall=0;
     private String lastInput="";
     private String checkInput(){
         String input =((EditText)findViewById(R.id.input_text33)).getText().toString().trim();
@@ -1018,9 +1139,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-
-        editor.putString(PREF_UNAME, ((EditText)findViewById(R.id.user_login)).getText().toString().trim());
-        editor.putString(PREF_PASSWORD, ((EditText)findViewById(R.id.user_password)).getText().toString().trim());
+        try {
+            editor.putString(PREF_UNAME, ((EditText) findViewById(R.id.user_login)).getText().toString().trim());
+            editor.putString(PREF_PASSWORD, ((EditText) findViewById(R.id.user_password)).getText().toString().trim());
+        }
+        catch (NullPointerException e)
+        {
+            editor.putString(PREF_UNAME, edt_username);
+            editor.putString(PREF_PASSWORD, edt_password);
+        }
         editor.commit();
     }
     private  void clearPreferences() {
