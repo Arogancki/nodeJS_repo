@@ -26,6 +26,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static android.R.color.transparent;
+import static android.view.Gravity.CENTER;
+import static android.widget.GridLayout.HORIZONTAL;
+
 public class MainActivity extends AppCompatActivity {
     private String SERVER_ADDRESS=" http://192.168.0.189:8081"; //TODO
     private int activeBoard=-1;
@@ -485,9 +489,32 @@ public class MainActivity extends AppCompatActivity {
                 Lboard();
             }
         });
+    }
+
+    //relode methods
+    private void relodeTask(){
+        LinearLayout ll = (LinearLayout)findViewById(R.id.l_task);
+        if(((LinearLayout) ll).getChildCount() > 0)
+            ((LinearLayout) ll).removeAllViews();
+
+        LinearLayout linearLayout_153 = new LinearLayout(this);
+        linearLayout_153.setGravity(CENTER);
+        LinearLayout.LayoutParams layout_597 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_597.bottomMargin = 20;
+        linearLayout_153.setLayoutParams(layout_597);
+
+        Button button_inprogres = new Button(this);
+        button_inprogres.setGravity(CENTER);
+        button_inprogres.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_185 =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_185.width = 49;
+        layout_185.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        layout_185.leftMargin = 10;
+        layout_185.rightMargin = 10;
+        button_inprogres.setLayoutParams(layout_185);
+        linearLayout_153.addView(button_inprogres);
         // button_button_inprogres
-        button = (Button) findViewById(R.id.button_inprogres);
-        button.setOnClickListener(new View.OnClickListener()
+        button_inprogres.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -501,26 +528,35 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v)
                     {
                         lastInput=checkInput();
-                            String info = lastInput;
-                            try {
-                                JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
-                                String owner = BOARD.getString("owner");
-                                String board = BOARD.getString("name");
-                                String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
-                                sendRequest("AddStatus", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                        ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
+                        String info = lastInput;
+                        try {
+                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                            String owner = BOARD.getString("owner");
+                            String board = BOARD.getString("name");
+                            String nameT = BOARD.getJSONArray("tasks").getJSONObject(activeTask).getString("name");
+                            sendRequest("AddStatus", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                    ",\"owner\":\"" + owner + "\",\"task\":\"" + nameT + "\",\"info\":\"" + info + "\",\"type\":\""+TYPEG+"\"}");
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            Lboard();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Lboard();
                     }
                 });
             }
         });
+
+        Button button_blocked = new Button(this);
+        button_blocked.setGravity(CENTER);
+        button_blocked.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_912  = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_912.width = 49;
+        layout_912.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        layout_912.leftMargin = 10;
+        layout_912.rightMargin = 10;
+        button_blocked.setLayoutParams(layout_912);
         // button_button_blocked
-        button = (Button) findViewById(R.id.button_blocked);
-        button.setOnClickListener(new View.OnClickListener()
+        button_blocked.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -556,9 +592,19 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        linearLayout_153.addView(button_blocked);
+
+        Button button_finished = new Button(this);
+        button_finished.setGravity(CENTER);
+        button_finished.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_286 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_286.width = 53;
+        layout_286.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        layout_286.leftMargin = 10;
+        layout_286.rightMargin = 10;
+        button_finished.setLayoutParams(layout_286);
         // button_button_finished
-        button = (Button) findViewById(R.id.button_finished);
-        button.setOnClickListener(new View.OnClickListener()
+        button_finished.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -594,9 +640,19 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        linearLayout_153.addView(button_finished);
+
+        Button button_resumed = new Button(this);
+        button_resumed.setGravity(CENTER);
+        button_resumed.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_51 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_51.width = 53;
+        layout_51.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        layout_51.leftMargin = 10;
+        layout_51.rightMargin = 10;
+        button_resumed.setLayoutParams(layout_51);
         // button_button_resumed
-        button = (Button) findViewById(R.id.button_resumed);
-        button.setOnClickListener(new View.OnClickListener()
+        button_resumed.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -632,9 +688,18 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        linearLayout_153.addView(button_resumed);
+
+        Button button_delete = new Button(this);
+        button_delete.setGravity(CENTER);
+        button_delete.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_520 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_520.width = 36;
+        layout_520.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        layout_520.leftMargin = 10;
+        button_delete.setLayoutParams(layout_520);
         // button_button_delete
-        button = (Button) findViewById(R.id.button_delete);
-        button.setOnClickListener(new View.OnClickListener()
+        button_delete.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -666,13 +731,53 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-    }
+        linearLayout_153.addView(button_delete);
 
-    //relode methods
-    private void relodeTask(){
-        LinearLayout ll = (LinearLayout)findViewById(R.id.l_task);
-        if(((LinearLayout) ll).getChildCount() > 0)
-            ((LinearLayout) ll).removeAllViews();
+        ll.addView(linearLayout_153, layout_597);
+
+        LinearLayout linearLayout_868 = new LinearLayout(this);
+        linearLayout_868.setOrientation(HORIZONTAL);
+        LinearLayout.LayoutParams layout_263 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        linearLayout_868.setLayoutParams(layout_263);
+
+        TextView textView_233 = new TextView(this);
+        textView_233.setGravity(CENTER);
+        textView_233.setText("status");
+        textView_233.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_320 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_320.weight = 0.25f;
+        textView_233.setLayoutParams(layout_320);
+        linearLayout_868.addView(textView_233);
+
+        TextView textView_553 = new TextView(this);
+        textView_553.setGravity(CENTER);
+        textView_553.setText("user");
+        textView_553.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_345 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_345.weight = 0.25f;
+        textView_553.setLayoutParams(layout_345);
+        linearLayout_868.addView(textView_553);
+
+        TextView textView_488 = new TextView(this);
+        textView_488.setGravity(CENTER);
+        textView_488.setText("comment");
+        textView_488.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_274 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_274.weight = 0.25f;
+        textView_488.setLayoutParams(layout_274);
+        linearLayout_868.addView(textView_488);
+
+        TextView textView_841 = new TextView(this);
+        textView_841.setGravity(CENTER);
+        textView_841.setText("time");
+        textView_841.setTextColor(Color.parseColor("#ffffff"));
+        LinearLayout.LayoutParams layout_591 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_591.weight = 0.25f;
+        textView_841.setLayoutParams(layout_591);
+        linearLayout_868.addView(textView_841);
+
+        ll.addView(linearLayout_153, layout_597);
+
         try {
             JSONArray statuses =data.getJSONArray("boards").getJSONObject(activeBoard).getJSONArray("tasks").getJSONObject(activeTask).getJSONArray("statuses");
             for (int i = 0; i < statuses.length(); i++) {
@@ -688,7 +793,7 @@ public class MainActivity extends AppCompatActivity {
                 Button myButton1 = new Button(this);
                 myButton1.setText(status.getString("type"));
                 myButton1.setBackgroundColor(Color.TRANSPARENT);
-                myButton1.setGravity(Gravity.CENTER);
+                myButton1.setGravity(CENTER);
                 myButton1.setTextColor(Color.WHITE);
                 LL.addView(myButton1, bp1);
 
@@ -697,7 +802,7 @@ public class MainActivity extends AppCompatActivity {
                 Button myButton2 = new Button(this);
                 myButton2.setText(status.getString("user"));
                 myButton2.setBackgroundColor(Color.TRANSPARENT);
-                myButton2.setGravity(Gravity.CENTER);
+                myButton2.setGravity(CENTER);
                 myButton2.setTextColor(Color.WHITE);
                 LL.addView(myButton2, bp2);
 
@@ -706,7 +811,7 @@ public class MainActivity extends AppCompatActivity {
                 Button myButton3 = new Button(this);
                 myButton3.setText(status.getString("info"));
                 myButton3.setBackgroundColor(Color.TRANSPARENT);
-                myButton3.setGravity(Gravity.CENTER);
+                myButton3.setGravity(CENTER);
                 myButton3.setTextColor(Color.WHITE);
                 LL.addView(myButton3, bp3);
 
@@ -715,7 +820,7 @@ public class MainActivity extends AppCompatActivity {
                 Button myButton4 = new Button(this);
                 myButton4.setText(status.getString("date"));
                 myButton4.setBackgroundColor(Color.TRANSPARENT);
-                myButton4.setGravity(Gravity.CENTER);
+                myButton4.setGravity(CENTER);
                 myButton4.setTextColor(Color.WHITE);
                 LL.addView(myButton4, bp4);
 
@@ -741,7 +846,7 @@ public class MainActivity extends AppCompatActivity {
             final Button myButtonXX = new Button(this);
             myButtonXX.setText("Owner: "+memberXX);
             myButtonXX.setBackgroundColor(Color.TRANSPARENT);
-            myButtonXX.setGravity(Gravity.CENTER);
+            myButtonXX.setGravity(CENTER);
             myButtonXX.setTextColor(Color.WHITE);
             l2.addView(myButtonXX, bpXX);
             for (int i = 0; i < members.length(); i++) {
@@ -750,20 +855,30 @@ public class MainActivity extends AppCompatActivity {
                 final Button myButton = new Button(this);
                 myButton.setText(member);
                 myButton.setBackgroundColor(Color.TRANSPARENT);
-                myButton.setGravity(Gravity.CENTER);
+                myButton.setGravity(CENTER);
                 myButton.setTextColor(Color.WHITE);
                 l2.addView(myButton, bp);
             }
             JSONArray invitations = board.getJSONArray("invitations");
-            for (int i = 0; i < invitations.length(); i++) {
-                LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                String invitation = invitations.getString(i);
-                final Button myButton = new Button(this);
-                myButton.setText(invitation);
-                myButton.setBackgroundColor(Color.TRANSPARENT);
-                myButton.setGravity(Gravity.CENTER);
-                myButton.setTextColor(Color.WHITE);
-                ll.addView(myButton, bp);
+            if (invitations.length()!=0) {
+                LinearLayout.LayoutParams bpXXS = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                bpXXS.setMargins(0,30,0,0);
+                final Button myButtonXXX = new Button(this);
+                myButtonXXX.setText("Invited:");
+                myButtonXXX.setBackgroundColor(Color.TRANSPARENT);
+                myButtonXXX.setGravity(CENTER);
+                myButtonXXX.setTextColor(Color.WHITE);
+                ll.addView(myButtonXXX, bpXXS);
+                for (int i = 0; i < invitations.length(); i++) {
+                    LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    String invitation = invitations.getString(i);
+                    final Button myButton = new Button(this);
+                    myButton.setText(invitation);
+                    myButton.setBackgroundColor(Color.TRANSPARENT);
+                    myButton.setGravity(CENTER);
+                    myButton.setTextColor(Color.WHITE);
+                    ll.addView(myButton, bp);
+                }
             }
         }
         catch (JSONException e) {
@@ -778,24 +893,36 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONObject board = data.getJSONArray("boards").getJSONObject(activeBoard);
             JSONArray tasks = board.getJSONArray("tasks");
-            for (int i = 0; i < tasks.length(); i++) {
+            if (tasks.length()==0)
+            {
                 LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                JSONObject task = tasks.getJSONObject(i);
                 final Button myButton = new Button(this);
-                myButton.setText(task.getString("name"));
+                myButton.setText("No tasks here");
                 myButton.setBackgroundColor(Color.TRANSPARENT);
-                myButton.setGravity(Gravity.CENTER);
+                myButton.setGravity(CENTER);
                 myButton.setTextColor(Color.WHITE);
-                myButton.setTag(i);
-                // button onclik
-                myButton.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        activeTask = Integer.parseInt(v.getTag().toString());
-                        Ltask();
-                    }
-                });
-                ll.addView(myButton, bp);
+                LinearLayout.LayoutParams bp8 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                ll.addView(myButton, bp8);
             }
+            else
+                for (int i = 0; i < tasks.length(); i++) {
+                    LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    JSONObject task = tasks.getJSONObject(i);
+                    final Button myButton = new Button(this);
+                    myButton.setText(task.getString("name"));
+                    myButton.setBackgroundColor(Color.TRANSPARENT);
+                    myButton.setGravity(CENTER);
+                    myButton.setTextColor(Color.WHITE);
+                    myButton.setTag(i);
+                    // button onclik
+                    myButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            activeTask = Integer.parseInt(v.getTag().toString());
+                            Ltask();
+                        }
+                    });
+                    ll.addView(myButton, bp);
+                }
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -812,86 +939,109 @@ public class MainActivity extends AppCompatActivity {
         activeBoard=-1;
         try {
             JSONArray boards = data.getJSONArray("boards");
-            for (int i = 0; i < boards.length(); i++) {
-                JSONObject board = boards.getJSONObject(i);
-                final Button myButton = new Button(this);
-                myButton.setText(board.getString("name")+" ("+board.get("owner")+")");
-                myButton.setBackgroundColor(Color.TRANSPARENT);
-                myButton.setGravity(Gravity.CENTER);
-                myButton.setTextColor(Color.WHITE);
-                myButton.setTag(i);
-                // button onclik
-                myButton.setOnClickListener(new View.OnClickListener()
-                {
-                    public void onClick(View v)
-                    {
-                        activeBoard= Integer.parseInt(v.getTag().toString());
-                        Lboard();
-                    }
-                });
+            if (boards.length()==0)
+            {
                 LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                ll.addView(myButton, bp);
+                final Button myButton = new Button(this);
+                myButton.setText("You have no boards");
+                myButton.setBackgroundColor(Color.TRANSPARENT);
+                myButton.setGravity(CENTER);
+                myButton.setTextColor(Color.WHITE);
+                LinearLayout.LayoutParams bp8 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                ll.addView(myButton, bp8);
             }
+            else
+                for (int i = 0; i < boards.length(); i++) {
+                    JSONObject board = boards.getJSONObject(i);
+                    final Button myButton = new Button(this);
+                    myButton.setText(board.getString("name")+" ("+board.get("owner")+")");
+                    myButton.setBackgroundColor(Color.TRANSPARENT);
+                    myButton.setGravity(CENTER);
+                    myButton.setTextColor(Color.WHITE);
+                    myButton.setTag(i);
+                    // button onclik
+                    myButton.setOnClickListener(new View.OnClickListener()
+                    {
+                        public void onClick(View v)
+                        {
+                            activeBoard= Integer.parseInt(v.getTag().toString());
+                            Lboard();
+                        }
+                    });
+                    LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    ll.addView(myButton, bp);
+                }
 
             JSONArray invitations = data.getJSONArray("invitations");
-            for (int i = 0; i < invitations.length(); i++) {
-                JSONObject invitation = invitations.getJSONObject(i);
-                Button myButton = new Button(this);
-                myButton.setText(invitation.getString("name")+" ("+invitation.get("owner")+")");
-                myButton.setBackgroundColor(Color.TRANSPARENT);
-                myButton.setGravity(Gravity.CENTER);
-                myButton.setTextColor(Color.WHITE);
-                myButton.setTag(i);
-                myButton.setOnClickListener(new View.OnClickListener()
-                {
-                    public void onClick(View v)
-                    {
-                        try {
-                            JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
-                            String board=invitation.getString("board");
-                            String owner=invitation.getString("owner");
-                            setContentView(R.layout.in_leaveboard);
-                            ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to delete Task?");
-                            Button button2 = (Button) findViewById(R.id.input_no);
-                            button2.setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v) {
-                                    try {
-                                        JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
-                                        String board=invitation.getString("board");
-                                        String owner=invitation.getString("owner");
-                                        if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
-                                            Lboards();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                            button2 = (Button) findViewById(R.id.input_yes);
-                            button2.setOnClickListener(new View.OnClickListener()
-                            {
-                                public void onClick(View v)
-                                {
-                                    try {
-                                        JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
-                                        String board=invitation.getString("board");
-                                        String owner=invitation.getString("owner");
-                                        if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
-                                            Lboards();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Lboards();
-                        }
-                    }
-                });
-                LinearLayout.LayoutParams pp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                l2.addView(myButton, pp);
-            }
+            if (invitations.length()!=0)
+            {
+                LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                final Button myButtonEE = new Button(this);
+                myButtonEE.setText("Invitations");
+                myButtonEE.setBackgroundColor(Color.TRANSPARENT);
+                myButtonEE.setGravity(CENTER);
+                myButtonEE.setTextColor(Color.WHITE);
+                LinearLayout.LayoutParams bp8 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                ll.addView(myButtonEE, bp8);
 
+                for (int i = 0; i < invitations.length(); i++) {
+                    JSONObject invitation = invitations.getJSONObject(i);
+                    Button myButton = new Button(this);
+                    myButton.setText(invitation.getString("name")+" ("+invitation.get("owner")+")");
+                    myButton.setBackgroundColor(Color.TRANSPARENT);
+                    myButton.setGravity(CENTER);
+                    myButton.setTextColor(Color.WHITE);
+                    myButton.setTag(i);
+                    myButton.setOnClickListener(new View.OnClickListener()
+                    {
+                        public void onClick(View v)
+                        {
+                            try {
+                                JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
+                                String board=invitation.getString("board");
+                                String owner=invitation.getString("owner");
+                                setContentView(R.layout.in_leaveboard);
+                                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to delete Task?");
+                                Button button2 = (Button) findViewById(R.id.input_no);
+                                button2.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        try {
+                                            JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
+                                            String board=invitation.getString("board");
+                                            String owner=invitation.getString("owner");
+                                            if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
+                                                Lboards();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                                button2 = (Button) findViewById(R.id.input_yes);
+                                button2.setOnClickListener(new View.OnClickListener()
+                                {
+                                    public void onClick(View v)
+                                    {
+                                        try {
+                                            JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
+                                            String board=invitation.getString("board");
+                                            String owner=invitation.getString("owner");
+                                            if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
+                                                Lboards();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Lboards();
+                            }
+                        }
+                    });
+                    LinearLayout.LayoutParams pp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    l2.addView(myButton, pp);
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
