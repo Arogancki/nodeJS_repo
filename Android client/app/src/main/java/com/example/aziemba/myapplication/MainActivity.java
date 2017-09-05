@@ -499,19 +499,20 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout linearLayout_153 = new LinearLayout(this);
         linearLayout_153.setGravity(CENTER);
-        LinearLayout.LayoutParams layout_597 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams layout_597 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,1.0f);
         layout_597.bottomMargin = 20;
+
         linearLayout_153.setLayoutParams(layout_597);
 
         Button button_inprogres = new Button(this);
         button_inprogres.setGravity(CENTER);
         button_inprogres.setTextColor(Color.parseColor("#ffffff"));
         LinearLayout.LayoutParams layout_185 =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layout_185.width = 49;
         layout_185.height = LinearLayout.LayoutParams.MATCH_PARENT;
-        layout_185.leftMargin = 10;
-        layout_185.rightMargin = 10;
+        layout_185.weight = 0.15f;
         button_inprogres.setLayoutParams(layout_185);
+        button_inprogres.setText("+IP");
+        button_inprogres.setBackgroundColor(Color.TRANSPARENT);
         linearLayout_153.addView(button_inprogres);
         // button_button_inprogres
         button_inprogres.setOnClickListener(new View.OnClickListener()
@@ -521,7 +522,7 @@ public class MainActivity extends AppCompatActivity {
                 addStatus("In progress");
                 setContentView(R.layout.input);
                 Button button2;
-                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Adding 'in progress' status. Write command");
                 button2= (Button) findViewById(R.id.input_ok_button);
                 button2.setOnClickListener(new View.OnClickListener()
                 {
@@ -550,11 +551,11 @@ public class MainActivity extends AppCompatActivity {
         button_blocked.setGravity(CENTER);
         button_blocked.setTextColor(Color.parseColor("#ffffff"));
         LinearLayout.LayoutParams layout_912  = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layout_912.width = 49;
         layout_912.height = LinearLayout.LayoutParams.MATCH_PARENT;
-        layout_912.leftMargin = 10;
-        layout_912.rightMargin = 10;
+        layout_912.weight = 0.15f;
         button_blocked.setLayoutParams(layout_912);
+        button_blocked.setText("+B");
+        button_blocked.setBackgroundColor(Color.TRANSPARENT);
         // button_button_blocked
         button_blocked.setOnClickListener(new View.OnClickListener()
         {
@@ -563,7 +564,7 @@ public class MainActivity extends AppCompatActivity {
                 addStatus("Blocked");
                 setContentView(R.layout.input);
                 Button button2;
-                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Adding 'blocked' status. Write command");
                 button2= (Button) findViewById(R.id.input_ok_button);
                 button2.setOnClickListener(new View.OnClickListener()
                 {
@@ -598,11 +599,11 @@ public class MainActivity extends AppCompatActivity {
         button_finished.setGravity(CENTER);
         button_finished.setTextColor(Color.parseColor("#ffffff"));
         LinearLayout.LayoutParams layout_286 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layout_286.width = 53;
         layout_286.height = LinearLayout.LayoutParams.MATCH_PARENT;
-        layout_286.leftMargin = 10;
-        layout_286.rightMargin = 10;
+        layout_286.weight = 0.15f;
         button_finished.setLayoutParams(layout_286);
+        button_finished.setText("+F");
+        button_finished.setBackgroundColor(Color.TRANSPARENT);
         // button_button_finished
         button_finished.setOnClickListener(new View.OnClickListener()
         {
@@ -611,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
                 addStatus("Finished");
                 setContentView(R.layout.input);
                 Button button2;
-                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Adding 'finished' status. Write command");
                 button2= (Button) findViewById(R.id.input_ok_button);
                 button2.setOnClickListener(new View.OnClickListener()
                 {
@@ -645,12 +646,12 @@ public class MainActivity extends AppCompatActivity {
         Button button_resumed = new Button(this);
         button_resumed.setGravity(CENTER);
         button_resumed.setTextColor(Color.parseColor("#ffffff"));
-        LinearLayout.LayoutParams layout_51 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layout_51.width = 53;
+        LinearLayout.LayoutParams layout_51 =  new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layout_51.height = LinearLayout.LayoutParams.MATCH_PARENT;
-        layout_51.leftMargin = 10;
-        layout_51.rightMargin = 10;
+        layout_51.weight = 0.15f;
         button_resumed.setLayoutParams(layout_51);
+        button_resumed.setText("+R");
+        button_resumed.setBackgroundColor(Color.TRANSPARENT);
         // button_button_resumed
         button_resumed.setOnClickListener(new View.OnClickListener()
         {
@@ -659,7 +660,7 @@ public class MainActivity extends AppCompatActivity {
                 addStatus("Resumed");
                 setContentView(R.layout.input);
                 Button button2;
-                ((TextView)findViewById(R.id.input_static_text2)).setText("Write command");
+                ((TextView)findViewById(R.id.input_static_text2)).setText("Adding 'Resumed' status. Write command");
                 button2= (Button) findViewById(R.id.input_ok_button);
                 button2.setOnClickListener(new View.OnClickListener()
                 {
@@ -694,9 +695,11 @@ public class MainActivity extends AppCompatActivity {
         button_delete.setGravity(CENTER);
         button_delete.setTextColor(Color.parseColor("#ffffff"));
         LinearLayout.LayoutParams layout_520 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layout_520.width = 36;
+
         layout_520.height = LinearLayout.LayoutParams.MATCH_PARENT;
         layout_520.leftMargin = 10;
+        button_delete.setText("Delete this task");
+        button_delete.setBackgroundColor(Color.TRANSPARENT);
         button_delete.setLayoutParams(layout_520);
         // button_button_delete
         button_delete.setOnClickListener(new View.OnClickListener()
@@ -731,9 +734,18 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        linearLayout_153.addView(button_delete);
+        //linearLayout_153.addView(button_delete);
 
         ll.addView(linearLayout_153, layout_597);
+
+        LinearLayout linearLayout_868X = new LinearLayout(this);
+        linearLayout_868X.setOrientation(HORIZONTAL);
+        LinearLayout.LayoutParams layout_263X = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        linearLayout_868X.setLayoutParams(layout_263X);
+
+
+        linearLayout_868X.addView(button_delete);
+        ll.addView(linearLayout_868X, layout_263X);
 
         LinearLayout linearLayout_868 = new LinearLayout(this);
         linearLayout_868.setOrientation(HORIZONTAL);
@@ -776,8 +788,7 @@ public class MainActivity extends AppCompatActivity {
         textView_841.setLayoutParams(layout_591);
         linearLayout_868.addView(textView_841);
 
-        ll.addView(linearLayout_153, layout_597);
-
+        ll.addView(linearLayout_868, layout_263);
         try {
             JSONArray statuses =data.getJSONArray("boards").getJSONObject(activeBoard).getJSONArray("tasks").getJSONObject(activeTask).getJSONArray("statuses");
             for (int i = 0; i < statuses.length(); i++) {
