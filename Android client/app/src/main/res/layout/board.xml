@@ -66,19 +66,12 @@
 
                 <Button
                     android:id="@+id/button_newTASKT"
-                    android:layout_width="78dp"
+                    android:layout_width="68dp"
                     android:layout_height="31dp"
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:text="+"
                     android:textColor="#ffffff" />
-
-                <TextView
-                    android:layout_width="84dp"
-                    android:layout_height="47dp"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="#ffffff"></TextView>
 
                 <Button
                     android:id="@+id/button_active_members_view"
