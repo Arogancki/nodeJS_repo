@@ -439,7 +439,8 @@ public class MainActivity extends AppCompatActivity {
                     if (SignUp())
                         {
                             makeToast("Created account");
-                            Llog_in();
+                            if(SignIn())
+                                Lboards();
                         }
                 }
                 else
@@ -875,7 +876,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(View v)
                         {
                             setContentView(R.layout.in_leaveboard);
-                            ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to kick out "+v.getTag()+"?");
+                            String memberXXXX=v.getTag().toString();
+                            ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to kick out "+memberXXXX+"?");
                             Button button2 = (Button) findViewById(R.id.input_no);
                             button2.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
@@ -883,6 +885,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                             button2 = (Button) findViewById(R.id.input_yes);
+                            button2.setTag(memberXXXX);
                             button2.setOnClickListener(new View.OnClickListener()
                             {
                                 public void onClick(View v)
@@ -891,8 +894,9 @@ public class MainActivity extends AppCompatActivity {
                                         JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
                                         String owner = BOARD.getString("owner");
                                         String board = BOARD.getString("name");
+                                        String memberXXXX=v.getTag().toString();
                                         sendRequest("KickOut", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                                ",\"owner\":\"" + owner + "\",\"member\":\"" + v.getTag() + "\"}");
+                                                ",\"owner\":\"" + owner + "\",\"member\":\"" + memberXXXX + "\"}");
                                         Lmembers();
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -928,7 +932,8 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(View v)
                             {
                                 setContentView(R.layout.in_leaveboard);
-                                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to cancel invitation for "+v.getTag()+"?");
+                                String memberXXXX=v.getTag().toString();
+                                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to cancel invitation for "+memberXXXX+"?");
                                 Button button2 = (Button) findViewById(R.id.input_no);
                                 button2.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
@@ -936,6 +941,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                                 button2 = (Button) findViewById(R.id.input_yes);
+                                button2.setTag(memberXXXX);
                                 button2.setOnClickListener(new View.OnClickListener()
                                 {
                                     public void onClick(View v)
@@ -945,7 +951,7 @@ public class MainActivity extends AppCompatActivity {
                                             String owner = BOARD.getString("owner");
                                             String board = BOARD.getString("name");
                                             sendRequest("KickOut", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
-                                                    ",\"owner\":\"" + owner + "\",\"member\":\"" + v.getTag() + "\"}");
+                                                    ",\"owner\":\"" + owner + "\",\"member\":\"" + v.getTag().toString() + "\"}");
                                             Lmembers();
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -1068,25 +1074,24 @@ public class MainActivity extends AppCompatActivity {
                     myButton.setBackgroundColor(Color.TRANSPARENT);
                     myButton.setGravity(CENTER);
                     myButton.setTextColor(Color.WHITE);
-                    myButton.setTag(i);
+                    String board=invitation.getString("name");
+                    String owner=invitation.getString("owner");
+                    myButton.setTag("{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}");
                     myButton.setOnClickListener(new View.OnClickListener()
                     {
                         public void onClick(View v)
                         {
                             try {
-                                JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
-                                String board=invitation.getString("board");
-                                String owner=invitation.getString("owner");
+                                String userrrrr=v.getTag().toString();
                                 setContentView(R.layout.in_leaveboard);
-                                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to delete Task?");
+                                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to accept this invitation"+""+"?");
                                 Button button2 = (Button) findViewById(R.id.input_no);
+                                button2.setTag(userrrrr);
                                 button2.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         try {
-                                            JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
-                                            String board=invitation.getString("board");
-                                            String owner=invitation.getString("owner");
-                                            if (sendRequest("ReffuseInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
+                                            String userrrrr=v.getTag().toString();
+                                            if (sendRequest("ReffuseInviattion",userrrrr))
                                                 Lboards();
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -1094,22 +1099,20 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                                 button2 = (Button) findViewById(R.id.input_yes);
+                                button2.setTag(userrrrr);
                                 button2.setOnClickListener(new View.OnClickListener()
                                 {
                                     public void onClick(View v)
                                     {
-                                        try {
-                                            JSONObject invitation = data.getJSONArray("invitations").getJSONObject(Integer.parseInt(v.getTag().toString()));
-                                            String board=invitation.getString("board");
-                                            String owner=invitation.getString("owner");
-                                            if (sendRequest("AcceptInviattion","{\"login\":\""+edt_username+"\",\"password\":\""+edt_password+"\",\"board\":\""+board+"\",\"owner\":\""+owner+"\"}"))
+                                        try {String fff=v.getTag().toString();
+                                            if (sendRequest("AcceptInviattion",fff))
                                                 Lboards();
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
                                     }
                                 });
-                            } catch (JSONException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 Lboards();
                             }
@@ -1125,17 +1128,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //user/account methods
+    boolean CZY=false;
     private boolean SignUp(){
         try {
+            CZY=true;
             boolean ressss=sendRequest("registration",
                     "{\"login\":\""+((EditText)findViewById(R.id.user_login)).getText().toString().trim()+"\"," +
                             "\"password\":\""+((EditText)findViewById(R.id.user_password)).getText().toString().trim()+"\"," +
                             "\"password2\":\""+((EditText)findViewById(R.id.user_password2)).getText().toString().trim()+"\"," +
                             "\"email\":\""+((EditText)findViewById(R.id.user_email)).getText().toString().trim()+"\"}");
+            CZY=false;
+            edt_username=((EditText)findViewById(R.id.user_login)).getText().toString().trim();
+            edt_password=((EditText)findViewById(R.id.user_password)).getText().toString().trim();
+            savePreferences();
             return ressss;
         } catch (Exception e) {
+            CZY=false;
             e.printStackTrace();
         }
+        CZY=false;
         return false;
     }
     private boolean SignIn(){
@@ -1194,6 +1205,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (_return) {
+            if (CZY)
+                return true;
+            else
             if (sendGetAll())
                 return true;
             else {
@@ -1367,15 +1381,19 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
+        String STR1="";
+        String STR2="";
         try {
-            editor.putString(PREF_UNAME, ((EditText) findViewById(R.id.user_login)).getText().toString().trim());
-            editor.putString(PREF_PASSWORD, ((EditText) findViewById(R.id.user_password)).getText().toString().trim());
+            STR1=( ((EditText) findViewById(R.id.user_login)).getText().toString().trim());
+            STR2=( ((EditText) findViewById(R.id.user_password)).getText().toString().trim());
         }
         catch (NullPointerException e)
         {
-            editor.putString(PREF_UNAME, edt_username);
-            editor.putString(PREF_PASSWORD, edt_password);
+            STR1=( edt_username);
+            STR2=( edt_password);
         }
+        editor.putString(PREF_UNAME,STR1);
+                editor.putString(PREF_PASSWORD,STR2);
         editor.commit();
     }
     private  void clearPreferences() {
