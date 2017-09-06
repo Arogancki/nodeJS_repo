@@ -865,9 +865,42 @@ public class MainActivity extends AppCompatActivity {
                 String member = members.getString(i);
                 final Button myButton = new Button(this);
                 myButton.setText(member);
+                myButton.setTag(member);
                 myButton.setBackgroundColor(Color.TRANSPARENT);
                 myButton.setGravity(CENTER);
                 myButton.setTextColor(Color.WHITE);
+                if (memberXX.toLowerCase().equals(edt_username))
+                    myButton.setOnClickListener(new View.OnClickListener()
+                    {
+                        public void onClick(View v)
+                        {
+                            setContentView(R.layout.in_leaveboard);
+                            ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to kick out "+v.getTag()+"?");
+                            Button button2 = (Button) findViewById(R.id.input_no);
+                            button2.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Lmembers();
+                                }
+                            });
+                            button2 = (Button) findViewById(R.id.input_yes);
+                            button2.setOnClickListener(new View.OnClickListener()
+                            {
+                                public void onClick(View v)
+                                {
+                                    try {
+                                        JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                        String owner = BOARD.getString("owner");
+                                        String board = BOARD.getString("name");
+                                        sendRequest("KickOut", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                                ",\"owner\":\"" + owner + "\",\"member\":\"" + v.getTag() + "\"}");
+                                        Lmembers();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    });
                 l2.addView(myButton, bp);
             }
             JSONArray invitations = board.getJSONArray("invitations");
@@ -885,9 +918,42 @@ public class MainActivity extends AppCompatActivity {
                     String invitation = invitations.getString(i);
                     final Button myButton = new Button(this);
                     myButton.setText(invitation);
+                    myButton.setTag(invitation);
                     myButton.setBackgroundColor(Color.TRANSPARENT);
                     myButton.setGravity(CENTER);
                     myButton.setTextColor(Color.WHITE);
+                    if (memberXX.toLowerCase().equals(edt_username))
+                        myButton.setOnClickListener(new View.OnClickListener()
+                        {
+                            public void onClick(View v)
+                            {
+                                setContentView(R.layout.in_leaveboard);
+                                ((TextView)findViewById(R.id.input_static_text)).setText("Do you want to cancel invitation for "+v.getTag()+"?");
+                                Button button2 = (Button) findViewById(R.id.input_no);
+                                button2.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        Lmembers();
+                                    }
+                                });
+                                button2 = (Button) findViewById(R.id.input_yes);
+                                button2.setOnClickListener(new View.OnClickListener()
+                                {
+                                    public void onClick(View v)
+                                    {
+                                        try {
+                                            JSONObject BOARD = data.getJSONArray("boards").getJSONObject(activeBoard);
+                                            String owner = BOARD.getString("owner");
+                                            String board = BOARD.getString("name");
+                                            sendRequest("KickOut", "{\"login\":\"" + edt_username + "\",\"password\":\"" + edt_password + "\",\"board\":\"" + board + "\"" +
+                                                    ",\"owner\":\"" + owner + "\",\"member\":\"" + v.getTag() + "\"}");
+                                            Lmembers();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                            }
+                        });
                     ll.addView(myButton, bp);
                 }
             }
