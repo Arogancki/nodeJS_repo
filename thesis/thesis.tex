@@ -104,16 +104,12 @@
 
 \begin{document}
 
-\begin{titlepage}
-	\centering
-	{\scshape\LARGE Celem pracy jest przedstawienie technologii Node.js na przykładzie zaprojektowanej aplikacji przeznaczonej do zarządzania codziennymi zadaniami.  \par}
-\end{titlepage}
 \tableofcontents
 
 \chapter{Przedstawienie ogólne, ideologii oraz przeznaczenia technologii Node.js}
 
 \section{Wstęp}
-Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach c/c++ oraz javascript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla. 
+Celem pracy jest przedstawienie technologii Node.js na przykładzie zaprojektowanej aplikacji przeznaczonej do zarządzania codziennymi zadaniami. Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach c/c++ oraz javascript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla. 
 Pozwala na tworzenie serwerów i narzędzi sieciowych, działających po stronie serwera. 
 Przed powstaniem języka kod javascriptowy był wykonywany głównie przez przeglądarkę internetową po stronie klienta, co pozwalało na bezproblemową manipulację kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów servera. 
 Środowisko Node.js może działać niezależnie od środowiska uruchomieniowego. 
@@ -179,7 +175,7 @@ Zapewnia on również odpowiednie zarządzanie pamięcią dla obiektów, ściąg
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{eventLoop.png} 
-\caption{Pętla zdarzeń w środowisku Node.js - źródło: https://stackoverflow.com/ questions/21607692/understanding-the-event-loop}
+\caption{Pętla zdarzeń w środowisku Node.js, źródło: https://stackoverflow.com/ questions/21607692/understanding-the-event-loop}
 \end{figure}
 
 \section{Asynchroniczność}
@@ -206,7 +202,7 @@ Biblioteka libuv zajmuje się odpowiednim podziałem zadań oraz przydzieleniem 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{thread.png} 
-\caption{Model programowania współbieżnego wykorzystywany przez Node.js - źródło: www.tutorialspoint.com/parallel\_algorithm/}
+\caption{Model programowania współbieżnego wykorzystywany przez Node.js, źródło: www.tutorialspoint.com/parallel\_algorithm/}
 \end{figure}
 
 \section{Architektura komunikacji}
@@ -225,7 +221,7 @@ Poniższa tabelka prezentuje poszczególne typy statusów:
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{statuses.png} 
-\caption{Kody statusu protokołu http - źródło: http://mokandra.blogspot.fi/2015/10/http-status-code-definitions.html}
+\caption{Kody statusu protokołu http, źródło: http://mokandra.blogspot.fi/2015/10/http-status-code-definitions.html}
 \end{figure}
 
 W celu wymiany zasobów framework wykorzystuje najpopularniejsze sposoby opisu struktury służące do opisu obiektów, takie jak najczęściej spotykany, najprostszy w użyciu format json (JavaScript Object Notation) oraz mniej popularny w technologii Rest format xml (eXtensible Markup Language). 
@@ -337,6 +333,16 @@ Zdefiniowane zostały następujące wymagania niefunkcjonalne:
 \item Spełnia wszystkie normy prawne w naszym kraju.
 \end{itemize}
 
+\section{Diagram przypadków użycia}
+Poniższy diagram uml przedstawia schemat użytkowania systemu.
+Określone zostały trzy poziomy klientów korzystających z aplikacji, które określają zakres udostępnionej funkcjonalności.
+
+\begin{figure}[!hb]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SCHEME.png}
+\caption{Diagram przypadków użycia, źródło: Opracowanie własne}
+\end{figure}
+
 \chapter{Opracowanie aplikacji}
 
 \section{Mean Stack}
@@ -378,7 +384,7 @@ Serwer Node.js z użyciem technologii express, wykorzystując metodę routingu, 
 \begin{figure}[!hb]
 \centering
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Meanex.png}
-\caption{Przepływ komunikacji w MEAN Stack źródło: https://www.dealfuel.com/seller/mean-stack-tutorial/}
+\caption{Przepływ komunikacji w MEAN Stack, źródło: https://www.dealfuel.com/seller/mean-stack-tutorial/}
 \end{figure}
 
 \subsection{Schematy wymiany zasobów}
