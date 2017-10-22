@@ -1,0 +1,136 @@
+Krótkie przedstawienie
+Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach c/c++ oraz javascript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla. 
+Pozwala na tworzenie serwerów i narzędzi sieciowych, działających po stronie serwera. 
+Środowisko Node.js może działać niezależnie od środowiska uruchomieniowego. 
+Język ten cieszy się dużą popularnością oraz pozytywnym odbiorem wśród użytkowników, dzięki czemu, mimo względnie krótkiego okresu życia środowiska, zaowocowało ogromną ilością projektów open-source, tysiącami członków należących do społeczności okołojęzykowej oraz powstaniem wydarzeń  takimi jak NodeConf, Node Interactive lub Node Summit. 
+Obecnie wiele największych firm korzysta z serwerów napisanych w języku Node.js. Groupon, IBM, Linkedln, Microsoft, Netflix, PayPal, Yahoo. 
+
+Przeznaczenie
+Node.js zalecany jest do tworzenia aplikacji: 
+z dużą liczbą operacji wejścia/wyjścia,
+strumieniowania danych np. video, 
+Single Page Applications
+udostępniających API w formacie JSON,
+z intensywną wymianą danych w czasie rzeczywistym na wielu urządzeniach, np. portalach społecznościowych.
+
+Ponieważ jest on szybki i lekki, może być stosowany do pisania między innymi bramki API - opisuje, jak poszczególne elementy lub warstwy oprogramowania powinny się komunikować. 
+ to najczęściej biblioteka oferująca metody, które umożliwiają realizację określonych zadań. 
+Node.js pozwala na zoptymalizowanie pracy oraz uzyskanie skalowalności dzięki asynchronicznemu przetwarzaniu danych dostarczanych do aplikacji, w związku z czym idealnie nadaje się do obsługi komunikacji wymagającej pracy w czasie rzeczywistym. 
+Funkcje napisane w Node.js wykonują się równolegle, korzystając z tak zwanych wywołań zwrotnych (ang. callback).
+Dzięki temu nie powstaje problem blokowania określonych funkcjonalności programu w czasie pracy innych niezależnych jego części. 
+Przy pomocy wywołań zwrotnych możemy zapewnić zasygnalizowanie uzyskanych wyników lub zwrócenie, bądź obsługę błędu powstałego w czasie działania bloku kodu.
+
+Modułowość
+Praca z Node.js opiera się głównie o korzystanie ze zbioru modułów - funkcji wspierających określone funkcjonalności. 
+Zapewniają one pracę między innymi z plikami systemowymi, z urządzeniami wejścia/wyjścia, protokołami internetowymi (dns, http, tcp, spdy), plikami binarnymi, źródłami danych oraz funkcjami kryptograficznymi. 
+Zmniejszają one złożoność, a co za tym idzie, nakład pracy przy tworzeniu własnej funkcjonalności. 
+Dzięki wsparciu package managera (od roku 2010) nazywanego npm, programiści mogą bez przeszkód udostępniać napisane przez siebie moduły i biblioteki lub w prosty sposób zaimportowywać ogólnie dostępne moduły i używać ich w swoich projektach. 
+Najpopularniejszymi modułami wykorzystywanymi w celu poprawy jakości oraz zmniejszenia nakładów pracy przy wytwarzaniu oprogramowania są Express.js, Socket.IO,  czy Meteor. 
+Npm jest automatycznie włączony w środowisko Node.js. 
+Jest obsługiwany za pomocą linii komend systemu operacyjnego. 
+Ilość ogólnodostępnych modułów to ok 0.5 mln. kazdy moze dodac, roznej jakosci.
+Npm korzysta, tak jak i inne globalnie działające narzędzia JavaScriptowe, z plików zależności w formacie json. 
+Opisują one wersję wykorzystywanych modułów i pozwalają za pomocą jednoliniowej komendy na szybką i łatwą instalację wszystkich używanych pakietów w lokalnym środowisku. 
+
+Paradygmat
+Architektura Node.js pozwala na tworzenie oprogramowania sterowanego zdarzeniami.
+Jest to paradygmat programowania, w którym kolejność wykonywania kodu zależy od zdarzeń mających miejsce w czasie życia aplikacji (run time), na przykład interakcji użytkownika, czy otrzymania określonych sygnałów. 
+W przypadku języka Node.js, kiedy aplikacja pełni rolę serwera, paradygmat ten najczęściej dotyczy przetwarzania zapytań otrzymywanych ze strony klienta oraz uruchomionych przez nie zdarzeń.
+należy wyróżnić pętlę główną, która jest odpowiedzialna za wywoływanie triggerów. 
+W Node.js jest to na przykład funkcja nasłuchująca określonego adresu, pod który klienci kierują określone zapytania. 
+Pozwala to na wykonywanie wielu zadań jednocześnie i niezależnie. 
+Daje możliwość przykładowo jednoczesnego zapisywania danych do bazy, przetwarzania innej części zapytania i przygotowywanie odpowiedzi w jednym okresie czasu. 
+Node.js zapewnia w ten sposób działanie asynchroniczne, bez bezpośredniego użycia technologii wielowątkowej. 
+
+Asynchroniczność
+Node.js pracuje wykorzystując tylko jeden wątek, używając technologii asynchronicznego wejścia/wyjścia. 
+Zapewnia to synchronizację wykonywania wielu operacji bez konieczności czekania na zakończenie operacji i zwolnienie dostępu do zasobu.
+Wywołanie asynchroniczej funkcji nie czeka na wyniki, dzięki czemu nie blokujemy wątku wykonawczego. 
+Po zakończonym wywołaniu uruchomiona zostaje funkcja zwrotna. 
+Pomimo, że Node.js działa na jednym wątku z pętlą zdarzeń, dzięki asynchroniczności potrafi on obsłużyć więcej zapytań niż np. serwer HTTP Apache. 
+Node korzysta ze wzorca obserwatora ktory dokonuje operacji na zbiorze obkiektow obserwujacych wedlug swojego stanu.
+W celu obsługi wszystkich asynchronicznych funkcji oraz wątku głównego, Node.js korzysta z biblioteki multiplatformowej języka c - libuv. 
+Wątki te działają na wielu rdzeniach systemu, na którym działa serwer. 
+Wątek główny przydziela zadania dla wątków kolejno ze współdzielonej kolejki funkcji.
+Kiedy wątek zakończy wykonywanie przydzielonego mu zadania, informuje o tym wątek główny.
+Biblioteka libuv zajmuje się odpowiednim podziałem zadań oraz przydzieleniem zasobów tak, aby w jak najlepszy sposób wyważyć nakład pracy między wieloma wątkami. 
+
+Architektura komunikacji
+W tradycyjnym podejściu odpowiedzialne za obsługę przychodzących połączeń są określone wątki lub procesy sytemu operacyjnego, które w porównaniu z technologią Node.js wymagają względnie więcej zaalokowanych zasobów. 
+W celu obsługi zapytania przychodzącego do aplikacji Node.js, program rejestruje się w systemie operacyjnym,a kazde otrzymane zapytanie alokuje zasoby na stercie programu i wywoluje okreslone wywolnanie zwrotne.
+Najbardziej popularna metoda na zarządzanie komunikacją między instancjami korzystającymi z serwera używającego technologii Node.js jest wykorzystanie frameworku Restful Api - Rest. 
+Jest to wzorzec architektury oprogramowania, który opisuje sposób operowania zapytaniami pomiędzy Api, w prosty sposób poprzez obsługę zadań oraz odpowiedzi. 
+Daje możliwość na stworzenie komunikacji bez potrzeby wiedzy na temat instancji korzystających z przesyłanych zasobów - może integrować środowiska napisane w różnych językach, działające na różnych platformach. 
+Wykorzystuje on protokul http - post, get, put, delete, options, head, trace oraz connect. 
+Opis typu zasobów, jakie wymieniamy, jest określony w nagłówku informacji przez kod statusu http. 
+Rest wykorzystuje schemat wymiany json lub xml.
+
+Teraz jak juz wiemy co ot jest i do czego sluzy NodeJs mozemy przedstawic przykladowa aplikacje do zarzadzania zadaniami opierajaca sie o ta technologie .
+
+
+Specyfikacja problemu
+Potrzebny jest nowoczesny system do zarządzania tablicami zadań.
+musi posiadac
+autoryzowany dostęp dla użytkowników systemu.,
+ intuicyjnej aplikacji,
+ współpracy z innymi użytkownikami,
+przejrzysty sposób prezentować proces realizacji poszczególnych zadań zorganizowanych w tablicach.
+Właściciel określonej tablicy powinien mieć możliwość zarządzania dostępem
+Wymiana komunikatów w modelu klient-serwer.
+System współpracuje z bazą danych.
+
+Diagram przypadków użycia
+Poniższy diagram uml przedstawia schemat użytkowania systemu.
+Określone zostały trzy poziomy klientów korzystających z aplikacji, które określają zakres udostępnionej funkcjonalności.
+
+Opracowanie aplikacji
+
+Mean Stack
+Do opracowania rozwiązania zdecydowałem się skorzystać z Mean Stack. 
+Skrót odnosi się do frameworków oraz technolgii Mongodb, Express, AngularJS oraz Node.js. 
+Do użycia wszystkich wymagany jest tylko jeden język programowania - javaScript, zarówno do obsługi warstwy frontendowej aplikacji jak i backendowej. 
+
+Jako iż Technologia Node.js została już opisana, przejdę do opisu pozostałych technologii.
+MongoDB
+ system zarządzania bazą danych zorientowany na dokumenty 
+Operuje na nierelacyjnych bazach danych. czyli No sql
+Używa struktur json jako schematów budowy bazy danych.
+
+ExpressJS
+Framework służący do szybkiego wymagającego jak najmniejszych nakładów pracy wytwarzania zarówno backendu aplikacji internetowych, jak i aplikacji mobilnych.
+Dostarcza zbiór określonych klas i metod. Jest to najpopularniejszy framework do tworzenia serwerów w technologii Node.js.
+
+AngularJS
+Wykorzystujący wzorzec projektowy MVC/MVP/MVP polegający na oddzieleniu od siebie poszczególnych warstw aplikacji - logiki, widoku oraz modelu komunikacji, framework wykorzystujący dodatkowe tagi w języku html w celu prostego w obsłudze i niewymagającego dodatkowej logiki napisanej w języku javaScript tworzenia dynamicznych stron internetowych.
+
+Komunikacja
+Do komunikacji między warstwą frontendową i backendowową po stronie klienta wykorzystałem wysokopoziomową bibliotekę Ajax oraz technologię Restful api. 
+Ajax polega na zarządzaniu asynchroniczną komunikacją. 
+Dzięki temu aplikacja może wykonywać inne funkcje, mimo oczekiwania na odpowiedź ze strony serwera, za sprawą odseparowania warstwy wymiany danych od pozostałych warstw aplikacji.
+Do opisu wymienianych struktur użyłem standardu json.
+Angular prezentuje użytkownikowi dynamiczną aplikację internetową, odpowiada za przyjmowanie danych i z pomocą ajaxa wysyła oraz odbiera dane wysyłane do serwera. 
+Serwer Node.js z użyciem technologii express, wykorzystując metodę routingu, dopasowuje zapytanie do odpowiednich funkcji serwisu, przetwarza otrzymane dane, przy współpracy z bazą danych zarządzana przez Mongodb przechowuje informacje użytkowników serwisu oraz w odpowiedzi zwraca odpowiednie dane z powrotem do warstwy frontendowej prezentującej dane użytkownikowi. 
+
+Testy aplikacji - manualne
+Do testów została użyta przeglądarka Google Chrome oraz skrypty node.js korzystające z modułu request.
+Każdy test został wykonany 5 razy, a podane wartości przedstawiają średnią czasu pracy.
+
+Testy wydajnościowe
+zachowanie serwisu przy różnym obciążeniu bazy danych. 
+Mimo dużej ilości posiadanych informacji korzystanie z serwisu jest komfortowe, ponieważ czas obsługi zapytania nie zostaje znacząco wydłużony.
+
+Testy obciążeniowe serwera
+zachowanie aplikacji w przypadku równoczesnej obsługi wielu przychodzących zapytań. 
+Przy dużej liczbie przychodzących zapytań użytkowanie serwisu jest wciąż komfortowe. Aplikacja wykazuje się skalowalnością.
+
+Testy sprawnościowe serwera
+ilość kolejno wysłanych po sobie zapytań, które zostały obsłużone przez serwer w określonym czasie. 
+Osiągnięte wyniki są zadowalające, jednak łatwo zauważyć, że technologia ta wykazuje się największą sprawnością przy obsłudze równoległych zapytań. 
+Średni uzyskany czas dla obsługi 1500 zapytań równoległych to 674 ms, natomiast dla wysyłanych kolejno wynosi 940 ms.
+
+
+Podsumowanie otrzymanych wyników i wnioski na temat środowiska
+Zostały osiągnięte wszystkie założenia oraz wymagania aplikacji przy użyciu możliwości dostarczanej przez technologię Node.js. 
+Stworzony projekt doskonale nadaje się do użytkowania przez zorganizowane zespoły do wykonywania określonych zadań.  
+Dostarcza przejrzysty interfejs oraz nieskomplikowaną prezentację danych dla końcowych użytkowników.
+Niewątpliwie największymi zaletami tej technologii jest łatwość budowania wymagających serwisów internetowych poprzez użycie asynchronicznej obsługi wejścia/wyjścia, które pozwala na przetwarzanie wielu funkcji w jednym czasie, tworząc wyjątkowo szybkie w działaniu aplikacje, dzieki czemu jest idealnym rozwiązaniem w kwestii pracy nad wieloma rozwiązaniami webowymi. 

@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');// cookies handling
 
 var SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = false;	// constant variable if true json objects will be printed in logs after sending response
 var port = 8081;                                // default port for listening
-var address = 'http://192.168.0.189:' + port;   // address site
+var address = 'http://192.168.43.189:' + port;   // address site
 var public = path.join(__dirname, "public");	// path with public files
 var resources = path.join(public, "resources");	// specific files path
 

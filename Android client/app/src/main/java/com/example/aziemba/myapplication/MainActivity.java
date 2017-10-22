@@ -31,7 +31,7 @@ import static android.view.Gravity.CENTER;
 import static android.widget.GridLayout.HORIZONTAL;
 
 public class MainActivity extends AppCompatActivity {
-    private String SERVER_ADDRESS=" http://192.168.0.189:8081"; //TODO
+    private String SERVER_ADDRESS=" http://192.168.43.189:8081"; //TODO
     private int activeBoard=-1;
     private int activeTask=-1;
     JSONObject data=null;
