@@ -1,0 +1,16 @@
+{
+  "name": "kafkadb",
+  "version": "1.0.0",
+  "description": "kafa db test",
+  "main": "kafkadb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Artur Ziemba",
+  "license": "ISC",
+  "dependencies": {
+    "kafka": "^0.2.3",
+    "kafka-node": "^2.2.3",
+    "kafka-rest": "0.0.5"
+  }
+}
