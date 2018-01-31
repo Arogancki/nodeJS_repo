@@ -5,9 +5,24 @@ const map = function(callback, thisArg = this){
     return this;
 }
 
-const filter = function(){}
+const filter = function(callback, thisArg = this) {
+    if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
+    for (el in this){
+        if (!callback.call(thisArg, this[el], el, this))
+            delete this[el];
+    }
+    return this;
+}
 
-const reduce = function(){}
+const reduce = function(callback, accumulator = undefined, thisArg = this){
+    if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
+    for (el in this)
+        if (accumulator !== undefined)
+            accumulator = callback.call(thisArg, accumulator, this[el], el, this);
+        else
+            accumulator = this[el];
+    return accumulator;
+}
 
 module.exports = function(object = Object){
     object.defineProperty(Object.prototype, 'map', {
