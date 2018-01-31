@@ -1,4 +1,4 @@
-require('object-mfr')(Object)
+require('../index.js')(Object);
  
 let family = {
     father: 'Homer',
@@ -26,7 +26,11 @@ family.filter(function(val, key, obj){
 // with passed a function previous result
 let initialValue = `Simpsons with "a":`;
 let result = family.reduce(function(previousValue, val, key, obj){
-    return accumulator+' '+val;
+    return previousValue+' '+val;
 }, initialValue);
- 
-console.log(result)
+
+console.log(result);
+
+let req = 'Simpsons with "a": Marge Bart Lisa';
+if (result !== req)
+	throw Error(`Test has failed: \nres: ${result}\nreq: ${req}`);

@@ -1,11 +1,11 @@
-# object-mfr
+# object-mfr 
 Do a map, filter or reduce operation on object enumerable properties  
 
 ### Usage
 ```js
 Object = require('object-mfr')();
 // or
-require('object-mfr')(Object)
+require('object-mfr')(Object);
 
 let family = {
     father: 'Homer',
@@ -36,7 +36,7 @@ let result = family.reduce(function(previousValue, val, key, obj){
     return previousValue+' '+val;
 }, initialValue);
 
-console.log(result)
+console.log(result);
 
 // Hello Homer! (Simpson's father)
 // Hello Marge! (Simpson's mother)

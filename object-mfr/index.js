@@ -38,4 +38,4 @@ module.exports = function(object = Object){
         enumerable: false
     });
     return object;
-}
+} 
