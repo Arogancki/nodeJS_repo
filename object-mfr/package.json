@@ -1,7 +1,7 @@
 {
   "name": "object-mfr",
-  "version": "1.0.0",
-  "description": "Do a map, filter or reduce on object enumerable properties",
+  "version": "1.0.5",
+  "description": "Do a map, filter or reduce operation on object enumerable properties",
   "main": "index.js",
   "keywords": [
     "object",
@@ -12,5 +12,5 @@
 	"object-mfr"
   ],
   "author": "Artur Ziemba <ziembaart@gmail.com>",
-  "license": "WATPL",
+  "license": "WATPL"
 }
