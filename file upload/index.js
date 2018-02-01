@@ -14,7 +14,7 @@ app.post('/upload', function(req, res){
         fs.rename(file.path, path.join(form.uploadDir, file.name));
     });
     form.on('error', function(err) {
-        console.log('An error has occured: \n' + err);
+        console.log('An error has occured: \n' + err); 
     });
     form.on('end', function() {
         res.end('File uploaded');
