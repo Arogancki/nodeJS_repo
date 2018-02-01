@@ -1,6 +1,6 @@
 { 
   "name": "object-mfr",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Do a map, filter or reduce operation on object enumerable properties",
   "main": "index.js",
   "keywords": [

@@ -43,5 +43,5 @@ console.log(result);
 // Hello Bart! (Simpson's son)
 // Hello Lisa! (Simpson's daughter)
 // Hello Simpson! (Simpson's name)
-// Simpsons with no "a": Marge Bart Lisa
+// Simpsons with "a": Marge Bart Lisa
 ```
