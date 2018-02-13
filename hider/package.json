@@ -1,6 +1,6 @@
 {
   "name": "hider",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Hides all or selected object properties for some time.",
   "main": "index.js",
   "keywords": [
