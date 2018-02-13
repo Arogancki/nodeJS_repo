@@ -1,4 +1,4 @@
-const hider = require('../index.js');
+const hider = require('hider');
  
 let family = {
     father: 'Homer',
@@ -6,40 +6,41 @@ let family = {
     kids: {
         son: 'Bart',
         daughter: ['Lisa', 'Maggie']
-    },
-    show: function show(){
-        for(el in this)
-            if (typeof this[el] === 'string')
-                console.log(this[el])
-            else
-                show.call(this[el])
     }
 };
-family.show();
-console.log("\n")
 
-// hide all enumerable properties
+show(family);
+
 hider.hide(family);
-family.show();
-console.log("\n")
+show(family);
+hider.unhide(family);
+show(family);
 
-// unhide all previously hid properties
-hider.unhide(family)
-family.show();
-console.log("\n")
-
-// hide properties by key or value
-hider.hide(family, 'father', 'Maggie')
-hider.unhide(family, 'father', 'Maggie')
+hider.hide(family, 'father', 'Maggie');
+show(family);
+hider.unhide(family, 'father', 'Maggie');
+show(family);
 
 // hide properties by key
-hider.hideByKey(family, 'father', 'daughter')
-hider.unhideByKey(family, 'father', 'daughter')
+hider.hideByKey(family, 'father', 'daughter', 'neighbour');
+show(family);
+hider.unhideByKey(family, 'father', 'daughter', 'neighbour');
+show(family);
 
 // hide properties by value
-hider.hideByVal(family, 'Homer', 'Maggie')
-hider.unhideByVal(family, 'Homer', 'Maggie')
+hider.hideByVal(family, 'Homer', 'Maggie', 'Ned');
+show(family);
+hider.unhideByVal(family, 'Maggie', 'Ned');
+show(family);
 
-// arguments can be passed as an array or separated variables
-hider.hide(family, ['father', 'Maggie'])
-hider.unhide(family, 'father', 'Maggie')
+function show(obj, init = true){
+    if (init)
+        console.log('Family: {')
+    for(el in obj)
+        if (typeof obj[el] === 'string')
+            console.log(obj[el])
+        else
+            show(obj[el], false)
+    if (init)
+        console.log('}\n')
+}
