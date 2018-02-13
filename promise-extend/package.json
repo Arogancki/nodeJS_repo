@@ -1,0 +1,24 @@
+{
+  "name": "promise-extend",
+  "version": "1.0.0",
+  "description": "Adds none, first, last, some functions to Promise object",
+  "main": "index.js",
+  "keywords": [
+    "object",
+    "none",
+    "first",
+    "last",
+    "some",
+    "Promise",
+    "helper"
+  ],
+  "scripts": {
+    "test": "test/index.js"
+  },
+  "author": "Artur Ziemba <ziembaart@gmail.com>",
+  "license": "WATPL",
+  "dependencies": {
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
