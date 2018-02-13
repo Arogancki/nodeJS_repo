@@ -34,7 +34,7 @@ hider.unhide(family, 'father', 'Maggie');
 // hide properties by key
 hider.hideByKey(family, 'father', 'daughter', 'neighbour');
 // Family: Marge Bart Lisa
-// hider.unhideByKey(family, 'father', 'daughter', 'neighbour');
+hider.unhideByKey(family, 'father', 'daughter', 'neighbour');
 // Family: Homer Marge Bart Lisa Maggie
 
 // hide properties by value
