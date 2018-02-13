@@ -1,16 +1,16 @@
-{ 
+{
   "name": "hider",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Hides all or selected object properties for some time.",
   "main": "index.js",
   "keywords": [
     "object",
     "hider",
     "properties",
-	"hide",
-	"unvisible"
+    "hide",
+    "unvisible"
   ],
-   "scripts": {
+  "scripts": {
     "test": "test/index.js"
   },
   "author": "Artur Ziemba <ziembaart@gmail.com>",
