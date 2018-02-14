@@ -9,7 +9,7 @@ const none = function none(iterable){
         for (let promise of iterable){
             amount++;
             Promise.resolve(promise).then(reject, function(err){
-                errors.put(err);
+                errors.push(err);
                 if (++counter === amount)
                     resolve(errors);
             });
@@ -30,7 +30,7 @@ const first = function first(iterable){
         for (let promise of iterable){
             amount++;
             Promise.resolve(promise).then(resolve, function(err){
-                errors.put(err);
+                errors.push(err);
                 if (++counter === amount)
                     reject(errors);
             });
@@ -57,7 +57,7 @@ const last = function last(iterable){
                         resolve(data);
                     lastData = data;
                 }, function(err){
-                    errors.put(err);
+                    errors.push(err);
                     if (++counter === amount)
                         if (lastData)
                             resolve(lastData);
@@ -103,7 +103,7 @@ const some = function some(iterable, minimum = 1){
             amount++;
             Promise.resolve(promise)
                 .then(function(data){
-                        datas.put(data)
+                        datas.push(data)
                         if (datas.length === minimum)
                             resolve({
                                 data: datas,
@@ -115,7 +115,7 @@ const some = function some(iterable, minimum = 1){
                                 errors
                             })
                     }, function(err){
-                        errors.put(err)
+                        errors.push(err)
                         if (++counter === amount)
                             reject({
                                 data: datas,
@@ -143,7 +143,7 @@ const few = function some(iterable, maximum = 0){
             amount++;
             Promise.resolve(promise)
                 .then(function(data){
-                        datas.put(data)
+                        datas.push(data)
                         if (datas.length > maximum)
                             reject({
                                 data: datas,
@@ -155,7 +155,7 @@ const few = function some(iterable, maximum = 0){
                                 errors
                             })
                     }, function(err){
-                        errors.put(err)
+                        errors.push(err)
                         if (++counter === amount)
                             resolve({
                                 data: datas,
@@ -182,14 +182,14 @@ const any = function some(iterable){
             amount++;
             Promise.resolve(promise)
                 .then(function(data){
-                        datas.put(data)
+                        datas.push(data)
                         if (++counter === amount)
                             resolve({
                                 data: datas,
                                 errors
                             })
                     }, function(err){
-                        errors.put(err)
+                        errors.push(err)
                         if (++counter === amount)
                             if (datas.length === 0)
                                 reject(errors)
