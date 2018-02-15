@@ -1,65 +1,134 @@
-var rp = require('request-promise');
 Promise = require('../index.js')();
 
+function doTests(tests){
+    let promises = [];
+    for (let test in tests)
+        for (let aCase of tests[test].cases)
+            promises.push(doTest(tests[test].fun, aCase.res, aCase.rej, aCase.exp, aCase.m));
+    return Promise.all(promises);
+}
+
+function doTest(fun, res, rej, exp, m){
+    return fun(promiseFactory(res,rej), m)
+            .then(function(data){
+                log(exp, `fun:${fun.name}, res:${res}, rej:${rej}, exp:${exp}, m:${m}`);
+            }, function(err){
+                log(!exp, `fun:${fun.name}, res:${res}, rej:${rej}, exp:${exp}, m:${m}`);
+			});
+}
+
 function promiseFactory(res, rej){
-	let promises = []
-	for (let i=0; i<res; i++)
-		promises.push(rp('http://www.google.com'))
-	for (let i=0; i<rej; i++)
-		promises.push(rp('http://www.gosdasdasdagshsr.com'),)
-	return promises
+    let promises = [];
+    let payload = `res:${res}/rej:${rej}`;
+    for (let i=0; i<res; i++)
+        promises.push(new Promise(function(resolve){
+            setTimeout(resolve, 2000, payload)
+        }));
+    for (let i=0; i<rej; i++)
+        promises.push(new Promise(function(undefined, reject){
+            setTimeout(reject, 2000, payload)
+        }));
+    return promises
 }
 
-function doTest(fun, res, rej, m){
-	fun(promiseFactory(res,rej), m).then(()=>{
-		console.log("(S) res: " + fun.name + ": s:" + res + "/f:" + rej + (m?"/m:"+m:""))
-	}, ()=>{		
-		console.log("(F) rej: " + fun.name + ": s:" + res + "/f:" + rej + (m?"/m:"+m:""))
-	})
+function log(success, logs){
+    if (success)
+        console.log('PASSED: ' + logs);
+    else
+        console.error('FAILED: ' + logs);
 }
 
-let tests1 = [
-	Promise.first,
-	Promise.last,
-	Promise.raceLast,
-	Promise.none,
-	Promise.any
-]
+let tests = {
+    first: {
+        fun: Promise.first,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:0, exp: 1},
+            {res:0, rej:1, exp: 0},
+            {res:3, rej:1, exp: 1},
+            {res:1, rej:3, exp: 1},
+        ]
+    },
+    last: {
+        fun: Promise.last,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:0, exp: 1},
+            {res:0, rej:1, exp: 0},
+            {res:3, rej:1, exp: 1},
+            {res:1, rej:3, exp: 1}
+        ]
+    },
+    raceLast: {
+        fun: Promise.raceLast,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:0, exp: 1},
+            {res:3, rej:0, exp: 1},
+            {res:0, rej:1, exp: 0},
+            {res:3, rej:1, exp: 0},
+            {res:1, rej:3, exp: 0}
+        ]
+    },
+    none: {
+        fun: Promise.none,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:0, exp: 0},
+            {res:3, rej:0, exp: 0},
+            {res:0, rej:1, exp: 1},
+            {res:3, rej:1, exp: 0},
+            {res:0, rej:3, exp: 1}
+        ]
+    },
+    any: {
+        fun: Promise.any,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:0, exp: 1},
+            {res:3, rej:0, exp: 1},
+            {res:0, rej:1, exp: 0},
+            {res:3, rej:1, exp: 1},
+            {res:1, rej:3, exp: 1}
+        ]
+    },
+    few: {
+        fun: Promise.few,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:1, m: -1, exp: 0},
+            {res:1, rej:0, m: 0, exp: 0},
+            {res:1, rej:0, m: 1, exp: 1},
+            {res:1, rej:0, m: 2, exp: 1},
+            {res:3, rej:0, m: 2, exp: 0},
+            {res:3, rej:0, m: 3, exp: 1},
+            {res:3, rej:0, m: 4, exp: 1},
+            {res:0, rej:1, m: 0, exp: 1},
+            {res:0, rej:1, m: -1, exp: 0},
+            {res:0, rej:1, m: 1, exp: 1},
+            {res:3, rej:4, m: 2, exp: 0},
+            {res:3, rej:4, m: 3, exp: 1},
+            {res:3, rej:4, m: 4, exp: 1},
+        ]
+    },
+    some: {
+        fun: Promise.some,
+        cases: [
+            {res:0, rej:0, exp: 0},
+            {res:1, rej:1, m: -1, exp: 1},
+            {res:0, rej:1, m: -1, exp: 1},
+            {res:1, rej:0, m: 1, exp: 1},
+            {res:1, rej:0, m: 2, exp: 0},
+            {res:3, rej:0, m: 2, exp: 1},
+            {res:3, rej:0, m: 3, exp: 1},
+            {res:3, rej:0, m: 4, exp: 0},
+            {res:0, rej:1, m: 0, exp: 1},
+            {res:0, rej:1, m: 1, exp: 0},
+            {res:3, rej:4, m: 2, exp: 1},
+            {res:3, rej:4, m: 3, exp: 1},
+            {res:3, rej:4, m: 4, exp: 0},
+        ]
+    },
+};
 
-let tests2 = [
-	Promise.few,
-	Promise.some
-]
-
-let params = [
-	{res:0, rej:0},
-	{res:1, rej:0},
-	{res:0, rej:1},
-	{res:3, rej:1},
-	{res:1, rej:3},
-	{res:3, rej:3}
-]
-
-for (let test of tests1)
-	for (let param of params)
-		doTest(test, param.res, param.rej)
-	
-for (let test of tests2)
-	for (let param of params)
-		doTest(test, param.res, param.rej)
-	
-for (let test of tests2)
-	for (let param of params)
-		doTest(test, param.res, param.rej, 1)
-
-for (let test of tests2)
-	for (let param of params)
-		doTest(test, param.res, param.rej, 2)
-	
-for (let test of tests2)
-	for (let param of params)
-		doTest(test, param.res, param.rej, 3)
-
-for (let test of tests2)
-	for (let param of params)
-		doTest(test, param.res, param.rej, 4)
+doTests(tests);
