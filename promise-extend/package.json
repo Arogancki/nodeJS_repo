@@ -1,6 +1,6 @@
 {
   "name": "promise-extend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adds none, first, last, raceLast, any, few and some functions to Promise object",
   "main": "index.js",
   "keywords": [
@@ -19,9 +19,5 @@
     "test": "node test/index.js"
   },
   "author": "Artur Ziemba <ziembaart@gmail.com>",
-  "license": "WATPL",
-  "dependencies": {
-    "request": "^2.83.0",
-    "request-promise": "^4.2.2"
-  }
+  "license": "WATPL"
 }

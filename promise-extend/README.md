@@ -1,47 +1,39 @@
-# object-mfr 
-Do a map, filter or reduce operation on object enumerable properties  
+# promise-extend
+Adds none, first, last, raceLast, any, few and some functions to Promise object.
 
 ### Usage
 ```js
-Object = require('object-mfr')();
+Promise = require('promise-extend')();
 // or
-require('object-mfr')(Object);
+require('promise-extend')(Promise);
 
-let family = {
-    father: 'Homer',
-    mother: 'Marge',
-    son: 'Bart',
-    daughter: 'Lisa',
-    name: 'Simpson'
-};
+// An iterable object of promises, such as an Array
+let Promises = ...
 
-let caller = {
-    greeting: "Hello"
-};
+// use them just like Promise.all or Promise.race
+promise = Promise.first(Promises)
+promise = Promise.last(Promises)
+promise = Promise.lastRace(Promises)
+promise = Promise.none(Promises)
+promise = Promise.any(Promises)
+promise = Promise.some(Promises, minimum)
+promise = Promise.few(Promises, maximum)
 
-// do function on every property
-family.map(function(val, key, obj){
-    console.log(`${this.greeting} ${val}! (${obj.name}'s ${key})`);
-}, caller);
-
-// keep only properties for which function returns true
-family.filter(function(val, key, obj){
-    return val.indexOf('a') !== -1
-});
-
-// do function on every property 
-// with passed a function previous result
-let initialValue = `Simpsons with "a":`;
-let result = family.reduce(function(previousValue, val, key, obj){
-    return previousValue+' '+val;
-}, initialValue);
-
-console.log(result);
-
-// Hello Homer! (Simpson's father)
-// Hello Marge! (Simpson's mother)
-// Hello Bart! (Simpson's son)
-// Hello Lisa! (Simpson's daughter)
-// Hello Simpson! (Simpson's name)
-// Simpsons with "a": Marge Bart Lisa
+promise.then(onResolve, onReject)...
 ```
+### Descriptions
+##### Promise.first
+Takes an iterable collection of promises. Resolves data when a first promise is resolved. Rejects errors if all promises are rejected.
+##### Promise.last
+Takes an iterable collection of promises. Resolves data of last resolved promise. Rejects errors if all promises are rejected.
+##### Promise.lastRace
+Takes an iterable collection of promises. Resolves data of last resolved promise. Rejects errors if any promise is rejected.
+##### Promise.none
+Takes an iterable collection of promises. Resolves errors if all promises are rejected. Rejects data if any promise is resolved.
+##### Promise.any
+Takes an iterable collection of promises. Resolves data and errors of promises, if any is resolved. Otherwise rejects errors.
+##### Promise.some
+Takes an iterable collection of promises and minimum amount of promises to resolve (default is 1). Resolves data and errors of promises, when there are minimum amount of resolved. Rejects data and errors of promises, if there are less then minimum resolved.
+##### Promise.few
+Takes an iterable collection of promises and maximum amount of promises to resolve (default is 0). Resolves data and errors of promises, if there are at the most maximum amount of resolved. Rejects data and errors of promises, if there are more then maximum resolved.  
+  
