@@ -1,0 +1,20 @@
+{ 
+  "name": "object-mfr-async",
+  "version": "1.0.0",
+  "description": "Do a map, filter or reduce async function on object enumerable properties.",
+  "main": "index.js",
+  "keywords": [
+    "object",
+    "map",
+    "filter",
+	"reduce",
+	"async",
+	"object-mfr",
+	"async"
+  ],
+   "scripts": {
+    "test": "node test/index.js"
+  },
+  "author": "Artur Ziemba <ziembaart@gmail.com>",
+  "license": "WATPL"
+}

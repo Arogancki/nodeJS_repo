@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+	<head>
+		<title>Task manager NodeJS</title>
+		<meta name="description" content="Simply task manager application working on nodeJS server">
+		<meta name="keywords" content="task,manager,nodejs,artur,ziemba,zut,wi">
+		<meta name="author" content="Artur Ziemba">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- window ico external link -->
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<!-- bootstrap external link -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- AngularJS external link -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+		<!-- JQuery external link -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!--  Font external link -->
+		<link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+		<!--  CSS external link -->
+		<link rel="stylesheet" href="styles.css">
+		<!-- JS external link-->
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+	<body ng-app = "main">
+		<div ng-view id="template">
+			<script type = "text/ng-template" id = "SignIn.htm">
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task manager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignIn"><div class="text5">Sign In &#10534</div></a>
+					</div>
+					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignUp"><div class="text5">Sign Up &#128221</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+				<form class="main"  name="form" ng-init="option=false;">
+					<table style="width:100%;">
+						<tr>
+							<td style="width:50%;">
+									<div class="text4" >Login</div>
+							</td>
+							<td style="width:50%">
+									<input class="text6" type = "text" placeholder="login" ng-model = "login" name="login"
+									required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
+							</td>
+						</tr>
+						<tr>
+							<td ng-show="!option" style="width:50%">
+									<div class="text4" >Password</div>
+							</td>
+							<td ng-show="!option" style="width:50%">
+									<input class="text6" type = "password" placeholder="password" ng-model = "password" name="password"
+									required ng-pattern='/^[a-zA-Z0-9._-]+$/' ng-maxlength="20" ng-minlength="8">
+							</td>
+							<td ng-show="option" style="width:50%">
+									<div class="text4" >Email</div>
+							</td>
+							<td ng-show="option" style="width:50%">
+									<input class="text6" type = "email" placeholder="email" ng-model = "email" name="email" required>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="option=!option;">
+									<a ng-show='!option' href =  ""><div class="text4">Reset password</div></a>
+									<a ng-show='option' href =  ""><div class="text4">Sign in</div></a>
+								</div>
+							</td>
+							<td ng-show='option && form.login.$valid && form.email.$valid'>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="ResetPassword();">
+									<a href =  ""><div class="text4">Reset password</div></a>
+								</div>
+							</td>
+							<td class="text4" class="elementButton"
+								ng-show='option && (form.login.$invalid || form.email.$invalid)'>
+								<div style="margin-top:4%;color: #AFAFAF;">Reset password</div>
+							</td>
+							<td ng-show='!option && form.login.$valid && form.password.$valid'>
+								<div style="margin-top:4%;" class="elementButton" ng-click ="SignIn()">
+									<a href =  ""><div class="text4">Sign in</div></a>
+								</div>
+							</td>
+							<td class="text4" class="elementButton"
+								ng-show='!option && (form.login.$invalid || form.password.$invalid)'>
+								<div style="margin-top:4%;color: #AFAFAF;">Sign in</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<div class="text6" style=" margin-top:4%" ng-show="invalid">{{invalid}}</div>
+								<div class="text6" ng-show="form.login.$invalid && form.login.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
+								<div class="text6" ng-show="!option && (form.password.$invalid && form.password.$touched)">Invalid password: letters and numbers only, 8 to 20 character</div>
+								<div class="text6" ng-show="option && (form.email.$invalid && form.email.$touched)">Invalid email</div>
+							</td>	
+						</tr>
+					</table>
+				</form>
+			</script>
+			<script type = "text/ng-template" id = "SignUp.htm">
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task manager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignIn"><div class="text5">Sign In &#10534</div></a>
+					</div>
+					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignUp"><div class="text5">Sign Up &#128221</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+				<form class="main" name="form" novalidate>
+					<table style="width:100%;">
+						<tr>
+								<td style="width:50%;">
+										<div class="text4" >Login</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "text" placeholder="login" ng-model = "login" name = "login"
+										required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="3">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "password" placeholder="password" ng-model = "password" name = "password"
+										required ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="8">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Confirm password</div>
+								</td>
+								<td ng-show="password" style="width:50%">
+										<input class="text6" type = "password" placeholder="confirm password" ng-model = "password2" name = "password2"
+										required ng-pattern="password">
+								</td>
+								<td ng-show="!password" style="width:50%">
+										<input ng-disabled='1' class="text6" placeholder="enter password first">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Email</div>
+										<div class="text9" >Fill in only if you want to receive notifications and want to have an opportunity to reset your password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type="email" type = "text" placeholder="email" ng-model = "email" name = "email">
+								</td>
+							</tr>
+						<tr>
+							<td colspan="2" ng-show='form.login.$valid && form.password.$valid && form.password2.$valid && form.email.$valid'>
+								<div style="margin: auto;margin-top:4%;" class="elementButton" ng-click ="SignUp()">
+									<a href = ""><div class="text4">Accept</div></a>
+								</div>
+							</td>
+							<td colspan="2" ng-show='!(form.login.$valid && form.password.$valid && form.password2.$valid && form.email.$valid)'>
+								<div class="text4" style="margin: auto;margin-top:4%;color: #AFAFAF;">
+									Accept
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div class="text6" style=" margin-top:4%" ng-show="invalid">{{invalid}}</div>
+								<div class="text6" ng-show="form.login.$invalid && form.login.$touched">Invalid login: letters and numbers only, 3 to 20 character</div>
+								<div class="text6" ng-show="form.password.$invalid && form.password.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
+								<div class="text6" ng-show="form.password2.$invalid && form.password2.$touched">Passwords are different</div>
+								<div class="text6" ng-show="form.email.$invalid && form.email.$touched">Invalid email: example@domain, 5 to 80 character</div>
+							</td>	
+						</tr>
+					</table>
+				</form>
+			</script>
+			<script type = "text/ng-template" id = "App.htm">
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task manager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/Settings"><div class="text5">Settings &#9881</div></a>
+					</div>
+					<div  id="headerButton2" ng-click ="SignOut()" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/SignIn"><div class="text5">Sign Out &#128282</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+				<div class="main" style="padding-left:0%;padding-right:0%;">
+					<table style="min-width:100%;" ng-show="ready">
+						<tr>
+							<!-- LEFT -->
+							<td valign="top" style="width:25%;">
+								<ul>
+									<li>
+										<table style="margin: auto;"><tr>
+											<td class="elementButton" ng-click ="CreateNewBoard()">
+												<a href = ""><div class="text1">&nbsp+&nbsp</div></a>
+											</td>
+											<td class="text2">
+												Boards:
+											</td>
+											<td class="text1">&nbsp&nbsp&nbsp</td>
+										</tr></table>
+									</li>
+									<li ng-show="boards.length" ng-repeat = "board in boards  | orderBy: 'name.toString()'">
+										<table ng-show="isThatMe(board.owner);" style="width:100%;"><tr>
+										<td style="width:14%;"></td>
+											<td class="elementButton" ng-click = "ActiveBoard(board);" style="width:72%;">
+												<a  href = ""><div class="text5">{{board.name}}</div></a>
+											</td>
+											<td class="elementButton" ng-click = "DeleteBoard(board);" style="width:14%;">
+												<a  href = ""><div class="text5">&nbsp&#10007&nbsp</div></a>
+											</td>
+										</tr></table>
+										<table ng-show="!isThatMe(board.owner);" style="width:100%;"><tr>
+										<td style="width:14%;"></td>
+											<td class="elementButton" ng-click = "ActiveBoard(board);" style="width:72%;">
+												<a  href = ""><div class="text5">{{board.name+" ("+board.owner+")"}}</div></a>
+											</td>
+											<td class="elementButton" ng-click = "LeaveBoard(board);" style="width:14%;">
+												<a  href = ""><div class="text5">&nbsp&#128682&nbsp</div></a>
+											</td>
+										</tr></table>
+									</li>
+									<li ng-show="!boards.length">
+										<div class="text5">You dont have any boards</div>
+									</li>
+									<li ng-show="invitations.length">
+										<table style="margin: auto;"><tr>
+											<td class="text1">
+												&#9993&nbsp
+											</td>
+											<td class="text2">
+												Invitations:
+											</td>
+											<td class="text1">&nbsp&nbsp</td>
+										</tr></table>
+									</li>
+									<li ng-hide="!invitations.length" ng-repeat = "invitation in invitations | orderBy: 'name.toString()'">
+										<div class="elementButton" ng-click = "AcceptInvitation(invitation);"><a  href = "">
+											<div class="text5">{{invitation.owner+": "+invitation.name}}</div>
+										</a></div>
+									</li>
+								</ul>
+							</td>
+							<td valign="top" style="width:50%;border-left: solid 1px #99CCFF;border-right: solid 1px #99CCFF;">
+								<!-- MIDDLE-->
+								<div style="min-height:68vh;">
+									<ul ng-show="!activeBoard">
+										<li>
+											<div class="text1">Hi {{login}}!</div>
+											<div class="text4">What's up on your boards?<div>
+										</li>
+										<li ng-show="help" style="padding:0;width:100%;overflow: hidden;text-align:center;">
+											<table style="width:100%;"><tr>
+												<td style="width:50%;">
+													<div class="text7" style="padding-right:5%;">&#8592 Here</div>
+													<div class="text8">are your boards</div>
+													<div class="text8">click on board to enter</div>
+													<div class="text8">click on +                 to create new</div>
+													<div class="text8">click on &#128682 to leave</div>
+													<div class="text8">click on &#10007   to delete</div>
+												</td>
+												<td style="width:50%;">
+													<div class="text7">Here &#8594</div>
+													<div class="text8">will be board members &#8594</div>
+													<div class="text8">the user with &#128081 is an owner</div>
+													<div class="text8">click on +                 to invite somebody</div>
+													<div class="text8">click on &#10007 to kick somebody out</div>
+												</td>
+											</tr></table>
+											<div>
+												<div class="text7">Here &#8595</div>
+												<div class="text8">will be board tasks</div>
+												<div class="text8">click on task to show details</div>
+												<div class="text8">click on +&#10148 	to add new "In progress" 	status</div>
+												<div class="text8">click on +&#9940 	 	to add new "Blocked"			status</div>
+												<div class="text8">click on +&#10004 	to add new "Finished" 	status</div>
+												<div class="text8">click on +&#9850 	 	to add new "Resumed" 	status</div>
+											</div>
+										</li>
+										<div ng-show="!help" class="elementButton" ng-click="help=!help;" style="display: inline-block">
+											<div class="text9">show help</div>
+										</div>
+										<div ng-show="help" class="elementButton" ng-click="help=!help;" style="display: inline-block">
+											<div class="text9">hide help</div>
+										</div>
+									</ul>
+									<ul ng-show="activeBoard && !activeTask">
+										<li>
+											<table style="width:100%;"><tr>
+											
+												<td class="text2"  style="width:12.5%;">
+													<div class="elementButton" ng-click ="ActiveBoard(null);"><a href = "">
+														<div>&#128281</div>
+													</a></div>
+												</td>
+												
+												<td style="width:75%;"><table style="margin: auto;"><tr>
+												<td class="elementButton" ng-click ="CreateNewTask();">
+													<a href = ""><div class="text1">&nbsp+&nbsp</a>
+												</td>
+												<td ng-show="isThatMe(activeBoard.owner);" class="text2" >{{activeBoard.name}}:</div>
+												<td ng-show="!isThatMe(activeBoard.owner);" class="text2">{{activeBoard.name}} ({{activeBoard.owner}}):</div>
+												
+												</tr></table></td>
+												<td style="width:12.5%;"></td>
+												
+											</tr></table>
+										</li>
+										<li >
+											<table ng-show="activeBoard.tasks.length" style="width:100%;margin: auto;">
+												<tr class="text7">
+													<th ></th>
+													<th>task:</th>
+													<th>status:</th>
+												</tr>
+												<tr ng-repeat = "task in activeBoard.tasks" class="elementButton" ng-click = "ActiveTask(task)"><a  href = "">
+													<td>
+														<!-- Status sign -->
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='New'"			>&#127381	</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='In progress'"	>&#10148	</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Blocked'"		>&#9940		</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Finished'"	>&#10004	</div>
+														<div class="text6" ng-show="task.statuses[task.statuses.length-1].type==='Resumed'"		>&#9850		</div>
+													</td>
+													<td style="text-align:left;">
+														<!-- name -->
+														<div class="text6" ng-show="task.statuses[0].user===login">{{task.name}}</div>
+														<div class="text6" ng-show="task.statuses[0].user!=login" >{{task.name}} ({{task.statuses[0].user}})</div>
+													</td>
+													<td style="text-align:left;">
+														<!-- last status -->
+														<div class="text6"  ng-show="task.statuses[task.statuses.length-1].user===login">
+															{{task.statuses[task.statuses.length-1].type}}
+														</div>
+														<div class="text6"  ng-show="task.statuses[task.statuses.length-1].user!=login">	
+															{{task.statuses[task.statuses.length-1].type}} ({{task.statuses[task.statuses.length-1].user}})
+														</div>
+													</td>	
+												</a></tr>
+											</table>
+										</li>
+										<li ng-show="!activeBoard.tasks.length">
+											<div class="text2" >There are no tasks here</div>
+										</li>
+									</ul>
+									<ul ng-show="activeTask">
+										<!-- Header -->
+										<li>
+											<table class="text2" style="width:100%;"><tr>
+												<td style="width:12.5%;">
+													<div class="elementButton" ng-click ="ActiveBoard(activeBoard);"><a href = "">
+														<div>&#128281</div>
+													</a></div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type!='Finished'" style="width:12.5%;">
+													<div class="elementButton" ng-click ="AddStatus('Finished')"><a href = "">
+														<div>+&#10004</div>
+													</a></div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type==='Finished' && (activeTask.statuses[0].user===login || activeBoard.owner===login)" style="width:12.5%;">
+													<div class="elementButton" ng-click ="RemoveTask()"><a href = "">
+														<div>&#10007</div>
+													</a></div>
+												</td>
+												<td style="width:50%;">
+													<div>{{activeTask.name}}</div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type!='Finished'" style="width:12.5%;">
+													<div class="elementButton" ng-click ="AddStatus('In progress')"><a href = "">
+														<div >+&#10148</div>
+													</a></div>	
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type!='Finished'" style="width:12.5%;">
+													<div class="elementButton" ng-click ="AddStatus('Blocked')"><a href = "">
+														<div>+&#9940</div>
+													</a></div>
+												</td>
+												<td ng-show="activeTask.statuses[activeTask.statuses.length-1].type==='Finished'" style="width:25%;">
+													<div class="elementButton" ng-click ="AddStatus('Resumed')"><a href = "">
+														<div>+&#9850</div>
+													</a></div>
+												</td>
+											</tr></table>
+										</li>
+										<!-- statuses -->
+										<li>
+											<table style="width:100%;text-align:left;border-collapse: separate;border-spacing: 5px;">
+												<tr class="text7" >
+													<th ></th>
+													<th>task:</th>
+													<th>user:</th>
+													<th>comment:</th>
+													<th>time:</th>
+												</tr>
+												<tr ng-repeat = "status in activeTask.statuses" class="text9">
+													<!-- Status sign -->
+													<td style="text-align:center">
+														<div class="text8" ng-show="status.type==='New'"				>&#127381	</div>
+														<div class="text8" ng-show="status.type==='In progress'"		>&#10148		</div>
+														<div class="text8" ng-show="status.type==='Blocked'"			>&#9940		</div>
+														<div class="text8" ng-show="status.type==='Finished'"			>&#10004		</div>
+														<div class="text8" ng-show="status.type==='Resumed'"		>&#9850		</div>
+													</td>
+													<!-- Status name -->
+													<td>
+														<div>{{status.type}}</div>
+													</td>
+													<!-- Status user-->
+													<td>
+														<div ng-show="status.user===login">You</div>
+														<div ng-show="status.user!=login	"> {{status.user}}</div>
+													</td>
+													<!-- Status info-->
+													<td>
+														<div>{{status.info}}</div>
+													</td>
+													<!-- Date -->
+													<td>
+														<div>{{status.date}}</div>
+													</td>
+												</tr>
+											</table>
+										</li>
+									</ul>
+								</div>
+							</td>
+							<td valign="top" style="min-width:25%;">
+							<!-- RIGHT -->
+								<ul ng-show="activeBoard">
+									<li>
+										<table ng-show="isThatMe(activeBoard.owner)" style="margin: auto;"><tr>
+											<td class="elementButton" ng-click ="InviteToBoard()">
+												<a href = ""><div class="text1">&nbsp+&nbsp</div></a>
+											</td>
+											<td class="text2">
+												Members:
+											</td>
+											<td class="text1">&nbsp&nbsp&nbsp</td>
+										</tr></table>
+										<div ng-show="!isThatMe(activeBoard.owner)" class="text2">
+											Members:
+										</div>
+									</li>
+									<li>
+										<table style="width:100%;"><tr>
+											<td class="text5" style="width:86%;padding-left:14%;">
+												{{activeBoard.owner}}
+											</td>
+											<td class="text5" style="width:14%;">
+												&nbsp&#128081&nbsp</div>
+											</td>
+										</tr></table>
+									</li>
+									<li ng-repeat = "member in activeBoard.members  | orderBy: 'toString()'">
+										<table ng-show="isThatMe(activeBoard.owner)" style="width:100%;"><tr>
+											<td class="text5" style="width:86%;padding-left:14%">
+												{{member}}
+											</td>
+											<td class="elementButton" ng-click = "KickOut(member);" style="width:14%;">
+												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
+											</td>
+										</tr></table>
+										<div ng-show="!isThatMe(activeBoard.owner)" class="text5">
+											{{member}}
+										</div>
+									</li>
+									<li  ng-show="activeBoard.invitations.length"  style="width:100%;overflow: hidden;overflow:auto">
+										<table style="margin: auto;"><tr>
+											<td class="text1">
+												&#128233&nbsp
+											</td>
+											<td class="text2">
+												Invited:
+											</td>
+											<td class="text1">&nbsp&nbsp</td>
+										</tr></table>
+									</li>
+									<li ng-repeat = "invitation in activeBoard.invitations  | orderBy: 'toString()'">
+										<table ng-show="isThatMe(activeBoard.owner)" style="width:100%;"><tr>
+											<td class="text5" style="width:86%;padding-left:14%">
+												{{invitation}}
+											</td>
+											<td class="elementButton" ng-click ="KickOut(invitation);" style="width:14%;">
+												<a  href = ""><div class="text4" >&nbsp&#10007&nbsp</div></a>
+											</td>
+										</tr></table>
+										<div ng-show="!isThatMe(activeBoard.owner)" class="text5">
+											{{invitation}}
+										</div>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+					<div ng-show="!ready" class="loader"></div>
+				</div>
+			</script>
+			<script type = "text/ng-template" id = "Settings.htm">
+				<header>
+					<div id="headerTitle" style="width:75%;text-align:left;float: left;">
+							<div class="text1" style="padding-left:1%;">NodeJS task manager</div>
+					</div>
+					<div id="headerButton1" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/Settings"><div class="text5">Settings &#9881</div></a>
+					</div>
+					<div id="headerButton2" class="elementButton" style="width:25%;float: left;">
+						<a href = "#/Sign Out"><div class="text5">Sign Out &#128282</div></a>
+					</div>
+					<div style="float:auto"></div>
+				</header>
+				<form class="main"  name="form" novalidate>
+						<table style="width:100%;">
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Change password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type = "password" placeholder="new password" ng-model = "newPassword" name = "newPassword"
+										ng-pattern='/^[a-zA-Z0-9._-]+$/'  ng-maxlength="20" ng-minlength="8">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Confirm new password</div>
+								</td>
+								<td ng-show="newPassword" style="width:50%">
+										<input class="text6" type = "password" placeholder="confirm new password" ng-model = "newPassword2" name = "newPassword2"
+										required ng-pattern="newPassword">
+								</td>
+								<td ng-show="!newPassword" style="width:50%">
+										<input ng-disabled='1' class="text6" placeholder="enter new password first">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:50%">
+										<div class="text4" >Change email</div>
+										<div class="text9" >Fill in only if you want to receive notifications and want to have an opportunity to reset your password</div>
+								</td>
+								<td style="width:50%">
+										<input class="text6" type="new email" type = "text" placeholder="email" ng-model = "newEmail" name = "newEmail">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton">
+										<a href = "#/App"><div class="text4">Cancel</div></a>
+									</div>
+								</td>
+								<td ng-show='(newEmail || newPassword) && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true)'>
+									<div style="width:50%;margin: auto;margin-top:4%;" class="elementButton" ng-click ="Change()">
+										<a href = ""><div class="text4">Accept</div></a>
+									</div>
+								</td>
+								<td ng-show='!((newEmail || newPassword) && form.newEmail.$valid && (newPassword ? form.newPassword2.$valid : true))'>
+									<div class="text4" style="width:50%;margin: auto;margin-top:4%;color: #AFAFAF;">
+										Accept
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div class="text6" style=" margin-top:4%" ng-show="invalid">{{invalid}}</div>
+									<div class="text6" ng-show="form.newPassword.$invalid && form.newPassword.$touched">Invalid password: letters and numbers only, 8 to 20 character</div>
+									<div class="text6" ng-show="form.newPassword2.$invalid && form.newPassword2.$touched">Passwords are different</div>
+									<div class="text6" ng-show="form.newEmail.$invalid && form.newEmail.$touched">Invalid email: example@domain, 5 to 80 character</div>
+								</td>	
+							</tr>
+						</table>
+				</form>
+			</script>
+		</div>
+		<footer>
+			<div class="text8">Artur Ziemba - Task manager application as an example of Node.js technology</div>
+		</footer>
+		<script>
+			AlignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");
+			try {				
+				document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; 
+				$(window).resize(function(e) { AlignRowColumn1to2("headerTitle", "headerButton1", "headerButton2");document.getElementById("main").style.marginTop=document.getElementById("headerTitle").style.height; });
+			}
+			catch (err){}
+		</script>
+</html>

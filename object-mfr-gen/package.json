@@ -1,0 +1,20 @@
+{ 
+  "name": "object-mfr-gen",
+  "version": "1.0.1",
+  "description": "Do a map, filter or reduce generator function on object enumerable properties and change callback function whenever you want to",
+  "main": "index.js",
+  "keywords": [
+    "object",
+    "map",
+    "filter",
+	"reduce",
+	"gen",
+	"generator",
+	"object-mfr"
+  ],
+   "scripts": {
+    "test": "node test/index.js"
+  },
+  "author": "Artur Ziemba <ziembaart@gmail.com>",
+  "license": "WATPL"
+}
