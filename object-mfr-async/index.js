@@ -1,65 +1,55 @@
-const mapGen = function* mapGen(callback, thisArg = this){
+const mapAsync = async function mapAsync(callback, thisArg = this){
+    if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
+    let promises = [];
+    for (let el in this){
+        promises.push(new Promise((resolve)=>{
+            resolve(callback.call(thisArg, this[el], el, this));
+        }));
+    }
+    await Promise.all(promises);
+    return Promise.resolve(this);
+}
+
+const filterAsync = async function filterAsync(callback, thisArg = this) {
+    if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
+    let promises = [];
     for (el in this){
-        if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
-        let newCallback = yield callback.call(thisArg, this[el], el, this);
-        newCallback ? callback = newCallback : '';
+        promises.push(new Promise((resolve)=>{
+            let callbackResult = callback.call(thisArg, this[el], el, this);
+            if (!callbackResult)
+                delete this[el];
+            resolve(callbackResult);
+        }));
     }
-    return this;
+    await Promise.all(promises);
+    return Promise.resolve(this);
 }
 
-const filterGen = function* filterGen(callback, thisArg = this) {
+const reduceAsync = async function reduceAsync(callback, accumulator = undefined, thisArg = this){
+    if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
     for (el in this){
-        if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
-        isToDelete = callback.call(thisArg, this[el], el, this);
-        let toYield = {
-            value: this[el],
-            deleted : isToDelete
-        };
-        if (isToDelete)
-            delete this[el];
-        let newCallback = yield toYield;
-        newCallback ? callback = newCallback : '';
+        await new Promise((resolve)=>{
+            if (accumulator !== undefined)
+                accumulator = callback.call(thisArg, accumulator, this[el], el, this);
+            else
+                accumulator = this[el];
+            resolve(accumulator)
+        });
     }
-    return this;
-}
-
-const reduceGen = function* reduceGen(callback, accumulator = undefined, thisArg = this){
-    for (el in this) {
-        if (typeof(callback) !== 'function') throw new TypeError(`callback is not a function`);
-        if (accumulator === undefined)
-            accumulator = this[el];
-        else{
-            let newCallback = yield (accumulator = callback.call(thisArg, accumulator, this[el], el, this));
-            newCallback ? callback = newCallback : '';
-        }
-    }
-    return accumulator;
-}
-
-const runner = function runner(gen){
-    let it = gen();
-    let results = [];
-    it.next();
-    for (let res = it.next(); !res.done; res = it.next())
-        results.push(res);
-    return results;
+    return Promise.resolve(accumulator);
 }
 
 module.exports = function(object = Object){
-    object.defineProperty(Object.prototype, 'mapGen', {
-        value: mapGen,
+    object.defineProperty(Object.prototype, 'mapAsync', {
+        value: mapAsync,
         enumerable: false
     });
-    object.defineProperty(Object.prototype, 'filterGen', {
-        value: filterGen,
+    object.defineProperty(Object.prototype, 'filterAsync', {
+        value: filterAsync,
         enumerable: false
     });
-    object.defineProperty(Object.prototype, 'reduceGen', {
-        value: reduceGen,
-        enumerable: false
-    });
-    object.defineProperty(Object.prototype, 'runner', {
-        value: runner,
+    object.defineProperty(Object.prototype, 'reduceAsync', {
+        value: reduceAsync,
         enumerable: false
     });
     return object;
