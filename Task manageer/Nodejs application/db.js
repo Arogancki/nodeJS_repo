@@ -110,6 +110,7 @@ function GetUser(login) {
 function GetUserEmail(login) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).then(function(user){
+			// TODO check this - error
             if (user.email==="" || user.emailConfimr!==""){
                 reject("Confirmed email not found.");
                 return;

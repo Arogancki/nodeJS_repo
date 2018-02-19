@@ -1,4 +1,6 @@
-﻿const express = require('express');			// web app framework
+﻿//TODO coockie handling down
+
+const express = require('express');			// web app framework
 const fs = require('fs');                     // file streams
 const path = require('path');                 // differences between OS
 const bodyParser = require('body-parser');    // parse jsondata
@@ -93,8 +95,7 @@ function userValidation(body) {
 //send mail to user
 function sendMailToLogin(login, subject, message, priorytyEmail) {
     if (priorytyEmail !== undefined) {
-        nodemailer.send(login, priorytyEmail, subject, message);
-		makeLog(`Email sent to ${priorytyEmail}`);
+		sendMailToLogin(priorytyEmail, subject, message);
     } else {
         db.GetUserEmail(login).then(function(email) {
             nodemailer.send(login, email, subject, message);
