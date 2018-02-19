@@ -18,14 +18,15 @@ app.once('ready', () => {
 
   // Load a URL in the window to the local index.html path
   window.loadURL(url.format({
-    pathname: path.join(__dirname, 'public', 'index.htm'),
+    pathname: path.join(__dirname, 'angular', 'index.html'),
     protocol: 'file:',
     slashes: true
   }))
 
   // Show window when page is ready
   window.once('ready-to-show', () => {
-	  window.maximize();
+	 window.setMenu(null) ;
+	 window.maximize();
     window.show()
   })
 })

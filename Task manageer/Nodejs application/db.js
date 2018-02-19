@@ -1,8 +1,8 @@
 const dataBase = require('mongodb').MongoClient;   // MongoDB databases
 const { execFile } = require('child_process');
 
-const pathToMongoExe = null;
-// const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
+//const pathToMongoExe = null;
+const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
 let dataBaseUrl = "mongodb://localhost:27017/TaskMenager"; // defaultdataBase address
 const usersTable = "users";
 const boardsTable = "boards";
@@ -47,7 +47,7 @@ function Connect() {
 const GetRealName = function GetRealName(login) {
     return new Promise(function (fulfill, reject) {
         if (login === undefined) {
-            reject("User not found");
+            reject("User not found.");
             return;
         }
         Connect().then(function (db) {
@@ -58,7 +58,7 @@ const GetRealName = function GetRealName(login) {
                     return;
                 }
                 if (user === null) {
-                    reject("User not found");
+                    reject("User not found.");
                     return;
                 }
                 fulfill(user.login);
@@ -77,7 +77,7 @@ const Authorization=function Authorization(login, password){
                     return;
                 }
                 if (result === null) {
-                    reject("Invalid login or password");
+                    reject("Invalid login or password.");
                     return;
                 }
                 fulfill(result);
@@ -97,7 +97,7 @@ function GetUser(login) {
                         return;
                     }
                     if (result === null) {
-                        reject("User not found");
+                        reject("User not found.");
                         return;
                     }
                     fulfill(result);
@@ -145,18 +145,31 @@ const InsertUser = function InsertUser(login, password) {
     });
 };
 
-function UpdateUser(login, password) {
+function UpdateUser(login, password, email) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).then(function (user) {
             Connect().then(function (db) {
-                db.collection(usersTable).updateOne({ login: login }, { $set: { password: password } }, function (err, result) {
-                    db.close();
-                    if (err) {
-                        reject(err);
-                        return;
-                    }
-                    fulfill(result);
-                })
+                if (email) {
+                    let rand = GetRandomString();
+                    db.collection(usersTable).updateOne({ login: login }, { $set: { password: password, email: email, emailConfimr: rand } }, function (err, result) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            fulfill(rand);
+                        }
+                        db.close();
+                    });    
+                }
+                else {
+                    db.collection(usersTable).updateOne({ login: login }, { $set: { password: password } }, function(err, result) {
+                        db.close();
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+                        fulfill(result);
+                    })
+                }
             }, reject);
         });
     });
@@ -184,7 +197,7 @@ const ConfirmEmail = function ConfirmEmail(login, confirmation) {
     return new Promise(function (fulfill, reject) {
         GetUser(login).then(function (user) {
             if (user.emailConfimr === ""){
-                reject("Email is already confirmed");
+                reject("Email is already confirmed.");
                 return;
             }
             if (user.emailConfimr === null) {
@@ -397,7 +410,7 @@ let AcceptInvitation=function AcceptInvitation(login, name, owner) {
                     }
                 }
                 if (isInvited === false) {
-                    reject("User has not been invited");
+                    reject("User has not been invited.");
                     return;
                 }
                 Connect().then(function (db) {
@@ -447,7 +460,7 @@ let RefuseInvitation=function (login, name, owner) {
                     }
                 }
                 if (isInvited === false) {
-                    reject("User has not been invited");
+                    reject("User has not been invited.");
                     return;
                 }
                 Connect().then(function (db) {
@@ -531,7 +544,7 @@ let DeleteBoard=function DeleteBoard(login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).then(function (board) {
             if (board.owner !== login) {
-                reject("User is not a board owner");
+                reject("User is not a board owner.");
                 return;
             }
             Connect().then(function (db) {
@@ -617,15 +630,15 @@ let GetTaskObservers=function GetTaskObservers(board, owner, name){
 let InsertTaskStatus=function InsertTaskStatus(login, board, owner, name, info, type) {
     return new Promise(function (fulfill, reject) {
         if (type !== "New" && type !== "In progress" && type !== "Blocked" && type !== "Finished" && type !== "Resumed") {
-            reject("Unknown status of task");
+            reject("Unknown status of task.");
             return;
         }
         GetTask(board, owner, name).then(function(task) {
             if (task.statuses.length > 0 && task.statuses[task.statuses.length - 1].type === "Finished" && type !== "Resumed"){
-                reject(`Only status "Resumed" is allowed after "Finished"`);
+                reject(`Only status "Resumed" is allowed after "Finished."`);
             }
             if (task.statuses.length > 0 && type === "Resumed" && task.statuses[task.statuses.length - 1].type !== "Finished") {
-                reject(`Status "Resumed" is allowed only after "Finished"`);
+                reject(`Status "Resumed" is allowed only after "Finished."`);
                 return;
             }
             Connect().then(function(db) {
