@@ -92,14 +92,21 @@ function userValidation(body) {
     });
 }
 
+function sendEmailWrapper(login, priorytyEmail, subject, message) {
+    nodemailer.send(login, priorytyEmail, subject, message).then(function(result) {
+        makeLog(`Email sent to ${login}`);
+    }).catch(function(err){
+        makeLog(`Error during sending an email to ${login}: ${err}`);
+    });
+}
+
 //send mail to user
 function sendMailToLogin(login, subject, message, priorytyEmail) {
     if (priorytyEmail !== undefined) {
-		sendMailToLogin(priorytyEmail, subject, message);
+        sendEmailWrapper(login, priorytyEmail, subject, message);
     } else {
         db.GetUserEmail(login).then(function(email) {
-            nodemailer.send(login, email, subject, message);
-			makeLog(`Email sent to ${login}`);
+            sendEmailWrapper(login, email, subject, message);
         }, ()=>{});
     }
 }
@@ -231,8 +238,10 @@ app.post('/registration', function (req, res) {
     db.InsertUser(req.body.login, req.body.password).then(function (result) {
         db.InsertUserEmail(req.body.login, req.body.email).then(function (confirmation){
 			res.redirect(getIndexLink('Account created.'));
-            let emailbody =`Open this link to confirm your email:<br><a href="${address}/confirm?login=${req.body.login}&confirmation=${confirmation}">Click Here</a>`;
-            sendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
+            if (req.body.email) {
+                let emailbody = `Open this link to confirm your email:<br><a href="${address}/confirm?login=${req.body.login}&confirmation=${confirmation}">Click Here</a>`;
+                sendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
+            }
         }, function(err){
 			res.redirect(getIndexLink("Account created. You can't sign in, but email wasn't accepted. You can try to set up a new email in settings."));
         });
