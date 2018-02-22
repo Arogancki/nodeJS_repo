@@ -109,8 +109,7 @@ function GetUser(login) {
 
 function GetUserEmail(login) {
     return new Promise(function (fulfill, reject) {
-        GetUser(login).then(function(user){
-			// TODO check this - error
+            GetUser(login).then(function (user) {
             if (user.email==="" || user.emailConfimr!==""){
                 reject("Confirmed email not found.");
                 return;
@@ -119,6 +118,7 @@ function GetUserEmail(login) {
         }, reject);
     });
 }
+    
 
 const InsertUser = function InsertUser(login, password) {
     return new Promise(function (fulfill, reject) {
@@ -365,14 +365,14 @@ let InsertInvitation=function InsertInvitation(ownerLogin, login, name, owner) {
                 reject(`${ownerLogin} is owner of this board`);
                 return;
             }
-            for (let invitation of board.invitations) {
-                if (invitation === login) {
+            for (let invitation in board.invitations) {
+                if (board[invitation] === login) {
                     reject(`${login} is already invited`);
                     return;
                 }
             }
-            for (let member of board.members) {
-                if (member === login) {
+            for (let member in board.members) {
+                if (board[member] === login) {
                     reject(`${login} is already invited`);
                     return;
                 }
@@ -405,8 +405,8 @@ let AcceptInvitation=function AcceptInvitation(login, name, owner) {
         GetUser(login).then(function (user) {
             GetBoard(name, owner).then(function (board) {
                 let isInvited = false;
-                for (let invitation of board.invitations) {
-                    if (invitation === login) {
+                for (let invitation in board.invitations) {
+                    if (board[invitation] === login) {
                         isInvited = true;
                     }
                 }
@@ -455,8 +455,8 @@ let RefuseInvitation=function (login, name, owner) {
         GetUser(login).then(function (user) {
             GetBoard(name, owner).then(function (board) {
                 let isInvited = false;
-                for (let invitation of board.invitations) {
-                    if (invitation === login) {
+                for (let invitation in board.invitations) {
+                    if (board[invitation] === login) {
                         isInvited = true;
                     }
                 }
@@ -490,8 +490,8 @@ let LeaveBoard=function LeaveBoard(login, name, owner) {
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).then(function (board) {
             let isMember = false;
-            for (let member of board.members) {
-                if (member === login) {
+            for (let member in board.members) {
+                if (board[member] === login) {
                     isMember = true;
                     Connect().then(function(db) {
                         db.collection(boardsTable).updateOne({ _id: board._id }, { $pull: { members: login } }, function(err, result) {
@@ -513,8 +513,8 @@ let LeaveBoard=function LeaveBoard(login, name, owner) {
                     }, reject);
                 }
             }
-            for (let invitation of board.invitations) {
-                if (invitation === login) {
+            for (let invitation in board.invitations) {
+                if (board[invitation] === login) {
                     isMember = true;
                     Connect().then(function(db) {
                         db.collection(boardsTable).updateOne({ _id: board._id }, { $pull: { invitations: login } }, function(err, result) {
@@ -549,11 +549,11 @@ let DeleteBoard=function DeleteBoard(login, name, owner) {
                 return;
             }
             Connect().then(function (db) {
-                for (let member of board.members.length) {
-                    db.collection(usersTable).updateOne({ login: member }, { $pull: { boards: board._id } });
+                for (let member in board.members) {
+                    db.collection(usersTable).updateOne({ login: board[member] }, { $pull: { boards: board._id } });
                 }
-                for (let invitation of board.invitations.length) {
-                    db.collection(usersTable).updateOne({ login: invitation }, { $pull: { invitations: board._id } });
+                for (let invitation in board.invitations) {
+                    db.collection(usersTable).updateOne({ login: board[invitation] }, { $pull: { invitations: board._id } });
                 }
                 db.collection(boardsTable).remove({ name: name, owner: owner }, function (err, result) {
                     db.close();
@@ -605,9 +605,9 @@ function RemoveTask(login, board, owner, name) {
 function GetTask(board, owner, name) {
     return new Promise(function (fulfill, reject) {
         GetBoard(board, owner).then(function (board) {
-            for (let task of board.tasks) {
-                if (task.name === name) {
-                    fulfill(task);
+            for (let task in board.tasks) {
+                if (board[task].name === name) {
+                    fulfill(board[task]);
                     return;
                 }
             }
@@ -620,8 +620,8 @@ let GetTaskObservers=function GetTaskObservers(board, owner, name){
     return new Promise(function (fulfill, reject) {
         GetTask(board, owner, name).then(function(task){
             let observers = [];
-            for (let status of task.statuses){
-                observers.push(status.user);
+            for (let status in task.statuses){
+                observers.push(task.statuses[status].user);
             }
             fulfill(observers);
         }, reject);

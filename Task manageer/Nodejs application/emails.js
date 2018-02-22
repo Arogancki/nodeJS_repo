@@ -30,11 +30,10 @@ const send = function (name, to, subject, message) {
                 <p style="text-align:center;">See you soon,<br>NodeJs Task Manager Application.</p>`
         };
         transporter.sendMail(mailOptions, function(error, info) {
-            transporter.close();
             if (error) {
                 reject(error);
             } else {
-                fulfill(info);
+                fulfill(info);    
             }
         });
     });
