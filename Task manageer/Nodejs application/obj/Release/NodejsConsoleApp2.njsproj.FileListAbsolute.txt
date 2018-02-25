@@ -1,2 +1,0 @@
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\Task manageer\Nodejs application\obj\Release\NodejsConsoleApp2.njsprojResolveAssemblyReference.cache
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\Task manageer\Nodejs application\bin\Microsoft.NodejsTools.WebRole.dll
