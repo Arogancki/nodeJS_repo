@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+<table>
+	<thead>
+		<tr>
+			<th>head costam01</th>
+			<th>head costam02</th>
+			<th>head costam03</th>
+			<td>head costam04</td>
+			<td>head costam05</td>
+			<td>head costam06</td>
+			<th>head costam07</th>
+			<th>head costam08</th>
+			<td>head costam09</td>
+			<th>head costam10</th>
+		</tr>
+		<tr>
+			head costam02
+		</tr>
+		<td>
+			head costam03
+		</td>
+		<td>
+			head costam04
+		</td>
+		<tr>
+			<th>head costam01</th>
+			<th>head costam02</th>
+			<th>head costam03</th>
+			<td>head costam04</td>
+			<td>head costam05</td>
+			<td>head costam06</td>
+			<th>head costam07</th>
+			<th>head costam08</th>
+			<td>head costam09</td>
+			<th>head costam10</th>
+		</tr>
+		<td>
+			head costam06
+		</td>
+		<tr>
+			head costam07
+		</tr>
+	</thead>
+
+	<thead>
+		<tr>
+			head costam2
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			body costam1
+		</tr>
+	</tbody>
+
+	<tbody>
+		<tr>
+			body costam2
+		</tr>
+	</tbody>
+	
+	<tfoot>
+		<tr>
+			foot costam1
+		</tr>
+	</tfoot>
+
+	<tfoot>
+		<tr>
+			foot costam2
+		</tr>
+	</tfoot>
+</table>
+</body>
+</html>
