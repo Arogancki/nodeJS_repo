@@ -13,6 +13,10 @@ export default class Main extends React.Component {
       <Route path="/sign/up" component={SignUp}/>
       <Route path="/sign/in" component={SignIn}/>
       <Route path="/app/settings" component={Settings}/>
+      {
+        //TODO 
+        // add app to this route
+      }
       <Route path="/" component={App}/>
     </div>
   }
