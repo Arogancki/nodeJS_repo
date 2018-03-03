@@ -35,7 +35,8 @@ export default class SignUp extends React.Component {
         valid: false,
         touched: false,
         validation: (v)=>validator.text(v,8,50),
-        onBlur: this.set
+        onBlur: this.set,
+        type: "password"
       },
       "confirm password": {
         label: "Confirm password",
@@ -43,7 +44,8 @@ export default class SignUp extends React.Component {
         valid: false,
         touched: false,
         validation: (v)=>v===this.state.password.value,
-        onBlur: this.set
+        onBlur: this.set,
+        type: "password"
       }
     };
   }

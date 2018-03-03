@@ -38,7 +38,8 @@ export default class SignIn extends React.Component {
         valid: false,
         touched: false,
         validation: (v)=>validator.text(v,8,50),
-        onBlur: this.set
+        onBlur: this.set,
+        type: "password"
       }
     };
   }

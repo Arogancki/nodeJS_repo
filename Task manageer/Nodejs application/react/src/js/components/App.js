@@ -29,12 +29,22 @@ let invitations = [
  }
 ]
 
+let members = {
+  owned: true,
+  owner: "Gary",
+  members: [
+    "Marry", "Sam", "Kerry", "Elie"
+  ]
+}
+
 export default class App extends React.Component {
   render() {
     return <div class="main" style={{...styles.flexRow}}>
       <Boards boards={boards} invitations={invitations}/>
-      <Dashboard/>
-      <Members/>
+      <div style={{width:"50%", borderLeft: "solid 2px #99CCFF", borderRight: "solid 2px #99CCFF"}}>
+        <Dashboard/>
+      </div>
+      <Members {...members}/>
     </div>
   }
 }

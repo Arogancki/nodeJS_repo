@@ -1,14 +1,24 @@
 import React from "react"
-import * as styles from "./styles"
 
-import Dashboard from "./Dashboard"
-import Boards from "./Boards"
-import Members from "./Members"
+import { Route } from 'react-router-dom'
+
+import * as styles from "./styles"
+import Welcome from "./Welcome"
+import Board from "./Board"
+import Task from "./Task"
 
 export default class App extends React.Component {
   render() {
-    return <div style={{width:"50%", borderLeft: "solid 1px #99CCFF", borderRight: "solid 1px #99CCFF"}}>
-      mock
+    return <div>
+      <Route path="/app/" component={Welcome}/>
+      {
+        // path to board
+      }
+      <Route path="/" component={Board}/>
+      {
+        // path to task
+      }
+      <Route path="/" component={Task}/>
     </div>
   }
 }

@@ -3,16 +3,23 @@ import React from "react"
 import * as styles from "./styles"
 
 export default class Boards extends React.Component {
+  constructor(props){
+    super(props);
+    this.props = props;
+    this.activeBoard = this.activeBoard.bind(this);
+    this.addBoard = this.addBoard.bind(this);
+    this.leaveBoard = this.leaveBoard.bind(this);
+    this.deleteBoard = this.deleteBoard.bind(this);
+    this.invitationHandler = this.invitationHandler.bind(this);
+  }
   activeBoard(board){
     console.log("selected ")
-    window.e=board;
   }
   addBoard(){
     console.log('add board ')
   }
   deleteBoard(board){
     console.log('remove board')
-    window.e=board;
   }
   leaveBoard(board){
     console.log('leave board')
@@ -40,7 +47,7 @@ export default class Boards extends React.Component {
           <div key={k} style={{...styles.flexRow, padding: "1% 0% 1% 0%"}}>
               <span style={{...styles.text5, flexBasis:"10%"} }/>
               <span class="elementButton" onClick={()=>this.activeBoard(v)} style={{...styles.text5, flexBasis:"80%"}}>
-                {` ${v.name}${!v.owned ? ` (${v.owner})`:''} `}
+                {` ${v.name}${!v.owned ? ` (${v.owner}'s)`:''} `}
               </span>
               <span class="elementButton" style={{...styles.text5, flexBasis:"10%"} }>
                 {
@@ -74,7 +81,7 @@ export default class Boards extends React.Component {
               <div key={k} style={{...styles.flexRow, padding: "1% 0% 1% 0%"}}>
               <div class="elementButton" onClick={()=>this.invitationHandler(v)} style={{width: "100%"}}>
                 <span style={{...styles.text5}}>
-                  {` ${v.owner}: ${v.board} `}
+                  {` ${v.owner}'s: ${v.board} `}
                 </span>
               </div>
             </div>)

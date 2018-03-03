@@ -12,7 +12,8 @@ export default class Form extends React.Component {
           label: props.label || "",
           value: props.value,
           valid: props.valid,
-          touched: props.touched
+          touched: props.touched,
+          type: props.type
       }
     }
     render(){
@@ -20,6 +21,7 @@ export default class Form extends React.Component {
       return <div style={{...styles.flexRow, width:"50%"}}>
         <div style={labelStyle}> {this.state.label} </div>
         <input style={inputStyle}
+          type={this.state.type || "text"}
           value={this.state.value}
           class={this.props.touched && !this.props.valid ? "inputInvalid" : "input"}
           onChange={(e)=>{
