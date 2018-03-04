@@ -563,10 +563,10 @@ Moduł został użyty wyłącznie do testów aplikacji.
 \subsection{Moduły wewnetrzne}
 Wewnętrzne moduły, czyli takie, które zostały napisane przeze mnie specjalnie na użytek projektu, to:
 \begin{enumerate}
-\item emails.js (wykorzystujący zewnętrzny moduł mongodb) - moduł zapewnia komunikację z bazą danych w technologii mongodb, poprzez wywoływanie odpowiednich funkcji. 
+\item db.js (wykorzystujący zewnętrzny moduł mongodb) - moduł zapewnia komunikację z bazą danych w technologii mongodb, poprzez wywoływanie odpowiednich funkcji. 
 Został dostosowany bezpośrednio do obsługi bazy danych dla wykonywanego projektu. 
 Dzięki temu plik główny serwera nie musi znać budowy, ani wykonywać operacji bezpośrednio na dokumentach bazy danych.
-\item db.js (wykorzystujący zewnętrzny moduł nodemailer) - dostarcza obsługę wysyłania wiadomości email do użytkowników serwisu w przypadku zajścia określonych sytuacji, takich jak na przykład otrzymanie nowego zaproszenia czy zmiana statusu zadania. Moduł dostarcza jedną, prostą w obsłudze funkcję zapewniającą obsługę wiadomości email. 
+\item emails.js (wykorzystujący zewnętrzny moduł nodemailer) - dostarcza obsługę wysyłania wiadomości email do użytkowników serwisu w przypadku zajścia określonych sytuacji, takich jak na przykład otrzymanie nowego zaproszenia czy zmiana statusu zadania. Moduł dostarcza jedną, prostą w obsłudze funkcję zapewniającą obsługę wiadomości email. 
 \end{enumerate}
 
 
