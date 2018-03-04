@@ -1,6 +1,7 @@
 import React from "react"
 
 import * as styles from "./styles"
+import {Link} from "react-router-dom"
 
 export default class Members extends React.Component {
   constructor(props){
