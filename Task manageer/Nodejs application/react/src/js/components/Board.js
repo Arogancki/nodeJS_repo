@@ -40,7 +40,7 @@ export default class Board extends React.Component {
           {this.props.tasks.map((v,k)=>{
             return <div key={k} class="elementButton" onClick={()=>this.selectTask(v)} style={{...styles.flexRow, ...styles.text4, textAlign:"left"}}>
               <div style={{flexBasis:"10%", textAlign:"center"}}>
-                {statusIcon(v.statuses[v.statuses.length-1].type) || ""}
+                {statusIcon(v.statuses[v.statuses.length-1].type)}
               </div>
               <div style={{flexBasis:"45%"}}>
                 {v.name}

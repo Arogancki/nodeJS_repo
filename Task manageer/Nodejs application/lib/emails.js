@@ -64,7 +64,7 @@ exports.sendMailToLogin = function sendMailToLogin(login, subject, message, prio
 // send mail to every board members
 exports.sendMailToBoard = function sendMailToBoard(board,owner,subject,message,exception){
     db.GetBoardUsers(board,owner).then(function(users){
-        for (let member of users.member) {
+        for (let member of users.members) {
             if (member!==exception){
                 sendMailToLogin(member,subject,message);
             }

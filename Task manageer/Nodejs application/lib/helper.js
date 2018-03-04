@@ -1,4 +1,4 @@
-const SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = false;	// constant variable if true json objects will be printed in logs after sending response
+const SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = process.env.LOGS || false;	// constant variable if true json objects will be printed in logs after sending response
 
 const db = require('./db')()
 
@@ -8,8 +8,10 @@ function getDate() {
     return [date.getFullYear(), ("0" + (date.getMonth() + 1)).slice(-2), ("0" + date.getDate()).slice(-2)].join("-") + " " + [("0" + date.getHours()).slice(-2), ("0" + date.getMinutes()).slice(-2), ("0" + date.getSeconds()).slice(-2), ("0" + date.getMilliseconds()).slice(-2)].join(':');
 }
 
-exports.getIndexLink = function getIndexLink(message){
-    return `/index.html${message ? `?message=${encodeURI(message)}` : ""}`
+exports.getIndexLink = function getIndexLink(message)
+{   if (SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS && message)
+        makeLog(`getIndexLink: ${message}`);
+    return `/`
 }
 
 exports.logger = function logger(req, res, next) {
@@ -43,7 +45,7 @@ exports.emailValidation = function emailValidation(text, min = 0, max = Infinity
 }
 
 // send "check login and password"
-exports.userValidation = function userValidation(body) {
+function userValidation(body) {
     return new Promise(function(fulfill, reject) {
         if (!textValidation(body.login, 3, 20) || !textValidation(body.password, 3, 20)) {
             reject("Invalind login or password");
@@ -54,6 +56,17 @@ exports.userValidation = function userValidation(body) {
         }, reject);
     });
 }
+exports.userValidation = userValidation;
+
+function userCorretionAndValidation(req, res){
+    return new Promise(function(resolve, reject){
+        db.GetRealName(req.body.login).then(function(realLogin){
+            req.body.login = realLogin;
+            userValidation(req.body).then(resolve, reject);
+        }, reject);
+    });
+}
+exports.userCorretionAndValidation = userCorretionAndValidation;
 
 // send error message
 exports.sendError = function sendError(message, code, req, res) {

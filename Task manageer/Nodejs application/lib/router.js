@@ -7,9 +7,15 @@ const emails = require('./emails')
 const globals = require('./globals')
 
 // Accessed for all users
+/*
 router.get('/', function (req, res) {
-    res.redirect(h.getIndexLink());
+    if (req.body.login && req.body.password){
+        h.userCorretionAndValidation(req, res).then(()=>res.redirect("/App"), ()=>res.redirect("/SignIn"));
+        retrun;
+    }
+    res.redirect("/SignIn");
 });
+*/
 
 router.get('/bgIMG',( req, res)=>{
     res.redirect(`/resources/${Math.ceil(Math.random() * 4)}`);
@@ -30,12 +36,13 @@ router.get('/confirm', function (req, res) { // email confirmation
     }
 });
 
+
 // Accessed for requests with login and password
 router.use(function (req, res, next) {
     if (req.method === 'POST' && req.body)
         next();
     else
-        res.redirect(h.getIndexLink('Unsupported request'));
+        res.redirect(h.getIndexLink('Unsupported request '+req.originalUrl));
 })
 
 router.post('/resetpassword', function (req, res) {
@@ -53,26 +60,6 @@ router.post('/resetpassword', function (req, res) {
     else {
         h.sendError("Invalid login or email", 401, req, res);
     }
-});
-
-// cookies handling
-router.use(function (req, res, next) {
-    let cookieLogin = req.cookies.login;
-    if (req.body.login && cookieLogin !== req.body.login) {
-        res.cookie('login', req.body.login, { maxAge: 86400000, httpOnly: true });
-    }
-    else if (!req.body.login && cookieLogin) {
-        req.body.login = cookieLogin;
-    }
-
-    let cookiePassword = req.cookies.password;
-    if (req.body.password && cookiePassword !== req.body.password) {
-        res.cookie('password', req.body.password, { maxAge: 86400000, httpOnly: true });
-    }
-    else if (!req.body.password && cookiePassword) {
-        req.body.password = cookiePassword;
-    }
-    next();
 });
 
 router.post('/registration', function (req, res) {
@@ -106,16 +93,7 @@ router.post('/registration', function (req, res) {
 
 // User validation
 router.use(function (req, res, next) {
-    db.GetRealName(req.body.login).then(function(realLogin) {
-        req.body.login = realLogin;
-        h.userValidation(req.body).then(function(result) {
-            next();
-        }, function(err){
-            h.sendError(err, 401, req, res);
-        });
-    }, function(err){
-        h.sendError(err, 401, req, res);
-    });
+    h.userCorretionAndValidation(req, res).then(()=>next(), err=>h.sendError(err, 401, req, res));
 });
 
 router.post('/authorization', function (req, res) {
@@ -294,7 +272,7 @@ router.post('/InviteToBoard', function (req, res) {
 });
 
 router.post('/CreateNewTask', function (req, res) {
-    if (!req.body.board || !req.body.owner || !req.body.task || !req.body.info){
+    if (!req.body.board || !req.body.owner || !req.body.task || req.body.info===undefined){
         h.sendError("Board name, board owner or member, task name or comment are missing.", 400, req,res);
         return;
     }

@@ -4,11 +4,11 @@ const path = require('path')                 // differences between OS
 const bodyParser = require('body-parser')    // parse jsondata
 const cookieParser = require('cookie-parser') // cookies handling
 
+const cookieHandler = require('./lib/cookieHandler')
 const h = require('./lib/helper')
 const { router } = require('./lib/router')
 const globals = require('./lib/globals')
 
-const defaultPort = 3000;                                // default port for listening
 const public = path.join(__dirname, "angular");	// path with public files
 const resources = path.join(public, "resources");	// specific files path
 
@@ -17,7 +17,8 @@ const app = express();						        //  create epress configuration object
 //midlewares
 app.use(bodyParser.json());                         // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cookieParser());                            // load cookies module for app
+app.use(cookieParser());       
+app.use(cookieHandler);
 app.use(h.logger);
 app.use(express.static(public));
 app.use('/', router);
@@ -38,9 +39,8 @@ app.use(function(err, req, res, next) {
 });
 */
 
-app.set('port', process.env.PORT || defaultPort);
+app.set('port', globals.port);
 
 let server = app.listen(app.get('port'), "127.0.0.1", function () {
-    globals.address = server.address().address+":"+server.address().port;
-    h.makeLog(`Server is listening on: ${globals.address}`);
+    h.makeLog(`Server is listening on port ${server.address().port}`);
 });
