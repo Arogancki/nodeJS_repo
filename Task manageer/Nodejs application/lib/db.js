@@ -1,7 +1,7 @@
 const dataBase = require('mongodb').MongoClient
 
-const pathToMongoExe = null;
-//const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
+//const pathToMongoExe = null;
+const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
 var static_isRunning;
 
 let dataBaseUrl = "mongodb://localhost:27017/TaskMenager"; // defaultdataBase address
@@ -17,7 +17,7 @@ function StartMongo(){
     if (static_isRunning)
         return;
     static_isRunning = true;
-    require('child_process')(pathToMongoExe, function(err, data) {
+    require('child_process').execFile(pathToMongoExe, function(err, data) {
         console.log(err)
         console.log(data.toString());
     });

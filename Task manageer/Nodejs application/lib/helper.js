@@ -1,4 +1,4 @@
-const SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = process.env.LOGS || false;	// constant variable if true json objects will be printed in logs after sending response
+const SHOW_JSON_OBJECTS_IN_RESPONSE_LOGS = process.env.LOGS || true;	// constant variable if true json objects will be printed in logs after sending response
 
 const db = require('./db')()
 

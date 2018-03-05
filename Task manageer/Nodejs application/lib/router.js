@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const db = require('./db')()
 const h = require('./helper')
 const emails = require('./emails')
@@ -16,10 +15,6 @@ router.get('/', function (req, res) {
     res.redirect("/SignIn");
 });
 */
-
-router.get('/bgIMG',( req, res)=>{
-    res.redirect(`/resources/${Math.ceil(Math.random() * 4)}`);
-});
 
 router.get('/confirm', function (req, res) { // email confirmation
     if (req.query.login !== undefined && h.isMongoInjectionsFree(req.query.login) &&

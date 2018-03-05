@@ -1,9 +1,8 @@
 export const background = {
-    'backgroundColor': '#3399FF', 
+    'backgroundColor': 'transparent', 
     'minHeight': '100vh',
     'color': '#FFFFFF',
-    'fontFamily': 'Exo, sans-serif',
-    'padding':'2%',
+    'fontFamily': 'Exo, sans-serif'
 }
 
 export const inactive = {

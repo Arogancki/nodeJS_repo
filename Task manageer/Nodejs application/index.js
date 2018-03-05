@@ -9,7 +9,8 @@ const h = require('./lib/helper')
 const { router } = require('./lib/router')
 const globals = require('./lib/globals')
 
-const public = path.join(__dirname, "angular");	// path with public files
+// const public = path.join(__dirname, "angular");	// path with public files
+const public = path.join(__dirname, "react", "src");	// path with public files
 const resources = path.join(public, "resources");	// specific files path
 
 const app = express();						        //  create epress configuration object
@@ -21,6 +22,23 @@ app.use(cookieParser());
 app.use(cookieHandler);
 app.use(h.logger);
 app.use(express.static(public));
+
+app.get('/bgIMG',( req, res)=>{
+    fs.readFile(path.join(resources, Math.ceil(Math.random() * 4).toString()), function (err, data) {
+        if (err) {
+            res.setHeader('Content-Type', "aplication/json");
+            res.statusCode = 400;
+            h.makeLog(err);
+            res.end(err)
+            return;
+        }
+        res.setHeader('Content-Type', "image/jpeg");
+        res.statusCode = 200;
+        h.makeLog(`Image file sent`,req);
+        res.end(data);
+    });
+});
+
 app.use('/', router);
 
 /// catch 404 and forwarding to error handler

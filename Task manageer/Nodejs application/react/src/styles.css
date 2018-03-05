@@ -1,4 +1,4 @@
-.body
+body
 {
 	background-color: #3399FF; 
 	min-height: 100vh;
@@ -7,6 +7,10 @@
 	padding:2%;
 	font-size: 19px;
 }	
+
+.app{
+	opacity: 0.8;
+}
 
 .main
 {
