@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
       <div style={styles.background}>
         <div style={{minHeight:"88vh", background:"rgba(1, 1, 1, 0.3)"}}>
           <Header/>
-          <Main/>
+          <Route path="/" component={Main}/>
         </div>
         <Footer/>
       </div>
