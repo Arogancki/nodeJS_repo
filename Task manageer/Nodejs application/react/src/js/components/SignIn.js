@@ -1,10 +1,12 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import Cookies from 'js-cookie'
 
 import * as styles from "./styles"
 import { validator } from "../helper"
 import Form from "./Form.js"
 import {Generic, GenericButton, GenericLinkButton} from "./Generic"
+import axios from 'axios'
 
 
 let labelStyle = {...styles.text4, textAlign:"center", width:"50%", margin: "1%"};
@@ -44,10 +46,26 @@ export default class SignIn extends React.Component {
     };
   }
   reset(e){
-    console.log(`Data: ${this.state.login.value} ${this.state.email.value}`)
+    axios.post('/resetpassword', {
+      login: this.state.login.value,
+      email: this.state.email.value
+    }).then((res)=>{
+      alert("If email is correct, link to reset your password will be send.");
+    }, (err)=>{
+      alert("If email is correct, link to reset your password will be send.");
+    });
   }
   signIn(e){
-    console.log(`Data: ${this.state.login.value} ${this.state.password.value}`)
+    axios.post('/authorization', {
+      login: this.state.login.value,
+      password: this.state.password.value
+    }).then((res)=>{
+      Cookies.set("login", this.state.login.value, { expires: 1 });
+      Cookies.set("password", this.state.password.value, { expires: 1 });
+      this.props.history.push("/app");
+    }, (err)=>{
+      alert(err.response.data);
+    });
   }
   set(props){
     this.state[props.label.toLowerCase()] = { ...this.state[props.label.toLowerCase()], ...props};
@@ -68,7 +86,7 @@ export default class SignIn extends React.Component {
                   this.state.login.valid && this.state.password.valid ?
                   <div key={1} style={labelStyle}>{GenericButton("Sign In", styles.button, this.signIn)}</div>
                   : 
-                  <div key={1} style={{...labelStyle, ...styles.inactive}}>Sign In</div>
+                  <div key={1} style={{...labelStyle, ...styles.inactive, display:"block", ...styles.button}}>Sign In</div>
                 ]
               ],
               style: {...styles.flexRow, width:"50%"},

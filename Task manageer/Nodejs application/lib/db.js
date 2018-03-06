@@ -1,7 +1,7 @@
 const dataBase = require('mongodb').MongoClient
 
-//const pathToMongoExe = null;
-const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
+const pathToMongoExe = null;
+//const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
 var static_isRunning;
 
 let dataBaseUrl = "mongodb://localhost:27017/TaskMenager"; // defaultdataBase address
@@ -67,7 +67,7 @@ const GetRealName = function GetRealName(login) {
                 }
                 fulfill(user.login);
             });
-        }, reject);
+        }).catch(e=>reject(e));
     });
 };
 
@@ -86,7 +86,7 @@ const Authorization=function Authorization(login, password){
                 }
                 fulfill(result);
             });
-        }, reject);
+        }).catch(e=>reject(e));
     });
 };
 
@@ -106,8 +106,8 @@ function GetUser(login) {
                     }
                     fulfill(result);
                 });
-            }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 }
 
@@ -119,7 +119,7 @@ function GetUserEmail(login) {
                 return;
             }
             fulfill(user.email);
-        }, reject);
+        }).catch(e=>reject(e));
     });
 }
     
@@ -146,7 +146,7 @@ const InsertUser = function InsertUser(login, password) {
                     fulfill(result);
                 })
             });
-        }, reject);
+        }).catch(e=>reject(e));
     });
 };
 
@@ -175,7 +175,7 @@ function UpdateUser(login, password, email) {
                         fulfill(result);
                     })
                 }
-            }, reject);
+            }).catch(e=>reject(e));
         });
     });
 }
@@ -193,8 +193,8 @@ const InsertUserEmail = function InsertUserEmail(login, email) {
                     }
                     db.close();
                 });
-            }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -222,8 +222,8 @@ const ConfirmEmail = function ConfirmEmail(login, confirmation) {
                     }
                     fulfill(result);
                 });
-            }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -244,8 +244,8 @@ const ResetPassword = function ResetPassword(login, email) {
                     }
                     fulfill({newPassword: newPassword, login: name});
                 });
-            }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -264,7 +264,7 @@ function GetBoard(name, owner) {
                 }
                 fulfill(result);
             });
-        }, reject);
+        }).catch(e=>reject(e));
     });
 }
 
@@ -272,7 +272,7 @@ let GetBoardUsers=function GetBoardUsers(name, owner){
     return new Promise(function (fulfill, reject) {
         GetBoard(name, owner).then(function(board){
             fulfill({owner:board.owner, members:board.members, invited:board.invitations});
-        }, reject);
+        }).catch(e=>reject(e));
     });
 };
 
@@ -291,7 +291,7 @@ function GetBoards(ids) {
                 }
                 fulfill(result);
             });
-        }, reject);
+        }).catch(e=>reject(e));
     });
 }
 
@@ -310,7 +310,7 @@ function GetInvitationsInfo(ids) {
                 }
                 fulfill(InvitationsInfo);
             });
-        }, reject);
+        }).catch(e=>reject(e));
     });
 }
 
@@ -333,8 +333,8 @@ let InsertBoard=function InsertBoard(name, owner) {
                         fulfill(result);
                     });
                 });
-            }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -343,8 +343,8 @@ let GetUserBoards=function GetUserBoards(login) {
         GetUser(login).then(function (user) {
             GetBoards(user.boards).then(function (boards) {
                 fulfill(boards);
-            }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -353,8 +353,8 @@ let GetUserInvitationsInfo=function GetUserInvitationsInfo(login) {
         GetUser(login).then(function (user) {
             GetInvitationsInfo(user.invitations).then(function (invitations) {
                 fulfill(invitations);
-                }, reject);
-        }, reject);
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -398,9 +398,9 @@ let InsertInvitation=function InsertInvitation(ownerLogin, login, name, owner) {
                             fulfill(result);
                         });
                     });
-                }, reject);
-            }, reject);
-        }, reject);
+                }).catch(e=>reject(e));
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 
@@ -448,9 +448,9 @@ let AcceptInvitation=function AcceptInvitation(login, name, owner) {
                             });
                         });
                     });
-                }, reject);
-            }, reject);
-        }, reject);
+                }).catch(e=>reject(e));
+            }).catch(e=>reject(e));
+        }).catch(e=>reject(e));
     });
 };
 

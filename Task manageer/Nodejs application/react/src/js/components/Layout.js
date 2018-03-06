@@ -11,7 +11,7 @@ export default class Layout extends React.Component {
     return <BrowserRouter>
       <div style={styles.background}>
         <div style={{minHeight:"88vh", background:"rgba(1, 1, 1, 0.3)"}}>
-          <Header/>
+          <Route path="/" component={Header}/>
           <Route path="/" component={Main}/>
         </div>
         <Footer/>

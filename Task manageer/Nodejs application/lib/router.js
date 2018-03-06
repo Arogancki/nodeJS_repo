@@ -22,7 +22,7 @@ router.get('/confirm', function (req, res) { // email confirmation
         db.ConfirmEmail(req.query.login, req.query.confirmation).then(function (result) {
             emails.sendMailToLogin(req.query.login,"Email confirmed","Your email is confirmed.<br>You're going to recive notifications from now.");
             res.redirect(h.getIndexLink(encodeURI('Email confirmed.')));
-        }, function(err){
+        }).catch(function(err){
             res.redirect(h.getIndexLink(err));
         });
     }
@@ -48,7 +48,7 @@ router.post('/resetpassword', function (req, res) {
                 emails.sendMailToLogin(result.login, "Your new password", "The password is reset.<br>Your new password<br>" +
                     result.newPassword + "<br>You can change it when you sign in next time.", req.body.email);
             }
-        }, function(err){
+        }).catch(function(err){
             h.sendError(err, 401, req, res);
         });
     }
@@ -73,15 +73,17 @@ router.post('/registration', function (req, res) {
     }
     db.InsertUser(req.body.login, req.body.password).then(function (result) {
         db.InsertUserEmail(req.body.login, req.body.email).then(function (confirmation){
-            res.redirect(h.getIndexLink('Account created.'));
+            res.cookie('login', req.body.login, { maxAge: 86400000, httpOnly: true });
+            res.cookie('password', req.body.password, { maxAge: 86400000, httpOnly: true });
+            h.sendOk(req, res);
             if (req.body.email) {
                 let emailbody = `Open this link to confirm your email:<br><a href="${globals.address}/confirm?login=${req.body.login}&confirmation=${confirmation}">Click Here</a>`;
                 emails.sendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
             }
-        }, function(err){
+        }).catch(function(err){
             res.redirect(h.getIndexLink("Account created. You can't sign in, but email wasn't accepted. You can try to set up a new email in settings."));
         });
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -92,6 +94,8 @@ router.use(function (req, res, next) {
 });
 
 router.post('/authorization', function (req, res) {
+    res.cookie('login', req.body.login, { maxAge: 86400000, httpOnly: true });
+    res.cookie('password', req.body.password, { maxAge: 86400000, httpOnly: true });
     h.sendOk(req, res, JSON.stringify({ login: req.body.login }));
 });
 
@@ -99,7 +103,11 @@ router.post('/getBoardsAndInvitations', function (req, res) {
     db.GetUserBoards(req.body.login).then(function (boards) {
         db.GetUserInvitationsInfo(req.body.login).then(function (invitations) {
             h.sendOk(req, res, JSON.stringify({ boards, invitations }));
+        }).catch(e=>{
+            h.sendError(err, 400, req,res);
         });
+    }).catch(e=>{
+        h.sendError(err, 400, req,res);
     });
 });
 
@@ -116,6 +124,8 @@ router.post('/CreateNewBoard', function (req, res) {
         h.sendOk(req,res);
     }, function(err){
         h.sendError(`You already have board ${req.body.board}.`, 400, req, res);
+    }).catch(e=>{
+        h.sendError(err, 400, req,res);
     });
 });
 
@@ -124,7 +134,7 @@ router.use(function (req, res, next) {
     db.GetRealName(req.body.owner).then(function (realLogin) {
         req.body.owner = realLogin;
         next();
-    }, function(err){
+    }).catch(e=>{
         next();
     });
 });
@@ -142,7 +152,7 @@ router.post('/AcceptInviattion', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The user<br>${req.body.login}<br>has joined the ${req.body.owner}'s board ${req.body.board}.`;
         emails.sendMailToBoard(req.body.board, req.body.owner, "A member has joined the board", emailBody, req.body.login);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -160,7 +170,7 @@ router.post('/ReffuseInviattion', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The user<br>${req.body.login}<br> refused invitation to your board ${req.body.board}.`;
         emails.sendMailToLogin(req.body.owner, "Invitation to "+req.body.board+" refused", emailBody);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req, res);
     });
 });
@@ -178,7 +188,7 @@ router.post('/LeaveBoard', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The user<br>${req.body.login}<br>has left the ${req.body.owner}'s board ${req.body.board}.`;
         emails.sendMailToBoard(req.body.board,req.body.owner,"A member has left the board", emailBody,"");
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err,req,res);
     });
 });
@@ -196,7 +206,7 @@ router.post('/DeleteBoard', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The board<br>${req.body.board}<br>has been deleted by owner ${req.body.owner}.`;
         emails.sendMailToBoard(req.body.board,req.body.owner, "The board deleted", emailBody, req.body.owner);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req, res);
     });
 });
@@ -206,7 +216,7 @@ router.use(function (req, res, next) {
     db.GetRealName(req.body.member).then(function (realLogin) {
         req.body.member = realLogin;
         next();
-    }, function(err){
+    }).catch(e=>{
         next();
     });
 });
@@ -224,7 +234,7 @@ router.post('/KickOut', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The owner ${req.body.owner} has kicked out<br>${req.body.member}<br>from his board ${req.body.board}.`;
         emails.sendMailToBoard(req.body.board ,req.body.owner ,"A member kicked out", emailBody, req.body.owner);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -243,7 +253,7 @@ router.post('/AddStatus', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The user ${req.body.login}<br>added new status <br>${req.body.task} - ${req.body.type}<br>in ${req.body.owner}'s board ${req.body.board}.`;
         emails.sendMailToTaskObservers(req.body.board,req.body.owner,req.body.task, "New status of task", emailBody, req.body.login);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -261,7 +271,7 @@ router.post('/InviteToBoard', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The user<br>${req.body.login}<br>invited you to the board<br>${req.body.board}<br>You can accept or refuse it after you sign in.`;
         emails.sendMailToLogin(req.body.member,"New invitation waiting", emailBody);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -279,7 +289,7 @@ router.post('/CreateNewTask', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `The user<br>${req.body.login}<br>has added new Task:<br>${req.body.task}<br>to ${req.body.owner}'s board ${req.body.board}.`;
         emails.sendMailToBoard(req.body.board,req.body.owner,"New task in board", emailBody, req.body.login);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -297,7 +307,7 @@ router.post('/RemoveTask', function (req, res) {
         h.sendOk(req,res);
         let emailBody = `${req.body.owner} has removed task:<br>${req.body.task}<br>from his board ${req.body.board}.`;
         emails.sendMailToTaskObservers(req.body.board, req.body.owner, req.body.task, "Task removed", emailBody ,req.body.owner);
-    }, function(err){
+    }).catch(function(err){
         h.sendError(err, 400, req,res);
     });
 });
@@ -334,7 +344,7 @@ router.post('/changeUserData', function (req, res) {
             h.sendOk(req, res);
             let emailbody = `Open this link to confirm your new email:<br><a href="${globals.address}/confirm?login=${req.body.login}&confirmation=${result}">Click Here</a>`;
             emails.sendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.newEmail);
-        }, function (err) {
+        }).catch(function (err) {
             h.sendError(err, 400, req, res);
         });
     }
@@ -343,14 +353,14 @@ router.post('/changeUserData', function (req, res) {
             h.sendOk(req, res);
             let emailbody = `Open this link to confirm your new email:<br><a href="${globals.address}/confirm?login=${req.body.login}&confirmation=${result}">Click Here</a>`;
             emails.sendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.newEmail);
-        }, function (err) {
+        }).catch(function (err) {
             sendError(err, 400, req, res);
         });
     }
     else if (willPasswordChange) {
         db.UpdateUser(req.body.login, req.body.newPassword).then(function(result) {
             h.sendOk(req, res);
-        }, function(err) {
+        }).catch(function(err) {
             h.sendError(err, 400, req, res);
         });
     }

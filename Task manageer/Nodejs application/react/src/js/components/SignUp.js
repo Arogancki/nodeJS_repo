@@ -1,9 +1,11 @@
 import React from "react"
-import * as styles from "./styles"
+import Cookies from 'js-cookie'
 
+import * as styles from "./styles"
 import { validator } from "../helper"
 import Form from "./Form.js"
 import {Generic, GenericButton} from "./Generic"
+import axios from 'axios'
 
 let labelStyle = {...styles.text4, textAlign:"center", width:"50%", margin: "1%"};
 let inputStyle = {...styles.text6, textAlign:"center", width:"50%", margin: "2%"};
@@ -50,7 +52,18 @@ export default class SignUp extends React.Component {
     };
   }
   signUp(e){
-    console.log(`Data: ${this.state.login.value} ${this.state.password.value}`)
+    axios.post('/registration', {
+      login: this.state.login.value,
+      password: this.state.password.value,
+      password2: this.state["confirm password"].value,
+      email: this.state.email.value
+    }).then((res)=>{
+      Cookies.set("login", this.state.login.value, { expires: 1 });
+      Cookies.set("password", this.state.password.value, { expires: 1 });
+      this.props.history.push("/app");
+    }, (err)=>{
+      alert(err.response.data);
+    });
   }
   set(props){
     this.state[props.label.toLowerCase()] = { ...this.state[props.label.toLowerCase()], ...props}; 
@@ -73,9 +86,9 @@ export default class SignUp extends React.Component {
         <div style={labelStyle}>{
             this.state.login.valid && this.state.password.valid 
             && this.state.email.valid && (this.state.password.value === this.state["confirm password"].value) ?
-            GenericButton("Sign Up", styles.button, this.signIn)
+            GenericButton("Sign Up", styles.button, this.signUp)
             :
-            <div style={{...styles.button, ...styles.inactive}}>Sign Up</div>
+            <div style={{display:"block", ...styles.button, ...styles.inactive, margin: "1%"}}>Sign Up</div>
           }
         </div>
         <div style={labelStyle}>

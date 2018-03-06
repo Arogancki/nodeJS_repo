@@ -20,10 +20,10 @@ export class Generic extends React.Component {
   }
 }
 
-export function GenericLinkButton(child, link, style){
+export function GenericLinkButton(child, link, style, onClick=undefined){
   return <Generic {...{
     state: {
-      child: <Link class={"elementButton"} style={{'display': 'block'}} to={link}>{child}</Link>
+      child: <Link class={"elementButton"} onClick={()=>onClick&&onClick()} style={{'display': 'block'}} to={link}>{child}</Link>
     },
     style
   }}/>

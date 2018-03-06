@@ -74,7 +74,7 @@ export default class Task extends React.Component {
             </div>
           </div>
           {this.props.statuses.map((v,k)=>{
-            return <div key={k} style={{...styles.flexRow, ...styles.text8, textAlign:"left"}}>
+            return <div key={k} style={{...styles.flexRow, ...styles.text8, textAlign:"left", marginBottom:"1%", marginTop:"1%"}}>
               <div style={{flexBasis:"5%", textAlign:"center"}}>
                 {statusIcon(v.type)}
               </div>

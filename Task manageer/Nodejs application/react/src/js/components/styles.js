@@ -1,6 +1,5 @@
 export const background = {
     'backgroundColor': 'transparent', 
-    'minHeight': '100vh',
     'color': '#FFFFFF',
     'fontFamily': 'Exo, sans-serif'
 }
