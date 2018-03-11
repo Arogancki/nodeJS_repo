@@ -90,7 +90,7 @@ router.post('/registration', function (req, res) {
 
 // User validation
 router.use(function (req, res, next) {
-    h.userCorretionAndValidation(req, res).then(()=>next(), err=>h.sendError(err, 401, req, res));
+    h.userCorretionAndValidation(req, res).then(()=>next()).catch(err=>h.sendError(err, 401, req, res));
 });
 
 router.post('/authorization', function (req, res) {

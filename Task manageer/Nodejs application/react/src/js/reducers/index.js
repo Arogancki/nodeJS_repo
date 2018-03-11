@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 
-import tweets from "./tweetsReducer"
-import user from "./userReducer"
+import boards from "./boardsReducer"
+import invitations from "./invitationsReducer"
 
 export default combineReducers({
-  tweets,
-  user,
+  boards: boards,
+  invitations: invitations
 })

@@ -6,28 +6,58 @@ import SignIn from "./SignIn"
 import SignUp from "./SignUp"
 import App from "./App"
 import Settings from "./Settings"
-import { getCookie } from "../helper"
+import axios from 'axios'
 
 export default class Main extends React.Component {
   constructor(props){
     super(props);
-    setTimeout(()=>this.props.history.push('./sign'), 300);
-    //this.props.history.push('./app');
+    let login = Cookies.get("login");
+    let password = Cookies.get("password");
+
+    //TODO UNMOCK THIS
+    login = "test";
+    password = "testtest";
+
+    this.state = { login };
+    if (login && password){
+      axios.post('/authorization', {
+        login: login,
+        password: password
+      }).then((res)=>{
+        this.props.history.push('./app');
+      }, (err)=>{
+        Cookies.remove("login");
+        Cookies.remove("password");
+        console.log(err);
+        alert(err.response.data);
+        this.props.history.push('./sign/in');
+      })
+    }
+    else{
+      setTimeout(()=>this.props.history.push('./sign/in'),0);
+    }
   }
-  // //router na spiner tuej pod /
   render() {
+    let login = this.state.login;
     return <div>
       <Route path="/sign/up" component={SignUp}/>
       <Route path="/sign/in" component={SignIn}/>
       <Route path="/settings" component={Settings}/>
       <Route path="/app" component={App}/>
       <Route exact path="/" component={React.createClass({
-          render: function(){
-            return (
-              <div class="loader"/>
-            );
-          }
-        })}/>
+        render: function(){
+          return (
+            <App user={login}/>
+          );
+        }
+      })}/>
+      <Route exact path="/" component={React.createClass({
+        render: function(){
+          return (
+            <div class="loader"/>
+          );
+        }
+      })}/>
       </div>
   }
 }

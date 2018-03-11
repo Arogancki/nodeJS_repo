@@ -4,13 +4,14 @@ import * as styles from "./styles"
 import { validator } from "../helper"
 import Form from "./Form.js"
 import {Generic, GenericButton} from "./Generic"
+import axios from 'axios'
 
 let labelStyle = {...styles.text4, textAlign:"center", width:"50%", margin: "1%"};
 let inputStyle = {...styles.text6, textAlign:"center", width:"50%", margin: "2%"};
 export default class Settings extends React.Component {
   constructor(props) {
     super(props);
-    this.signUp = this.signUp.bind(this);
+    this.change = this.change.bind(this);
     this.set = this.set.bind(this);
     this.state = {
       email: {
@@ -41,8 +42,15 @@ export default class Settings extends React.Component {
       }
     };
   }
-  signUp(e){
-    console.log(`Data: ${this.state.password.value} ${this.state.password.value}`)
+  change(e){
+    let body = {};
+    this.state.password.valid && this.state["confirm password"].valid && (body.password = this.state.password.value);
+    this.state.password.valid && (body.newEmail = this.state.newEmail.value);
+    axios.post('/changeUserData', body).then((res)=>{
+      this.props.history.push("/app");
+    }, (err)=>{
+      alert(err.response.data);
+    });
   }
   set(props){
     this.state[props.label.toLowerCase()] = { ...this.state[props.label.toLowerCase()], ...props}; 
@@ -65,13 +73,12 @@ export default class Settings extends React.Component {
     if (this.state.email.valid){
         buttonLabel += buttonLabel ? " and email" : "Change email";
     }
-    let x = GenericButton(buttonLabel, styles.button, this.signUp);
-    console.log(buttonLabel)
+    let x = GenericButton(buttonLabel, styles.button, this.change);
     return <div style={{...styles.flexColumn, width:"100%", alignItems: 'center', justifyContent:'center'}}>
         <Form { ...this.state.password }/>
         <Form { ...this.state["confirm password"] }/>
         <Form { ...this.state.email }/>
-        <div style={labelStyle} onClick={this.signUp}>
+        <div style={labelStyle} onClick={this.change}>
             {buttonLabel && <div class={"elementButton"}>{buttonLabel}</div> || "What you what to change?"}
         </div>
         <div style={labelStyle}>

@@ -1,9 +1,12 @@
 import React from "react"
-import * as styles from "./styles"
+import { connect } from "react-redux"
 
+import * as styles from "./styles"
 import Dashboard from "./Dashboard"
 import Boards from "./Boards"
 import Members from "./Members"
+import { getBoardsAndInvitations } from "../actions/getBoardsAndInvitations"
+import { isOwner } from '../helper'
 
 let boards = [
   {
@@ -29,12 +32,12 @@ let invitations = [
  }
 ]
 
-let members = {
+let invited = ["Marry", "Sam", "Kerry", "Elie"];
+let members = ["Marry", "Sam", "Kerry", "Elie"];
+
+let owner = {
   owned: true,
-  owner: "Gary",
-  members: [
-    "Marry", "Sam", "Kerry", "Elie"
-  ]
+  owner: "Gary"
 }
 
 let board = {
@@ -90,15 +93,33 @@ let board = {
     }
   ]
 }
-
+let user = null;
+@connect((store) => {
+  return {
+    boards: store.boards,
+    invitations: store.invitations,
+    active: ~store.boards.active? store.boards[store.boards.active]:[],
+    members: ~store.boards.active? store.boards[store.boards.active].members:[],
+    invited: ~store.boards.active? store.boards[store.boards.active].invitations:[]
+  };
+}, null, (stateProps, dispatchProps, ownProps) => {
+  user = ownProps.user || user;
+  return Object.assign({}, stateProps, dispatchProps, ownProps);
+})
 export default class App extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  componentWillMount() {
+    this.props.dispatch(getBoardsAndInvitations());
+  }
   render() {
     return <div class="main" style={{...styles.flexRow}}>
-      <Boards boards={boards} invitations={invitations}/>
+      <Boards boards={this.props.boards} invitations={this.props.invitations}/>
       <div style={{width:"50%", borderLeft: "solid 2px #99CCFF", borderRight: "solid 2px #99CCFF"}}>
-        <Dashboard board={board}/>
+        <Dashboard user={user} board={this.props.active}/>
       </div>
-      <Members {...members}/>
+      <Members members={members} invited={invited} owner={owner.owner} owned={owner.owned}/>
     </div>
   }
 }

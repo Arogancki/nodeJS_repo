@@ -21,3 +21,7 @@ export function statusIcon(status){
     else
       return undefined
 }
+
+export function isOwner(str1, str2){
+  return str1.toUpperCase() === str2.toUpperCase();
+}

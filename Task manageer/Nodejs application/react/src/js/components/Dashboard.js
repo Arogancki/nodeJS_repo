@@ -1,4 +1,5 @@
 import React from "react"
+import Cookies from 'js-cookie'
 
 import { Route } from 'react-router-dom'
 
@@ -13,9 +14,18 @@ export default class App extends React.Component {
     this.props = props;
   }
   render() {
+    
+    window.x=this;
     let board = this.props.board;
+    let login = this.props.user;
     return <div>
-      <Route exact path="/app/" component={Welcome}/>
+      <Route exact path="/app/" component={React.createClass({
+        render: function(){
+          return (
+            <Welcome name={login}/>
+          );
+        }
+      })}/>
       <Route path="/app/board" component={React.createClass({
         render: function(){
           return (

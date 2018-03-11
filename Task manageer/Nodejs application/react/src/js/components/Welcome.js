@@ -28,7 +28,7 @@ export default class Welcome extends React.Component {
   render() {
     return <div style={styles.flexColumn}> 
       <div style={styles.text1}>
-        Hi {this.props.name}!
+        Hi{this.props.name?" "+this.props.name:""}!
       </div>
       <div style={styles.text4}>
         What's up on your boards?
