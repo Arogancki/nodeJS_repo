@@ -40,5 +40,5 @@
   "license": "WTFPL",
   "main": "index.js",
   "name": "copy-object-helper",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }

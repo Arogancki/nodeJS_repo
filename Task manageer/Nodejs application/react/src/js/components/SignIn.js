@@ -13,6 +13,10 @@ let labelStyle = {...styles.text4, textAlign:"center", width:"50%", margin: "1%"
 let inputStyle = {...styles.text6, textAlign:"center", width:"50%", margin: "2%"};
 export default class SignIn extends React.Component {
   constructor(props) {
+    Cookies.remove('login');
+    Cookies.remove('password');
+    localStorage.removeItem("login");
+    localStorage.removeItem("password");
     super(props);
     this.set = this.set.bind(this);
     this.reset = this.reset.bind(this);
@@ -62,6 +66,8 @@ export default class SignIn extends React.Component {
     }).then((res)=>{
       Cookies.set("login", this.state.login.value, { expires: 1 });
       Cookies.set("password", this.state.password.value, { expires: 1 });
+      localStorage.setItem('login', this.state.login.value);
+      localStorage.setItem('password', this.state.password.value);
       this.props.history.push("/app");
     }, (err)=>{
       alert(err.response.data);

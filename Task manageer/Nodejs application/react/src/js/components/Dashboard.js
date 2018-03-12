@@ -14,8 +14,6 @@ export default class App extends React.Component {
     this.props = props;
   }
   render() {
-    
-    window.x=this;
     let board = this.props.board;
     let login = this.props.user;
     return <div>

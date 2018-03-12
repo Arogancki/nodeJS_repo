@@ -1,5 +1,3 @@
-const { Map } = require('immutable')
-
 export default function reducer(state={
     boards: [],
     active: -1

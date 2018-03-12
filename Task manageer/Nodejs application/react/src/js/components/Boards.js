@@ -1,4 +1,5 @@
 import React from "react"
+import axios from 'axios'
 
 import * as styles from "./styles"
 
@@ -13,19 +14,67 @@ export default class Boards extends React.Component {
     this.invitationHandler = this.invitationHandler.bind(this);
   }
   activeBoard(board){
-    console.log("selected ")
+    this.props.setActiveBoard(board);
   }
   addBoard(){
-    console.log('add board ')
+    let name = prompt("How you'd like to name it?");
+    if (name){
+      axios.post('/CreateNewBoard', {
+        board: name
+      }).then((res)=>{
+        this.props.refresh();
+      }, (err)=>{
+        alert(err.response.data);
+      });
+    }
   }
   deleteBoard(board){
-    console.log('remove board')
+    if (confirm(`Do you want to delete ${board.name}?`)){
+      axios.post('/DeleteBoard', {
+        board: board.name,
+        owner: board.owner
+      }).then((res)=>{
+        this.props.refresh();
+      }, (err)=>{
+        alert(err.response.data);
+      });
+    }
   }
   leaveBoard(board){
-    console.log('leave board')
+    if (confirm(`Do you want to leave from ${board.owner}'s ${board.name}?`)){
+      axios.post('/LeaveBoard', {
+        board: board.name,
+        owner: board.owner
+      }).then((res)=>{
+        this.props.refresh();
+      }, (err)=>{
+        alert(err.response.data);
+      });
+    }
   }
   invitationHandler(invitation){
-    console.log('inv ')
+    if (confirm(`Do you want to accept invitation from ${board.owner} to ${board.name}?`)){
+      axios.post('/AcceptInviattion', {
+        board: board.name,
+        owner: board.owner
+      }).then((res)=>{
+        this.props.refresh();
+      }, (err)=>{
+        alert(err.response.data);
+      });
+    }
+    else{
+      if (confirm(`Are you sure?`)){
+        axios.post('/ReffuseInviattion', {
+          board: board.name,
+          owner: board.owner
+        }).then((res)=>{
+          this.props.refresh();
+        }, (err)=>{
+          alert(err.response.data);
+        });
+      }
+    }
   }
   render() {
     return <div style={{width:"25%", alignItems: 'center', justifyContent:'center'}}>
@@ -46,7 +95,7 @@ export default class Boards extends React.Component {
         this.props.boards && this.props.boards.length ? this.props.boards.map((v,k)=>
           <div key={k} style={{...styles.flexRow, padding: "1% 0% 1% 0%"}}>
               <span style={{...styles.text5, flexBasis:"10%"} }/>
-              <span class="elementButton" onClick={()=>this.activeBoard(v)} style={{...styles.text5, flexBasis:"80%"}}>
+              <span class="elementButton" onClick={()=>this.activeBoard(k)} style={{...styles.text5, flexBasis:"80%"}}>
                 {` ${v.name}${!v.owned ? ` (${v.owner}'s)`:''} `}
               </span>
               <span class="elementButton" style={{...styles.text5, flexBasis:"10%"} }>

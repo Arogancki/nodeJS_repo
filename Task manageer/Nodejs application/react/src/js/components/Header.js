@@ -36,7 +36,7 @@ let SettingsMenu = {
   state: {
     child: [
       <div key={"0"}>{GenericLinkButton("Go back ⇦", "/app", styles.button)}</div>,
-      <div key={"1"}>{GenericLinkButton("Sign Out 🔚", "/sign/in", styles.button, ()=>{Cookies.remove('login');Cookies.remove('password');})}</div>
+      <div key={"1"}>{GenericLinkButton("Sign Out 🔚", "/sign/in", styles.button)}</div>
     ]
   }
 };

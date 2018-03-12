@@ -14,10 +14,9 @@ export default class Main extends React.Component {
     let login = Cookies.get("login");
     let password = Cookies.get("password");
 
-    //TODO UNMOCK THIS
-    login = "test";
-    password = "testtest";
-
+     login = localStorage.getItem('login');
+     password =  localStorage.getItem('password');
+     
     this.state = { login };
     if (login && password){
       axios.post('/authorization', {
@@ -28,8 +27,9 @@ export default class Main extends React.Component {
       }, (err)=>{
         Cookies.remove("login");
         Cookies.remove("password");
+        localStorage.removeItem("login");
+        localStorage.removeItem("password");
         console.log(err);
-        alert(err.response.data);
         this.props.history.push('./sign/in');
       })
     }
@@ -47,7 +47,7 @@ export default class Main extends React.Component {
       <Route exact path="/" component={React.createClass({
         render: function(){
           return (
-            <App user={login}/>
+            <App user={login} history={this.props.history}/>
           );
         }
       })}/>

@@ -17,7 +17,6 @@ const mergeObjects = function mergeObjects(...objs){
 			return objs[1]
 		for(let i in objs[1]){
 				objs[0][i] = mergeObjects(objs[0][i], objs[1][i])
-				console.log(i)
 		}
 		return objs[0];
 }

@@ -52,7 +52,6 @@ function userValidation(body) {
             return;
         }
         db.Authorization(body.login, body.password).then(function (authentication) {
-			console.log('hej2')
             fulfill(authentication);
         }, reject);
     });
