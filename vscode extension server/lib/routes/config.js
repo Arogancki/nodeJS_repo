@@ -1,24 +1,36 @@
 const express = require('express')
 const path = require('path')
+const fs = require('fs')
 
 const h = require('../helper')
-const globals = require('../globals')
+const workingDir = require('../workingDir')
 
 const router = express.Router()
 const CONFIG_FILE_NAME = ".AACT";
 
-router.post('/config', function (req, res) {
+function getConfigFile(){
+    let curentDir = workingDir.getPath();
+    let files = fs.readdirSync(curentDir).filter(
+        f=>h.compareIgnoreCase(path.extname(f), CONFIG_FILE_NAME));
+
+    if (files.length === 0){
+        throw "Config file not found.";
+    }
+        
+    if (files.length > 1){
+        throw "Multiple config files found.";
+    }
+    return path.join(curentDir, files[0]);
+}
+
+router.post('/', function (req, res) {
     if (error = h.bodyValidation(req)){
         h.sendError(error, 400, req, res);
         return;
     }
-    let configFilePath = path.resolve(path.join(globals.getPath(), CONFIG_FILE_NAME));
-    if (!doesExist(configFilePath)){
-        h.sendError(`File ${configFilePath} does not exist.`, 400, req, res);
-        return;
-    }
+    
     try {
-        h.writeJsonFile(configFilePath, req.body);
+        h.writeJsonFile(getConfigFile(), req.body);
         h.sendOk(req, res);
     }
     catch(e){
@@ -26,14 +38,23 @@ router.post('/config', function (req, res) {
     }
 });
 
-router.get('/config', function (req, res) {
-    let configFilePath = path.resolve(path.join(globals.getPath(), CONFIG_FILE_NAME));
-    if (!doesExist(configFilePath)){
-        h.sendError(`File ${configFilePath} does not exist.`, 400, req, res);
+router.get('/', function (req, res) {
+    let curentDir = workingDir.getPath();
+    let files = fs.readdirSync(curentDir).filter(
+        f=>h.compareIgnoreCase(path.extname(f), CONFIG_FILE_NAME));
+
+    if (files.length === 0){
+        h.sendError("Config file not found.", 500, req, res);
         return;
     }
+        
+    if (files.length > 1){
+        h.sendError("Multiple config files found.", 500, req, res);
+        return;
+    }
+
     try {
-        h.sendOk(req, res, h.readJsonFile(configFilePath));
+        h.sendOk(req, res, h.readJsonFile(getConfigFile()));
     }
     catch(e){
         h.sendError(e.message, 500, req, res);

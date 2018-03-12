@@ -2,15 +2,15 @@ const express = require('express')
 //const appStarterKit = require('cloudux-starter-kit')
 
 const h = require('../helper')
-const globals = require('../globals')
+const workingDir = require('../workingDir')
 
 const router = express.Router()
 
-router.get('/path', function (req, res) {
-    h.sendOk(req, res, globals.getPath());
+router.get('/', function (req, res) {
+    h.sendOk(req, res, {path: workingDir.getPath()});
 })
 
-router.post('/path', function (req, res) {
+router.post('/', function (req, res) {
     if (error = h.bodyValidation(req, {
         val: 'path',
         type: 'string'
@@ -22,7 +22,7 @@ router.post('/path', function (req, res) {
         h.sendError(`Path does not exist: ${req.body.path}`, 400, req, res);
         return;
     }
-    globals.setPath(req.body.path);
+    workingDir.setPath(req.body.path);
     h.sendOk(req, res);
 })
 

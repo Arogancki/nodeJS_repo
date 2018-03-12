@@ -18,12 +18,23 @@ app.use(express.static(staticFiles));
 
 app.use('/', router);
 
+app.use('/openDialogBox', function(req, res, next) {
+    if (serverOptions.openDialogBox){
+        serverOptions.openDialogBox().then(dir=>h.sendOk(req, res, dir && dir[0] || {}));
+        return
+    }
+    next()
+});
+
 app.use(function(req, res) {
     h.sendError("Not Found", 404, req, res);
 });
 
-portfinder.basePort = 8099;
-portfinder.getPort(function (err, port) {
+let serverOptions;
+module.exports = function server(options){
+    serverOptions = options || {};
+    portfinder.basePort = 8099;
+    portfinder.getPort(function (err, port) {
     if (err){
         throw err;
     }
@@ -37,3 +48,4 @@ portfinder.getPort(function (err, port) {
             };
         })
 });
+}

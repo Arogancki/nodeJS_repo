@@ -8,9 +8,9 @@ const { run } = require('./routes/run.js')
 
 const router = express.Router()
 
-router.use('/app', app);
-router.use('/config', config);
 router.use('/path', path);
+router.use('/config', config);
+router.use('/app', app);
 router.use('/service', service);
 router.use('/run', run);
 

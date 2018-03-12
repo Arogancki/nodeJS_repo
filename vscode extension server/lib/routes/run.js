@@ -6,7 +6,7 @@ const h = require('../helper')
 const router = express.Router()
 let process = null;
 
-router.post('/run', function (req, res) {
+router.post('/', function (req, res) {
     if (error = h.bodyValidation(req, {
         val: 'command',
         type: 'string'
@@ -28,7 +28,7 @@ router.post('/run', function (req, res) {
     })
 })
 
-router.delete('/run', function (req, res) {
+router.delete('/', function (req, res) {
     if (!process){
         h.sendError("Process not running", 400, req, res);
         return;

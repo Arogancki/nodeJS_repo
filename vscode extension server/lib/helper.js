@@ -99,3 +99,8 @@ function doesExist(file){
     return fs.existsSync(path.resolve(file));
 }
 exports.doesExist = doesExist;
+
+function compareIgnoreCase(s1, s2){
+    return s1.toUpperCase()===s2.toUpperCase();
+}
+exports.compareIgnoreCase = compareIgnoreCase;
