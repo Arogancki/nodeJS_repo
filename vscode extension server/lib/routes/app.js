@@ -20,12 +20,6 @@ router.use('/', function (req, res) {
     }, {
         val: 'description',
         type: 'string'
-    }, {
-        val: 'hostIp',
-        type: 'string'
-    }, {
-        val: 'projectChoice',
-        type: 'string'
     })){
         h.sendError(error, 400, req, res);
         return;
@@ -42,7 +36,7 @@ router.use('/', function (req, res) {
     }
 
     let args = [`--name=${body.name}`, `--description=${body.description}`, 
-    `--path=${body.path}`, `--hostIp=${body.hostIp}`, `--projectChoice=${body.projectChoice}`];
+    `--path=${body.path}`, '--hostIp=http://localhost:3000/', '--projectChoice=core'];
     body.hostPort && args.push(`--hostPort=${body.hostPort}`);
     body.osgiIp && args.push(`--osgiIp=${body.osgiIp}`);
     body.osgiPort && args.push(`--osgiPort=${body.osgiPort}`);

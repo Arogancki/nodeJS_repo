@@ -18,7 +18,7 @@ exports.logger = function logger(req, res, next) {
 
 function makeLog(text,req){
     if (req)
-        console.log(`${getDate()} > ${req.ip} > ${text}`);
+        console.log(`${getDate()} > ${req.ip}:${req.socket.localPort} > ${text}`);
     else
         console.log(`${getDate()} > ${text}`);
 }
@@ -36,7 +36,8 @@ exports.headerChecker = function logger(req, res, next) {
 
 exports.allowEveryOrigin = function allowEveryOrigin(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
 }
 
