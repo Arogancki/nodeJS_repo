@@ -77,7 +77,8 @@ router.post('/registration', function (req, res) {
             res.cookie('password', req.body.password, { maxAge: 86400000, httpOnly: true });
             h.sendOk(req, res);
             if (req.body.email) {
-                let emailbody = `Open this link to confirm your email:<br><a href="${globals.address}/confirm?login=${req.body.login}&confirmation=${confirmation}">Click Here</a>`;
+                let emailbody = `Open this link to confirm your email:<br><a href="${globals.dnsAddress}/confirm?login=${req.body.login}&confirmation=${confirmation}">Click Here</a>`;
+				console.log("ZLE LINKI W EMAILACH :"+ emailbody);
                 emails.sendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
             }
         }).catch(function(err){
@@ -342,7 +343,7 @@ router.post('/changeUserData', function (req, res) {
     if (willPasswordChange && willEmailChange) {
         db.UpdateUser(req.body.login, req.body.newPassword, req.body.newEmail).then(function(result){
             h.sendOk(req, res);
-            let emailbody = `Open this link to confirm your new email:<br><a href="${globals.address}/confirm?login=${req.body.login}&confirmation=${result}">Click Here</a>`;
+            let emailbody = `Open this link to confirm your new email:<br><a href="${globals.dnsAddress}/confirm?login=${req.body.login}&confirmation=${result}">Click Here</a>`;
             emails.sendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.newEmail);
         }).catch(function (err) {
             h.sendError(err, 400, req, res);
@@ -351,7 +352,7 @@ router.post('/changeUserData', function (req, res) {
     else if (willEmailChange) {
         db.InsertUserEmail(req.body.login, req.body.newEmail).then(function (result){
             h.sendOk(req, res);
-            let emailbody = `Open this link to confirm your new email:<br><a href="${globals.address}/confirm?login=${req.body.login}&confirmation=${result}">Click Here</a>`;
+            let emailbody = `Open this link to confirm your new email:<br><a href="${globals.dnsAddress}/confirm?login=${req.body.login}&confirmation=${result}">Click Here</a>`;
             emails.sendMailToLogin(req.body.login, "Confirm your new email", emailbody, req.body.newEmail);
         }).catch(function (err) {
             sendError(err, 400, req, res);

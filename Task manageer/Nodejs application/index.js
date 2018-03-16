@@ -10,7 +10,7 @@ const { router } = require('./lib/router')
 const globals = require('./lib/globals')
 
 // const public = path.join(__dirname, "angular");	// path with public files
-const public = path.join(__dirname, "react", "src");	// path with public files
+const public = path.join(__dirname, "angular", "src");	// path with public files
 const resources = path.join(public, "resources");	// specific files path
 
 const app = express();						        //  create epress configuration object

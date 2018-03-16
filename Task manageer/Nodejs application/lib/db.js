@@ -4,7 +4,7 @@ const pathToMongoExe = null;
 //const pathToMongoExe = require('path').join('C:', 'Program Files', 'MongoDB', 'Server', '3.4', 'bin', 'mongod.exe');
 var static_isRunning;
 
-let dataBaseUrl = "mongodb://localhost:27017/TaskMenager"; // defaultdataBase address
+let dataBaseUrl = process.env.MONGO || "mongodb://localhost:27017/TaskMenager"; // defaultdataBase address
 const usersTable = "users";
 const boardsTable = "boards";
 
