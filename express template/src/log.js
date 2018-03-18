@@ -1,3 +1,5 @@
+Object = require('object-mfr')();
+
 function getDate() {
     let date = new Date();
     return [date.getFullYear(), 
@@ -11,12 +13,12 @@ function getDate() {
 }
 
 const logObject = (obj, ind=0) => 
-    Object.keys(obj).map(v => {
-        if (typeof obj[v] === 'object'){
-            console.log(`${" ".repeat(2*ind)}${v}: `);
-            return logObject(obj[v], ++ind);
+    obj.map((v, k) => {
+        if (typeof v === 'object'){
+            console.log(`${" ".repeat(2*ind)}${k}: `);
+            return logObject(v, ++ind);
         }
-        console.log(`${" ".repeat(2*ind)}${v}: ${obj[v]},`)
+        console.log(`${" ".repeat(2*ind)}${k}: ${v},`)
     })
 
 const log = function log(text, req, obj){

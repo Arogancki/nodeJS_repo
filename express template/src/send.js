@@ -5,7 +5,6 @@ const httpStatus = require('http-status-codes')
 function send(req, res, status=200, payload){
     res.status(status);
     res.send(payload || httpStatus.getStatusText(status));
-    res.end();
-    log(`Response: ${status}`, req, payload);
+    log(`Response: ${status} ${res._headers['content-type'].split(';')[0]}`, req, payload);
 };
 module.exports = send;
