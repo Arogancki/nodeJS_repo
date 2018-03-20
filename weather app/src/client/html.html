@@ -1,0 +1,88 @@
+<style>
+body {
+  font-family: monaco, monospace;
+  font-size: 4vw;
+}
+.ico {
+  height: auto;
+  width: 20%
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input{
+  border: none;
+  padding: 2%;
+  margin-top: 1%;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  text-align: center;
+}
+input:focus{
+	outline-style:none;
+	box-shadow:none;
+	border-color:transparent;
+	border-bottom: 1px solid lightgrey;
+}
+input:hover{
+  border-bottom: 1px solid lightgrey;
+}
+input::-webkit-input-placeholder{
+	font-size: 4vw;
+}
+.item{
+  text-align: center;
+  padding: 1%;
+  width: 50%;
+}
+</style>
+
+<div class="app">
+<form method="post">
+  <input type="text" onblur="this.form.submit()" placeholder="City" name="city">
+</form>
+
+<div class='row' style="font-size: 150%;">
+  <img class='ico' src="http://openweathermap.org/img/w/04d.png" alt="undefined">
+  <div>
+    <div>Szczecin</div>
+    <div>(PL)</div>
+  </div>
+</div>
+<div class='row'>
+  <div class='item'>Clouds</div>
+  <div class='item'>(broken clouds)</div>
+</div>
+
+<div class='row'>
+  <div class='item'>Temperature:</div>
+  <div class='item'>1?</div>
+</div>
+
+<div class='row'>
+  <div class='item'>Pressure:</div>
+  <div class='item'>1019hPa</div>
+</div>
+
+<div class='row'>
+  <div class='item'>Humidity:</div>
+  <div class='item'>69%</div>
+</div>
+
+<div class='row'>
+  <div class='item'>Wind speed:</div>
+  <div class='item'>4.5mps</div>
+</div>
+
+<div class='row'>
+  <div class='item'>Clouds:</div>
+  <div class='item'>75%</div>
+</div>
+
+
+
+
+
+
