@@ -15,6 +15,8 @@ const getLink = (text, number=0) =>
 const rand = max => Math.floor(Math.random() * 10 * max) % (max+1)
 
 const getImage = async (text, max=32) => {
+    // mocked 
+    return `/${text}`
     let number = rand(Math.floor(max));
     let link = getLink(text, number);
     try{
@@ -37,8 +39,9 @@ const getImage = async (text, max=32) => {
 module.exports=(passport)=>{
     router.get('/', function (req, res) {
         let text = "rain";
-        // for unsigned 
+        // for unsigned and empty session
         res.redirect('/defaultBackground');
+        // for signed take this from session
         return;
         getImage(text).then(url=>{
             redirect(req, res, url);

@@ -16,7 +16,10 @@ module.exports = (error="")=>`<form method="post">
 </div>
 	<div>${error}</div>
 <div>
-	<input type="submit" value="Sign In">
+	<input type="submit" value="Sign Up"/>
+</div>
+<div>
+	<input type="button" onclick="location.href='/signIn'" value="Sign In"/>
 </div>
 </form>
 `

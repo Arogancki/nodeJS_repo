@@ -4,6 +4,7 @@ const express = require('express')
 
     , send = require('./send')
     , isLogged = require('./isLogged')
+    , redirect = require('./redirect')
 
     , router = express.Router()
 
@@ -14,8 +15,12 @@ module.exports = (passport)=>{
         router: require(path.join(__dirname, 'routes', v))
     }))
     .map(v=>router.use(v.path, v.router(passport)))
-    router.get('/', isLogged, (req, res)=>{
-        redirect(req, res, '/app');
+    router.get('/', (req, res)=>{
+        if (isLogged(req)){
+            redirect(req, res, '/app');
+            return
+        }
+        redirect(req, res, '/signIn');
     });
     return router;
 }

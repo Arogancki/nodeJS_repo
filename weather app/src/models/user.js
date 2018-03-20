@@ -3,15 +3,10 @@ const mongoose = require('mongoose')
  
 let users = new mongoose.Schema({
     username: {
-        type: String,
-        unique: true,
-        required: true,
-        match: /^[.\da-zA-Z_-]{3,20}$/
+        type: String
     },
     password: {
-        type: String,
-        required: true,
-        match: /^[#!.\da-zA-Z_-]{5,30}$/
+        type: String
     }
 });
 

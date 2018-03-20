@@ -16,20 +16,36 @@ module.exports = function(passport) {
         passReqToCallback : true
     }, function(req, username, password, done) {
         process.nextTick(()=>{
-            User.findOne({'username': username}, function(err, user) {
+            users.findOne({'username': username}, function(err, user) {
                 if (err)
                     return done(err);
                 if (user) {
                     return done(null, false, req.flash('signUpMessage', 'Username already taken'));
                 }
                 let newUser = new users();
-                newUser.username    = username;
+                newUser.username = username;
                 newUser.password = newUser.generateHash(password);
                 newUser.save(function(err) {
                     if (err)
                         throw err;
                     return done(null, newUser);
                 });
+            });
+        });
+    }));
+    passport.use('signIn', new LocalStrategy({
+        username: 'username',
+        password: 'password',
+        passReqToCallback : true
+    }, function(req, username, password, done) {
+        process.nextTick(()=>{
+            users.findOne({'username': username}, function(err, user) {
+                if (err)
+                    return done(err);
+                if (user) {
+                    return done(null, user);
+                }
+                return done(null, false, req.flash('signInMessage', 'Unauthenticated'));
             });
         });
     }));
