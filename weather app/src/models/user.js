@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-    , bcrypt   = require('bcrypt-nodejs')
+    , bcrypt = require('bcrypt-nodejs')
  
 let users = new mongoose.Schema({
     username: {
@@ -7,7 +7,11 @@ let users = new mongoose.Schema({
     },
     password: {
         type: String
-    }
+    },
+    queries: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'queries'
+      }
 });
 
 users.methods.generateHash = (password)=>

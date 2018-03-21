@@ -19,10 +19,10 @@ module.exports=(passport)=>{
             redirect(req, res, '/app');
             return
         }
-        const error = Joi.validate(req.body, signUpSchema);
+        const validation = Joi.validate(req.body, signUpSchema);
         if (validation.error){
-            req.flash('signUpMessage', error.error.details[0].message);
-            redirect(req, res, 'signUp');
+            req.flash('signUpMessage', validation.error.details[0].message);
+            redirect(req, res, '/signUp');
         }
         passport.authenticate('signUp', {
             successRedirect : '/app',

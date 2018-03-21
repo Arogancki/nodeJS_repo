@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
     , users = require('../models/user')
+    , queries = require('../models/queries')
 
 module.exports = function(passport) {
     passport.serializeUser(function(user, done) {
@@ -27,7 +28,7 @@ module.exports = function(passport) {
                 newUser.password = newUser.generateHash(password);
                 newUser.save(function(err) {
                     if (err)
-                        throw err;
+                        return done(null, false, req.flash('signUpMessage', err.message));
                     return done(null, newUser);
                 });
             });
