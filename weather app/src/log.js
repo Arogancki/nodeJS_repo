@@ -24,16 +24,14 @@ const log = function log(text, req, obj){
         console.log(`${getDate()} > ${text}`);
     else
         console.log(`${getDate()} > ${req.ip} (${req.session.id}) > ${text}`);
-    if (obj)
+    if (process.env.LOG_BODY==='true' && obj)
         typeof obj === 'object' 
         ? logObject(obj)
         : console.log(obj)
 }
 
 const logger = function logger(req, res, next) {
-    log(`Request: ${req.method} ${req.url}`, req, 
-        process.env.LOG_BODY && typeof req.body === 'object' 
-        ? req.body : undefined);
+    log(`Request: ${req.method} ${req.url}`, req, req.body);
     next();
 }
 

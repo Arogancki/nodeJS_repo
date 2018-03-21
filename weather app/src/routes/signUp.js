@@ -23,6 +23,7 @@ module.exports=(passport)=>{
         if (validation.error){
             req.flash('signUpMessage', validation.error.details[0].message);
             redirect(req, res, '/signUp');
+            return
         }
         passport.authenticate('signUp', {
             successRedirect : '/app',

@@ -6,7 +6,7 @@ body {
 }
 .ico {
   height: auto;
-  width: 20%
+  width: 10%
 }
 .row {
   display: flex;
@@ -45,7 +45,7 @@ input:hover{
 
 	<div style="padding:2%">
 	<form method="post">
-	<input type="text" onblur="this.form.submit()" placeholder="City" name="city">
+	<input type="text" onblur="this.form.submit()" placeholder="Where you'd to go?" name="city">
 	</form>
 	<div class='row'>
 		<div class='item'>${error}</div>

@@ -5,13 +5,12 @@ const router = require('express').Router()
     , send = require('../send')
     , html = require('../client/html')
     , app = require('../client/app')
-    , queries = require('../models/queries')
     , redirect = require('../redirect')
     , isLogged = require('../isLogged')
 
     , apiKey = process.env.API_KEY
     , appSchema = {
-        city: Joi.string().alphanum().min(3).max(40).required(),
+        city: Joi.string().min(3).max(40).required(),
     };
 
 function getWeatherUrl(city){
@@ -36,63 +35,36 @@ module.exports=(passport)=>{
         }
         next();
     })
-    router.get('/', function (req, res) {
-        // get user from db and populate to hisstory
-        // get weather from last histrory city
-        // and set it to derssion
-        let f = html(app(require('../mockData'), ''));
-        send(req, res, 200, f);
-        return
-        if (req.user.queries){
-            req.user.queries.populate('cities'), (err, cities)=>{
-                getWeather(cities[0]).then((data)=>{
-                    req.flash('background', data.weather.main);
-                    send(req, res, 200, html(app(data, '')));
-                }).catch(err=>{
-                    send(req, res, 200, html(app(undefined, err.message)));
-                })
+    router.get('/', async function (req, res) {
+        if (req.user.cities.length){
+            try{
+                let weatherInfo = JSON.parse(await getWeather(req.user.cities[0]));
+                req.flash('background', weatherInfo.weather[0].description);
+                send(req, res, 200, html(app(weatherInfo, req.flash('appMessage')||"")));
             }
-            return
+            catch(err){
+                send(req, res, 200, html(app(undefined, err.message)));
+            }
         }
-        send(req, res, 200, html(app(undefined, req.flash('appMessage')||"")));
+        else
+            send(req, res, 200, html(app(undefined, req.flash('appMessage')||"")));
     })
-    router.post('/', function (req, res) {
-        // przerobic na async
+    router.post('/', async function (req, res) {
         const validation = Joi.validate(req.body, appSchema);
         if (validation.error){
-            req.flash('appMessage', validation.error.details[0].message);
+            req.flash('appMessage', "Is this even a city?");
             redirect(req, res, '/app');
+            return;
         }
         let user = req.user;
-        if (!user.queries){
-            let query = new queries();
-            query.cities.unshift(req.body.city);
-            query.save(err=>{
-                if (err) {
-                    req.flash('appMessage', err.message);
-                    redirect(req, res, '/app');
-                    return
-                }
-                user.queries = query;
-                user.save(err=>{
-                    if (err){
-                        req.flash('appMessage', err.message);
-                    }
-                    redirect(req, res, '/app');
-                });
-            })
-            return
+        user.cities = [ req.body.city, ...user.cities.slice(0, 9)];
+        try{
+            await user.save();
         }
-        user.populate('queries', (err, model)=>{
-            let queries = model.queries;
-            queries.cities = [ req.body.city, ...queries.cities.slice(0, 9)];
-            queries.save((err)=>{
-                if (err){
-                    req.flash('appMessage', err.message);
-                }
-                redirect(req, res, '/app');
-            });
-        })
+        catch(err){
+            req.flash('appMessage', err.message);
+        }
+        redirect(req, res, '/app');
     })
     return router;
 };

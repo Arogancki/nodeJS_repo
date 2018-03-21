@@ -22,6 +22,7 @@ module.exports=(passport)=>{
         if (validation.error){
             req.flash('signInMessage', validation.error.details[0].message);
             redirect(req, res, '/signIn');
+            return
         }
         passport.authenticate('signIn', {
             successRedirect : '/app',

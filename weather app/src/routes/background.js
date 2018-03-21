@@ -2,6 +2,7 @@ const router = require('express').Router()
     , request = require('request-promise')
 
     , redirect = require('../redirect')
+    , defaultBackground = '/defaultBackground'
 
 const getLink = (text, number=0) => 
     `https://api.qwant.com/api/search/`
@@ -10,11 +11,11 @@ const getLink = (text, number=0) =>
     +`&size=large`
     +`&color=black`
     +`&imagetype=photo`
-    +`&q=weather%20${text}`
+    +`&q=${text}`
 
 const rand = max => Math.floor(Math.random() * 10 * max) % (max+1)
 
-const getImage = async (text, max=32) => {
+const getImage = async (text, max=16) => {
     let number = rand(Math.floor(max));
     let link = getLink(text, number);
     try{
@@ -31,17 +32,16 @@ const getImage = async (text, max=32) => {
     catch(err){}
     if (number > 0)
         return await getImage(text, max/2);
-    return `/${text}`
+    return defaultBackground
 }
 
 module.exports=(passport)=>{
     router.get('/', function (req, res) {
         let weatherMain = req.flash('background')[0];
         if (!weatherMain){
-            res.redirect('/defaultBackground');
+            res.redirect(defaultBackground);
             return
         }
-        return;
         getImage(weatherMain).then(url=>{
             redirect(req, res, url);
         });

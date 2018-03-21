@@ -1,0 +1,200 @@
+body
+{
+	background-color: #3399FF; 
+	min-height: 100vh;
+	color: #FFFFFF;
+	font-family: 'Exo', sans-serif;
+	padding:2%;
+	font-size: 19px;
+}	
+
+.loader {
+	border: 0.7vw solid #FFFFFF;
+	border-right: 0.7vw solid #3399FF;
+	border-left: 0.7vw solid #3399FF;
+	border-radius: 50%;
+    width: 6vw;
+    height: 6vw;
+    animation: spin 0.75s linear infinite;
+	position:absolute;
+	left:0; 
+	right:0;
+	top:0; 
+	bottom:0;
+	margin:auto;
+	max-width:100%;
+	max-height:100%;
+	overflow:auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+div:hover
+{
+    cursor: default;
+}
+
+#template
+{
+	position: relative;
+	height: auto !important;
+	min-height: 100%;
+}
+
+footer
+{
+	border-top: solid 1px #99CCFF;
+	text-align:center;
+	margin-top:1%;
+	position: absolute;
+	margin-left:2%;
+	min-width: 92%;
+}
+
+ul 
+{ 
+	display:table; 
+	margin:0 auto;
+	min-width:100%;
+	list-style-type: none;
+}
+
+li
+{
+	padding: 2%;
+}
+
+th
+{
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+body::after
+{
+	content: "";
+	opacity: 0.1;
+	background-image: url("bgIMG");
+	top: 0;
+	left: 0;
+	z-index: -1;  
+	background-size:cover;
+	min-width: 100%;
+	min-height: 100%;
+	position: fixed;
+}
+
+a:-webkit-any-link {
+	text-decoration: none;
+	 color: inherit;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   color: #FFFFFF;
+   font-style: italic;
+   opacity: 0.5;
+}
+::-moz-placeholder { /* Firefox 19+ */
+   color: #FFFFFF;
+   font-style: italic;
+   opacity: 0.5;
+}
+:-ms-input-placeholder { /* IE 10+ */
+   color: #FFFFFF;
+   font-style: italic;
+   opacity: 0.5;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: pink;
+   font-style: italic;
+   opacity: 0.5;
+}
+
+input{
+  border: none;
+  border-bottom: solid 2px #3399FF;
+  background: transparent;
+  text-align:center;
+  min-width:80%;
+  color:#FFFFFF;
+}
+
+input.ng-invalid {
+    border-bottom: solid 2px #CC0000;
+}
+
+input.ng-untouched{
+  border-bottom: solid 2px #3399FF;
+}
+
+input:hover{
+  border-bottom: solid 2px #99CCFF;
+}
+
+input:focus,input.focus{
+	outline: none;
+	border-bottom: solid 2px #FFFFFF;
+}
+
+.main
+{
+	min-height:89vh;
+	text-align:center;
+	padding: 5% 25% 5% 25%;
+	background: rgba(1, 1, 1, 0.3);
+}
+
+.bordered
+{
+	border: 2px solid #FFFFFF;
+	text-align:center;
+}
+
+.elementText
+{
+	border: 2px solid #FFFFFF;
+	text-align:center;
+}
+
+.elementButton ,.elementButton:focus
+{
+	text-align:center;
+	background: rgba(0.128, 0.386, 1, 0.5);
+}
+
+.elementButton:hover
+{
+	background-color: #FFFFFF;
+	color: #3399FF;
+}
+
+.text1 {
+  font-size: 2.6vw;
+}
+.text2{
+  font-size: 2.4vw;
+}
+.text3{
+  font-size: 2.2vw;
+}
+.text4{
+  font-size: 2.0vw;
+}
+.text5{
+  font-size: 1.8vw;
+}
+.text6 {
+  font-size: 1.6vw;
+}
+.text7 {
+  font-size: 1.4vw;
+}
+.text8 {
+  font-size: 1.2vw;
+}
+.text9 {
+  font-size: 1.0vw;
+}

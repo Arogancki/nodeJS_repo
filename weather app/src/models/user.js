@@ -8,10 +8,9 @@ let users = new mongoose.Schema({
     password: {
         type: String
     },
-    queries: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'queries'
-      }
+    cities: [{
+        type: String
+    }]
 });
 
 users.methods.generateHash = (password)=>
