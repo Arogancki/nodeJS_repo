@@ -17,6 +17,7 @@ const express = require('express')
 
     , app = express()
 
+mongoose.Promise = Promise;  
 mongoose.connect(process.env.MONGO);
 app.use(helmetConfig(app));
 app.use(session(sess));

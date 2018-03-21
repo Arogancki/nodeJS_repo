@@ -1,0 +1,42 @@
+{
+	"coord": {
+		"lon": 14.55,
+		"lat": 53.43
+	},
+	"weather": [
+		{
+			"id": 803,
+			"main": "Clouds",
+			"description": "broken clouds",
+			"icon": "04d"
+		}
+	],
+	"base": "stations",
+	"main": {
+		"temp": 274.15,
+		"pressure": 1019,
+		"humidity": 69,
+		"temp_min": 274.15,
+		"temp_max": 274.15
+	},
+	"visibility": 10000,
+	"wind": {
+		"speed": 4.6,
+		"deg": 10
+	},
+	"clouds": {
+		"all": 75
+	},
+	"dt": 1521565200,
+	"sys": {
+		"type": 1,
+		"id": 5369,
+		"message": 0.0024,
+		"country": "PL",
+		"sunrise": 1521522178,
+		"sunset": 1521566172
+	},
+	"id": 3083829,
+	"name": "Szczecin",
+	"cod": 200
+}
