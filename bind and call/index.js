@@ -19,10 +19,12 @@ Function.prototype.call2 = function call(caller, ...args){
 // handles proto
 Function.prototype.call3 = function call(caller, ...args){
     let self = this;
+    let selfCall = false;
     return new Proxy(caller, { get(target,name) {
-        return name===self.name ? self : target[name];
-    }})[self.name](...args);
+        return selfCall ? target[name] : selfCall=self
+    }})[selfCall](...args);
 }
+
 
 let obj = {
     a:1
@@ -33,10 +35,36 @@ function log(b,c){
     return 0;
 }
 
-log.bind(obj)(2,3)
-log.bind2(obj)(2,3)
-log.bind3(obj)(2,3)
+console.log(log.bind(obj)(2,3))
+console.log(log.bind2(obj)(2,3))
+console.log(log.bind3(obj)(2,3))
 
 console.log(log.call(obj, 2, 3))
 console.log(log.call2(obj, 2, 3))
 console.log(log.call3(obj, 2, 3))
+
+
+/*
+prototype tests for call3
+let obj = {
+    a:1,
+    log: (b,c)=>{
+        console.log('Pure fun', this.a, b, c);
+        return 2;
+    }
+}
+
+Object.setPrototypeOf(obj, {
+    log: (b,c)=>{
+        console.log('Proto fun', this.a, b, c);
+        return 1;
+    }
+})
+
+let log = function (b,c){
+    console.log('Base fun', this.a, b, c, this.log(22+b, 22+c), this.__proto__.log(10+b, 10+c));
+    return 0;
+}
+
+console.log(log.call3(obj, 2, 3))
+*/
