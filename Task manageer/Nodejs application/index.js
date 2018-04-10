@@ -59,6 +59,6 @@ app.use(function(err, req, res, next) {
 
 app.set('port', globals.port);
 
-let server = app.listen(app.get('port'), "127.0.0.1", function () {
+let server = app.listen(3002, "127.0.0.1", function () {
     h.makeLog(`Server is listening on port ${server.address().port}`);
 });
