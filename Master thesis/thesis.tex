@@ -14,6 +14,7 @@
 \usepackage{amsmath}
 \usepackage{relsize}
 \setcounter{tocdepth}{1}
+\setcounter{page}{5}
 \graphicspath{{images/}}
 \renewcommand{\chaptername}{Rozdział}
 \renewcommand{\contentsname}{Spis treści}
@@ -136,7 +137,7 @@
       \item z intensywną wymianą danych w czasie rzeczywistym na wielu urządzeniach, np. portalach społecznościowych.
     \end{itemize} 
     Ponieważ jest on szybki i lekki, może być stosowany do pisania między innymi bramki API.
-    API to skrót od Application Programming Interface; opisuje, jak poszczególne elementy lub warstwy oprogramowania powinny się komunikować.
+    Jest to skrót od Application Programming Interface; opisuje, jak poszczególne elementy lub warstwy oprogramowania powinny się komunikować.
     W praktyce to najczęściej biblioteka oferująca metody, które umożliwiają realizację określonych zadań.
     Node.js pozwala na zoptymalizowanie pracy oraz uzyskanie skalowalności dzięki asynchronicznemu przetwarzaniu danych dostarczanych do aplikacji, w związku z czym idealnie nadaje się do obsługi komunikacji wymagającej pracy w czasie rzeczywistym.
     Przeciwnie do języków gdzie program jest wykonywany linia po linii, funkcje napisane w Node.js nie wykonują się synchronicznie, korzystając z tak zwanych wywołań zwrotnych (ang. callback).
@@ -241,7 +242,7 @@
       \end{figure}
   
   \section{Alternatywne rozwiązania}
-    Alternatywne rozwiązania, które zostały wzięte pod uwagę to:
+    Rozdział opisuje alternatywne rozwiązania, które zostały wzięte pod uwagę podczas etapu poszukiwania.
 
     \subsection{Hapi}
     Zaprojektowany do wytwarzania nowoczenych serwisów stron internetowych.
@@ -271,6 +272,7 @@
     \newline
     \newline
     \[\text{\Large$O = \frac{\sum_{i=1}^{n} p_{i} * w_{i}}{n}$}\]
+    \newline
     gdzie:
     \begin{description}
       \item[O] - ocena końcowa
@@ -289,7 +291,8 @@
       Dzięki popularności możemy wywnioskować wielokość społeczności jaka jest zainteresowana danym narzedziem.
       Wiąże się to z możliwym wsparciem, wartością rynkową oraz szerokością możliwych zastosowań jakie wspiera.
       Oczywistym jest że jeśli narzędzie posiada ogromną popularność zostało sprawdzone w dużej ilośći przypadków, a jeśli potrafi im sprostać umiejętności sprawnego posługiwania się nim stają się cenniejsze.
-      \subsection{Rozmiar frameworku}
+
+    \subsection{Rozmiar frameworku}
       \begin{description}
         \item Waga: 1
       \end{description}
@@ -313,6 +316,7 @@
       \end{description}
       Próg wejścia oznacza ilość zagadnień wymaganych w celu opanowania danego frameworka oraz ilość czasu jaki należy poświęcić na jego opanowanie w stopniu conajmniej podstawowym.
       Pożądane jest aby był on jak najniższy; aby narzędzie nadawało się do użycia przez osoby jak najsłabiej znające koncepty programowania czy budowy systemów, niemal że natychmiast po chwilowym zapoznaniu się z dokumentacja.
+      Ocena progu wejścia została wystawiona na podstawie trudności oraz czasu poświęconego na zaznajomienie się z analizowanym narzędziem w stopniu umożliwiającym stworzenie funkcjonalności przedstawionej w opisanej pracy.
 
     \subsection{Warstwa widoku}
       \begin{description}
@@ -322,6 +326,7 @@
       Możemy oczekiwać wielu możliwości obsługi warstwy widoku.
       Wydawać by się mogło, że dla najlepszą możliwością byłoby gdyby framework kompletnie integrował warstwe widoku z warstwą danych dostarczając określone, proste metody wzajemnego mapowania.
       Kompletnie nie porządane jest aby do obsługi oraz integracji z warstwą widoku wytwarzanego produktu było wymagane użycie zewnętrznego, dodatkowego narzędzia.
+      Ocena została wystawiona na podstawie możliwości jakie oferują analizowane narzędzia bez użycia dodatkowych narzędzi.
 
     \subsection{Warstwa bazy danych}
       \begin{description}
@@ -329,6 +334,7 @@
       \end{description}
       Podobnie jak parametr warstwy widoku, parametr ten opisuje możliwość integracji frameworka z bazą danych.
       Najmniej pożądanym zachowaniem jest kiedy moduł obsługi bazy danych należy w całości dołączyć do rozwiązania, natomiast najbardziej pożądanym aby framework w pełni posiadał zaimplementowaną integracje przy użyciu np komponentu DAO.
+      Ocena została wystawiona na podstawie możliwości jakie oferują analizowane narzędzia bez użycia dodatkowych narzędzi.
 
     \subsection{Szybkość przetwarzania zapytań}
       \begin{description}
@@ -351,6 +357,7 @@
         \item średni - 15 sekunda
         \item długi - 60 sekund
       \end{description}
+      Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
       
     \subsection{Szybkość przetwarzania zapytań równoległych}
       \begin{description}
@@ -372,6 +379,7 @@
         \item średnia - 200 zapytań
         \item duża - 2000 zapytań
       \end{description}
+      Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
 
     \subsection{Ilość kodu do napisania}
       \begin{description}
@@ -389,22 +397,83 @@
         \item Streaming multimediów - uzyskanie dostępu do streamu multimedialnego (w formacie avi) z serwera
       \end{description}
       Napisany kod musi być zgodny ze stosowanymi, ogólnie uznanymi praktykami programistycznymi dla danych środowisk.
+      Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
 
     \subsection{Rozszerzalność}
       \begin{description}
         \item Waga: 3
       \end{description}
+      Parametry rozszerzalności dotyczy możliwości rozszerzania istniejącego kodu o nowe oraz łatwości zmian istniejących funkcjonalności.
+      Rozszerzalny kod charakteryzuje czytelny, jasny sposób zapisu, reużywalność istniejących już modułów, klass lub metod oraz odporność na zmiany częsci kodu bez wprowadzania regresji w pozostałych.
+      Taki sposób pisania gwarantuje łatwiejsze zarządzanie oraz utrzymanie kodu.
+      Dobry framework powinien wymuszać na programiście pisanie modularnego, rozszerzalnego kodu lub przynajmniej dostarczać przejrzyste sposoby na jego osiągnięcie.
+      Jako że zbadanie rozszerzalności kodu jest trudne i jego możliwość lub jej brak może zostać zauważona po odpowiednim rozwoju aplikacji ocena tego zagadnienia została wystawiona na podstawie tworzenia przykładowej funkcjonalności do poprzednich analizowanych parametrów.
 
     \subsection{Testowanie}
       \begin{description}
         \item Waga: 2
       \end{description}
+      Parametr opisuje jak łatwo kod napisany w danym środowisku może zostać przetestowany przez napisane testy automatyczne.
+      Stworzenie automatycznych testów pozwala nam w najszybszy dostępny sposób sprawdzić czy testowane rozwiązanie zachowuje się zgodnie z założonymi oczekiwaniami.
+      Znacznie skraca to czas wytwarzania oprogramowania dzięki natychmiastowej diagnostyce oraz możliwości wyeliminowania powstałych błedów.
+      Analizowany framework powinien dostarczać metody łatwego tworzenia testów automatycznych lub w przypadku użycia zewnętrznego narzędzia pozwalać na przeprowadzenie jednostkowych, integracyjnych oraz end-to-end bez większych przeszkód.
+      Ocena została wystawiona na podstawie stworzenia testów automatycznych dla analizownych środowiska przy użyciu dostarczonych możliwości oraz zewnętrznej biblioteki Mocha dla funkcjonalności autoryzacji.
 
 \chapter{Opis wybranych rozwiązań}
-
   \section{ExpressJS}
-  \section{Sails}
+    \begin{figure}[!hb]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_express.png} 
+      \caption{Logo projektu express, źródło: https://expressjs.com/}
+    \end{figure}
+    Express jest najbardziej popularnym frameworkiem technologii Nodejs.
+    Często jest używany równierz jako podstawa na której opierają się inne frameworki tej technologii.
+    Został stworzony do tworzenia serwerów oferujących między innymi możliwości:
+    \begin{itemize}
+      \item obsługi routingu zapytań protokołu http
+      \item integracji z silnikami prezentacji danych poprzez użycie szablonów
+      \item tworzenia narzędzi sieciowych do zarządzania innymi serwerami
+      \item tworzenie pośredniczących mikroserwisów
+    \end{itemize} 
+    Sama podstawa frameworka jest utrzymywana w jak najbardziej minimalistycznej formie.
+    Wspiera on polityke tworzenia modułów obsługujących daną funkcjonalnoś przez społeczeństwo deweloperów.
+    Dzięki temu w łatwy sposób możemy znaleźć rozwiązanie gotowe na praktycznie każdy problem.
+    Powstaje jednak kwestia wyboru właściwego, stworzonego w najbardziej optymalnie.
+    Wiele z modółów zostaje zatwierdzonych przez grupe deweloperów tworzących framework jako sprawdzone, co zwiększa zaufanie oraz pomaga promować najepsze rozwiązania.
+    Express pozwala pisać aplikacje w bardzo elastyczny sposób, nie narzucając jednej słusznej drogi.
+    Pozwala na tworzenie dowolnej architektury własnego serwera.
+    Został stworzony w 2010 roku, wydany na licencji MIT przez firme StrongLoop.
+
+   \section{Sails}
+    \begin{figure}[!hb]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_sails.png} 
+      \caption{Logo projektu sails, źródło: https://sailsjs.com/}
+    \end{figure}
+    Sails jest to framework aplikacji webowych działający w architekturze MVC (Model-View-Controller).
+    Inspiracją do jego powstanie był framework Ruby on Rails dla języka Ruby, a sam do jego napisania został wykrzystany Express.
+    Pozwala on na budowe:
+     \begin{itemize}
+      \item serwisów rest API
+      \item aplikacji single-page 
+      \item aplikacji czasu rzeczywistego
+    \end{itemize} 
+    Sails prezentuje ściśle określoną architekturę projektu zdejmując z programistów obowiązek jej tworzenia.
+    Jednym z podstawowych założeń tego narzędzia jest konfigurowalność dostarczonych, gotowych komponentów ponad pisanie własnych.
+    Narzędzie wykorzystuje skonfigurowane pliki w języku js (zwane blueprints) i generuje na ich podstawie gotowy produkt.
+    Został stworzony w 2012 roku, wydany na licencji MIT przez firme The Sails Company.
+
   \section{Meteor}
+    \begin{figure}[!hb]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_meteor.png} 
+      \caption{Logo projektu meteor, źródło: https://www.meteor.com/}
+    \end{figure}
+    Meteor wyróżnia przedewszystkim, że jest frameworkiem izomorficznym. 
+    Może on działać zarówno po stronie klienta jak i serwera.
+    Służy do szybkiego tworzenia wielo-platformowych aplikacji (android, iOS, web).
+    
+    Został stworzony w 2012 roku, wydany na licencji MIT przez firme Meteor Development Group.
 
 \chapter{Analiza porównawcza}
 
@@ -500,7 +569,11 @@
 
   \bibitem{Zeidman}
     Bob Zeidman
-    \textit{"The Software IP Detective's Handbook: Measurement, Comparison, and Infringement Detection", rok}
+    \textit{"The Software IP Detective's Handbook: Measurement, Comparison, and Infringement Detection", 2011}
+    
+  \bibitem{Rauch}
+    Guillermo Rauch
+    \textit{"7 Principles of Rich Web Applications", 2014}
 
 \end{thebibliography}
 
