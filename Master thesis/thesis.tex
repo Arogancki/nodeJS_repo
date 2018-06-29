@@ -443,6 +443,7 @@
     Express pozwala pisać aplikacje w bardzo elastyczny sposób, nie narzucając jednej słusznej drogi.
     Pozwala na tworzenie dowolnej architektury własnego serwera.
     Został stworzony w 2010 roku, wydany na licencji MIT przez firme StrongLoop.
+    Do analizy została użyta wersja 4.16.3.
 
    \section{Sails}
     \begin{figure}[!hb]
@@ -469,18 +470,62 @@
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_meteor.png} 
       \caption{Logo projektu meteor, źródło: https://www.meteor.com/}
     \end{figure}
-    Meteor wyróżnia przedewszystkim, że jest frameworkiem izomorficznym. 
-    Może on działać zarówno po stronie klienta jak i serwera.
+    Meteor wyróżnia przedewszystkim, fakt że jest frameworkiem izomorficznym. 
+    Jeden kod aplikacji działa zarówno po stronie klienta jak i serwera.
     Służy do szybkiego tworzenia wielo-platformowych aplikacji (android, iOS, web).
-    
+    Platforma odeszła od tradycyjnych narzędzi środowiska node.js i stworzyła własny ekosystem budowania projektów czy menadzera modułów.
+    Architektura komunikacji między warstwa frontendu, a backendu nie korzysta z zapytań http, a z subskrypcji modelu danych poprzez web socketów.
+    Został stworzony z myśłą o aplikacjach:
+    \begin{itemize}
+      \item single-page 
+      \item czasu rzeczywistego
+      \item wymagających wysokiej synchronizacji danych
+    \end{itemize} 
+    Framework wymusza na programiście korzystanie z paradygmatu reaktywnego.
+    Skupia się on na reagowaniu na zmiany obserwowanego modelu danych.
     Został stworzony w 2012 roku, wydany na licencji MIT przez firme Meteor Development Group.
 
 \chapter{Analiza porównawcza}
-
   \section{ExpressJS}
     \subsection{Rozmiar frameworku}
+      Framework możemy zainstalować używając podstawowego menadzera zależności środowiska node.js - npm, używając komendy:
+      \begin{lstlisting}[language=bash,numbers=none]
+        npm install express
+      \end{lstlisting}
+      Po instalacji zostanie utworzony folder node\_modules zawierający tylko podstawowe komponenty frameworka, ważący 2.19 MB.
+      Aby jednak w jak najbardziej wydajny sposób osiągnąć zadaną funkcjonalność należy zainstalować pare brakujących modułów.
+      Po zainstalowaniu:
+      \begin{itemize}
+        \item express-validator - walidacja przychodzących zapytań
+        \item express-session - obsługa sesji aplikacji
+        \item mongoose - obsługa bazy danych mongoDB
+        \item passport - autentykacjia użytkownika
+        \item express-video - streaming plików wideo
+        \item body-parser - obsługa ciał zapytań http
+        \item helmet - bezpieczeństwo zapytań http
+      \end{itemize} 
+      Waga zwiększa się do 11.8 MB.
+      Można więc uznać to za wagę wyjściową, która powinna być wzięta przy analizie.
+
     \subsection{Popularność}
+      Na portalu github możemy zobaczyć, że framework posiada 38.980 gwiazdek.
+      Na portalu stackoverflow znajduję się 43,518 wątków dotyczących tej technologii.
+      Obsługa narzędzia jest równierz najczęsciej poszukiwaną umiejętnością na rynku pracy w technologii node.js.
+      (dane na dzień 28.06.2018).
+
     \subsection{Dokumentacja}
+      Strona dokumentacji jest dostępna na stronie https://expressjs.com/en/api.html.
+      Jest utrzymana w bardzo prostym, minimalistycznym designie, co sprawia że łatwo się po niej poruszać oraz wyszukiwać informajcje.
+      Posiada opis pól i metod z podstawowego modułu express, oraz krótkie, nieskomplikowane przykłady użycia.
+      Dla niektórych zagadniej (na przykład template rednering) znajduje się tylko szczątkowa ilość informacji.
+      Możemy znaleźć również dokumentacje pozostałych modułów utrzymywanych lub także polecanych przez Expressjs team dla poszczególnych funkcjonalności.
+      Na stronie brakuje wskazówek odnośnie polecanych modelach architektury projektu, które były by przydatne dla początkujących użytkowników.
+      \begin{figure}[!hb]
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_express.png} 
+        \caption{Dokumentacja projektu express, źródło: https://expressjs.com/en/api.html}
+      \end{figure}
+
     \subsection{Próg wejścia}
     \subsection{Warstwa widoku}
     \subsection{Warstwa bazy danych}
@@ -488,12 +533,38 @@
     \subsection{Szybkość przetwarzania zapytań równoległych}
     \subsection{Ilość kodu do napisania}
     \subsection{Rozszerzalność}
+      Jako że środowisko express nie narzuca absolutnie żadnej sztywnej architektury wytwarzanego projektu rozszerzalność jaką uda nam się uzyskać zależy tylko od naszego własnego doświadczenia i umiejętności.
+      Nie wątpliwie jest to problem dla nowych programistów oraz przy napotkaniu nowego projektu o nieznanej strukturze.
+      Aby utrzymać kod czytelnym i klarownym wiele źródeł proponuje skorzystać przy budowie projektu ze wzorca MVC.
+      Projekt możemy podzielić na:
+      \begin{itemize}
+        \item model - reprezentacja stanu aplikacji
+        \item widoki - szablony widoków
+        \item kontrolery - obsługa routerów oraz ich logiki
+        \item middlewares - obsługa middlewares
+        \item public - statyczne pliki jak obrazy czy style
+        \item tests - skrypty testujące
+        \item pomocnicy - funkcjonalność współdzielona między różnymi częściami projektu
+      \end{itemize}
+      Zapewni to odpowiednie rozgraniczenie między odpowiedzialnościami poszczególnych części dzięki czemu osiągniemy szczątkowe zapewnienie o łatwości rozszerzalności aplikacji. 
+      
     \subsection{Testowanie}
 
   \section{Sails}
     \subsection{Rozmiar frameworku}
     \subsection{Popularność}
+      Na portalu github możemy zobaczyć, że framework posiada 19,220 gwiazdek.
+      Na portalu stackoverflow znajduję się 5,891 wątków dotyczących tej technologii.
+      (dane na dzień 28.06.2018).
+
     \subsection{Dokumentacja}
+      Strona dokumentacji jest dostępna na stronie https://sailsjs.com/documentation.
+      \begin{figure}[!hb]
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_sails.png} 
+        \caption{Dokumentacja projektu sails, źródło: https://sailsjs.com/documentation}
+      \end{figure}
+
     \subsection{Próg wejścia}
     \subsection{Warstwa widoku}
     \subsection{Warstwa bazy danych}
@@ -506,10 +577,24 @@
   \section{Meteor}
     \subsection{Rozmiar frameworku}
     \subsection{Popularność}
+      Na portalu github możemy zobaczyć, że framework posiada 39.977 gwiazdek.
+      Na portalu stackoverflow znajduję się 27,649 wątków dotyczących tej technologii.
+      (dane na dzień 28.06.2018).
+
     \subsection{Dokumentacja}
+      Strona dokumentacji jest dostępna na stronie https://docs.meteor.com/\#/full/.
+      \begin{figure}[!hb]
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_meteor.png} 
+        \caption{Dokumentacja projektu sails, źródło: https://docs.meteor.com/\#/full/}
+      \end{figure}
+
     \subsection{Próg wejścia}
     \subsection{Warstwa widoku}
+      Meteor uses data on the wire, meaning the server sends data, not HTML, and the client renders it.
+      Meteor provides full stack reactivity, allowing your UI to seamlessly reflect the true state of the world with minimal development effort.
     \subsection{Warstwa bazy danych}
+      data base eveywhere bardzo silne wiaznie, minimongo
     \subsection{Szybkość przetwarzania zapytań}
     \subsection{Szybkość przetwarzania zapytań równoległych}
     \subsection{Ilość kodu do napisania}

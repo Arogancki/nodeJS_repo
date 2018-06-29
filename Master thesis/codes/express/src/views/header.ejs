@@ -1,0 +1,17 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <img class="logo navbar-brand" src="/logo.png"></img>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <% links.forEach(link=> { %>
+                    <li class="nav-item active">
+                        <a href="<%= link.href %>"><button type="button" class="btn m-2 btn-secondary"><%= link.text %></button></a>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </nav>
+</header>

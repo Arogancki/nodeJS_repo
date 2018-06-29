@@ -23,6 +23,7 @@ app.use(helmetConfig(app));
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(flash())

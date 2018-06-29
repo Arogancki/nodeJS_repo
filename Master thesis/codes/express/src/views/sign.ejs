@@ -1,0 +1,21 @@
+<form class="form-signin" style="width: 25%" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">
+    <%if (isNew) { %>
+        Sign up
+    <% } else { %>
+        Sign in
+    <% } %>
+    </h1>
+    <label for="username" class="sr-only">login</label>
+    <input type="text" id="username" name="username" class="form-control m-2" placeholder="username" required="true" autofocus="true"/>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control m-2" placeholder="password" required="true"/>
+    <%if (isNew) { %>
+        <label for="password2" class="sr-only">Password confirmation</label>
+        <input type="password" id="password2" name="password2" class="form-control m-2" placeholder="password confirmation" required="true"/>
+    <% } %>
+    <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">OK</button>
+    <%if (message) { %>
+        <div class="mt-3 font-weight-normal alert alert-danger"><strong><%= message %></strong></div>
+    <% } %>
+</form>

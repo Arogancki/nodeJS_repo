@@ -8,15 +8,15 @@ let users = new mongoose.Schema({
     password: {
         type: String
     },
-    cities: [{
+    data: [{
         type: String
     }]
 });
 
-users.methods.generateHash = (password)=>
+users.methods.generateHash = (password) =>
     bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 
-users.methods.validPassword = (password)=>
+users.methods.validPassword = (password) =>
     bcrypt.compareSync(password, this.local.password)
 
-module.exports = mongoose.model('users',users);
+module.exports = mongoose.model('users', users)
