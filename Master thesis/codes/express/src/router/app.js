@@ -5,12 +5,13 @@ const router = require('express').Router()
 module.exports = (app)=>{
     router.use(async (req, res, next)=>{
         if (!req.isAuthenticated())
-            return redirect(req, res, 'sign/in')
+            return redirect(req, res, '/')
         next()
     })
     
     router.get('/', async function (req, res) {
         res.render('index.ejs', {
+            title: "main",
             body: "app",
             links: [
                 {

@@ -19,25 +19,17 @@ passport.use('signUpLocal', new LocalStrategy({
     password: 'password',
     passReqToCallback : true
 }, async function(req, username, password, done) {
-    try{
-        if (await users.findOne({'username': username})) {
-            return done(null, false, req.flash('signUpMessage', 'Username already taken'))
-        }
-    }
-    catch(err){
-        return done(err)
-    }
 
     let newUser = new users()
     newUser.username = username
     newUser.password = newUser.generateHash(password)
 
     try{
-        newUser.save()
+        await users.findOneAndUpdate({'username': username}, newUser, {upsert: true, new: true})
         return done(null, newUser)
     }
     catch(err){
-        return done(null, false, req.flash('signUpMessage', err.message))
+        return done(null, false, req.flash('signUpMessage', 'Username already taken'))
     }
 }))
 
@@ -47,7 +39,7 @@ passport.use('signInLocal', new LocalStrategy({
     passReqToCallback : true
 }, async function(req, username, password, done) {
     try{
-        let user = await users.findOne({'username': username})
+        let user = await users.findOne({username: username})
         return user && user.validPassword(password)
         ? done(null, user) 
         : done(null, false, req.flash('signInMessage', 'Unauthenticated'))

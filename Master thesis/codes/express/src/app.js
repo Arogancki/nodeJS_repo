@@ -17,9 +17,7 @@ module.exports = async ()=>{
 
     await middlewares(app)
     await router(app)
-    
-    return server = http.createServer(app).listen(app.get('port'), "127.0.0.1", ()=>{
-        const address = server.address()
-        console.log(`Server is listening on ${address.address}:${address.port}`)
+    return new Promise(res=>{
+        const server = http.createServer(app).listen(app.get('port'), "127.0.0.1", ()=>res({server, app}))
     })
 }

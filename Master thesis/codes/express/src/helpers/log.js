@@ -1,3 +1,8 @@
+function consoleLog(...v){
+    if (process.env.LOG==='true')
+        console.log(...v)
+}
+
 function getDate() {
     let date = new Date()
     return [date.getFullYear(), 
@@ -13,21 +18,21 @@ function getDate() {
 const logObject = (obj, ind=0) => 
     Object.keys(obj).map(v => {
         if (typeof obj[v] === 'object'){
-            console.log(`${" ".repeat(2*ind)}${v}: `)
+            consoleLog(`${" ".repeat(2*ind)}${v}: `)
             return logObject(obj[v], ++ind)
         }
-        console.log(`${" ".repeat(2*ind)}${v}: ${obj[v]},`)
+        consoleLog(`${" ".repeat(2*ind)}${v}: ${obj[v]},`)
     })
 
 const log = function log(text, req, obj){
     if (req===undefined)
-        console.log(`${getDate()} > ${text}`)
+        consoleLog(`${getDate()} > ${text}`)
     else
-        console.log(`${getDate()} > ${req.ip} (${req.session.id}) > ${text}`)
+        consoleLog(`${getDate()} > ${req.ip} (${req.session.id}) > ${text}`)
     if (process.env.LOG_BODY==='true' && obj)
         typeof obj === 'object' 
         ? logObject(obj)
-        : console.log(obj)
+        : consoleLog(obj)
 }
 
 const logger = function logger(req, res, next) {

@@ -3,16 +3,17 @@ const router = require('express').Router()
     , path = require('path')
     , fs = require('fs')
 
+    , users = require('../models/users')
     , redirect = require('../helpers/redirect')
 
     , postSchema = {
-        text: Joi.string().alphanum().min(3).max(100).required(),
+        text: Joi.string().min(3).max(100).required(),
     }
 
 module.exports = (app)=>{
     router.use(async (req, res, next)=>{
         if (!req.isAuthenticated())
-            return redirect(req, res, 'sign/in')
+            return redirect(req, res, '/')
         next()
     })
     
@@ -30,7 +31,12 @@ module.exports = (app)=>{
         let user = req.user
         user.data = [ req.body.text, ...user.data]
         try{
-            await user.save()
+            await users.findByIdAndUpdate(user.id,{
+                $push: {
+                    data: req.body.text,
+                    $position: 0
+                }
+            })
             return res.json(user.data)
         }
         catch(err){

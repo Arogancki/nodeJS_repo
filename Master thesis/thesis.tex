@@ -292,7 +292,7 @@
       Wiąże się to z możliwym wsparciem, wartością rynkową oraz szerokością możliwych zastosowań jakie wspiera.
       Oczywistym jest że jeśli narzędzie posiada ogromną popularność zostało sprawdzone w dużej ilośći przypadków, a jeśli potrafi im sprostać umiejętności sprawnego posługiwania się nim stają się cenniejsze.
 
-    \subsection{Rozmiar frameworku}
+    \subsection{Rozmiar}
       \begin{description}
         \item Waga: 1
       \end{description}
@@ -336,7 +336,7 @@
       Najmniej pożądanym zachowaniem jest kiedy moduł obsługi bazy danych należy w całości dołączyć do rozwiązania, natomiast najbardziej pożądanym aby framework w pełni posiadał zaimplementowaną integracje przy użyciu np komponentu DAO.
       Ocena została wystawiona na podstawie możliwości jakie oferują analizowane narzędzia bez użycia dodatkowych narzędzi.
 
-    \subsection{Szybkość przetwarzania zapytań}
+    \subsection{Testy sprawnościowe}
       \begin{description}
         \item Waga: 3
       \end{description}
@@ -348,18 +348,18 @@
         \item Autoryzacja - uzyskanie autoryzacji na zapytanie zawierające login oraz hasło użytkownika
         \item Zapis danych użytkownika - zapisanie podstawowych danych użytkownika w bazie danych
         \item Proste zapytanie o zasób - uzyskanie dostępu do zasobu tekstowego z bazy danych przez użytkownika
-        \item Zapytanie o zasób - uzyskanie dostępu do zasobu multimedialnego (pliku w formacie jpg) z serwera
+        \item Zapytanie o zasób - uzyskanie dostępu do zasobu multimedialnego (pliku w formacie png) z serwera
         \item Streaming multimediów - uzyskanie dostępu do streamu multimedialnego (w formacie avi) z serwera
       \end{description}
       Okresy czasu dla których zostały wykonane testy to:
       \begin{description}
-        \item krótki - 1 sekunda
-        \item średni - 15 sekunda
-        \item długi - 60 sekund
+        \item krótki - 2 sekundy
+        \item średni - 10 sekund
+        \item długi - 30 sekund
       \end{description}
       Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
       
-    \subsection{Szybkość przetwarzania zapytań równoległych}
+    \subsection{Testy obciążeniowe}
       \begin{description}
         \item Waga: 3
       \end{description}
@@ -370,14 +370,14 @@
         \item Autoryzacja - uzyskanie autoryzacji na zapytanie zawierające login oraz hasło użytkownika
         \item Zapis danych użytkownika - zapisanie podstawowych danych użytkownika w bazie danych
         \item Proste zapytanie o zasób - uzyskanie dostępu do zasobu tekstowego z bazy danych przez użytkownika
-        \item Zapytanie o zasób - uzyskanie dostępu do zasobu multimedialnego (pliku w formacie jpg) z serwera
+        \item Zapytanie o zasób - uzyskanie dostępu do zasobu multimedialnego (pliku w formacie png) z serwera
         \item Streaming multimediów - uzyskanie dostępu do streamu multimedialnego (w formacie avi) z serwera
       \end{description}
       Ilości wysłanych równolegle zapytań to:
       \begin{description}
-        \item mała - 20 zapytań
-        \item średnia - 200 zapytań
-        \item duża - 2000 zapytań
+        \item mała - 5 zapytań
+        \item średnia - 30 zapytań
+        \item duża - 150 zapytań
       \end{description}
       Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
 
@@ -387,15 +387,7 @@
       \end{description}
       Parametr opisuje ilość kodu potrzebnego do napisania aby otrzymać taką samą funkcjonalność w analizowanych środowiskach.
       Ilość kodu pisanego przy użyciu tego samego języka oraz jego standardu z zachowaniem odpowiednich praktych może zostać przełożony na ilość pracy, a co za tym idzie czasu jaką należy poświęcić do osiągnięcia obranego celu.
-      Stworzony kod musi dotyczyć zarówno części frontendowej jak i backendowej.
-      Do analizy została wybrana zadana funkcjonalność:
-      \begin{description}
-        \item Autoryzacja - uzyskanie autoryzacji na zapytanie zawierające login oraz hasło użytkownika
-        \item Zapis danych użytkownika - zapisanie podstawowych danych użytkownika w bazie danych
-        \item Proste zapytanie o zasób - uzyskanie dostępu do zasobu tekstowego z bazy danych przez zautoryzowanego użytkownika
-        \item Zapytanie o zasób - uzyskanie dostępu do zasobu multimedialnego (pliku w formacie jpg) z serwera
-        \item Streaming multimediów - uzyskanie dostępu do streamu multimedialnego (w formacie avi) z serwera
-      \end{description}
+      Stworzony kod musi dotyczyć kompletnej aplikacji oraz testów.
       Napisany kod musi być zgodny ze stosowanymi, ogólnie uznanymi praktykami programistycznymi dla danych środowisk.
       Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
 
@@ -416,7 +408,7 @@
       Parametr opisuje jak łatwo kod napisany w danym środowisku może zostać przetestowany przez napisane testy automatyczne.
       Stworzenie automatycznych testów pozwala nam w najszybszy dostępny sposób sprawdzić czy testowane rozwiązanie zachowuje się zgodnie z założonymi oczekiwaniami.
       Znacznie skraca to czas wytwarzania oprogramowania dzięki natychmiastowej diagnostyce oraz możliwości wyeliminowania powstałych błedów.
-      Analizowany framework powinien dostarczać metody łatwego tworzenia testów automatycznych lub w przypadku użycia zewnętrznego narzędzia pozwalać na przeprowadzenie jednostkowych, integracyjnych oraz end-to-end bez większych przeszkód.
+      Analizowany framework powinien dostarczać metody łatwego tworzenia testów automatycznych lub bezproblemową integracje w przypadku użycia zewnętrznego narzędzia.
       Ocena została wystawiona na podstawie stworzenia testów automatycznych dla analizownych środowiska przy użyciu dostarczonych możliwości oraz zewnętrznej biblioteki Mocha dla funkcjonalności autoryzacji.
 
 \chapter{Opis wybranych rozwiązań}
@@ -487,7 +479,7 @@
 
 \chapter{Analiza porównawcza}
   \section{ExpressJS}
-    \subsection{Rozmiar frameworku}
+    \subsection{Rozmiar}
       Framework możemy zainstalować używając podstawowego menadzera zależności środowiska node.js - npm, używając komendy:
       \begin{lstlisting}[language=bash,numbers=none]
         npm install express
@@ -496,15 +488,17 @@
       Aby jednak w jak najbardziej wydajny sposób osiągnąć zadaną funkcjonalność należy zainstalować pare brakujących modułów.
       Po zainstalowaniu:
       \begin{itemize}
-        \item express-validator - walidacja przychodzących zapytań
-        \item express-session - obsługa sesji aplikacji
         \item mongoose - obsługa bazy danych mongoDB
         \item passport - autentykacjia użytkownika
-        \item express-video - streaming plików wideo
-        \item body-parser - obsługa ciał zapytań http
+        \item bcrypt - przechowywanie haseł
         \item helmet - bezpieczeństwo zapytań http
+        \item body-parser - obsługa ciał zapytań http
+        \item joi - walidacja zapytań http
+        \item express-session, cookie-parser, connect-flash - obsługa sesji oraz ciasteczek
+        \item mocha, supertest, chai oraz cheerio - testy 
       \end{itemize} 
-      Waga zwiększa się do 11.8 MB.
+      Waga zwiększa się do 18,0 MB.
+      Po stworzeniu plików źródełowych kompletna aplikacjia waży 18,1 MB.
       Można więc uznać to za wagę wyjściową, która powinna być wzięta przy analizie.
 
     \subsection{Popularność}
@@ -527,11 +521,78 @@
       \end{figure}
 
     \subsection{Próg wejścia}
+      Do stworzenia prostej aplikacji framework wydaje się wymagać tylko znajomości języka javaScript.
+      Wymagania rosną natomiast wraz z wielkością projektu.
+      W celu uzyskania wielu z podstawowych funkcjonalności (poza routingiem oraz middlewares, które zapewnia express) należy użyć zewnętrznych bibliotek, co wymaga wcześniejszego ich opanowania. 
+      Aby utrzymać kod w należytym ładzie należy również posiadać odpowiednie doświadczenie programistyczne.
+      Wymagania te nie są jednak wygórowane i nie powinny być przeszkodą po krótkim zapozaniu się ze środowiskiem.
+
     \subsection{Warstwa widoku}
+    W celu opracowania widoku aplikacji możemy wybrać między skorzystaniem z zewnętrznego rozwiazania (np. bibliotek frontendowych angular, vue, react) lub użyciem wspieranego przez express renderingu po stronie serwera przy użyciu szablonów (ang. server side template rendering).
+    Technika ta polega na stworzeniu odpowiednich reużywalnych wzorców widoków stron przy użyciu wybranego silnika (np. pug lub ejs) oraz zmiany renderowanych wartości wzorca zależnie od stanu aplikacji. 
+    Każdy z silników posiada specyficzną składnie, dzięki której zamienia otrzymane wartości na strone html.
+    Do opracowania rozwiązania zdecydowałem się na skorzystanie z metod renderowania po stronie serwera z użyciem silnika ejs.
+
     \subsection{Warstwa bazy danych}
-    \subsection{Szybkość przetwarzania zapytań}
-    \subsection{Szybkość przetwarzania zapytań równoległych}
+    Framework express nie dostarcza żadnych integracji z bazą danych. 
+    W celu jej zapewnienia należy skorzystać z zewnętrznego narzędzia.
+    Dla baz danych typu nosql (np mongoDb) najpopularniejszym rozwiązaniem jest biblioteka mongoose.
+    Daje ona wysokopoziomowy interfejs na odpowiednie metody wybranych baz danych oraz przekształca rekordy przy użyciu ODM (object document mapping).
+    Dla baz danych typu sql (np postgres) najpopularniejszym roziązaniem jest biblioteka sequelize.
+    Pozwala ona na zaprzestanie używania języka sql na rzecz wysokopoziomowyh metod oraz dostęp do rekordów przy użyciu ORM (object relational mapping).
+    Do oprawcowania aplikacji zdecydowałem się skorzystać z mongoDb oraz mongoose.
+
+    \subsection{Testy sprawnościowe}
+    Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
+    Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
+    \smallskip
+      \begin{center}
+        \begin{tabular}{ | c | c | c | c | c | c | }
+          \hline
+          Okres czasu & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+          \hline
+          2 sekundy & 396 & 144 & 420 & 463 & 147 \\
+          \hline
+          10 sekund & 2326 & 1501 & 1692 & 2933 & 696 \\
+          \hline
+          30 sekund & 6126 & 3103 & 4019 & 9143 & 1857 \\
+          \hline
+          Średnia ilość dla 1 sekundy & 0.056 & 0.02 & 0.02 & 0.004 & 0.004 \\
+          \hline
+        \end{tabular}
+      \end{center}
+    \bigskip\medskip
+
+    \subsection{Testy obciążeniowe}
+    Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
+    Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
+    \smallskip
+      \begin{center}
+        \begin{tabular}{ | c | c | c | c | c | c | }
+          \hline
+          Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+          \hline
+          5 jednocześnie wysłanych zapytań & 1.174 & 0.02 & 0.015 & 0.002 & 0.003 \\
+          \hline
+          30 jednocześnie wysłanych zapytań & 1.552 & 0.107 & 0.063 & 0.013 & 0.014 \\
+          \hline
+          150 jednocześnie wysłanych zapytań & 7.799 & 0.407 & 0.282 & 0.066 & 0.069 \\
+          \hline
+          Średni czas dla 1 zapytania & 0.056 & 0.02 & 0.02 & 0.004 & 0.004 \\
+          \hline
+        \end{tabular}
+      \end{center}
+    \bigskip\medskip
+
     \subsection{Ilość kodu do napisania}
+    Ilość wytworzonych lini kodu to 500 dla aplikacji, oraz 800 dla testów. 
+    Najważniejszymni cechami frameworka, które przyśpieszają proces wytwórczy są użycie middlewares oraz routingu.
+    Pierwszy z nich pozwala nam na ułożenie pewnego przepływu funkcji przy obsłudzę przychodzacych zapytań.
+    Możemy zapewnić ciąg usług jakie zostaną wywołane w odpowiedniej kolejności (np logowanie, autentykacjia, autentykacjia).
+    Drugi pozwala na wysokopoziomowe zarządzanie funkcjami obsługującymi przychodzące zapytania http.
+    Dopasowywane są one do żadanego adresu.
+    Te features pozwalają na kupieniu się na tworzeniu głównie warstwy biznesowej aplikacji bez potrzeby bezpośredniego zarządzania warstwą komunikacji, skutecznie zmiejszając wymagany nakład pracy.
+
     \subsection{Rozszerzalność}
       Jako że środowisko express nie narzuca absolutnie żadnej sztywnej architektury wytwarzanego projektu rozszerzalność jaką uda nam się uzyskać zależy tylko od naszego własnego doświadczenia i umiejętności.
       Nie wątpliwie jest to problem dla nowych programistów oraz przy napotkaniu nowego projektu o nieznanej strukturze.
@@ -541,17 +602,32 @@
         \item model - reprezentacja stanu aplikacji
         \item widoki - szablony widoków
         \item kontrolery - obsługa routerów oraz ich logiki
-        \item middlewares - obsługa middlewares
-        \item public - statyczne pliki jak obrazy czy style
-        \item tests - skrypty testujące
+        \item middlewares - obsługa middlewares (komponentów wspierających dane funkcjonalności)
+        \item public - statyczne pliki jak multimedia czy style
+        \item test - skrypty testujące
         \item pomocnicy - funkcjonalność współdzielona między różnymi częściami projektu
       \end{itemize}
       Zapewni to odpowiednie rozgraniczenie między odpowiedzialnościami poszczególnych części dzięki czemu osiągniemy szczątkowe zapewnienie o łatwości rozszerzalności aplikacji. 
       
     \subsection{Testowanie}
+    Express nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
+    Najbardziej popularną biblioteką do testów tego narzędzia jest mocha.
+    Jest to framework służący do pisania każdego rodzaju przypadków testowych.
+    Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
+    Po użyciu narzędzia otrzymano wyniki testów:
+    \begin{figure}[!hb]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_express.png} 
+      \caption{Testy frameworka express przy użyciu biblioteki mocha, źródło: opracowanie własne}
+    \end{figure}
 
   \section{Sails}
-    \subsection{Rozmiar frameworku}
+    \subsection{Rozmiar}
+    47,8 MB wazy po sciagnieciu 
+    utwarzamy uzywajac sails new [nazwa aplikacji]
+    i taki projekt wazy 176 mb dosciagnae sa dependency i robiona struktura
+    po stworeniu apki wazy - 
+
     \subsection{Popularność}
       Na portalu github możemy zobaczyć, że framework posiada 19,220 gwiazdek.
       Na portalu stackoverflow znajduję się 5,891 wątków dotyczących tej technologii.
@@ -559,6 +635,10 @@
 
     \subsection{Dokumentacja}
       Strona dokumentacji jest dostępna na stronie https://sailsjs.com/documentation.
+      Możemy tam znaleźć zarówno ogólne, użyteczne przy gruntownym rozeznaniu oraz szczegółowe opisy poszczególnych części frameworka.
+      W czytelny i łatwy do odszukania sposób mamy dostęp do wydawać by się mogło każdego szczególu na temat tego środowiska.
+      Dokumentacja jest napisana zrozumiałym ale nie upraszczającym języku oraz posiada załączone zrzuty i odnośniki do przykładowych kodów źródłowych.
+      Dostępne są opisy struktury architektury, wyjaśnienia konceptów oraz szczegółowe opisy użytecznych features'ów.
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_sails.png} 
@@ -566,13 +646,41 @@
       \end{figure}
 
     \subsection{Próg wejścia}
+    Dokumentacja framework'a jest wystarczająca
+
     \subsection{Warstwa widoku}
     \subsection{Warstwa bazy danych}
-    \subsection{Szybkość przetwarzania zapytań}
-    \subsection{Szybkość przetwarzania zapytań równoległych}
+    napisac o sails-disk
+
+    \subsection{Testy sprawnościowe}
+    \subsection{Testy obciążeniowe}
     \subsection{Ilość kodu do napisania}
+
+    - blueprints, routing (takze automatyczny), middlewares, pollicies, wiele innych malych uproszczen jak walidacja funkcji, samodokumentacja, internationalization
+
     \subsection{Rozszerzalność}
+    sails dziala jako mvc
+    po stworzniu projektu dzieli sie ona na
+.    api 
+    - kontrolery (obsluga przychodzacych requestow, interakcja z modelem)
+  - helpers - wspoldzieone funkcje w appce
+  - models - struktura danych aplikacji
+  - policies - zarzadzanie dostepem do pewnych czesci aplikacji
+. assets - statyczne pliki serwisu jak multimedia, style, widoki frontendu
+. config - pliki konfiguracyjne jak tlumaczenia strony, ustawienia srodowiska
+. views - widoki aplikacji
+
     \subsection{Testowanie}
+    Sails nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
+    Najbardziej popularną biblioteką do testów tego narzędzia jest mocha.
+    Jest to framework służący do pisania każdego rodzaju przypadków testowych.
+    Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
+    Po użyciu narzędzia otrzymano wyniki testów:
+    \begin{figure}[!hb]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_sails.png} 
+      \caption{Testy frameworka sails przy użyciu biblioteki mocha, źródło: opracowanie własne}
+    \end{figure}
 
   \section{Meteor}
     \subsection{Rozmiar frameworku}
@@ -595,11 +703,12 @@
       Meteor provides full stack reactivity, allowing your UI to seamlessly reflect the true state of the world with minimal development effort.
     \subsection{Warstwa bazy danych}
       data base eveywhere bardzo silne wiaznie, minimongo
-    \subsection{Szybkość przetwarzania zapytań}
-    \subsection{Szybkość przetwarzania zapytań równoległych}
+    \subsection{Testy sprawnościowe}
+    \subsection{Testy obciążeniowe}
     \subsection{Ilość kodu do napisania}
     \subsection{Rozszerzalność}
     \subsection{Testowanie}
+    
 
 \chapter{Podsumowanie}
   \section{Podsumowanie ocen}

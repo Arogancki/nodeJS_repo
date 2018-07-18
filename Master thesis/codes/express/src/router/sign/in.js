@@ -12,6 +12,7 @@ module.exports=(app)=>{
     router.get('/', function (req, res) {
         res.render('index.ejs', {
             body: "sign",
+            title: "sign in",
             isNew: false,
             links: [
                 {

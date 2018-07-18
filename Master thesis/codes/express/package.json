@@ -1,16 +1,22 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple express app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test_server": "./node_modules/.bin/mocha test/server --reporter list -s 0",
+    "test_performance": "./node_modules/.bin/mocha test/performance --reporter min --no-timeouts -s 0",
+    "test_load": "./node_modules/.bin/mocha test/load --reporter min --no-timeouts -s 0",
+    "test": "echo 'Functionality:' && npm run test_server && echo 'Performance:' && npm run test_performance && echo 'Load:' && npm run test_load",
+    "start": "node index.js"
   },
   "author": "Artur Ziemba",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.0.0",
@@ -19,10 +25,12 @@
     "express-session": "^1.15.6",
     "helmet": "^3.12.1",
     "joi": "^13.4.0",
+    "mocha": "^5.2.0",
     "mongoose": "^5.1.7",
     "nocache": "^2.0.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "portfinder": "^1.0.13"
+    "portfinder": "^1.0.13",
+    "supertest": "^3.1.0"
   }
 }
