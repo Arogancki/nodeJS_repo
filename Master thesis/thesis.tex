@@ -761,6 +761,10 @@
 
   \section{Meteor}
     \subsection{Rozmiar frameworku}
+    instalacja narzedzia meteor choco install meteor wazy 389 MB
+    szkielet wazy 7,39 MB
+    
+
     \subsection{Popularność}
       Na portalu github możemy zobaczyć, że framework posiada 39.977 gwiazdek.
       Na portalu stackoverflow znajduję się 27,649 wątków dotyczących tej technologii.
@@ -778,12 +782,46 @@
     \subsection{Warstwa widoku}
       Meteor uses data on the wire, meaning the server sends data, not HTML, and the client renders it.
       Meteor provides full stack reactivity, allowing your UI to seamlessly reflect the true state of the world with minimal development effort.
+
+      react angular lub domyslnie silnik serrs site blaze
     \subsection{Warstwa bazy danych}
       data base eveywhere bardzo silne wiaznie, minimongo
     \subsection{Testy sprawnościowe}
     \subsection{Testy obciążeniowe}
     \subsection{Ilość kodu do napisania}
     \subsection{Rozszerzalność}
+imports/
+  startup/
+    client/
+      index.js                 # import client startup through a single index entry point
+      routes.js                # set up all routes in the app
+      useraccounts-configuration.js # configure login templates
+    server/
+      fixtures.js              # fill the DB with example data on startup
+      index.js                 # import server startup through a single index entry point
+
+  api/
+    lists/                     # a unit of domain logic
+      server/
+        publications.js        # all list-related publications
+        publications.tests.js  # tests for the list publications
+      lists.js                 # definition of the Lists collection
+      lists.tests.js           # tests for the behavior of that collection
+      methods.js               # methods related to lists
+      methods.tests.js         # tests for those methods
+
+  ui/
+    components/                # all reusable components in the application
+                               # can be split by domain if there are many
+    layouts/                   # wrapper components for behaviour and visuals
+    pages/                     # entry points for rendering used by the router
+
+client/
+  main.js                      # client entry point, imports all client code
+
+server/
+  main.js                      # server entry point, imports all server code
+
     \subsection{Testowanie}
     
 \chapter{Podsumowanie}
