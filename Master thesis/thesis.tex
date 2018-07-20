@@ -387,8 +387,8 @@
       \end{description}
       Parametr opisuje ilość kodu potrzebnego do napisania aby otrzymać taką samą funkcjonalność w analizowanych środowiskach.
       Ilość kodu pisanego przy użyciu tego samego języka oraz jego standardu z zachowaniem odpowiednich praktych może zostać przełożony na ilość pracy, a co za tym idzie czasu jaką należy poświęcić do osiągnięcia obranego celu.
-      Stworzony kod musi dotyczyć kompletnej aplikacji oraz testów.
       Napisany kod musi być zgodny ze stosowanymi, ogólnie uznanymi praktykami programistycznymi dla danych środowisk.
+      Parametr opisuje również najważniejsze features frameworków, które umożliwiają zmiejszenie ilości wymaganego kodu.
       Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
 
     \subsection{Rozszerzalność}
@@ -528,70 +528,70 @@
       Wymagania te nie są jednak wygórowane i nie powinny być przeszkodą po krótkim zapozaniu się ze środowiskiem.
 
     \subsection{Warstwa widoku}
-    W celu opracowania widoku aplikacji możemy wybrać między skorzystaniem z zewnętrznego rozwiazania (np. bibliotek frontendowych angular, vue, react) lub użyciem wspieranego przez express renderingu po stronie serwera przy użyciu szablonów (ang. server side template rendering).
-    Technika ta polega na stworzeniu odpowiednich reużywalnych wzorców widoków stron przy użyciu wybranego silnika (np. pug lub ejs) oraz zmiany renderowanych wartości wzorca zależnie od stanu aplikacji. 
-    Każdy z silników posiada specyficzną składnie, dzięki której zamienia otrzymane wartości na strone html.
-    Do opracowania rozwiązania zdecydowałem się na skorzystanie z metod renderowania po stronie serwera z użyciem silnika ejs.
+      W celu opracowania widoku aplikacji możemy wybrać między skorzystaniem z zewnętrznego rozwiazania (np. bibliotek frontendowych angular, vue, react) lub użyciem wspieranego przez express renderingu po stronie serwera przy użyciu szablonów (ang. server side template rendering).
+      Technika ta polega na stworzeniu odpowiednich reużywalnych wzorców widoków stron przy użyciu wybranego silnika (np. pug lub ejs) oraz zmiany renderowanych wartości wzorca zależnie od stanu aplikacji. 
+      Każdy z silników posiada specyficzną składnie, dzięki której zamienia otrzymane wartości na strone html.
+      Do opracowania rozwiązania zdecydowałem się na skorzystanie z metod renderowania po stronie serwera z użyciem silnika ejs.
 
     \subsection{Warstwa bazy danych}
-    Framework express nie dostarcza żadnych integracji z bazą danych. 
-    W celu jej zapewnienia należy skorzystać z zewnętrznego narzędzia.
-    Dla baz danych typu nosql (np mongoDb) najpopularniejszym rozwiązaniem jest biblioteka mongoose.
-    Daje ona wysokopoziomowy interfejs na odpowiednie metody wybranych baz danych oraz przekształca rekordy przy użyciu ODM (object document mapping).
-    Dla baz danych typu sql (np postgres) najpopularniejszym roziązaniem jest biblioteka sequelize.
-    Pozwala ona na zaprzestanie używania języka sql na rzecz wysokopoziomowyh metod oraz dostęp do rekordów przy użyciu ORM (object relational mapping).
-    Do oprawcowania aplikacji zdecydowałem się skorzystać z mongoDb oraz mongoose.
+      Framework express nie dostarcza żadnych integracji z bazą danych. 
+      W celu jej zapewnienia należy skorzystać z zewnętrznego narzędzia.
+      Dla baz danych typu nosql (np mongoDb) najpopularniejszym rozwiązaniem jest biblioteka mongoose.
+      Daje ona wysokopoziomowy interfejs na odpowiednie metody wybranych baz danych oraz przekształca rekordy przy użyciu ODM (object document mapping).
+      Dla baz danych typu sql (np postgres) najpopularniejszym roziązaniem jest biblioteka sequelize.
+      Pozwala ona na zaprzestanie używania języka sql na rzecz wysokopoziomowyh metod oraz dostęp do rekordów przy użyciu ORM (object relational mapping).
+      Do oprawcowania aplikacji zdecydowałem się skorzystać z mongoDb oraz mongoose.
 
     \subsection{Testy sprawnościowe}
-    Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
-    Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
-    \smallskip
-      \begin{center}
-        \begin{tabular}{ | c | c | c | c | c | c | }
-          \hline
-          Okres czasu & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
-          \hline
-          2 sekundy & 396 & 144 & 420 & 463 & 147 \\
-          \hline
-          10 sekund & 2326 & 1501 & 1692 & 2933 & 696 \\
-          \hline
-          30 sekund & 6126 & 3103 & 4019 & 9143 & 1857 \\
-          \hline
-          Średnia ilość dla 1 sekundy & 0.056 & 0.02 & 0.02 & 0.004 & 0.004 \\
-          \hline
-        \end{tabular}
-      \end{center}
-    \bigskip\medskip
+      Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
+      Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | c | }
+            \hline
+            Okres czasu & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \hline
+            2 sekundy & 396 & 144 & 420 & 463 & 147 \\
+            \hline
+            10 sekund & 2326 & 1501 & 1692 & 2933 & 696 \\
+            \hline
+            30 sekund & 6126 & 3103 & 4019 & 9143 & 1857 \\
+            \hline
+            Średnia ilość dla 1 sekundy & 210 & 113 & 146 & 299 & 64 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
 
     \subsection{Testy obciążeniowe}
-    Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
-    Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
-    \smallskip
-      \begin{center}
-        \begin{tabular}{ | c | c | c | c | c | c | }
-          \hline
-          Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
-          \hline
-          5 jednocześnie wysłanych zapytań & 1.174 & 0.02 & 0.015 & 0.002 & 0.003 \\
-          \hline
-          30 jednocześnie wysłanych zapytań & 1.552 & 0.107 & 0.063 & 0.013 & 0.014 \\
-          \hline
-          150 jednocześnie wysłanych zapytań & 7.799 & 0.407 & 0.282 & 0.066 & 0.069 \\
-          \hline
-          Średni czas dla 1 zapytania & 0.056 & 0.02 & 0.02 & 0.004 & 0.004 \\
-          \hline
-        \end{tabular}
-      \end{center}
-    \bigskip\medskip
+      Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
+      Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | c | }
+            \hline
+            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \hline
+            5 jednocześnie wysłanych zapytań & 1.174 & 0.02 & 0.015 & 0.002 & 0.003 \\
+            \hline
+            30 jednocześnie wysłanych zapytań & 1.552 & 0.107 & 0.063 & 0.013 & 0.014 \\
+            \hline
+            150 jednocześnie wysłanych zapytań & 7.799 & 0.407 & 0.282 & 0.066 & 0.069 \\
+            \hline
+            Średni czas dla 1 zapytania & 0.056 & 0.02 & 0.02 & 0.004 & 0.004 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
 
     \subsection{Ilość kodu do napisania}
-    Ilość wytworzonych lini kodu to 500 dla aplikacji, oraz 800 dla testów. 
-    Najważniejszymni cechami frameworka, które przyśpieszają proces wytwórczy są użycie middlewares oraz routingu.
-    Pierwszy z nich pozwala nam na ułożenie pewnego przepływu funkcji przy obsłudzę przychodzacych zapytań.
-    Możemy zapewnić ciąg usług jakie zostaną wywołane w odpowiedniej kolejności (np logowanie, autentykacjia, autentykacjia).
-    Drugi pozwala na wysokopoziomowe zarządzanie funkcjami obsługującymi przychodzące zapytania http.
-    Dopasowywane są one do żadanego adresu.
-    Te features pozwalają na kupieniu się na tworzeniu głównie warstwy biznesowej aplikacji bez potrzeby bezpośredniego zarządzania warstwą komunikacji, skutecznie zmiejszając wymagany nakład pracy.
+      Ilość wytworzonych lini kodu to 500. 
+      Najważniejszymni cechami frameworka, które przyśpieszają proces wytwórczy są użycie middlewares oraz routingu.
+      Pierwszy z nich pozwala nam na ułożenie pewnego przepływu funkcji przy obsłudzę przychodzacych zapytań.
+      Możemy zapewnić ciąg usług jakie zostaną wywołane w odpowiedniej kolejności (np logowanie, autentykacjia, autentykacjia).
+      Drugi pozwala na wysokopoziomowe zarządzanie funkcjami obsługującymi przychodzące zapytania http.
+      Dopasowywane są one do żadanego adresu.
+      Te features pozwalają na kupieniu się na tworzeniu głównie warstwy biznesowej aplikacji bez potrzeby bezpośredniego zarządzania warstwą komunikacji, skutecznie zmiejszając wymagany nakład pracy.
 
     \subsection{Rozszerzalność}
       Jako że środowisko express nie narzuca absolutnie żadnej sztywnej architektury wytwarzanego projektu rozszerzalność jaką uda nam się uzyskać zależy tylko od naszego własnego doświadczenia i umiejętności.
@@ -610,23 +610,30 @@
       Zapewni to odpowiednie rozgraniczenie między odpowiedzialnościami poszczególnych części dzięki czemu osiągniemy szczątkowe zapewnienie o łatwości rozszerzalności aplikacji. 
       
     \subsection{Testowanie}
-    Express nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
-    Najbardziej popularną biblioteką do testów tego narzędzia jest mocha.
-    Jest to framework służący do pisania każdego rodzaju przypadków testowych.
-    Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
-    Po użyciu narzędzia otrzymano wyniki testów:
-    \begin{figure}[!hb]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_express.png} 
-      \caption{Testy frameworka express przy użyciu biblioteki mocha, źródło: opracowanie własne}
-    \end{figure}
+      Express nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
+      Najbardziej popularną biblioteką do testów tego narzędzia jest mocha.
+      Jest to framework służący do pisania każdego rodzaju przypadków testowych.
+      Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
+      Po użyciu narzędzia otrzymano wyniki testów:
+      \begin{figure}[!hb]
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_express.png} 
+        \caption{Testy frameworka express przy użyciu biblioteki mocha, źródło: opracowanie własne}
+      \end{figure}
 
   \section{Sails}
     \subsection{Rozmiar}
-    47,8 MB wazy po sciagnieciu 
-    utwarzamy uzywajac sails new [nazwa aplikacji]
-    i taki projekt wazy 176 mb dosciagnae sa dependency i robiona struktura
-    po stworeniu apki wazy - 
+      Do pobrania frameworka jako aplikacji konsolowej używamy polecenia:
+      \begin{lstlisting}[language=bash,numbers=none]
+        npm install sails -g
+      \end{lstlisting}
+      Po zainstalowaniu do stworzenia szkieletu projektu używamy:
+      \begin{lstlisting}[language=bash,numbers=none]
+        sails new [nazwa aplikacji]
+      \end{lstlisting}
+      Stworzony projekt (wraz z pobranymi zależnościami) waży 176 mb.
+      Po napisaniu kodów źródłowych waga jest równa 177 mb.
+      Można więc uznać to za wagę wyjściową, która powinna być wzięta przy analizie.
 
     \subsection{Popularność}
       Na portalu github możemy zobaczyć, że framework posiada 19,220 gwiazdek.
@@ -646,41 +653,111 @@
       \end{figure}
 
     \subsection{Próg wejścia}
-    Dokumentacja framework'a jest wystarczająca
+      Sails jest wyjątkowo prosty w obsłudze.
+      Do stworzenia podstawy projektu używamy jednego polecenia, a dalsza praca polega na pisaniu logiki na wzór już istniejącej.
+      Ponadto dzięki przystępnie napisanej dokumentacji nie istnieją problemy nawet z rozwiązaniem bardziej skomplikowanych zagadnień.
+      Wiele wymagań możemy pokryć już w procesie konfiguracji bez potrzeby pisania kodu.
+      Dzięki sztywnej, z góry określonej strukturze aplikacji, mimo wielu możliwości łatwo jest zrozumieć sposób pracy zarówno przy tworzniu nowego jak i wdrażania w istniejący projekt. 
 
     \subsection{Warstwa widoku}
+      Jako że sails został stworzony przy użyciu express warstwa widoku żądzi się dokładnie tymi samymi zasadami.
+      Możemy wybrać między skorzystaniem z zewnętrznego rozwiazania (np. bibliotek frontendowych angular, vue, react) lub użyciem renderingu po stronie serwera przy użyciu szablonów (ang. server side template rendering).
+      Domyślnie używanym przez sails silnikiem jest ejs, który zdecydowałem się wykorzystać przy tworzeniu przykładowej aplikacji.
+
     \subsection{Warstwa bazy danych}
-    napisac o sails-disk
+      Do obsługi warstwy bazy danych sails wykorzystuje biblioteke waterline.
+      Jest to biblioteka ORM dostarczająca zunifikowane API do obsługi między innymi MySQL, PostgreSQL czy MongoDB.
+      Posiada ona wiele użytecznych features takich jak automatyczne replikacje, czy nawet populowanie między bazami danych w różnych technologiach. 
+      W celu wybrania źródła danych nie musimy ustawiać dialektu, wystarczy tylko wskazać adres bazy.
+      Domyślnie, na potrzeby dewelopmentu framework dostarcza baze danych sails-disk, która symuluje działania realnej bazy danych.
+      Nie powinna być ona używana jednak w środowisku produkcyjnym.
 
     \subsection{Testy sprawnościowe}
-    \subsection{Testy obciążeniowe}
-    \subsection{Ilość kodu do napisania}
+      Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
+      Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | c | }
+            \hline
+            Okres czasu & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \hline
+            2 sekundy & 210 & 210 & 243 & 280 & 127 \\
+            \hline
+            10 sekund & 1187 & 1036 & 1020 & 1499 & 627 \\
+            \hline
+            30 sekund & 2926 & 2336 & 2712 & 3992 & 1613 \\
+            \hline
+            Średnia ilość dla 1 sekundy & 103 & 85 & 95 & 137 & 56 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
 
-    - blueprints, routing (takze automatyczny), middlewares, pollicies, wiele innych malych uproszczen jak walidacja funkcji, samodokumentacja, internationalization
+    \subsection{Testy obciążeniowe}
+      Testy zostały przeprowadzone przy użyciu biblioteki mocha, supertest oraz chai.
+      Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | c | }
+            \hline
+            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \hline
+            5 jednocześnie wysłanych zapytań & 1.015 & 0.037 & 0.025 & 0.009 & 0.011 \\
+            \hline
+            30 jednocześnie wysłanych zapytań & 6.271 & 0.17 & 0.215 & 0.07 & 0.079 \\
+            \hline
+            150 jednocześnie wysłanych zapytań & 31.261 & 0.796 & 1.021 & 0.258 & 0.254 \\
+            \hline
+            Średni czas dla 1 zapytania & 0.208 & 0.05 & 0.007 & 0.002 & 0.002 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
+
+    \subsection{Ilość kodu do napisania}
+      Ilość wytworzonych lini kodu to 400.
+      Są to jednak linie kodu bardziej skupione na konfiguracji wartości lub nieskomplikowanej logice w porównaniu z kodem aplikacji napisanej przy użyciu express.
+      Ponieważ framework został napisany przy użyciu narzędzia express możemy korzystać ze wszystkich jego features min. middlewares.
+      Sails zapewnia dodatkowo od siebie bardzo wiele możliwości.
+      Najbardziej rozpoznawalną są blueprints, które pozwalają na automatyczne generowanie pełnej funkcjonalności rest api (wraz z interfejsem komunikacji oraz połączeniem z bazą danych) dla stworzonych modeli danych.
+      Kolejnym dostępnym featerem jest routing (pochodzący z express) wzbogacony o automatyczne tworzenie końcówek http dla wytworzonych kontrolerów wedug ich scieżki w projekcie.
+      Framework oferuje także nieskomplikowane w obsłudzę zarządzanie dostępem do zasobów aplikacji przez pollicies, działających na podstawie określonych kontrolerów dostępu.
+      Poza wymienionymi mamy również dostęp do mniej skomplikowanych funkcjonalności jak walidacja zapytań, automatyczne tworzenie dokumentacji czy internacjonalizacja aplikacji.
+      Każda funkcjonalność jest konfigurowana na podstawie osobnych plików konfiguracyjnych w postaci obiektów języka javascript.
+      Wszystko to sprawia, że możemy skupić się wyłącznie na pisaniu kodu biznesowego.
 
     \subsection{Rozszerzalność}
-    sails dziala jako mvc
-    po stworzniu projektu dzieli sie ona na
-.    api 
-    - kontrolery (obsluga przychodzacych requestow, interakcja z modelem)
-  - helpers - wspoldzieone funkcje w appce
-  - models - struktura danych aplikacji
-  - policies - zarzadzanie dostepem do pewnych czesci aplikacji
-. assets - statyczne pliki serwisu jak multimedia, style, widoki frontendu
-. config - pliki konfiguracyjne jak tlumaczenia strony, ustawienia srodowiska
-. views - widoki aplikacji
+    Sails działa w sztywno określonej architekturze opartej na wzorcu MVC.
+    Po stworzeniu szkieletu aplikacji jest ona podzielona na foldery:
+    \begin{itemize}
+      \item api, składające się z:
+      \begin{itemize}
+        \item controllers - obsluga przychodzących zapytań, interakcja z modelem
+        \item helpers - współdzielona między komponentami funkcjonalność
+        \item pollicies - zarządzanie dostępem do zasobów aplikacji
+        \item models - struktura danych aplikacji
+        \item responses - reużywalne szablony dla odpowiedzi aplikacji
+      \end{itemize}
+      \item assets - statyczne pliki serwisu jak multimedia czy style
+      \item views - szablony widoków aplikacji
+      \item tasks - funkcje oraz skrypty wywoływane dla różnych stanów aplikacji (np. grunt lub webpack)
+      \item config - pliki konfigracyjne środowiska jak tłumaczenia, przełączniki, adresy baz danych
+    \end{itemize}
+    Wymuszenie sztywnego podziału gwarantuje szybkie odnalezienie się w nowych projektach oraz wskazuję droge do osiągnięcia zrozumiałego, czystego kodu.
+    Dzięki konfigurowalności aplikacji jest ona również odporna na możliwe do szybkiego wprowadzenia zmiany.
+    Projekty wytworzone narzędziem są dzięki temu łatwo utrzymywalne i rozszerzalne nawet przy braku dużego doświadczenia programistycznego. 
 
     \subsection{Testowanie}
-    Sails nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
-    Najbardziej popularną biblioteką do testów tego narzędzia jest mocha.
-    Jest to framework służący do pisania każdego rodzaju przypadków testowych.
-    Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
-    Po użyciu narzędzia otrzymano wyniki testów:
-    \begin{figure}[!hb]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_sails.png} 
-      \caption{Testy frameworka sails przy użyciu biblioteki mocha, źródło: opracowanie własne}
-    \end{figure}
+      Sails nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
+      Najbardziej popularną biblioteką do testów tego narzędzia jest mocha.
+      Jest to framework służący do pisania każdego rodzaju przypadków testowych.
+      Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
+      Po użyciu narzędzia otrzymano wyniki testów:
+      \begin{figure}[!hb]
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_sails.png} 
+        \caption{Testy frameworka sails przy użyciu biblioteki mocha, źródło: opracowanie własne}
+      \end{figure}
 
   \section{Meteor}
     \subsection{Rozmiar frameworku}
@@ -709,10 +786,11 @@
     \subsection{Rozszerzalność}
     \subsection{Testowanie}
     
-
 \chapter{Podsumowanie}
   \section{Podsumowanie ocen}
+  tu wypisac dla kzadego krotkie podsumowanie wzgledem siebie i oceny
   \section{Wskazywane zastosowania}
+  wypisac dla kazdego framewokra casey
 
 \addcontentsline{toc}{chapter}{Bibliografia}
 

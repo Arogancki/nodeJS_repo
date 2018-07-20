@@ -5,7 +5,6 @@ process.env.PORT = 3099
 process.env.LOG = false
 
 const mongoose = require('mongoose')
-    , chai = require('chai')
     , agent = require('supertest').agent
 
     , server = require('../../src/app')

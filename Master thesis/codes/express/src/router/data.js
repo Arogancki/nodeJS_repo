@@ -31,13 +31,13 @@ module.exports = (app)=>{
         let user = req.user
         user.data = [ req.body.text, ...user.data]
         try{
-            await users.findByIdAndUpdate(user.id,{
+            let record = await users.findByIdAndUpdate(user.id,{
                 $push: {
                     data: req.body.text,
                     $position: 0
                 }
             })
-            return res.json(user.data)
+            return res.json(record.data)
         }
         catch(err){
             res.statusMessage = err.message

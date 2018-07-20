@@ -8,7 +8,6 @@
  * For more information on configuration, check out:
  * https://sailsjs.com/config/http
  */
-
 module.exports.http = {
 
   /****************************************************************************
@@ -21,7 +20,6 @@ module.exports.http = {
   ****************************************************************************/
 
   middleware: {
-
     /***************************************************************************
     *                                                                          *
     * The order in which middleware should be run for HTTP requests.           *

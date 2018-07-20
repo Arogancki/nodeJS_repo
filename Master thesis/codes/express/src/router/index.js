@@ -7,7 +7,9 @@ const router = require('express').Router()
 module.exports = (app) => {
 
     router.all('/', (req, res, next)=>{
-        redirect(req, res, '/app')
+        if (req.isAuthenticated())
+            return redirect(req, res, '/app')
+        return redirect(req, res, '/sign/in')
     })
 
     fs.readdirSync(__dirname)
