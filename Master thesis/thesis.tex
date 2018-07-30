@@ -764,7 +764,6 @@
     instalacja narzedzia meteor choco install meteor wazy 389 MB
     szkielet wazy 7,39 MB
     
-
     \subsection{Popularność}
       Na portalu github możemy zobaczyć, że framework posiada 39.977 gwiazdek.
       Na portalu stackoverflow znajduję się 27,649 wątków dotyczących tej technologii.
@@ -780,16 +779,37 @@
 
     \subsection{Próg wejścia}
     \subsection{Warstwa widoku}
+      Meteor po stronie widoku wspiera aplikacje napisane w React, Angular oraz silnik Blaze.
+      Do działania na platformach mobilnych wykorzystuje silnik Cordova lub React Native.
+      W repozytorium modułów atmosphere możemy znaleźć w pełni zaimplementowane koponenty służące do autoryzacji, wyświetlania filmów czy bibliotek zdjeć.
+      Meteor kompiluje stworzone pliki html używając narzędzia spacebars complier.
+      Silnik blaze zapewnia pełna synchronizacje (reaktywność) warstwy widoku oraz bazy danych (minimongo).
+      Obiekty reaktywne to obiekt sesji oraz kolekcje mongodb.
+      Do stworzenia analizowanego projektu wykrozystałem silnik Blaze.
+
       Meteor uses data on the wire, meaning the server sends data, not HTML, and the client renders it.
       Meteor provides full stack reactivity, allowing your UI to seamlessly reflect the true state of the world with minimal development effort.
 
       react angular lub domyslnie silnik serrs site blaze
+
     \subsection{Warstwa bazy danych}
-      data base eveywhere bardzo silne wiaznie, minimongo
+      Framework meteor aktualnie może działać tylko z bazami danych mongoDB.
+      Po stronie serwera technologia używa sterownika mongoDB, a po stronie klienta używa biblioteki Minimongo.
+      Minimongo jest to uproszczony klient bazy mongoDB, dzięki któremu nie musimy obawiać się o synchronizacje danych między warstwą frontendu oraz backendu.
+      Framework automatycznie propaguje zmiany bazy danych w obydwu kierunkach poprzez wykorzystanie websocketów, oraz aktualizuje widok naszej aplikacji u klienta.
+      Dzięki temu unikamy potrzeby tworzenia architektury komunikacji oraz uzykujemy aplikacje, która w każdym momencie może odzwierciedlać swój faktyczny, globalny stan.
+
     \subsection{Testy sprawnościowe}
     \subsection{Testy obciążeniowe}
     \subsection{Ilość kodu do napisania}
     \subsection{Rozszerzalność}
+      We frameworku meteor wytwarzamy aplikacjie działające jednocześnie po stronie serwera oraz klienta.
+      Programując możemy rozgraniczyć pewien kod poprzez trzymanie plików odpowiednio w folderach server oraz client.
+      Pozostałe pliki będą dostępne po obu stronach, dzięki czemu możemy skorzystać z większej ilości reużywalnych komponentów, ale też musimy uważać aby nie udostępnić wrażliwych części aplikacji do klienta.
+
+
+/lib - ustawienia, konfiguracje globalne
+/public - dostepne zasoby
 imports/
   startup/
     client/
@@ -817,9 +837,11 @@ imports/
     pages/                     # entry points for rendering used by the router
 
 client/
+  lib/ - ustawienia, konfiguracje klietna
   main.js                      # client entry point, imports all client code
 
 server/
+  lib/ - ustawienia, konfiguracje klietna
   main.js                      # server entry point, imports all server code
 
     \subsection{Testowanie}

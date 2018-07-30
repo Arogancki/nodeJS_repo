@@ -27,6 +27,7 @@ function ensureConnection() {
 
 function cleanDatabase() {
     return new Promise(res=>mongoose.connection.db.dropDatabase(res))
+    
 }
 
 function closeServer(server){

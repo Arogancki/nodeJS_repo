@@ -1,0 +1,23 @@
+<template name="app">
+    <div style="width: 100%;" class="row">
+        <div style="width: 50%; padding: 5%">
+            <video style="width: 100%; max-height: 400px;" controls>
+                <source src="/video.mp4">
+            </video>
+        </div>
+        <div style="width: 40%; max-height: 400px; margin: 5%; background-color: white; border: 1px solid gray;">
+            <div id="dataHolder" class="text-left" style="height: 85%; padding: 2%; overflow: overlay">
+                {{#if isLogged}}
+                    {{#each d in TemplateVar.get "data"}}
+                        <p>{{ d }}</p>
+                    {{/each}}
+                {{/if}}
+            </div>
+            <form style="height: 15%" class="form-inline" id="form-data" >
+                <input style="width: 78%; margin: 1%;" type="text" class="form-control" id="text" name="text">
+                <button style="width: 18%; margin: 1%;" type="submit" class="btn btn-primary">Send</button>
+            </form>
+            <div style="margin: 1%">{{> flashMessages}}</div>
+        </div>
+    </div>
+</template>

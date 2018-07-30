@@ -13,7 +13,10 @@ module.exports = function test(config){
             helper.redirect.get(agent(config.express.app), '/app', '/')
         )
         it('user is redirected from root to app', ()=>
-            helper.redirect.get(agent(config.express.app), '/', '/app')
+            helper.signIn(agent(config.express.app), 'username1', 'password')
+                .then(agent=>
+                    helper.redirect.get(agent, '/', '/app')
+                )
         )
     })
 }

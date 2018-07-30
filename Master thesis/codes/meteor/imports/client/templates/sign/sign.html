@@ -1,0 +1,21 @@
+<template name="sign">
+    <form class="{{#if isNew}}form-signup{{else}}form-signin{{/if}}" style="width: 25%" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">
+            {{#if isNew}}
+                Sign up
+            {{else}}
+                Sign in
+            {{/if}}
+        </h1>
+        <label class="sr-only" for="username">login</label>
+        <input class="form-control m-2" type="text" id="username" name="username" placeholder="username" required="true" autofocus="true"/>
+        <label class="sr-only" for="password">Password</label>
+        <input class="form-control m-2" type="password" id="password" name="password" placeholder="password" required="true"/>
+        {{#if isNew}}
+            <label class="sr-only" for="password2">Password confirmation</label>
+            <input class="form-control m-2" type="password" id="password2" name="password2" placeholder="password confirmation" required="true"/>
+        {{/if}}
+        <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">OK</button>
+        <div class="mt-3 font-weight-normal">{{> flashMessages}}</div>
+    </form>
+</template>
