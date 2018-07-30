@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor test --inspect --once --full-app --driver-package meteortesting:mocha --port 3012",
+    "test": "meteor test --full-app --driver-package meteortesting:mocha --port 3012",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
