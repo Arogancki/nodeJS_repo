@@ -64,7 +64,7 @@ mongo-id@1.0.7
 mongo-livedata@1.0.12
 mrt:flash-messages@1.0.1
 npm-bcrypt@0.9.3
-npm-mongo@3.0.7
+npm-mongo@3.0.11
 observe-sequence@1.0.16
 ordered-dict@1.1.0
 practicalmeteor:mocha-core@1.0.1

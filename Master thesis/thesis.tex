@@ -549,7 +549,7 @@
         \begin{center}
           \begin{tabular}{ | c | c | c | c | c | c | }
             \hline
-            Okres czasu & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            Okres czasu & Autoryzacja & Zapis danych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
             \hline
             2 sekundy & 396 & 144 & 420 & 463 & 147 \\
             \hline
@@ -570,7 +570,7 @@
         \begin{center}
           \begin{tabular}{ | c | c | c | c | c | c | }
             \hline
-            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
             \hline
             5 jednocześnie wysłanych zapytań & 1.174 & 0.02 & 0.015 & 0.002 & 0.003 \\
             \hline
@@ -679,7 +679,7 @@
         \begin{center}
           \begin{tabular}{ | c | c | c | c | c | c | }
             \hline
-            Okres czasu & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            Okres czasu & Autoryzacja & Zapis danych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
             \hline
             2 sekundy & 210 & 210 & 243 & 280 & 127 \\
             \hline
@@ -700,7 +700,7 @@
         \begin{center}
           \begin{tabular}{ | c | c | c | c | c | c | }
             \hline
-            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
             \hline
             5 jednocześnie wysłanych zapytań & 1.015 & 0.037 & 0.025 & 0.009 & 0.011 \\
             \hline
@@ -727,25 +727,25 @@
       Wszystko to sprawia, że możemy skupić się wyłącznie na pisaniu kodu biznesowego.
 
     \subsection{Rozszerzalność}
-    Sails działa w sztywno określonej architekturze opartej na wzorcu MVC.
-    Po stworzeniu szkieletu aplikacji jest ona podzielona na foldery:
-    \begin{itemize}
-      \item api, składające się z:
+      Sails działa w sztywno określonej architekturze opartej na wzorcu MVC.
+      Po stworzeniu szkieletu aplikacji jest ona podzielona na foldery:
       \begin{itemize}
-        \item controllers - obsluga przychodzących zapytań, interakcja z modelem
-        \item helpers - współdzielona między komponentami funkcjonalność
-        \item pollicies - zarządzanie dostępem do zasobów aplikacji
-        \item models - struktura danych aplikacji
-        \item responses - reużywalne szablony dla odpowiedzi aplikacji
+        \item api, składające się z:
+        \begin{itemize}
+          \item controllers - obsluga przychodzących zapytań, interakcja z modelem
+          \item helpers - współdzielona między komponentami funkcjonalność
+          \item pollicies - zarządzanie dostępem do zasobów aplikacji
+          \item models - struktura danych aplikacji
+          \item responses - reużywalne szablony dla odpowiedzi aplikacji
+        \end{itemize}
+        \item assets - statyczne pliki serwisu jak multimedia czy style
+        \item views - szablony widoków aplikacji
+        \item tasks - funkcje oraz skrypty wywoływane dla różnych stanów aplikacji (np. grunt lub webpack)
+        \item config - pliki konfigracyjne środowiska jak tłumaczenia, przełączniki, adresy baz danych
       \end{itemize}
-      \item assets - statyczne pliki serwisu jak multimedia czy style
-      \item views - szablony widoków aplikacji
-      \item tasks - funkcje oraz skrypty wywoływane dla różnych stanów aplikacji (np. grunt lub webpack)
-      \item config - pliki konfigracyjne środowiska jak tłumaczenia, przełączniki, adresy baz danych
-    \end{itemize}
-    Wymuszenie sztywnego podziału gwarantuje szybkie odnalezienie się w nowych projektach oraz wskazuję droge do osiągnięcia zrozumiałego, czystego kodu.
-    Dzięki konfigurowalności aplikacji jest ona również odporna na możliwe do szybkiego wprowadzenia zmiany.
-    Projekty wytworzone narzędziem są dzięki temu łatwo utrzymywalne i rozszerzalne nawet przy braku dużego doświadczenia programistycznego. 
+      Wymuszenie sztywnego podziału gwarantuje szybkie odnalezienie się w nowych projektach oraz wskazuję droge do osiągnięcia zrozumiałego, czystego kodu.
+      Dzięki konfigurowalności aplikacji jest ona również odporna na możliwe do szybkiego wprowadzenia zmiany.
+      Projekty wytworzone narzędziem są dzięki temu łatwo utrzymywalne i rozszerzalne nawet przy braku dużego doświadczenia programistycznego. 
 
     \subsection{Testowanie}
       Sails nie dostarcza nam wraz z frameworkiem metod testujących wytwarzaną aplikacje. 
@@ -761,8 +761,18 @@
 
   \section{Meteor}
     \subsection{Rozmiar frameworku}
-    instalacja narzedzia meteor choco install meteor wazy 389 MB
-    szkielet wazy 7,39 MB
+      Do pobrania frameworka jako aplikacji konsolowej dla systemu windows używamy menadzera chocolatey, używając polecenia
+      \begin{lstlisting}[language=bash,numbers=none]
+        choco install meteor
+      \end{lstlisting}
+      Narzędzie waży 389 MB.
+      Po zainstalowaniu do stworzenia szkieletu projektu używamy:
+      \begin{lstlisting}[language=bash,numbers=none]
+        meteor create [nazwa aplikacji]
+      \end{lstlisting}
+      Stworzony kod szkieletu aplikacji waży 7.39 MB.
+      Do folderu projektu zostaje również dołączone środowisko uruchomieniowe oraz wspomagające biblioteki i całość waży 454 MB.
+      Można więc uznać to za wagę wyjściową, która powinna być wzięta przy analizie.
     
     \subsection{Popularność}
       Na portalu github możemy zobaczyć, że framework posiada 39.977 gwiazdek.
@@ -771,6 +781,10 @@
 
     \subsection{Dokumentacja}
       Strona dokumentacji jest dostępna na stronie https://docs.meteor.com/\#/full/.
+      Zawiera ona obszerne opisy wszystkich feature'ów oraz wspieranych przez framework rozwiązań.
+      Możemy znaleźć na niej materiały do nauki w postaci poradników jak krok po kroku zbudować kolejne części projektu, przykładowych repozytoriów z kodami źródłowymi oraz filmami wideo.
+      Strona jest zarządzana w czytelny, podzielony na poszczególne częsci sposób.
+      Znajdziemy tutaj również odnośniki do forum, gdzie poruszane są bardziej indywidualne/szczegółowe zagadnienia.
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_meteor.png} 
@@ -778,6 +792,14 @@
       \end{figure}
 
     \subsection{Próg wejścia}
+      Meteor posiada wyższy próg wejścia niż pozostałe frameworki, ponieważ jest on całym ekosystemem wykorzystującym własne narzędzia.
+      Posiada własny menadżer modułow atmosphere, który w prawdzie posiada ogromną ilość komponentów wspierających wybrane funkcjonalności, ale nie są one tak popularne jak te z npm.
+      Jednak w przeciwieństwie do npm aby umieścić moduł w atmosphere musi on zostać zaakceptowany przez deweloperów odpowiedzialnych za biblioteke wprowadzając pewien stopień weryfikacji.
+      Poprzez dostarczenie wielu gotowych rozwiązań meteor posiada bardzo sztywny, specyficzny sposób wytwarzania projektu.
+      Przy pierwszym kontakcie wiele konceptów jest niejasnych i odnaleźenie się w nich może sprawiać trudność. 
+      Do wytwarzania najprostrzych projektów musimy posiadać wiedzę o wielu elementach środowika, które nie są wykorzystywana w żadnym innym rozwiązaniu.
+      Ponieważ meteor jest znacząco inny od pozostałych framework'ów nie potrzebujemy mięć dużej wiedzy o technologii nodejs - wystarczy nam javaScript.
+
     \subsection{Warstwa widoku}
       Meteor po stronie widoku wspiera aplikacje napisane w React, Angular oraz silnik Blaze.
       Do działania na platformach mobilnych wykorzystuje silnik Cordova lub React Native.
@@ -787,11 +809,6 @@
       Obiekty reaktywne to obiekt sesji oraz kolekcje mongodb.
       Do stworzenia analizowanego projektu wykrozystałem silnik Blaze.
 
-      Meteor uses data on the wire, meaning the server sends data, not HTML, and the client renders it.
-      Meteor provides full stack reactivity, allowing your UI to seamlessly reflect the true state of the world with minimal development effort.
-
-      react angular lub domyslnie silnik serrs site blaze
-
     \subsection{Warstwa bazy danych}
       Framework meteor aktualnie może działać tylko z bazami danych mongoDB.
       Po stronie serwera technologia używa sterownika mongoDB, a po stronie klienta używa biblioteki Minimongo.
@@ -800,57 +817,102 @@
       Dzięki temu unikamy potrzeby tworzenia architektury komunikacji oraz uzykujemy aplikacje, która w każdym momencie może odzwierciedlać swój faktyczny, globalny stan.
 
     \subsection{Testy sprawnościowe}
+      Testy zostały przeprowadzone przy użyciu biblioteki mocha.
+      Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | c | }
+            \hline
+            Okres czasu & Autoryzacja & Zapis danych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \hline
+            2 sekundy & 172 & 193 & 187 & 178 & 37 \\
+            \hline
+            10 sekund & 859 & 957 & 935 & 1027 & 243 \\
+            \hline
+            30 sekund & 2437 & 2901 & 2655 & 2765 & 800 \\
+            \hline
+            Średnia ilość dla 1 sekundy & 83 & 96 & 90 & 95 & 26 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
+
     \subsection{Testy obciążeniowe}
+      Testy zostały przeprowadzone przy użyciu biblioteki mocha.
+      Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | c | }
+            \hline
+            Ilości wysłanych równolegle zapytań & Autoryzacja & Zapis danych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \hline
+            5 jednocześnie wysłanych zapytań & 0.885 & 0.098 & 0.071 & 0.064 & 0.249 \\
+            \hline
+            30 jednocześnie wysłanych zapytań & 4.372 & 0.621 & 0.412 & 0.299 & 1.42 \\
+            \hline
+            150 jednocześnie wysłanych zapytań & 19.006 & 3.598 & 2.073 & 0.739 & 4.923 \\
+            \hline
+            Średni czas dla 1 zapytania & 0.028 & 0.023 & 0.014 & 0.006 & 0.036 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
+    
     \subsection{Ilość kodu do napisania}
+      Ilość wytworzonych lini kodu to 255.
+      Większość z nich dotyczy bezpośrednio widoku, nie logiki aplikacji do której obsługi zostały wykorzystane gotowe moduly z repozytorium atmosphere.
+      Najbardziej przydatnimi featurami oferowanymi przez biblioteke są:
+      \newline
+      Publish/subscribe - pozwalające na reaktywne programowanie zdarzeń oraz reakcji na ich zajście.
+      \newline
+      Blaze oraz Tracker - silnik pozwalający na zarządzanie reaktywne danymi zarówno po stronie widoku oraz bazy danych bez potrzeby tworzenia reaktywnej logiki.
+      \newline
+      Automatyczna obsługa oraz synchronizacjia bazy danych nawet w przypadku wielu użytkowników bez potrzeby tworzenia dodatkowej logiki.
+      \newline
+      Użycie globalnej zmiennej Meteor w każdym miejscu w kodzie, która posiad dostęp do wszystkich części aplikacji.
+      \newline
+      Wbudowana obsługa wielu strategi autoryzacji użytkownika.
+      \newline
+      Framework wymaga wytworzenia wyjątkowo niewielkiej ilo
+
     \subsection{Rozszerzalność}
       We frameworku meteor wytwarzamy aplikacjie działające jednocześnie po stronie serwera oraz klienta.
       Programując możemy rozgraniczyć pewien kod poprzez trzymanie plików odpowiednio w folderach server oraz client.
       Pozostałe pliki będą dostępne po obu stronach, dzięki czemu możemy skorzystać z większej ilości reużywalnych komponentów, ale też musimy uważać aby nie udostępnić wrażliwych części aplikacji do klienta.
-
-
-/lib - ustawienia, konfiguracje globalne
-/public - dostepne zasoby
-imports/
-  startup/
-    client/
-      index.js                 # import client startup through a single index entry point
-      routes.js                # set up all routes in the app
-      useraccounts-configuration.js # configure login templates
-    server/
-      fixtures.js              # fill the DB with example data on startup
-      index.js                 # import server startup through a single index entry point
-
-  api/
-    lists/                     # a unit of domain logic
-      server/
-        publications.js        # all list-related publications
-        publications.tests.js  # tests for the list publications
-      lists.js                 # definition of the Lists collection
-      lists.tests.js           # tests for the behavior of that collection
-      methods.js               # methods related to lists
-      methods.tests.js         # tests for those methods
-
-  ui/
-    components/                # all reusable components in the application
-                               # can be split by domain if there are many
-    layouts/                   # wrapper components for behaviour and visuals
-    pages/                     # entry points for rendering used by the router
-
-client/
-  lib/ - ustawienia, konfiguracje klietna
-  main.js                      # client entry point, imports all client code
-
-server/
-  lib/ - ustawienia, konfiguracje klietna
-  main.js                      # server entry point, imports all server code
+      Szkielet projektu przedstawia się następująco:
+      \begin{itemize}
+        \item lib - ustawienia, konfiguracje globalne
+        \item public - udostępnione zasoby serwera jak zdjęcia, filmy, pliki stylów
+        \item server - kod źródłowy obsługiwany po stronie wyłącznie serwera
+        \item client - kod źródłowy obsługiwany po stronie wyłącznie klienta
+        \item ui - widoki aplikacji
+        \item startup - skrypty startowe
+      \end{itemize}
+      Metor swoją sztywną architekturą wymusza prowadzenie kodu podzielonego na jak najmniejsze, a przy odpowiednim utrzymaniu reużywalne części.
+      Dzięki automatycznej synchronizacji oraz wykorzystaniu reaktywnych zmiennych możemy uniknąć problemów z synchronizacją danych w poszczególnych elementach aplikacji, nawet przy rozbudowanych projektach.
+      Framewok wspomaga wytwarzanie rozszerzalnych produktów, jednak przy nieumiejętnym zarządzaniu nie gwarantuje tego.      
 
     \subsection{Testowanie}
+      Metor nie dostarcza wraz z frameworkiem żadnego własnego rozwiązania testującego.
+      Na stronie dokumentacji rekomendowaną biblioteką jest mocha.
+      Jest to framework służący do pisania każdego rodzaju przypadków testowych.
+      Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
+      Po użyciu narzędzia otrzymano wyniki testów:
+      \begin{figure}[!hb]
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_meteor.png} 
+        \caption{Testy frameworka sails przy użyciu biblioteki mocha, źródło: opracowanie własne}
+      \end{figure}
     
 \chapter{Podsumowanie}
   \section{Podsumowanie ocen}
   tu wypisac dla kzadego krotkie podsumowanie wzgledem siebie i oceny
   \section{Wskazywane zastosowania}
-  wypisac dla kazdego framewokra casey
+If you run a small engineering team and your product isn’t likely to expand into some enterprise-scale monstrosity soon, opt for Express. It’s the best fit for from-scratch projects that don’t suffer the legacy burden. But as your project and the team grows, the lack of standards may inadvertently lead to code management hell. Beware.
+
+Some engineers claim that Sails is the best framework you can find for Node.js development. While Sails is good for many tasks, it will really shine with the apps that will have instant messaging or real-time event-based updates. These are messengers or applications that involve messaging capacities, various dashboards and streaming analytics with constantly updating charts, collaborative tools for project management and text editing. The use cases can even stretch to multiplayer games.
+
+Being highly automated, Meteor encourages fast prototyping and building MVPs (minimum viable products). You quickly build your app across platforms, see how it looks and feels, iteratively update it, and then go live to catch the initial feedback. It’s not that you can’t use it for business-scale applications, it’s rather that your engineering team will likely suffer from scalability issues in the longer run. Building hybrid apps, for instance, usually, jeopardizes user experience as apps appear laggy and generally slow. Automated data synchronization can also become a bottleneck, once your user base reaches enterprise-scale loads.
 
 \addcontentsline{toc}{chapter}{Bibliografia}
 

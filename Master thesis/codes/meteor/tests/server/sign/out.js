@@ -1,6 +1,4 @@
-const agent = require('supertest').agent
-
-    , helper = require('../helper')
+const helper = require('../helper')
 
 module.exports = function test(config){
     describe('out', ()=>{
