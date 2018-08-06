@@ -1,4 +1,6 @@
 \documentclass[12pt]{report}
+\usepackage{adjustbox}
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
@@ -13,9 +15,13 @@
 \usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{relsize}
+\usepackage{tabularx}
+\usepackage{microtype}
+
 \setcounter{tocdepth}{1}
 \setcounter{page}{5}
 \graphicspath{{images/}}
+\newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
 \renewcommand{\chaptername}{Rozdział}
 \renewcommand{\contentsname}{Spis treści}
 \renewcommand{\figurename}{Rysunek}
@@ -25,6 +31,8 @@
 \newtheorem{example}{Przykład}[chapter]
 \setlength{\textwidth}{14cm}
 \setlength{\textheight}{20cm}
+\hyphenation{thatshouldnot}
+\captionsetup{justification=centering,margin=0cm}
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
   keywordstyle=\color{blue}\bfseries,
@@ -115,14 +123,14 @@
     Od momentu jej ukazania się powstało wiele narzędzi ułatwiających oraz poprawiających jakość procesu deweloperskiego.
     Niektóre z nich skupiają się na usprawnianiu podobnych, pokrewnych lub identycznych przypadków użycia.
     Aby unkinąc nie trafnego wdrożenia wybranego narzędzia w opracowywany projekt, należy rozumieć kiedy wybrana metoda sprawdzi się najlepiej, a kiedy warto zastosować inne rozwiązanie.
-    Nawet w przypdaku użycia tego samego języka programowania przeniesienie aplikacji pomiędzy frameworkami może być kosztownym oraz czasochłonnym przedsięwzięciem.
+    Nawet w przypdaku użycia tego samego języka programowania przeniesienie aplikacji pomiędzy frameworkami może być kosztownym oraz czasochłonnym zadaniem.
     Z tego powodu powstała potrzeba zakreślenia, które wyjście najlepiej sprawdza się dla określonego projektu lub jego części.
     W pracy zostały zawarte kryteria wyboru technologii, specyfikacje ocenianych parametrów, analiza frameworków oraz podsumowanie przeprowadzonych badań.
 
   \section{Przeznaczenie technologii Node.js}
     Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach c/c++ oraz javaScript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla.
     Początkowym przeznaczeniem technologii było tworzenie serwerów i narzędzi sieciowych, działających po stronie serwera, lecz wraz z jej rozpowszechnieniem się możliwości te znacznie się poszerzyły oferując wytwarzanie między innymi aplikacji desktopowych (Electron), mobilnych (React Native, Cordova) lub rozwiązań embedded (Onoff).
-    Przed jej powstaniem powstaniem kod w języku javaScript był wykonywany głównie przez przeglądarkę internetową po stronie klienta, co pozwalało na bezproblemową manipulację kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów serwera.
+    Przed jej powstaniem powstaniem kod w języku javaScript był wykonywany głównie przez przeglądarkę internetową po stronie klienta. Pozwalało na bezproblemową manipula-cję kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów serwera.
     Środowisko Node.js może działać niezależnie od środowiska uruchomieniowego.
     Jest ono zgodne z wieloma systemami operacyjnymi jak  Linux, macOS, Microsoft Windows, NonStop, czy serwerami Unix.
     Język ten cieszy się dużą popularnością oraz pozytywnym odbiorem wśród użytkowników, dzięki czemu, mimo względnie krótkiego okresu życia środowiska, zaowocowało ogromną ilością projektów open-source, tysiącami członków należących do społeczności okołojęzykowej oraz powstaniem wydarzeń poruszających tematy okołośrodowiskowe, takimi jak NodeConf, Node Interactive lub Node Summit.
@@ -195,14 +203,14 @@
     \begin{figure}[!hb]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{locomotive.png} 
-      \caption{Strona projektu Locomotive w serwisie Github, źródło: https://github.com/jaredhanson/locomotive/}
+      \caption{Strona projektu Locomotive w serwisie Github \newline źródło: https://github.com/jaredhanson/locomotive/}
     \end{figure}
     Dla porównania framework Koa posiada 21568 gwiazdek oraz był aktualizowany w dniu pisania pracu (dane na dzień 06.06.2018).
     Możemy wieć założyć że jest wciąż popularny oraz utrzymywany.
     \begin{figure}[!hb]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{koa.png} 
-      \caption{Strona projektu Koa w serwisie Github, źródło: https://github.com/koajs/koa/}
+      \caption{Strona projektu Koa w serwisie Github \newline źródło: https://github.com/koajs/koa/}
     \end{figure}
 
   \section{Wybrane frameworki}
@@ -217,7 +225,7 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{express.png} 
-        \caption{Strona projektu Express w serwisie Github, źródło: https://github.com/expressjs/express}
+        \caption{Strona projektu Express w serwisie Github \newline źródło: https://github.com/expressjs/express}
       \end{figure}
 
     \subsection{Sails}
@@ -229,7 +237,7 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sails.png} 
-        \caption{Strona projektu Sails w serwisie Github, źródło: https://github.com/balderdashy/sails}
+        \caption{Strona projektu Sails w serwisie Github \newline źródło: https://github.com/balderdashy/sails}
       \end{figure}
 
     \subsection{Meteor}
@@ -240,7 +248,7 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{meteor.png} 
-        \caption{Strona projektu Meteor w serwisie Github, źródło: https://github.com/meteor/meteor}
+        \caption{Strona projektu Meteor w serwisie Github \newline źródło: https://github.com/meteor/meteor}
       \end{figure}
   
   \section{Alternatywne rozwiązania}
@@ -271,6 +279,7 @@
     Każdy z parametrów otrzymał wagę w skali od 1 do 3.
     Wagi oznaczają wpływ danego parametru na ocene podsumowującą.
     Końcowe oceny zostały wyliczone ze wzoru:
+    \newline
     \newline
     \[\text{\Large$O = \frac{\sum_{i=1}^{n} p_{i} * w_{i}}{sw}$}\]
     \newline
@@ -364,7 +373,7 @@
       \begin{description}
         \item Waga: 2
       \end{description}
-      Parametr opisuje jak łatwo kod napisany w danym środowisku może zostać przetestowany przez napisane testy automatyczne.
+      Parametr opisuje stopień trudności wytworzenia testów automatycznych kodu dla danego środowiska.
       Stworzenie automatycznych testów pozwala nam w najszybszy dostępny sposób sprawdzić czy testowane rozwiązanie zachowuje się zgodnie z założonymi oczekiwaniami.
       Znacznie skraca to czas wytwarzania oprogramowania dzięki natychmiastowej diagnostyce oraz możliwości wyeliminowania powstałych błedów.
       Analizowany framework powinien dostarczać metody łatwego tworzenia testów automatycznych lub bezproblemową integracje w przypadku użycia zewnętrznego narzędzia.
@@ -397,7 +406,7 @@
       \begin{description}
         \item Waga: 3
       \end{description}
-      Parametr opisuje czas potrzebny na przetworzenie różnych ilości równolegle przychodzących zapytań, symulując prace serwera przy obciążeniu od wielu użytkowników w tym samym czasie.
+      Parametr opisuje czas potrzebny na przetworzenie różnych ilości równolegle przycho-dzących zapytań, symulując prace serwera przy obciążeniu od wielu użytkowników w tym samym czasie.
       Zapytania zostały wysłane w tym samym momencie i został zmierzony czas po którym uzyskano odpowiedź na wszystkie z nich.
       Zapytania zostały dobrane dla następujących przypadków użycia:
       \begin{description}
@@ -421,7 +430,7 @@
     \begin{figure}[!hb]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_express.png} 
-      \caption{Logo projektu Express, źródło: https://expressjs.com/}
+      \caption{Logo projektu Express \newline źródło: https://expressjs.com/}
     \end{figure}
     Express jest najbardziej popularnym frameworkiem technologii Node.js.
     Często jest używany również jako podstawa na której opierają się inne frameworki tej technologii.
@@ -446,7 +455,7 @@
     \begin{figure}[!hb]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_sails.png} 
-      \caption{Logo projektu Sails, źródło: https://sailsjs.com/}
+      \caption{Logo projektu Sails \newline źródło: https://sailsjs.com/}
     \end{figure}
     Sails jest to framework aplikacji webowych działający w architekturze MVC (Model-View-Controller).
     Inspiracją do jego powstanie był framework Ruby on Rails dla języka Ruby, a do jego napisania został wykorzystany Express.
@@ -466,7 +475,7 @@
     \begin{figure}[!hb]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_meteor.png} 
-      \caption{Logo projektu Meteor, źródło: https://www.meteor.com/}
+      \caption{Logo projektu Meteor \newline źródło: https://www.meteor.com/}
     \end{figure}
     Meteor wyróżnia przedewszystkim, fakt że jest frameworkiem izomorficznym. 
     Jeden kod aplikacji działa zarówno po stronie klienta jak i serwera.
@@ -525,7 +534,7 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_express.png} 
-        \caption{Dokumentacja projektu Express, źródło: https://expressjs.com/en/api.html}
+        \caption{Dokumentacja projektu Express \newline źródło: https://expressjs.com/en/api.html}
       \end{figure}
 
     \subsection{Próg wejścia}
@@ -584,17 +593,25 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_express.png} 
-        \caption{Testy frameworka Express przy użyciu biblioteki Mocha, źródło: opracowanie własne}
+        \caption{Testy frameworka Express przy użyciu biblioteki Mocha \newline źródło: opracowanie własne}
       \end{figure}
 
     \subsection{Testy sprawnościowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha, Supertest oraz Chai.
       Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
-      \smallskip
-        \begin{center}
-          \begin{tabular}{ | c | c | c | c | c | c | }
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+          \begin{tabular}{|c|c|c|c|c|c|p{2.2cm}}
             \hline
-            Okres czasu & Autoryzacja & Zapis danych tekstowych użytkownika & Zapytanie o zasób tekstowy użytkownika & Zapytanie o zasób obraz & Streaming multimediów video \\
+            \parbox{2.2cm}{Okres czasu} & 
+            \parbox{2.2cm}{Autoryzacja} & 
+            \parbox{2.2cm}{Zapis danych tekstowych użytkownika} & 
+            \parbox{2.2cm}{Zapytanie o zasób tekstowy użytkownika} & \parbox{2.2cm}{Zapytanie o zasób obraz} & 
+            \parbox{2.2cm}{Streaming multimediów video} \\
             \hline
             2 sekundy & 396 & 144 & 420 & 463 & 147 \\
             \hline
@@ -602,12 +619,13 @@
             \hline
             30 sekund & 6126 & 3103 & 4019 & 9143 & 1857 \\
             \hline
-            Średnia ilość dla 1 sekundy & 210 & 113 & 146 & 299 & 64 \\
+            \parbox{2.2cm}{Średnia ilość dla 1 sekundy} & 210 & 113 & 146 & 299 & 64 \\
             \hline
           \end{tabular}
-        \end{center}
-      \bigskip\medskip
-
+      \newline
+      \newline
+      \newline
+      \newline
     \subsection{Testy obciążeniowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha, Supertest oraz Chai.
       Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
@@ -653,12 +671,12 @@
       Strona dokumentacji jest dostępna na stronie https://sailsjs.com/documentation.
       Możemy tam znaleźć zarówno ogólne, użyteczne przy gruntownym rozeznaniu oraz szczegółowe opisy poszczególnych części frameworka.
       W czytelny i łatwy do odszukania sposób mamy dostęp do wydawać by się mogło każdego szczególu na temat tego środowiska.
-      Dokumentacja jest napisana zrozumiałym ale nie upraszczającym językiem oraz posiada załączone zrzuty i odnośniki do przykładowych kodów źródłowych.
+      Dokumentacja jest napisana zrozumiałym ale nie upraszczają-cym językiem oraz posiada załączone zrzuty i odnośniki do przykładowych kodów źródłowych.
       Dostępne są opisy struktury architektury, wyjaśnienia konceptów oraz szczegółowe opisy użytecznych feature'ów.
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_sails.png} 
-        \caption{Dokumentacja projektu Sails, źródło: https://sailsjs.com/documentation}
+        \caption{Dokumentacja projektu Sails \newline źródło: https://sailsjs.com/documentation}
       \end{figure}
 
     \subsection{Próg wejścia}
@@ -723,7 +741,7 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_Sails.png} 
-        \caption{Testy frameworka Sails przy użyciu biblioteki Mocha, źródło: opracowanie własne}
+        \caption{Testy frameworka Sails przy użyciu biblioteki Mocha \newline źródło: opracowanie własne}
       \end{figure}
 
     \subsection{Testy sprawnościowe}
@@ -798,7 +816,7 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_meteor.png} 
-        \caption{Dokumentacja projektu Meteor, źródło: https://docs.meteor.com/\#/full/}
+        \caption{Dokumentacja projektu Meteor \newline źródło: https://docs.meteor.com/\#/full/}
       \end{figure}
 
     \subsection{Próg wejścia}
@@ -865,12 +883,12 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_meteor.png} 
-        \caption{Testy frameworka Meteor przy użyciu biblioteki Mocha, źródło: opracowanie własne}
+        \caption{Testy frameworka Meteor przy użyciu biblioteki Mocha \newline źródło: opracowanie własne}
       \end{figure}
 
     \subsection{Testy sprawnościowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha.
-      Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
+      Podane wyniki reprezen-tują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
       \smallskip
         \begin{center}
           \begin{tabular}{ | c | c | c | c | c | c | }
@@ -913,6 +931,23 @@
 \chapter{Podsumowanie}
   \section{Podsumowanie ocen}
     \subsection{Popularność}
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | l | c | }
+            \hline
+            Framework & Opis & Ocena \\
+            \hline
+            Express & Express jest najbardziej rozpoznawanym frameworkiem środowiska Node.js. Nie ma żadnych problemów ze znalezieniem materiałów do nauki lub pomocy wśród społeczności. & 3 \\
+            \hline
+            Sails & Sails jest wciąż traktowany jako nowość aniżeli sprawdzone rozwiązanie (mimo komercyjnych zastosowań). Społeczność jest wciąż nie wielka. & 1\\
+            \hline
+            Meteor & Meteor posiada nie tak dużą jak Express lecz oddaną rzesze fanów. Możemy obserwować duża aktywność na forach poświęconych temu rozwiązaniu. Społeczność stale rozszerza framework, mimo że często jest traktowany jako ciekawostka. & 2 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
+
+
       \begin{itemize}
         \item Express jest najbardziej rozpoznawanym frameworkiem środowiska Node.js. Nie ma żadnych problemów ze znalezieniem materiałów do nauki lub pomocy wśród społeczności.
         \item Sails jest wciąż traktowany jako nowość aniżeli sprawdzone rozwiązanie (mimo komercyjnych zastosowań). Społeczność jest wciąż nie wielka.
@@ -921,13 +956,13 @@
       Oceny:
       \begin{itemize}
         \item Express - 3
-        \item Sails - 2
-        \item Meteor - 1
+        \item Sails - 1
+        \item Meteor - 2
       \end{itemize}
 
     \subsection{Rozmiar}
       \begin{itemize}
-        \item Express (18.1 mb) utrzymany w konwencji minimalnego frameworku, zawierającego tylko niezbędne moduły wypada najlepiej pod wzgłędem rozmiaru wytworzonej aplikacji.
+        \item Express (18.1 mb) utrzymany w konwencji minimalnego frameworku, zawieraj-ącego tylko niezbędne moduły wypada najlepiej pod wzgłędem rozmiaru wytworzonej aplikacji.
         \item Sails (177 mb) znajduję się na drugim miejscu z nieco większym rozmiarem spowodowanym większą automatyzacją projektu.
         \item Meteor (454 mb) z powodu potrzeby posiadania środowiska frameworka znacznie odbiega od pozostałych rozwiązań pod kątem rozmiaru.
       \end{itemize}
@@ -967,7 +1002,7 @@
     \subsection{Warstwa widoku}
       \begin{itemize}
         \item Express wspiera po stronie widoku aplikacje napisane w dowolnych technologiach frontendowych. Po stronie frameworku oferuję template rendering przy pomocy ogromnej ilości silników.
-        \item Sails jako że został zbudowany na Express wspiera dokładnie te same rozwiązania.
+        \item Sails jako że został zbudowany na Express wspiera dokładnie te same rozwiąza-nia.
         \item Meteor posiada dedykowane, bardzo proste w obsłudzę rozwiązanie Blaze, które w pełni implementuje reaktywne zmiany widoku. Wspiera również aplikacje frameworków React oraz Angular.
       \end{itemize}
       Oceny:
@@ -1056,9 +1091,11 @@
       \end{itemize}
       
     \subsection{Końcowe oceny}
+      Po przeprowadzonej analizie frameworków, wyniki zostały zebrane w poniższej tabeli, a końcowe oceny wyliczone ze wzoru:
       Podstawiając pod wzór:
       \newline
       \[\text{\Large$O = \frac{\sum_{i=1}^{n} p_{i} * w_{i}}{sw}$}\]
+      \newline
       \newline
       gdzie:
       \begin{description}
@@ -1068,32 +1105,47 @@
         \item[w] - waga parametru
         \item[sw] - suma wag parametrów
       \end{description}
-      parametry i ich wagi:
-      \begin{itemize}
-        \item Popularność - 3
-        \item Rozmiar - 1
-        \item Dokumentacja - 3
-        \item Próg wejścia - 1
-        \item Warstwa widoku - 2
-        \item Warstwa bazy danych - 2
-        \item Ilość kodu - 2
-        \item Rozszerzalność - 3
-        \item Testowanie - 2
-        \item Testy sprawnościowe - 3
-        \item Testy obciążeniowe - 3
-      \end{itemize}
-      Uzyskano oceny:
       \iffalse
         Obliczenia:
         e = (3*3+1*3+3*2+1*2+2*2+2*1+2*1+3*1+2*1+3*3+3*3)/25 = 2.04
-        s = (3*2+1*2+3*3+1*3+2*2+2*3+2*2+3*3+2*1+3*2+3*2)/25 = 2.28
-        m = (3*1+1*1+3*3+1*1+2*3+2*3+2*3+3*2+2*1+3*1+3*2)/25 = 1.96
+        s = (3*1+1*2+3*3+1*3+2*2+2*3+2*2+3*3+2*1+3*2+3*2)/25 = 2.16
+        m = (3*2+1*1+3*3+1*1+2*3+2*3+2*3+3*2+2*1+3*1+3*2)/25 = 2.08
       \fi
-      \begin{itemize}
-        \item Express - 2.04
-        \item Sails - 2.28
-        \item Meteor - 1.96
-      \end{itemize}
+      Uzyskane oceny:
+      \smallskip
+        \begin{center}
+          \begin{tabular}{ | c | c | c | c | c | }
+            \hline
+            Parametr & Waga & Express & Sails & Meteor \\
+            \hline
+            Popularność & 3 & 3 & 1 & 2 \\
+            \hline
+            Rozmiar & 1 & 3 & 2 & 1 \\
+            \hline
+            Dokumentacja & 3 & 2 & 3 & 3 \\
+            \hline
+            Próg wejścia & 1 & 2 & 3 & 1 \\
+            \hline
+            Warstwa widoku & 2 & 2 & 2 & 3 \\
+            \hline
+            Warstwa bazy danych & 2 & 1 & 3 & 3 \\
+            \hline
+            Ilość kodu & 2 & 1 & 2 & 3 \\
+            \hline
+            Rozszerzalność & 3 & 1 & 3 & 2 \\
+            \hline
+            Testowanie & 2 & 1 & 1 & 1 \\
+            \hline
+            Testy sprawnościowe & 3 & 3 & 2 & 1 \\
+            \hline
+            Testy obciążeniowe & 3 & 3 & 2 & 2 \\
+            \hline
+            \setrow{\bfseries}Ocena Końcowa & - & 2.04 & 2.16 & 2.08 \\
+            \hline
+          \end{tabular}
+        \end{center}
+      \bigskip\medskip
+      Ponieważ końcowe oceny niezanczenie się od siebie różnią warto wskazać zastosowania, w których dany framework bedzie najbardziej odpowiedni.
 
   \section{Wskazywane zastosowania}
     \subsection{Express}
@@ -1115,55 +1167,55 @@
 
 \begin{thebibliography}{99}
   \bibitem{Brown}
-    E. Brown
+    E. Brown \newline
     \textit{"Web Development with Node and Express", 2014}
 
   \bibitem{Mardan}
-    Azat Mardan
+    Azat Mardan \newline
     \textit{"Express.js Guide: The Comprehensive Book on Express.js", 2016}
 
   \bibitem{StrongLoop}
-    StrongLoop
-    \textit{dokumentacja Express, 2017, źródło: https://expressjs.com/en/4x/api.html}
+    StrongLoop \newline
+    \textit{dokumentacja Express, 2017 \newline źródło: https://expressjs.com/en/4x/api.html}
 
   \bibitem{McNeil&Nathan}
-    Mike McNeil, Irl Natha
+    Mike McNeil, Irl Natha \newline
     \textit{"Sails.js in Action", 2017}
 
   \bibitem{Shahid}
-    Shahid Shaikh
+    Shahid Shaikh \newline
     \textit{"Sails.js Essentials", 2016}
 
   \bibitem{McNeil}
-    Mike McNeil
-    \textit{dokumentacja Sails, 2017, źródło: https://sailsjs.com/documentation/reference}
+    Mike McNeil \newline
+    \textit{dokumentacja Sails, 2017 \newline źródło: https://sailsjs.com/documentation/reference}
 
   \bibitem{Strack}
-    Isaac Strack
+    Isaac Strack \newline
     \textit{"Getting Started with Meteor JavaScript Framework", 2012}
 
   \bibitem{Vogelsteller&Strack&Reyna}
-    Fabian Vogelsteller, Isaac Strack, Marcelo Reyna
+    Fabian Vogelsteller, Isaac Strack, Marcelo Reyna \newline
     \textit{"Meteor: Full-Stack Web Application Development", 2016}
 
   \bibitem{MDG}
-    Meteor Development Group
-    \textit{dokumentacja Meteor API, 2017, źródło: https://docs.meteor.com/\#/full/}
+    Meteor Development Group \newline
+    \textit{dokumentacja Meteor API, 2017 \newline źródło: https://docs.meteor.com/\#/full/}
 
   \bibitem{Onodi}
-    Node.js Foundation
-    \textit{dokumentacja języka programowania Node.js, 2017, źródło: https://nodejs.org/en/docs/}
+    Node.js Foundation \newline
+    \textit{dokumentacja języka programowania Node.js, 2017 \newline źródło: https://nodejs.org/en/docs/}
 
   \bibitem{Wolff}
-    Eberhard Wolff
+    Eberhard Wolff \newline
     \textit{"Microservices: Flexible Software Architecture", 2016}
 
   \bibitem{Zeidman}
-    Bob Zeidman
+    Bob Zeidman \newline
     \textit{"The Software IP Detective's Handbook: Measurement, Comparison, and Infringement Detection", 2011}
     
   \bibitem{Rauch}
-    Guillermo Rauch
+    Guillermo Rauch \newline
     \textit{"7 Principles of Rich Web Applications", 2014}
 
 \end{thebibliography}
