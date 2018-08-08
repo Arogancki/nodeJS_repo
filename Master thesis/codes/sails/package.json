@@ -32,6 +32,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
+    "startWindows": "SET NODE_ENV=production && node app.js",
     "test_server": "./node_modules/.bin/mocha test/server --reporter list --no-timeouts -s 0",
     "test_performance": "./node_modules/.bin/mocha test/performance --reporter min --no-timeouts -s 0",
     "test_load": "./node_modules/.bin/mocha test/load --reporter min --no-timeouts -s 0",
