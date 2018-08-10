@@ -7,7 +7,7 @@ const express = require('express')
     , router = require('./router')
 
     , app = express()
-
+ 
 module.exports = async ()=>{
     app.set('view engine', 'ejs')
     app.set('views', path.join(__dirname, 'views'))

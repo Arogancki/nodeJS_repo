@@ -1,6 +1,5 @@
 \documentclass[12pt]{report}
 \usepackage{adjustbox}
-
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
@@ -17,8 +16,10 @@
 \usepackage{relsize}
 \usepackage{tabularx}
 \usepackage{microtype}
+\usepackage{caption}
 
 \setcounter{tocdepth}{1}
+\captionsetup[figure]{font=small}
 \setcounter{page}{5}
 \graphicspath{{images/}}
 \newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
@@ -123,14 +124,15 @@
     Od momentu jej ukazania się powstało wiele narzędzi ułatwiających oraz poprawiających jakość procesu deweloperskiego.
     Niektóre z nich skupiają się na usprawnianiu podobnych, pokrewnych lub identycznych przypadków użycia.
     Aby unkinąc nie trafnego wdrożenia wybranego narzędzia w opracowywany projekt, należy rozumieć kiedy wybrana metoda sprawdzi się najlepiej, a kiedy warto zastosować inne rozwiązanie.
-    Nawet w przypdaku użycia tego samego języka programowania przeniesienie aplikacji pomiędzy frameworkami może być kosztownym oraz czasochłonnym zadaniem.
+    Nawet w przypadku użycia tego samego języka programowania przeniesienie aplikacji pomiędzy frameworkami może być kosztownym oraz czasochłonnym zadaniem.
     Z tego powodu powstała potrzeba zakreślenia, które wyjście najlepiej sprawdza się dla określonego projektu lub jego części.
+    \newline
     W pracy zostały zawarte kryteria wyboru technologii, specyfikacje ocenianych parametrów, analiza frameworków oraz podsumowanie przeprowadzonych badań.
 
   \section{Przeznaczenie technologii Node.js}
-    Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach c/c++ oraz javaScript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla.
-    Początkowym przeznaczeniem technologii było tworzenie serwerów i narzędzi sieciowych, działających po stronie serwera, lecz wraz z jej rozpowszechnieniem się możliwości te znacznie się poszerzyły oferując wytwarzanie między innymi aplikacji desktopowych (Electron), mobilnych (React Native, Cordova) lub rozwiązań embedded (Onoff).
-    Przed jej powstaniem powstaniem kod w języku javaScript był wykonywany głównie przez przeglądarkę internetową po stronie klienta. Pozwalało na bezproblemową manipula-cję kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów serwera.
+    Node.js jest cross-platformowym, działającym niezależnie od środowiska językiem programowania, napisanym w językach C/C++ oraz JavaScript, wydanym 27 marca 2009 roku, zaprojektowanym przez Ryana Dahla.
+    Początkowym przeznaczeniem technologii było tworzenie serwerów i narzędzi sieciowych, działających po stronie serwera, lecz wraz z jej rozpowszechnieniem się możliwości te znacznie się posze-rzyły oferując wytwarzanie między innymi aplikacji desktopowych (Electron), mobilnych (React Native, Cordova) lub rozwiązań embedded (Onoff).
+    Przed jej powstaniem powstaniem kod w języku JavaScript był wykonywany głównie przez przeglądarkę internetową po stronie klienta. Pozwalało na bezproblemową manipula-cję kodem źródłowym strony przez użytkownika, dając możliwość wykonywania złośliwych skryptów, naruszenie bezpieczeństwa baz danych lub uzyskania dostępu do chronionych zasobów serwera.
     Środowisko Node.js może działać niezależnie od środowiska uruchomieniowego.
     Jest ono zgodne z wieloma systemami operacyjnymi jak  Linux, macOS, Microsoft Windows, NonStop, czy serwerami Unix.
     Język ten cieszy się dużą popularnością oraz pozytywnym odbiorem wśród użytkowników, dzięki czemu, mimo względnie krótkiego okresu życia środowiska, zaowocowało ogromną ilością projektów open-source, tysiącami członków należących do społeczności okołojęzykowej oraz powstaniem wydarzeń poruszających tematy okołośrodowiskowe, takimi jak NodeConf, Node Interactive lub Node Summit.
@@ -154,21 +156,21 @@
     Przy pomocy wywołań zwrotnych możemy zapewnić zasygnalizowanie uzyskanych wyników lub zwrócenie, bądź obsługę błędu powstałego w czasie działania bloku kodu.
 
   \section{Potrzeba rozwoju narzędzi deweloperskich}
-    Nieustany rozwój lub powstawanie nowych narzędzi wywiera ciągłą potrzebe nauki na inżynierach.
+    Nieustany rozwój lub powstawanie nowych narzędzi wywiera ciągłą potrzebę nauki na inżynierach.
     Bez przerwy pojawiają się nowe rozwiązania, które sprawiają że dotychczasowe odchodzą w niepamięć lub ich użycie kojarzy się z zacofaniem oraz pozostaniem w tyle.
     Absolutnie nie powinno uważać się tego zjawisko za negatywne.
     Powstanie nowego narzędzia jest inicjowane przez kogoś kto zauważył pewną regularność danego przypadku użycia.
     Nie tylko sprawia to że mniej czasu należy poświęcić na uzyskanie pewnej określonej funkcjonalności, ale przede wszystkim daje możliwość skorzystania z wiedzy i praktyk wielu osób mających doświadczenie w danej dziedzinie, które napotykały dokładnie te same problemy.
     Korzystamy wówczas nie tylko z najlepszych praktyk programistycznych, ale także zapewniamy sobie dostęp do przetestowanych sprawdzonych metod.
-    Bardzo rzadkim zjawiskiem jest natrafienie na jakąmś nieścisłość we frameworku, wywołującą niepoprawne działanie własnego kodu.
-    Nawet w takich przypadkach błedy te są bardzo szybko poprawiane przez specjalistów, którzy zdejmują z nas odpowiedzialność w utrzymaniu części kodu.
+    Bardzo rzadkim zjawiskiem jest natrafienie na jakąś nieścisłość we frameworku, wywołującą niepoprawne działanie własnego kodu.
+    Nawet w takich przypadkach błędy te są bardzo szybko poprawiane przez specjalistów, którzy zdejmują z nas odpowiedzialność w utrzymaniu części kodu.
     Rozwiązania używane globalnie zapewniają róznież szybsze wdrażanie się w nowe projekty.
     Nowe osoby zostają odciążone od poznawania części aplikacji, ponieważ korzystały już z tych samych rozwiązań.
     Należy natomiast upewnić się czy wykorzystując dane gotowe narzędzie nie dołączamy do istniejącego projektu mnóstwa innych, zbędnych zasobów.
     Wiele funkcji dostarczanych nie jest wykorzystywanych i może zostać nie potrzebnie zawarta w końcowym produkcie.
-    W celu uniknięcia tego możemy skorzystać z wybranych bundlerów (np. webpack), które odrzucą nieużywane części kodu minimalizując rozmiar aplikacji.
+    W celu uniknięcia tego możemy skorzystać z wybranych narzędzii przetwarzających kod (bundler tj. webpack), które odrzucą nieużywane części kodu minimalizując rozmiar aplikacji.
 
-\chapter{Kryteria wyboru freameworkow}
+\chapter{Kryteria wyboru freameworków}
 
   \section{Co to jest framework}
     Framework jest to pewna platforma programistyczna oferująca nam zbiór najczęściej generycznej funkcjonalności.
@@ -184,7 +186,7 @@
     Należy więc za tem przed skorzystaniem z gotowego rozwiązania upewnić się że spełnia ono nasze oczekiwania oraz nie spowoduje znacznego spadku wydajności.
     Architekture frameworków możemy podzielic na częsci "frozen" i "hot" spots.
     Pierwsze dotyczą ogólnej architektury, niezmiennych konceptów i założeń nią kierujących.
-    Określa relaje między komponentami.
+    Określa relacje między komponentami.
     Pozostają one niezmienne podczas całkowitego życia aplikacji.
     Druga część odnosi się do części w której programista może dodać, integrowac się z danym narzędziem określając własną funkcjonalność.
 
@@ -194,31 +196,35 @@
     Może zostać zaktualizowana poprzez zaakceptowanie przez twórce projektu Azat Mardan'a merge requesta w serwisie Github.
     Oznacza to, że strona posiada aktualne infromacje na temat używanych na świecie rozwiązań.
     W celu wybrania konkretnych frameworków do badań warto zwrócić uwagę na pare konkretnych kwesti.
+    \newline
     Analizowane narzędzie z pewnością powinno być używane przez deweloperów na liniach produkcyjnych.
     Gwarantuje nam to że jest to narzędzie sprawdzone w rzeczywistym życiu.
     Powinno cieszyć się ono również względnie dużą popularnością, aby upewnić się że radzi sobie przy różnych wielkościach projektów, w różnym stadium zaawansowania, oraz różnym poziomie skomplikowania.
     Najlepiej byłoby, aby framework był wciaż rozwijany, ponieważ znaczyło by to że jego funkcjonalność jest wciąż poszerzana oraz że nie jest przestażały.
     Parametry te możemy sprawdzić wchodząc na repozytoria frameworków.
-    Przykładowo możemy sprawdzić, że Locomotive posiada tylko 868 gwiazdek oraz że ostatnia aktualizacjia była 17 października 2017 roku (dane na dzień 06.06.2018), więc możemy wywnioskować że nie cieszy się on dużą popularnością oraz że nie jest już odświeżany.
-    \begin{figure}[!hb]
+    \pagebreak
+    \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{locomotive.png} 
       \caption{Strona projektu Locomotive w serwisie Github \newline Źródło: https://github.com/jaredhanson/locomotive/}
     \end{figure}
-    Dla porównania framework Koa posiada 21568 gwiazdek oraz był aktualizowany w dniu pisania pracu (dane na dzień 06.06.2018).
-    Możemy wieć założyć że jest wciąż popularny oraz utrzymywany.
-    \begin{figure}[!hb]
+    Przykładowo możemy sprawdzić, że Locomotive posiada tylko 868 gwiazdek oraz że ostatnia aktualizacja była 17 października 2017 roku (dane na dzień 06.06.2018), więc możemy wywnioskować że nie cieszy się on dużą popularnością oraz że nie jest już odświeżany.
+    \pagebreak
+    \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{koa.png} 
       \caption{Strona projektu Koa w serwisie Github \newline Źródło: https://github.com/koajs/koa/}
     \end{figure}
+    Dla porównania framework Koa posiada 21568 gwiazdek oraz był aktualizowany w dniu pisania pracu (dane na dzień 06.06.2018).
+    Możemy wieć założyć że jest wciąż popularny oraz utrzymywany.
+    \pagebreak
 
   \section{Wybrane frameworki}
     Ilość dostępnych narzędzi nie pozwala niestety na porównanie wszystkich rozwiązań.
     W związku z czym zdecydowałem się przeanalizować w pracy 3 wybrane - Express, Sails oraz Meteor.
 
     \subsection{Express}
-      Express wybrałem ze wzgłedu na jego ogromną popularność.
+      Express wybrałem ze względu na jego ogromną popularność.
       Repozytorium projektu posiada prawie 40000 gwiazdek w serwisie Github oraz jest najpopularniejszy ze wszystkich frameworków w serwisie Stackoverflow (dane na dzień 06.06.2018).
       Ze wszystkich konkurencyjnych rozwiązań jest najpopularniej wymienianą technologią w ofertach pracy.
       Został wybrany aby sprawdzić czy wiodące rozwiązanie jest słusznie liderem na rynku.
@@ -239,7 +245,8 @@
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sails.png} 
         \caption{Strona projektu Sails w serwisie Github \newline Źródło: https://github.com/balderdashy/sails}
       \end{figure}
-
+    \pagebreak
+    
     \subsection{Meteor}
       Meteor wybrałem ponieważ mimo odcięcia się od tradycyjnego środowiska technologii Node.js, cieszy się on dużą popularnością oraz dostarcza nam możliwość wytwarzania jednocześnie częsci backendowej, frontendowej a nawet aplikacji mobilnych przy użyciu jednej bazy kodu.
       Framewok wprowadza wiele własnych narzędzi (np. własnego menadżera zależności, któremu w czystym Node.js odpowiada narzędzie Npm) oraz gotowych modułów zarówno widoku jak i logiki pozwalając na efektywniejsze wytwarzanie gotowego produktu.
@@ -248,9 +255,10 @@
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{meteor.png} 
-        \caption{Strona projektu Meteor w serwisie Github \newline Źródło: https://github.com/meteor/meteor}
+        \caption{\t Strona projektu Meteor w serwisie Github \newline Źródło: https://github.com/meteor/meteor}
       \end{figure}
   
+  \pagebreak
   \section{Alternatywne rozwiązania}
     Rozdział opisuje alternatywne rozwiązania, które zostały wzięte pod uwagę podczas etapu poszukiwania.
 
@@ -299,7 +307,7 @@
       \begin{description}
         \item Waga: 3
       \end{description}
-      Popularność jest wskaźnikiem, który niesie wiele infromacji na temat badanego frameworka.
+      Popularność jest wskaźnikiem, który niesie wiele informacji na temat badanego frameworka.
       W najprostrzy sposób możemy ją sprawdzić za pomocą Google trends, w przypadku narzedzi open source przy użyciu statystyk repozytorium, a w przypadku pozostałych poprzez serwisy takie jak Stackoverflow.
       Dzięki popularności możemy wywnioskować wielokość społeczności jaka jest zainteresowana danym narzedziem.
       Wiąże się to z możliwym wsparciem, wartością rynkową oraz szerokością możliwych zastosowań jakie wspiera.
@@ -335,7 +343,7 @@
       \begin{description}
         \item Waga: 2
       \end{description}
-      Parametr opisuje w jakim stopniu badany framework zapewnia obsluge warstwy widoku wytwarzanej aplikacji.
+      Parametr opisuje w jakim stopniu badany framework zapewnia obsługę warstwy widoku wytwarzanej aplikacji.
       Możemy oczekiwać wielu możliwości obsługi warstwy widoku.
       Wydawać by się mogło, że najlepszą możliwością byłoby gdyby framework kompletnie integrował warstwe widoku z warstwą danych dostarczając określone, proste metody wzajemnego mapowania.
       Kompletnie nie porządane z koleji jest, aby do obsługi oraz integracji z warstwą widoku wytwarzanego produktu było wymagane użycie zewnętrznego, dodatkowego narzędzia.
@@ -356,7 +364,7 @@
       Parametr opisuje ilość kodu potrzebnego do napisania aby otrzymać ideantyczną funkcjonalność w analizowanych środowiskach.
       Ilość kodu pisanego przy użyciu tego samego języka oraz jego standardu z zachowaniem odpowiednich praktych może zostać przełożony na ilość pracy, a co za tym idzie czasu jaki należy poświęcić do osiągnięcia obranego celu.
       Napisany kod musi być zgodny ze stosowanymi, ogólnie uznanymi praktykami programistycznymi dla danych środowisk.
-      Parametr opisuje również najważniejsze feature's frameworków, które umożliwiają zmiejszenie ilości wymaganego kodu.
+      Parametr opisuje również najważniejsze funkcjonalności frameworków, które umożliwiają zmiejszenie ilości wymaganego kodu.
       Oceny zostały wystawione na podstawie porównania uzyskanych wyników dla analizowanych narzędzi.
 
     \subsection{Rozszerzalność}
@@ -376,7 +384,8 @@
       Parametr opisuje stopień trudności wytworzenia testów automatycznych kodu dla danego środowiska.
       Stworzenie automatycznych testów pozwala nam w najszybszy dostępny sposób sprawdzić czy testowane rozwiązanie zachowuje się zgodnie z założonymi oczekiwaniami.
       Znacznie skraca to czas wytwarzania oprogramowania dzięki natychmiastowej diagnostyce oraz możliwości wyeliminowania powstałych błedów.
-      Analizowany framework powinien dostarczać metody łatwego tworzenia testów automatycznych lub bezproblemową integracje w przypadku użycia zewnętrznego narzędzia.
+      Analizowany framework powinien dostarczać metody tworzenia testów automatycznych lub bezproblemową integracje w przypadku użycia zewnętrznego narzędzia.
+      Powinien w możliwie jak najwięszkym stopniu nakłaniać do prowadzenia projektu zawierającego skrypty sprawdzające działanie kodu oraz promować popularne techniki prowadzenia testów.
       Ocena została wystawiona na podstawie stworzenia testów automatycznych dla analizownych środowiska przy użyciu dostarczonych przez framework możliwości.
 
     \subsection{Testy sprawnościowe}
@@ -467,7 +476,7 @@
     \end{itemize} 
     Sails prezentuje ściśle określoną architekturę projektu zdejmując z programistów obowiązek jej tworzenia.
     Jednym z podstawowych założeń tego narzędzia jest konfigurowalność dostarczonych, gotowych komponentów ponad pisanie własnych.
-    Narzędzie wykorzystuje skonfigurowane pliki w języku javaScript i generuje na ich podstawie gotowy produkt.
+    Narzędzie wykorzystuje skonfigurowane pliki w języku JavaScript i generuje na ich podstawie gotowy produkt.
     Został stworzony w 2012 roku, wydany na licencji MIT przez firme The Sails Company.
     Do analizy została użyta wersja 1.0.2.
 
@@ -477,7 +486,7 @@
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{logo_meteor.png} 
       \caption{Logo projektu Meteor \newline Źródło: https://www.meteor.com/}
     \end{figure}
-    Meteor wyróżnia przedewszystkim, fakt że jest frameworkiem izomorficznym. 
+    Meteor wyróżnia przede wszystkim, fakt że jest frameworkiem izomorficznym. 
     Jeden kod aplikacji działa zarówno po stronie klienta jak i serwera.
     Służy do szybkiego tworzenia wielo-platformowych aplikacji (Android, iOS, web).
     Platforma odeszła od tradycyjnych narzędzi środowiska Node.js i stworzyła własny ekosystem budowania projektów czy menadzera modułów.
@@ -527,18 +536,34 @@
     \subsection{Dokumentacja}
       Strona dokumentacji jest dostępna na stronie https://expressjs.com/en/api.html.
       Jest utrzymana w bardzo prostym, minimalistycznym designie, co sprawia że łatwo się po niej poruszać oraz wyszukiwać informacje.
-      Posiada opisy pól i metod z podstawowego modułu Express, oraz krótkie, nieskomplikowane przykłady użycia.
+      Posiada opisy pól i metod z podstawowego modułu Express, oraz nieskomplikowane przykłady użycia.
       Dla niektórych zagadniej (na przykład template rednering) znajduje się tylko szczątkowa ilość informacji.
       Możemy znaleźć również dokumentacje pozostałych modułów utrzymywanych lub także polecanych przez zespół stojący za frameworkiem dla poszczególnych funkcjonalności.
-      Na stronie brakuje wskazówek odnośnie polecanych modeli architektury projektu, które byłyby przydatne dla początkujących użytkowników.
-      \begin{figure}[!hb]
+      Na stronie brakuje wskazówek odnośnie polecanych modeli architektury projektu przydatnych dla początkujących użytkowników.
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_express.png} 
         \caption{Dokumentacja projektu Express \newline Źródło: https://expressjs.com/en/api.html}
       \end{figure}
 
     \subsection{Próg wejścia}
-      Do stworzenia prostej aplikacji framework wydaje się wymagać tylko znajomości języka javaScript.
+      Do stworzenia prostej aplikacji framework wydaje się wymagać tylko znajomości języka JavaScript.
       Wymagania rosną natomiast wraz z wielkością projektu.
       W celu uzyskania wielu z podstawowych funkcjonalności (poza routingiem oraz middlewares, które zapewnia Express) należy użyć zewnętrznych bibliotek, co wymaga wcześniejszego ich opanowania. 
       Aby utrzymać kod w należytym ładzie należy również posiadać odpowiednie doświadczenie programistyczne.
@@ -547,7 +572,7 @@
     \subsection{Warstwa widoku}
       W celu opracowania widoku aplikacji możemy wybrać między skorzystaniem z zewnętrznego rozwiazania (np. bibliotek frontendowych Angular, Vue, React) lub użyciem wspieranego przez Express renderingu po stronie serwera przy użyciu szablonów (ang. server side template rendering).
       Technika ta polega na stworzeniu odpowiednich reużywalnych wzorców widoków stron przy użyciu wybranego silnika (np. Pug lub Ejs) oraz zmiany renderowanych wartości wzorca zależnie od stanu aplikacji. 
-      Każdy z silników posiada specyficzną składnie, dzięki której zamienia otrzymane wartości na strone html.
+      Każdy z silników posiada specyficzną składnie, dzięki której zamienia otrzymane wartości na stronę html.
       Do opracowania rozwiązania zdecydowałem się na skorzystanie z metod renderowania po stronie serwera z użyciem silnika Ejs.
 
     \subsection{Warstwa bazy danych}
@@ -558,6 +583,7 @@
       Dla baz danych typu sql (np. Postgres) najpopularniejszym roziązaniem jest biblioteka Sequelize.
       Pozwala ona na zaprzestanie używania języka sql na rzecz wysokopoziomowyh metod oraz dostęp do rekordów przy użyciu ORM (object relational mapping).
       Do oprawcowania aplikacji zdecydowałem się skorzystać z MongoDB oraz modułu Mongoose.
+    \pagebreak
 
     \subsection{Ilość kodu}
       Ilość wytworzonych lini kodu to około 500. 
@@ -566,7 +592,7 @@
       Możemy zapewnić ciąg usług jakie zostaną wywołane w odpowiedniej kolejności (np. logowanie, autentykacjia).
       Drugi pozwala na wysokopoziomowe zarządzanie funkcjami obsługującymi przychodzące zapytania http.
       Dopasowywane są one do żadanego adresu.
-      Te features pozwalają na skupieniu się na tworzeniu głównie warstwy biznesowej aplikacji bez potrzeby bezpośredniego zarządzania warstwą komunikacji, skutecznie zmiejszając wymagany nakład pracy.
+      Te funkcjonalności pozwalają na skupieniu się na tworzeniu głównie warstwy biznesowej aplikacji bez potrzeby bezpośredniego zarządzania warstwą komunikacji, skutecznie zmiejszając wymagany nakład pracy.
 
     \subsection{Rozszerzalność}
       Jako że środowisko Express nie narzuca absolutnie żadnej sztywnej architektury wytwarzanego projektu rozszerzalność jaką uda nam się uzyskać zależy tylko od naszego własnego doświadczenia i umiejętności.
@@ -637,9 +663,12 @@
       \newline
       \newline
 
+    \pagebreak
     \subsection{Testy obciążeniowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha, Supertest oraz Chai.
       Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
+      \newline
+      \newline
       \newline
       \newline
       \newline
@@ -699,8 +728,41 @@
       Możemy tam znaleźć zarówno ogólne, użyteczne przy gruntownym rozeznaniu oraz szczegółowe opisy poszczególnych części frameworka.
       W czytelny i łatwy do odszukania sposób mamy dostęp do wydawać by się mogło każdego szczególu na temat tego środowiska.
       Dokumentacja jest napisana zrozumiałym ale nie upraszczają-cym językiem oraz posiada załączone zrzuty i odnośniki do przykładowych kodów źródłowych.
-      Dostępne są opisy struktury architektury, wyjaśnienia konceptów oraz szczegółowe opisy użytecznych feature'ów.
-      \begin{figure}[!hb]
+      Dostępne są opisy struktury architektury, wyjaśnienia konceptów oraz szczegółowe opisy użytecznych funkcjonalności.
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_sails.png} 
         \caption{Dokumentacja projektu Sails \newline Źródło: https://sailsjs.com/documentation}
@@ -721,7 +783,7 @@
     \subsection{Warstwa bazy danych}
       Do obsługi warstwy bazy danych Sails wykorzystuje biblioteke Waterline.
       Jest to biblioteka ORM dostarczająca zunifikowane API do obsługi między innymi MySQL, PostgreSQL czy MongoDB.
-      Posiada ona wiele użytecznych feature'ów takich jak automatyczne replikacje, czy nawet populowanie między bazami danych w różnych technologiach. 
+      Posiada ona wiele użytecznych funkcjonalności takich jak automatyczne replikacje, czy nawet populowanie między bazami danych w różnych technologiach. 
       W celu wybrania źródła danych nie musimy ustawiać dialektu, wystarczy tylko wskazać adres bazy.
       Domyślnie, na potrzeby dewelopmentu framework dostarcza baze danych Sails-disk, która symuluje działania realnej bazy danych.
       Nie powinna być ona używana jednak w środowisku produkcyjnym.
@@ -729,13 +791,13 @@
     \subsection{Ilość kodu}
       Ilość wytworzonych lini kodu to około 400.
       Są to jednak linie kodu bardziej skupione na konfiguracji wartości lub nieskomplikowanej logice w porównaniu z kodem aplikacji napisanej przy użyciu Express.
-      Ponieważ framework został napisany przy użyciu narzędzia Express możemy korzystać ze wszystkich jego feature'ów min. middlewares.
+      Ponieważ framework został napisany przy użyciu narzędzia Express możemy korzystać ze wszystkich jego funkcjonalności min. middlewares.
       Sails zapewnia dodatkowo bardzo wiele możliwości.
       Najbardziej rozpoznawalną są blueprints, które pozwalają na automatyczne generowanie pełnej funkcjonalności rest api (wraz z interfejsem komunikacji oraz połączeniem z bazą danych) dla stworzonych modeli danych.
-      Kolejnym dostępnym feature'em jest routing (pochodzący z Express) wzbogacony o automatyczne tworzenie końcówek http dla wytworzonych kontrolerów wedug ich scieżki w projekcie.
-      Framework oferuje także nieskomplikowane w obsłudzę zarządzanie dostępem do zasobów aplikacji przez pollicies, działających na podstawie określonych kontrolerów dostępu.
+      Kolejną dostępną funkcjonalnością jest routing (pochodzący z Express) wzbogacony o automatyczne tworzenie końcówek http dla wytworzonych kontrolerów wedug ich ścieżki w projekcie.
+      Framework oferuje także nieskomplikowane w obsłudzę zarządzanie dostępem do zasobów aplikacji przez policies, działających na podstawie określonych kontrolerów dostępu.
       Poza wymienionymi mamy również dostęp do mniej skomplikowanych funkcjonalności jak walidacja zapytań, automatyczne tworzenie dokumentacji czy internacjonalizacja aplikacji.
-      Każda funkcjonalność jest konfigurowana na podstawie osobnych plików konfiguracyjnych w postaci obiektów języka javaScript.
+      Każda funkcjonalność jest konfigurowana na podstawie osobnych plików konfiguracyjnych w postaci obiektów języka JavaScript.
       Wszystko to sprawia, że możemy skupić się wyłącznie na pisaniu kodu biznesowego.
 
     \subsection{Rozszerzalność}
@@ -746,14 +808,14 @@
         \begin{itemize}
           \item controllers - obsluga przychodzących zapytań, interakcja z modelem
           \item helpers - współdzielona między komponentami funkcjonalność
-          \item pollicies - zarządzanie dostępem do zasobów aplikacji
+          \item policies - zarządzanie dostępem do zasobów aplikacji
           \item models - struktura danych aplikacji
           \item responses - reużywalne szablony dla odpowiedzi aplikacji
         \end{itemize}
         \item assets - statyczne pliki serwisu jak multimedia czy style
         \item views - szablony widoków aplikacji
         \item tasks - funkcje oraz skrypty wywoływane dla różnych stanów aplikacji (np. Grunt lub Webpack)
-        \item config - pliki konfigracyjne środowiska jak tłumaczenia, przełączniki, adresy baz danych
+        \item config - pliki konfigracyjne śronajprostrzych dowiska jak tłumaczenia, przełączniki, adresy baz danych
       \end{itemize}
       Wymuszenie sztywnego podziału gwarantuje szybkie odnalezienie się w nowych projektach oraz wskazuję droge do osiągnięcia zrozumiałego, czystego kodu.
       Dzięki konfigurowalności aplikacji jest ona również odporna na możliwe do szybkiego wprowadzenia zmiany.
@@ -765,15 +827,57 @@
       Jest to framework służący do pisania każdego rodzaju przypadków testowych.
       Należy określić porządane efekty oraz sposób jak mają zostać uzyskane i zapakować je w test suits oraz test cases.
       Po użyciu narzędzia otrzymano wyniki testów:
-      \begin{figure}[!hb]
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{test_Sails.png} 
         \caption{Testy frameworka Sails przy użyciu biblioteki Mocha \newline Źródło: opracowanie własne}
       \end{figure}
 
+    \pagebreak
     \subsection{Testy sprawnościowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha, Supertest oraz Chai.
       Podane wyniki reprezentują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
       \newline
       \newline
       \newline
@@ -800,8 +904,8 @@
           \end{tabular}
         \end{adjustbox}
       \endgroup
-      \newline
 
+    \pagebreak
     \subsection{Testy obciążeniowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha, Supertest oraz Chai.
       Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
@@ -839,17 +943,8 @@
           \end{tabular}
         \end{adjustbox}
       \endgroup
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
 
+  \pagebreak
   \section{Meteor}
 
     \subsection{Popularność}
@@ -873,10 +968,11 @@
 
     \subsection{Dokumentacja}
       Strona dokumentacji jest dostępna na stronie https://docs.Meteor.com/\#/full/.
-      Zawiera ona obszerne opisy wszystkich feature'ów oraz wspieranych przez framework rozwiązań.
+      Zawiera ona obszerne opisy wszystkich funkcjonalności oraz wspieranych przez framework rozwiązań.
       Możemy znaleźć na niej materiały do nauki w postaci poradników jak krok po kroku zbudować kolejne części projektu, przykładowych repozytoriów z kodami źródłowymi oraz filmami wideo.
       Strona jest zarządzana w czytelny, podzielony na poszczególne częsci sposób.
       Znajdziemy tutaj również odnośniki do forum, gdzie poruszane są bardziej indywidualne/szczegółowe zagadnienia.
+      \pagebreak
       \begin{figure}[!hb]
         \centering
         \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{doc_meteor.png} 
@@ -889,8 +985,8 @@
       Jednak w przeciwieństwie do Npm aby umieścić moduł w Atmosphere musi on zostać zaakceptowany przez deweloperów odpowiedzialnych za biblioteke wprowadzając pewien stopień weryfikacji.
       Poprzez dostarczenie wielu gotowych rozwiązań Meteor posiada bardzo sztywny, specyficzny sposób wytwarzania projektu.
       Przy pierwszym kontakcie wiele konceptów jest niejasnych i odnaleźenie się w nich może sprawiać trudność. 
-      Do wytwarzania najprostrzych projektów musimy posiadać wiedzę o wielu elementach środowika, które nie są wykorzystywana w żadnym innym rozwiązaniu.
-      Ponieważ Meteor jest znacząco inny od pozostałych frameworków nie potrzebujemy mięć dużej wiedzy o technologii Node.js - wystarczy nam javaScript.
+      Do wytwarzania najprostszych projektów musimy posiadać wiedzę o wielu elementach środowika, które nie są wykorzystywana w żadnym innym rozwiązaniu.
+      Ponieważ Meteor jest znacząco inny od pozostałych frameworków nie potrzebujemy mięć dużej wiedzy o technologii Node.js - wystarczy nam JavaScript.
 
     \subsection{Warstwa widoku}
       Meteor po stronie widoku wspiera aplikacje napisane w React, Angular oraz silnik Blaze.
@@ -911,7 +1007,7 @@
     \subsection{Ilość kodu}
       Ilość wytworzonych lini kodu to około 250.
       Większość z nich dotyczy bezpośrednio widoku, nie logiki aplikacji do której obsługi zostały wykorzystane gotowe moduly z repozytorium Atmosphere.
-      Najbardziej przydatnimi feature'ami oferowanymi przez biblioteke są:
+      Najbardziej przydatnimi funkcjonalnościami oferowanymi przez biblioteke są:
       \begin{itemize}
         \item Publish/subscribe - pozwalające na reaktywne programowanie zdarzeń oraz reakcji na ich zajście.
         \item Blaze oraz Tracker - silnik pozwalający na zarządzanie reaktywne danymi zarówno po stronie widoku oraz bazy danych bez potrzeby tworzenia reaktywnej logiki.
@@ -954,6 +1050,13 @@
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha.
       Podane wyniki reprezen-tują ilość przetworzonych zapytań w określonym czasie dla wybranych funkcjonalności.
       \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
+      \newline
       \begingroup
         \renewcommand{\arraystretch}{2.5}
         \begin{adjustbox}{center}
@@ -979,6 +1082,7 @@
       \endgroup
       \newline
 
+    \pagebreak
     \subsection{Testy obciążeniowe}
       Testy zostały przeprowadzone przy użyciu biblioteki Mocha.
       Podane wyniki reprezentują czas otrzymania odpowiedzi dla odpowiednich ilości zapytań w sekundach dla wybranych funkcjonalności.
@@ -1033,6 +1137,7 @@
         \item Meteor - 2
       \end{itemize}
 
+    \pagebreak
     \subsection{Rozmiar}
       \begin{itemize}
         \item Express (18.1 mb) utrzymany w konwencji minimalnego frameworku, zawieraj-ącego tylko niezbędne moduły wypada najlepiej pod wzgłędem rozmiaru wytworzonej aplikacji.
@@ -1048,7 +1153,7 @@
       
     \subsection{Dokumentacja}
       \begin{itemize}
-        \item Express w porównaniu do pozostałych rozwiązań posiada strone dokumentacji, która wydaje się być uboga, opisująca tylko podstawowe zagadnienia.
+        \item Express w porównaniu do pozostałych rozwiązań posiada stronę dokumentacji, która wydaje się być uboga, opisująca tylko podstawowe zagadnienia.
         \item Sails posiada bardzo czytelna i bogata dokumentacje. Łatwo znaleźć w niej informacje dla początkujących oraz zaawansowanych użytkowników.
         \item Meteor również posiada bardzo przyzwoita dokumentacje, zawierającą dokładne wytłumaczenia konceptów, a nawet filmy instruktarzowe.
       \end{itemize}
@@ -1100,7 +1205,7 @@
       
     \subsection{Ilość kodu}
       \begin{itemize}
-        \item Express (około 500) posiada najmniejszą ilość feature'ów oraz wymaga największej ilości kodu.
+        \item Express (około 500) posiada najmniejszą ilość funkcjonalności oraz wymaga największej ilości kodu.
         \item Sails (około 400) cechuje się bardziej konfiguracją dostępnych rozwiązań niż tworzeniem logiki. 
         \item Meteor (około 250) znacznie odstaje od pozostałych rozwiązań. Możliwość użycia gotowych, skonfigurowanych modułów pozwala na stworznie aplikacji przy minimalnej ilości pracy.
       \end{itemize}
@@ -1162,37 +1267,14 @@
         \item Sails - 2
         \item Meteor - 2
       \end{itemize}
-      
-    \subsection{Końcowe oceny}
-      Po przeprowadzonej analizie frameworków, wyniki zostały zebrane w poniższej tabeli, a końcowe oceny wyliczone ze wzoru:
-      Podstawiając pod wzór:
-      \newline
-      \[\text{\Large$O = \frac{\sum_{i=1}^{n} p_{i} * w_{i}}{sw}$}\]
-      \newline
-      \newline
-      gdzie:
-      \begin{description}
-        \item[O] - ocena końcowa
-        \item[n] - ilość parametrów
-        \item[p] - ocena parametru
-        \item[w] - waga parametru
-        \item[sw] - suma wag parametrów
-      \end{description}
-      \iffalse
-        Obliczenia:
-        e = (3*3+1*3+3*2+1*2+2*2+2*1+2*1+3*1+2*1+3*3+3*3)/25 = 2.04
-        s = (3*1+1*2+3*3+1*3+2*2+2*3+2*2+3*3+2*1+3*2+3*2)/25 = 2.16
-        m = (3*2+1*1+3*3+1*1+2*3+2*3+2*3+3*2+2*1+3*1+3*2)/25 = 2.08
-      \fi
-      Uzyskane oceny:
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
+    \pagebreak
+    \subsection{Uzyskane oceny}
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
       \begingroup
         \begin{adjustbox}{center}
           \begin{tabular}{|c|c|c|c|c|p{2.6cm}}
@@ -1221,22 +1303,54 @@
             \hline
             Testy obciążeniowe & 3 & 3 & 2 & 2 \\
             \hline
-            \setrow{\bfseries}Ocena Końcowa & - & \setrow{\bfseries}2.04 & \setrow{\bfseries}2.16 & \setrow{\bfseries}2.08 \\
+          \end{tabular}
+        \end{adjustbox}
+      \endgroup
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      \hspace{1 mm} \\
+      
+    \subsection{Końcowe oceny}
+      Po przeprowadzonej analizie frameworków, wyniki zostały zebrane w poniższej tabeli, a końcowe oceny wyliczone ze wzoru:
+      Podstawiając pod wzór:
+      \newline
+      \newline
+      \[\text{\Large$O = \frac{\sum_{i=1}^{n} p_{i} * w_{i}}{sw}$}\]
+      \newline
+      gdzie:
+      \begin{description}
+        \item[O] - ocena końcowa
+        \item[n] - ilość parametrów
+        \item[p] - ocena parametru
+        \item[w] - waga parametru
+        \item[sw] - suma wag parametrów
+      \end{description}
+      \iffalse
+        Obliczenia:
+        e = (3*3+1*3+3*2+1*2+2*2+2*1+2*1+3*1+2*1+3*3+3*3)/25 = 2.04
+        s = (3*1+1*2+3*3+1*3+2*2+2*3+2*2+3*3+2*1+3*2+3*2)/25 = 2.16
+        m = (3*2+1*1+3*3+1*1+2*3+2*3+2*3+3*2+2*1+3*1+3*2)/25 = 2.08
+      \fi
+      Oceny końcowe:
+      \newline
+      \newline
+      \begingroup
+        \begin{adjustbox}{center}
+          \begin{tabular}{|c|c|c|c|c|p{2.6cm}}
+            \hline
+            Framewok & Express & Sails & Meteor \\
+            \hline
+            Ocena końcowa & 2.04 & 2.16 & 2.08 \\
             \hline
           \end{tabular}
         \end{adjustbox}
       \endgroup
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      \newline
-      Ponieważ końcowe oceny niezanczenie się od siebie różnią warto wskazać zastosowania, w których dany framework bedzie najbardziej odpowiedni.
 
   \section{Wskazywane zastosowania}
+    Ponieważ końcowe oceny niezanczenie się od siebie różnią warto wskazać zastosowania, w których dany framework bedzie najbardziej odpowiedni.
+    
     \subsection{Express}
       Express nadaje się idealnie to rozwiązań opracowywanych przez niewielkie zespoły deweloperskie, które nie rozrosną się do ogromnych projektów lub zostaną zaprojektowane jako wiele mikroserwisów z powodu braku ściśle określonych zasad architektury. 
       Brak wyraźnie określonych standardów wpływa na możliwe problemy z rozwojem projektu. 
