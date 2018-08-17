@@ -19,6 +19,22 @@ export class ChatComponent implements OnInit {
   constructor(private route: ActivatedRoute) { 
     this.route.queryParams.subscribe( params => this.name = params.name)
     this.connected = false
+    
+    this.messages = [{name: '11', message:"1asdadasdadjnajfasdadadadadadasnasd asldjnaojsdnaolsdna asodnaos asdand asdasd as da d a da d a dasda2"}, 
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"},
+    {name: '21', message:"22"}]
     this.client = new fm.websync.client(websyncUrl)
   }
 
@@ -29,7 +45,6 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messages = [{name: '11', message:"12"}, {name: '21', message:"22"}]
     this.client.connect({
       onSuccess: (e)=>{
           console.log('Connected to WebSync.');

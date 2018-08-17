@@ -1,8 +1,13 @@
 <div id="container">
   <div id="left">
-    <input #message id="message" type="text" placeholder="type your message..."/>
-    <br>
-    <input (click)="send(message.value)" id="button" type="button" value="send"/>
+    <div id="nameContainer">
+      <h2>User:<br>{{ name }}</h2>
+    </div>
+    <div id="messageContainer">
+      <input #message id="message" type="text" placeholder="type your message..."/>
+      <br>
+      <input (click)="send(message.value)" id="button" type="button" value="send"/>
+    </div>
   </div>
   <div id="right">
     <ul *ngFor="let message of messages">
