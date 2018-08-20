@@ -1,6 +1,6 @@
 <div id="container">
   <h1>Your username</h1>
-  <input #username id="username" type="text" placeholder="username"/>
+  <input autofocus #username id="username" (keyup)="$event.keyCode == 13 && onClick(username.value)" type="text" placeholder="username"/>
   <br>
-  <input (click)="onClick(username.value)" id="button" type="button" value="Ok"/>
+  <input (click)="onClick(username.value)" id="button" type="button" value="Sign in"/>
 </div>

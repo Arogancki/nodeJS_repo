@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs'
-import { ActivatedRoute } from '@angular/router'
-
-const websyncUrl = 'http://localhost:2000/websync.ashx'
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Connection, Status } from '../../providers/Connection'
 
 @Component({
   selector: 'app-chat',
@@ -14,64 +12,36 @@ export class ChatComponent implements OnInit {
   name: String; 
   connected: boolean;
   client: any;
+  
   messages: Array<Object>;
 
-  constructor(private route: ActivatedRoute) { 
-    this.route.queryParams.subscribe( params => this.name = params.name)
+  constructor(private router: Router, private connection: Connection) { 
+    if(this.connection.getStatus() === Status.Ready)
+      this.router.navigate([''])
+    this.messages = []
+    this.connection.onConnect = this.update.bind(this)
+    this.connection.onReceive = this.update.bind(this)
     this.connected = false
-    
-    this.messages = [{name: '11', message:"1asdadasdadjnajfasdadadadadadasnasd asldjnaojsdnaolsdna asodnaos asdand asdasd as da d a da d a dasda2"}, 
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"},
-    {name: '21', message:"22"}]
-    this.client = new fm.websync.client(websyncUrl)
-  }
-
-  onFailure(e, mes="") {
-    const err = (mes ? `${mes} : ` : '') + e.getException().message
-    console.error(err);
-    alert(err);
+    this.name = this.connection.getName()
   }
 
   ngOnInit() {
-    this.client.connect({
-      onSuccess: (e)=>{
-          console.log('Connected to WebSync.');
-          this.connected = true
-          this.client.subscribe({
-            channel: '/messages',
-            onSuccess: (e)=>this.messages = e.getExtensionValue('chat'),
-            onReceive: (e)=>this.messages.push(e.getData()),
-            onFailure: (e)=>this.onFailure(e, `Could not fetch messages`)
-          })
-      },
-      onFailure: (e)=>this.onFailure(e, `Could not connect to WebSync`)
-    });
-
   }
 
-  send(text){
-    if (!this.connected || !text)
-      return
-    this.client.service({
-      channel: '/message',
-      data: {
-        name: this.name,
-        message: text
-      },
-      onFailure: (e)=>this.onFailure(e, `Could not send a message`)
-    });
+  update(messages) {
+    if (typeof messages === typeof [])
+      this.messages = [...this.messages, ...messages]
+    else
+    this.messages.push(messages)
+    
+    setTimeout(() => {
+      document.getElementById("lastElement").scrollIntoView()
+    }, 10);
+  }
+
+  send(message) {
+    this.connection.send(message.value)
+    message.value = ''
   }
 
 }

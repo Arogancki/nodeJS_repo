@@ -1,20 +1,22 @@
 <div id="container">
   <div id="left">
     <div id="nameContainer">
-      <h2>User:<br>{{ name }}</h2>
+      <h1>User:<br>{{ name }}</h1>
     </div>
     <div id="messageContainer">
-      <input #message id="message" type="text" placeholder="type your message..."/>
+      <input autofocus #message id="message" (keyup)="$event.keyCode == 13 && send(message)" type="text" placeholder="type your message..."/>
       <br>
-      <input (click)="send(message.value)" id="button" type="button" value="send"/>
+      <input (click)="send(message)" id="button" type="button" value="send"/>
     </div>
   </div>
   <div id="right">
-    <ul *ngFor="let message of messages">
-      <li>
+    <h1>Chat:</h1>
+    <ul>
+      <li id="chatMessage" *ngFor="let message of messages">
         <h1>{{ message.name }}:</h1>
         <p>{{ message.message }}</p>
       </li>
+      <li id="lastElement"></li>
     </ul>
   </div>
 </div>
