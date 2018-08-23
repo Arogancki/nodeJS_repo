@@ -1,0 +1,207 @@
+a:link {
+  font-weight: auto;
+  text-decoration: none;
+}
+
+header nav li a, footer .funny a {
+  color: #A9A9A9;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+header nav li a:hover, footer .funny a:hover {
+  -webkit-transform: scale(2.2);
+          transform: scale(2.2);
+  color: #CAEBF2;
+}
+
+header, footer {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  color: #A9A9A9;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header nav {
+  background-color: #EFEFEF;
+}
+
+header nav li {
+  text-align: center;
+  margin: 5px;
+}
+
+header nav .socialMediaLink {
+  max-width: 2.5vmax;
+  height: auto;
+  border-radius: 50%;
+  margin: 5px;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+
+header nav .socialMediaLink:hover {
+  border-radius: 48%;
+  -webkit-transform: rotate(5deg) scale(1.2);
+          transform: rotate(5deg) scale(1.2);
+}
+
+footer {
+  padding: .5rem 1rem;
+  background-color: #EFEFEF;
+}
+
+footer hr {
+  margin: 1px 10%;
+}
+
+footer div {
+  width: 100%;
+  text-align: center;
+}
+
+footer img {
+  max-width: 1.5vmax;
+  height: auto;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+footer .githubLink {
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+
+footer .githubLink:hover {
+  border-radius: 48%;
+  -webkit-transform: rotate(5deg) scale(1.2);
+          transform: rotate(5deg) scale(1.2);
+}
+
+footer .shaking {
+  -webkit-animation: shake 4s infinite;
+          animation: shake 4s infinite;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+@-webkit-keyframes shake {
+  2.5%, 22.5% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+  5%, 20% {
+    -webkit-transform: translate3d(2px, 0, 0);
+            transform: translate3d(2px, 0, 0);
+  }
+  7.5%, 12.5%, 17.5% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+  10%, 15% {
+    -webkit-transform: translate3d(4px, 0, 0);
+            transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  2.5%, 22.5% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+  5%, 20% {
+    -webkit-transform: translate3d(2px, 0, 0);
+            transform: translate3d(2px, 0, 0);
+  }
+  7.5%, 12.5%, 17.5% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+  10%, 15% {
+    -webkit-transform: translate3d(4px, 0, 0);
+            transform: translate3d(4px, 0, 0);
+  }
+}
+
+.error {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.error .code {
+  font-size: 15vmax;
+}
+
+.error .info {
+  font-size: 2vmax;
+}
+
+.error .gif {
+  position: absolute;
+  bottom: 0;
+  right: 1vmax;
+  z-index: -1;
+}
+
+.error .gif img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.error a {
+  color: #A9A9A9;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.error a:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  color: #CAEBF2;
+}
+/*# sourceMappingURL=styles.css.map */

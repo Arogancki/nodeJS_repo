@@ -1,0 +1,22 @@
+{
+    "language": "pl",
+    "title": "Artur Ziemba - CV dewelopera",
+    "header": {
+        "aboutLink": "O mnie",
+        "experienceLink": "Doświadczenie i edukacja",
+        "technologiesLink": "Technologie",
+        "projectsLink": "Moje projekty",
+        "contactLink": "Kontakt"
+    },
+    "footer":{
+        "project": "Sprawdź ten projekt na",
+        "funny": "Śmieszne linki obsługi błedów:",
+        "technologies": "Stworzone z:",
+        "more": "Kliknij mnie!"
+    },
+    "errors": {
+        "404": "Strona nie istnieje",
+        "500": ["Wystąpił bład serwera", "Wygląda na to że mamy buga na wolności!"],
+        "429": ["Za dużo zapytań", "Spróbuj ponowanie za", "sekund", "Spróbuj ponownie"]
+    }
+}

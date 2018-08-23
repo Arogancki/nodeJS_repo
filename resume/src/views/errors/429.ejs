@@ -1,0 +1,29 @@
+<div class="error">
+    <div class="code">429</div>
+    <div class="info">
+        <%= translation.errors["429"][0] %>
+        <div id="count" style="display: flex; justify-content: center">
+            <%= translation.errors["429"][1] %>
+            &nbsp<p id="time"><%= remainingTime %><p>&nbsp
+            <%= translation.errors["429"][2] %>
+        </div>
+        <div id="ready" style="display: flex; justify-content: center; visibility: hidden">
+            <a href="javascript:location.reload();"><%= translation.errors["429"][3] %></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function countDown(remainingTime){
+        if (remainingTime > 0)
+            setTimeout(()=>countDown(--document.getElementById("time").innerHTML), 1000)
+        else{
+            const count = document.getElementById("count")
+            const countParent = count.parentNode
+            countParent.removeChild(count)
+            document.getElementById("ready").style.visibility = "visible"
+            count.style.visibility = "hidden"
+            countParent.appendChild(count)
+        }
+    })(document.getElementById("time").innerHTML)
+</script>

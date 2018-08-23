@@ -1,0 +1,22 @@
+{
+    "language": "en",
+    "title": "Artur Ziemba - Developer's resume",
+    "header": {
+        "aboutLink": "About me",
+        "experienceLink": "Experience and education",
+        "technologiesLink": "Technologies",
+        "projectsLink": "My projects",
+        "contactLink": "Contact"
+    },
+    "footer":{
+        "project": "Check out this project on",
+        "funny": "Funny error handling links:",
+        "technologies": "Made with:",
+        "more": "Click me!"
+    },
+    "errors": {
+        "404": "Not found",
+        "500": ["Internal server error", "Looks like we have a wild bug running here!"],
+        "429": ["Too many requests", "Try again in", "seconds", "Try again"]
+    }
+}
