@@ -8,7 +8,8 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="w-100 mx-auto navbar-nav">
             <% navigationLinks.forEach(link=> { %>
-                <li class="mx-auto align-self-center">
+                <li class="mx-auto align-self-center
+                <% if (route===link.href) { %> selectedRoute <% } %>">
                     <a  class="mx-auto" href="<%= link.href %>">
                         <%= translation.header[link.value] %>
                     </a>

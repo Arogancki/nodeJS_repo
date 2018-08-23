@@ -16,7 +16,7 @@
     },
     "errors": {
         "404": "Not found",
-        "500": ["Internal server error", "Looks like we have a wild bug running here!"],
+        "500": ["Internal server error", "Looks like we have a wild bug here!"],
         "429": ["Too many requests", "Try again in", "seconds", "Try again"]
     }
 }

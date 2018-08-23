@@ -5,11 +5,11 @@ const router = require('express').Router()
     , render = require('../helpers/render')
 
 module.exports = (app) => {
+    app.get('/', (req, res) =>  res.redirect('/about'))
     fs.readdirSync(__dirname)
         .filter(file=>file !== "index.js")
         .map(file=>router.use(`/${path.parse(file).name}`, 
             require(path.join(__dirname, file))(app)))
-
     app.get('/404', (req, res) => render(req, res.status(200), 'errors/404'))
     app.get('/429', (req, res) => render(req, res.status(200), 'errors/429', {remainingTime: 10}))
     app.get('/500', (req, res) => render(req, res.status(200), 'errors/500'))

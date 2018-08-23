@@ -54,6 +54,9 @@ header {
                 @extend %textLink;
             }
         }
+        .selectedRoute {
+            background-color: red;
+        }
         .socialMediaLink {
             max-width: 2.5vmax;
             height: auto;
@@ -98,7 +101,7 @@ footer {
         }
     }
     .shaking {
-        animation: shake 4s infinite;
+        animation: shake 6s infinite;
         animation-delay: 2s;
     }
 }

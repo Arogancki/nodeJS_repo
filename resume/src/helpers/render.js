@@ -8,6 +8,8 @@ module.exports = (req, res, templatePath, params={})=>{
         ...params, 
         body: templatePath,
         socialMediaLinks,
-        navigationLinks
+        navigationLinks,
+        path: req.path,
+        route: '/' + req.path.split('/')[1]
     })
 }

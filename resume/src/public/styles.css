@@ -57,6 +57,10 @@ header nav li {
   margin: 5px;
 }
 
+header nav .selectedRoute {
+  background-color: red;
+}
+
 header nav .socialMediaLink {
   max-width: 2.5vmax;
   height: auto;
@@ -109,8 +113,8 @@ footer .githubLink:hover {
 }
 
 footer .shaking {
-  -webkit-animation: shake 4s infinite;
-          animation: shake 4s infinite;
+  -webkit-animation: shake 6s infinite;
+          animation: shake 6s infinite;
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
 }
