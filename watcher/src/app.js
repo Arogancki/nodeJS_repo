@@ -50,11 +50,15 @@ async function check(name, domain, element){
             log(`getting request for ${domain.address}: ${name}`)
         }
 
-        const $ = cheerio.load(await rp({
+        const html = await rp({
             method: 'GET',
             url: urlAddress,
             headers: domain.headers
-        }))
+        })
+        if (html.includes("Are you a human?"))
+            throw new Error('THEY KNOW THIS IS A BOT WATCHER!')
+
+        const $ = cheerio.load(html)
         const container = $(element.container)
         const childern = container.find(element.children)
         if (!childern.length){
@@ -92,6 +96,7 @@ async function check(name, domain, element){
     }
     catch(e){
         handleError(e)
+        return true
     }
 }
 
