@@ -1,6 +1,0 @@
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\Tests\obj\Debug\ServerConsole.njsprojResolveAssemblyReference.cache
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\Tests\bin\Microsoft.NodejsTools.WebRole.dll
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\load tests\obj\Debug\ServerConsole.njsprojResolveAssemblyReference.cache
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\load tests\bin\Microsoft.NodejsTools.WebRole.dll
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\tests\load tests\obj\Debug\ServerConsole.njsprojResolveAssemblyReference.cache
-C:\Users\Artur\Documents\Visual Studio 2015\Projects\NodeJs_Repo\tests\load tests\bin\Microsoft.NodejsTools.WebRole.dll

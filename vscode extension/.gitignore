@@ -1,6 +1,0 @@
-node_modules
-.vscode-test/
-*.vsix
-.idea
-server/lib/avid-App-Creator_tool-log-file.txt
-server/resources/pathConfig.json

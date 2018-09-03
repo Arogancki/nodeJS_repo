@@ -1,3 +1,0 @@
-# Avid App Creator Tool
-
-Avid App Creator Tool kickstarts a developer’s MediaCentral | Cloud UX and MediaCentral | Service Gateway project by providing the necessary tools for building apps.  It includes a new project template with scaffolding, a project properties page, a publishing button to build, sign and upload to Avid’s marketplace, and a built in proxy for local sandboxed development.  The tool also gets developers started on the right foot with best practices for localization, bundling, and live debugging.
