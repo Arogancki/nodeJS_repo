@@ -1,0 +1,11 @@
+(() => {
+    Array.from(document.getElementsByClassName('asyncImage')).map((item) => {
+      const img = new Image()
+      img.src = item.src
+      item.src = img.src.replace('.', '-min.')
+      img.onload = () => {
+        item.classList.remove('asyncImage')
+        item.src = img.src
+      }
+    })
+  })()

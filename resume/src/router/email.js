@@ -1,0 +1,27 @@
+const router = require('express').Router()
+    , Joi = require('joi')
+
+    , sendEmail = require('../helpers/sendEmail')
+
+    , emailSchema = {
+        contact: Joi.string().min(2).max(100).required(),
+        subject: Joi.string().min(2).max(200).required(),
+        email: Joi.string().email({ minDomainAtoms: 2 }).required(),
+        text: Joi.string().min(2).max(5000).required(),
+    }
+
+module.exports = (app) => {
+    router.post('/', async (req, res)=>{
+        const validation = Joi.validate(req.body, emailSchema)
+        if (validation.error){
+            return res.status(422).json(validation.error.details)
+        }
+
+        const { subject, text, contact } = req.body
+        return sendEmail(subject, text, contact)
+        .then(info=>res.json(info))
+        .catch(err=>res.status(500).json(err))
+    })
+
+    return router
+}

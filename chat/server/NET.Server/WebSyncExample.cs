@@ -23,7 +23,7 @@ namespace NET.Server
         [WebSyncEvent(EventType.AfterConnect)]
         public static void connected(object sender, WebSyncEventArgs e)
         {
-
+          Console.WriteLine("Hej");
         }
 
         [WebSyncEvent(EventType.BeforeService, "/message", FilterType.Template)]
