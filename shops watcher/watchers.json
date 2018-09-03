@@ -3,9 +3,39 @@
         "address": "https://www.mobile.de",
         "time": 1000,
         "list": {
-            "Mercedes benz A klass": {
-                "path": "/pl/samochod/mercedes-benz-c-klasse/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:desc,ms1:17200_-6_,frn:2012,dmg:true,vcg:cabrio!limousine!sportscar",
+            "Mercedes C class": {
+                "path": "/pl/samochod/mercedes-benz-c-klasse/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
                 "time": 3000,
+                "pageCounter": {
+                    "alias": "PAGE_COUNTER_ALIAS",
+                    "start": 1
+                },
+                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
+                "children": "article > div > div[class='g-row js-ad-entry'] > a"
+            },
+            "Audi A6": {
+                "path": "/pl/samochod/audi-a6/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_10_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
+                "time": 10000,
+                "pageCounter": {
+                    "alias": "PAGE_COUNTER_ALIAS",
+                    "start": 1
+                },
+                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
+                "children": "article > div > div[class='g-row js-ad-entry'] > a"
+            },
+            "Audi A5": {
+                "path": "/pl/samochod/audi-a5/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
+                "time": 10000,
+                "pageCounter": {
+                    "alias": "PAGE_COUNTER_ALIAS",
+                    "start": 1
+                },
+                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
+                "children": "article > div > div[class='g-row js-ad-entry'] > a"
+            },
+            "Audi A4": {
+                "path": "/pl/samochod/audi-a4/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
+                "time": 10000,
                 "pageCounter": {
                     "alias": "PAGE_COUNTER_ALIAS",
                     "start": 1

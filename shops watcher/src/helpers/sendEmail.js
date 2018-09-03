@@ -9,7 +9,9 @@ const transporter = nodemailer.createTransport({
 })
 
 module.exports = function sendEmail(subject, html) {
-    return new Promise((res, rej)=>transporter.sendMail({
+    return new Promise((res, rej)=>
+    // res())
+    transporter.sendMail({
         from: `"Watcher" <${process.env.EMAIL_LOGIN}>`,
         to: process.env.CONTACT_EMAIL,
         subject: subject,
