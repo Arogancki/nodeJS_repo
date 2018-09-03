@@ -5,3 +5,6 @@ Extra useful for auctions, shops, promotions etc...
 ## setup
 watchers.json for website settings  
 .env for email notifications  
+
+## heroku 
+https://watcher-artur-ziemba.herokuapp.com/
