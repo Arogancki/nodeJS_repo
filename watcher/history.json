@@ -1,1 +1,36 @@
-{}
+{
+  "https://www.mobile.de": {
+    "/pl/samochod/mercedes-benz-c-klasse/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio": [
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-Coupe-C-250-CDI-Blu-PANO-AMG/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/261947395.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-220-CDI-Coup%C3%A9-7G-Tronic-Navi/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/264125921.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-350-CGI-Coupe-BlueEff-7G/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/261569561.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-250-Coupe-AMG-Sportpaket-7G/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/251982189.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-180-BlueEFFICIENCY-7G-TRONIC/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/265520338.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-Klasse-Coupe-C-220-CDI/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/266290883.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-250-CDI-7G-TRONIC-Avantgarde/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267168969.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-200-CDI-AMG-Styling-wurde-als/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/263124238.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-220-CDI-DPF-BlueEFFICIENCY-7G/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/266664404.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-220-CDI-Coupe-AMG/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/256083101.html",
+      "https://www.mobile.de/pl/Samochod/Mercedes-Benz-C-250-CDI-DPF-Coupe/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267238506.html"
+    ],
+    "/pl/samochod/audi-a6/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_10_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio": [
+      "https://www.mobile.de/pl/Samochod/Audi-A6-2.0-TFSI-quattro-S-tronic-Competition/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_10_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/248037564.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A6-3.0-TDI-DPF-quattro-S-tronic/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_10_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267237030.html"
+    ],
+    "/pl/samochod/audi-a5/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio": [
+      "https://www.mobile.de/pl/Samochod/Audi-Audi-A5-S-Line-650mntl.-inkl./vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267042752.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A5-Cabriolet-3.0-TDI-clean-diesel/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/266315324.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A5-Cabrio-3.0-TDI-DPF-quattro-S-tronic/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/252657064.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A5-3.0-TDI-Sportback-DPF-multitronic/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/266881998.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A5-1.8-TFSI-Sportback-multitronic-S-Line/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/266360354.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A5-3.0-TDI-Sportback-Quattro-S-tronic/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/259250384.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A5-3.0-TDI-Sportback-quattro-DPF-S/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267237002.html"
+    ],
+    "/pl/samochod/audi-a4/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio": [
+      "https://www.mobile.de/pl/Samochod/Audi-A4-1.8-TFSI-multitronic-Attraction/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267195338.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A4-3.0-TDI-D-quattro-S-tronic-S-Line/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/265971974.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A4-Lim.-S-line-Sportpaket-plus/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267015596.html",
+      "https://www.mobile.de/pl/Samochod/Audi-A4-2.0-TDI-DPF-clean-diesel-quattro-S/vhc:car,cnt:de,pgn:1,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:cabrio!limousine!sportscar/pg:vipcar/267236795.html"
+    ]
+  }
+}

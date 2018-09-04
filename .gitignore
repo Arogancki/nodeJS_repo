@@ -68,3 +68,7 @@ typings/
 
 # Serverless directories
 .serverless
+
+# environmental variables
+.env*
+*.env

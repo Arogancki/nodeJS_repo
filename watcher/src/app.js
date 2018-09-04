@@ -80,12 +80,20 @@ async function check(name, domain, element){
         const newLinks = saveAndGiveUnchecked(domain.address, element.path, links)
         if (newLinks.length){
             log(newLinks.length, 'new things')
-            await sendEmail("Found a new things", `\
+            const text = `\
             <h1 style="text-align:center;border-bottom:solid 1px #99CCFF;">New things for ${name}!</h1>\
             ${newLinks.map(href=>`<br><a style="text-align:center;" href="${href}">${href}</a>`)}
-            `)
+            `
+            await sendEmail("Found a new things", text)
             .then(info=>log(`New email sent`))
-            .catch(err=>log(`Could't send error email: ${err.message}`))
+            .catch(err=>{
+                log(`Could't send error email: ${err.message}`)
+                setTimeout(async ()=>
+                    await sendEmail("Found a new things", text)
+                    .then(info=>log(`New email sent`))
+                    .catch(err=>log(`Could't send error email again: ${err.message}\n\n${text}\n\n`))
+                , 3000)
+            })
         }
         else {
             log('nothing new')
