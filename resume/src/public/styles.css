@@ -1,25 +1,36 @@
+h1 {
+  font-size: 2rem;
+}
+
 a:link {
   font-weight: auto;
   text-decoration: none;
 }
 
-header nav li a, footer .funny a {
-  color: #A9A9A9;
+main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv, header nav li a, footer .funny a, .error a {
+  font-size: 1.1rem;
+  color: inherit;
   -webkit-transition: -webkit-transform .5s;
   transition: -webkit-transform .5s;
   transition: transform .5s;
   transition: transform .5s, -webkit-transform .5s;
   padding-left: 5px;
   padding-right: 5px;
+  display: inline-block;
 }
 
-header nav li a:hover, footer .funny a:hover {
-  -webkit-transform: scale(2.2);
-          transform: scale(2.2);
-  color: #CAEBF2;
+main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, header nav li a:hover, footer .funny a:hover, .error a:hover {
+  color: #80006b;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
-header, footer {
+main .aboutContainer .contentContainer .navigationSlider .selectedDiv, header nav .selectedRoute {
+  font-weight: bold;
+  color: #001380;
+}
+
+main, header, footer {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -28,7 +39,7 @@ header, footer {
 }
 
 body {
-  color: #A9A9A9;
+  color: green;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -37,6 +48,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-family: Raleway, sans-serif;
+  font-size: 1rem;
 }
 
 main {
@@ -46,20 +59,115 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: overlay;
 }
 
 main .aboutContainer {
+  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 50% 50%;
       grid-template-columns: 50% 50%;
 }
 
-main .aboutContainer .aboutImage {
+main .aboutContainer .imageSlider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 74%;
+  width: 60%;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   margin: 0 auto;
+  overflow: hidden;
+  background-color: black;
+}
+
+main .aboutContainer .imageSlider .image {
+  height: 100%;
+  width: 100%;
+  -webkit-filter: opacity(80%);
+          filter: opacity(80%);
+}
+
+main .aboutContainer .contentContainer {
+  min-height: 70%;
+  max-height: 100%;
+  width: 80%;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .aboutContainer .contentContainer .headersContainer {
+  margin: 2.5% 0;
+}
+
+main .aboutContainer .contentContainer .navigationSlider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 2.5% 0;
+}
+
+main .aboutContainer .contentContainer .textSlider {
+  margin: 2.5% 0;
+  position: relative;
+}
+
+main .aboutContainer .contentContainer .textSlider div {
+  position: absolute;
+}
+
+@-webkit-keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
+main .aboutContainer .contentContainer .textSlider .selectedText {
+  opacity: 0;
+  -webkit-animation: fadeIn 2s forwards;
+          animation: fadeIn 2s forwards;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+@-webkit-keyframes fadeOut {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+  }
+}
+
+main .aboutContainer .contentContainer .textSlider .notSelectedText {
+  opacity: 1;
+  -webkit-animation: fadeOut 500ms forwards;
+          animation: fadeOut 500ms forwards;
 }
 
 main .background {
@@ -76,31 +184,31 @@ main .background {
 
 @-webkit-keyframes breathingBlur {
   0% {
-    -webkit-filter: grayscale(85%) blur(4px);
-            filter: grayscale(85%) blur(4px);
+    -webkit-filter: grayscale(85%) blur(4px) brightness(80%);
+            filter: grayscale(85%) blur(4px) brightness(80%);
   }
   50% {
-    -webkit-filter: grayscale(80%) blur(2px);
-            filter: grayscale(80%) blur(2px);
+    -webkit-filter: grayscale(80%) blur(2px) brightness(80%);
+            filter: grayscale(80%) blur(2px) brightness(80%);
   }
   100% {
-    -webkit-filter: grayscale(85%) blur(4px);
-            filter: grayscale(85%) blur(4px);
+    -webkit-filter: grayscale(85%) blur(4px) brightness(80%);
+            filter: grayscale(85%) blur(4px) brightness(80%);
   }
 }
 
 @keyframes breathingBlur {
   0% {
-    -webkit-filter: grayscale(85%) blur(4px);
-            filter: grayscale(85%) blur(4px);
+    -webkit-filter: grayscale(85%) blur(4px) brightness(80%);
+            filter: grayscale(85%) blur(4px) brightness(80%);
   }
   50% {
-    -webkit-filter: grayscale(80%) blur(2px);
-            filter: grayscale(80%) blur(2px);
+    -webkit-filter: grayscale(80%) blur(2px) brightness(80%);
+            filter: grayscale(80%) blur(2px) brightness(80%);
   }
   100% {
-    -webkit-filter: grayscale(85%) blur(4px);
-            filter: grayscale(85%) blur(4px);
+    -webkit-filter: grayscale(85%) blur(4px) brightness(80%);
+            filter: grayscale(85%) blur(4px) brightness(80%);
   }
 }
 
@@ -127,7 +235,11 @@ main .background {
 }
 
 header nav {
-  background-color: #EFEFEF;
+  background-color: #c6c8e8;
+}
+
+header nav .title {
+  padding-left: 1%;
 }
 
 header nav li {
@@ -135,15 +247,15 @@ header nav li {
   margin: 5px;
 }
 
-header nav .selectedRoute {
-  background-color: red;
-}
-
 header nav .socialMediaLink {
   max-width: 2.5vmax;
   height: auto;
   border-radius: 50%;
   margin: 5px;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
 }
 
 header nav .socialMediaLink:hover {
@@ -154,7 +266,7 @@ header nav .socialMediaLink:hover {
 
 footer {
   padding: .1rem 1rem;
-  background-color: #EFEFEF;
+  background-color: #c6c8e8;
 }
 
 footer hr {
@@ -265,21 +377,5 @@ footer .shaking {
 .error .gif img {
   max-width: 100%;
   max-height: 100%;
-}
-
-.error a {
-  color: #A9A9A9;
-  -webkit-transition: -webkit-transform .5s;
-  transition: -webkit-transform .5s;
-  transition: transform .5s;
-  transition: transform .5s, -webkit-transform .5s;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.error a:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  color: #CAEBF2;
 }
 /*# sourceMappingURL=styles.css.map */

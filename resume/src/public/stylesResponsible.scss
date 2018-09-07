@@ -3,17 +3,16 @@ $smallScreen: "screen and (max-width : 768px)";
 @media #{$smallScreen} {
     main {
         .aboutContainer {
-            display: grid;
-            grid-template-columns: 100%;
-            .aboutImage {
-                background-color: red;
+            margin: 5% 5%;
+            display: block;
+            overflow: overlay;
+            width: 100%;
+            .imageSlider {
+                background-color: black;
                 z-index: -1;
                 position: fixed;
-                width: 50%;
-                left: 50%;
-                margin-left: -25%;
-                margin: 10% 0;
-            }
+                // todo glupio wyglada zdjecie dla mobila
+            }   
         }
     }
 }

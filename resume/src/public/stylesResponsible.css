@@ -1,18 +1,14 @@
 @media screen and (max-width: 768px) {
   main .aboutContainer {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 100%;
-        grid-template-columns: 100%;
+    margin: 5% 5%;
+    display: block;
+    overflow: overlay;
+    width: 100%;
   }
-  main .aboutContainer .aboutImage {
-    background-color: red;
+  main .aboutContainer .imageSlider {
+    background-color: black;
     z-index: -1;
     position: fixed;
-    width: 50%;
-    left: 50%;
-    margin-left: -25%;
-    margin: 10% 0;
   }
 }
 /*# sourceMappingURL=stylesResponsible.css.map */

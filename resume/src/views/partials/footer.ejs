@@ -24,11 +24,12 @@
             <a href="/429">429</a>
             <a href="/500">500</a>
         </div>
-    <div>© Artur Ziemba 2018</div>
+        <div id="last" >© Artur Ziemba 2018</div>
     </div>
 </div>
 <script>
 function removeShaking() {
+    // this.collapsed = this.collapsed === undefined ? true : !this.collapsed
     const text = document.getElementById("shakingText")
     if (text.classList.contains('shaking'))
         text.classList.remove('shaking')

@@ -1,18 +1,51 @@
 <img class="background" src="/background/.jpg"/>
 <div class="aboutContainer">
-    <img class="aboutImage" src="/images/flags/en.png" />
-    <div>
-        <div>
+    <div id="imageSlider" class="imageSlider carousel slide" data-ride="carousel" data-interval="0">
+        <div class="carousel-inner">
+            <% Object.keys(translation.main.about.paragraph).forEach((k,index)=> { %>
+                <div style="height:100%" class="carousel-item <%= index===0 ? 'active' : '' %>">
+                    <img class="image" src="/images/artur/<%= k %>.jpg" />
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="contentContainer">
+        <div class="headersContainer">
             <h1><%= translation.main.about.headers[0] %></h1>
             <h3><%= translation.main.about.headers[1] %></h3>
         </div>
-        <p>
-            <%= translation.main.about.paragraph %>
-        </p>
-        <div>
-            <% translation.main.about.photoSelectors.forEach(selector=> { %>
-                <span><%= selector %></span>
+        <div class="navigationSlider"> 
+            <% Object.keys(translation.main.about.paragraph).forEach((key,index)=> { %>
+                <div data-slide-to="<%=index%>" href="#imageSlider" id="<%=index%>Link" 
+                onclick="select(<%=index%>)"  class="<%= index===0 ? 'selectedDiv' : 'notSelectedDiv' %>">
+                    <%= translation.main.about.paragraph[key].link %>
+                </div>
+            <% }); %>
+        </div>
+        <div class="textSlider"> 
+            <% Object.keys(translation.main.about.paragraph).forEach((key, index)=> { %>
+                <div id="<%=index%>Text" style="display: <%= index===0 ? 'block' : 'none' %>">
+                    <%= translation.main.about.paragraph[key].text %>
+                </div>
             <% }); %>
         </div>
     </div>
 </div>
+<script>
+    function select(key){
+        this.active = this.active === undefined ? 0 : this.active
+        if (key === this.active)
+            return 
+        const prevLink = document.getElementById(this.active+"Link")
+        prevLink.className='notSelectedDiv'
+        const prevText = document.getElementById(this.active+"Text")
+        prevText.className='notSelectedText'
+        this.active = key
+        const currLink = document.getElementById(this.active+"Link")
+        currLink.className='selectedDiv'
+        const currText = document.getElementById(this.active+"Text")
+        currText.className='selectedText'
+        currText.style.display='block'
+    }
+</script>

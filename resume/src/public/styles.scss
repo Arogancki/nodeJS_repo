@@ -1,10 +1,14 @@
 $font1: Raleway, sans-serif;
 $font2: Merienda, sans-serif;
 
-$fontColor: #A9A9A9;
-$backgroundColor: #EFEFEF;
+$fontColor: green;
+$fontColorHover: rgb(128, 0, 107);
+$fontColorFocused: rgb(0, 19, 128);
+$backgroundColor: #c6c8e8;
 $primaryColor: #CAEBF2;
 $secondaryColor: #FF3B3F;
+
+h1 {font-size: 2rem;}
 
 a:link {
     font-weight: auto;
@@ -12,14 +16,21 @@ a:link {
 }
 
 %textLink {
-    color: $fontColor;
+    font-size: 1.1rem;
+    color: inherit;
     transition: transform .5s;
     padding-left: 5px;
     padding-right: 5px;
+    display: inline-block;
     &:hover {
-        transform: scale(2.2);
-        color: $primaryColor;
+        color: $fontColorHover;
+        transform: scale(1.2);
     }
+}
+
+%selected {
+    font-weight: bold;
+    color: $fontColorFocused;
 }
 
 %noselect {
@@ -36,17 +47,78 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: $font1;
+    font-size: 1rem;
 }
 
 main {
+    @extend %noselect;
     flex: 1;
     display: flex;
+    overflow: overlay;
     .aboutContainer {
+        width: 100%;
         display: grid;
         grid-template-columns: 50% 50%;
-        .aboutImage {
+        .imageSlider {
+            display: flex;
+            height: 74%;
+            width: 60%;
             align-self: center;
             margin: 0 auto;
+            overflow: hidden;
+            background-color: black;
+            .image {
+                height: 100%;
+                width: 100%;
+                filter: opacity(80%);
+            }
+        }
+        .contentContainer{
+            min-height: 70%;
+            max-height: 100%;
+            width: 80%;
+            align-self: center;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            .headersContainer{
+                margin: 2.5% 0;
+            }
+            .navigationSlider {
+                display: flex;
+                flex-flow: row;
+                justify-content: space-around;
+                margin: 2.5% 0;
+                .selectedDiv {
+                    @extend %selected;
+                }
+                .notSelectedDiv {
+                    @extend %textLink 
+                }
+            }
+            .textSlider{
+                margin: 2.5% 0;
+                position: relative;
+                div {
+                    position: absolute;
+                }
+                @keyframes fadeIn {
+                    100% {opacity: 1;}
+                }
+                .selectedText{
+                    opacity: 0;
+                    animation: fadeIn 2s forwards;
+                    animation-delay: 500ms;
+                }
+                @keyframes fadeOut {
+                    100% {opacity: 0;}
+                }
+                .notSelectedText{
+                    opacity: 1;
+                    animation: fadeOut 500ms forwards;
+                }
+            }
         }
     }
     .background {
@@ -59,9 +131,9 @@ main {
         min-height: 100%;
         animation: breathingBlur 8s infinite, zoomIn 16s forwards;
         @keyframes breathingBlur {
-            0% {filter: grayscale(85%) blur(4px);}
-            50% {filter: grayscale(80%) blur(2px);}
-            100% {filter: grayscale(85%) blur(4px);}
+            0% {filter: grayscale(85%) blur(4px) brightness(80%);}
+            50% {filter: grayscale(80%) blur(2px) brightness(80%);}
+            100% {filter: grayscale(85%) blur(4px) brightness(80%);}
         }
         @keyframes zoomIn {
             0% {transform: scale(1.04);}
@@ -74,6 +146,9 @@ header {
     @extend %noselect;
     nav {
         background-color: $backgroundColor;
+        .title {
+            padding-left: 1%;
+        }
         li {
             text-align: center;
             margin: 5px;
@@ -82,13 +157,14 @@ header {
             }
         }
         .selectedRoute {
-            background-color: red;
+            @extend %selected;
         }
         .socialMediaLink {
             max-width: 2.5vmax;
             height: auto;
             border-radius: 50%;
             margin: 5px;
+            transition: transform .5s;
             &:hover {
                 border-radius: 48%;
                 transform: rotate(5deg) scale(1.2);
@@ -171,13 +247,6 @@ footer {
         }
     }
     a {
-        color: $fontColor;
-        transition: transform .5s;
-        padding-left: 5px;
-        padding-right: 5px;
-        &:hover {
-            transform: scale(1.1);
-            color: $primaryColor;
-        }
+        @extend %textLink;
     }
 }

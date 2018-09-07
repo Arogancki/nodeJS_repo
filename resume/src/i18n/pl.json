@@ -12,7 +12,7 @@
         "project": "Sprawdź ten projekt na",
         "funny": "Śmieszne linki obsługi błedów:",
         "technologies": "Stworzone z:",
-        "more": "Kliknij mnie!"
+        "more": "Rozwiń mnie!"
     },
     "errors": {
         "404": "Strona nie istnieje",
@@ -21,8 +21,21 @@
     },
     "main": {
         "about": {
-            "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
-            "photoSelectors": ["Developer", "Musician", "cos tam"],
+            "paragraph": {
+                "developer": {
+                    "text" :"11 DDDDDLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "link": "Deweloper"
+                },
+                "musician": {
+                    "text": "22 MMMMLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "link": "Muzyk"
+                },
+                "passionate": {
+                    "text": "PPPP33Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "link": "Pasjonata"
+                }
+            },
+            "photoSelectors": ["Developer", "Musician", "Pasojnata"],
             "headers": [
                "Cras nec euismod lacus, non congue arcu.",
                "22Cras nec euismod lacus, non congue arc22 u."
