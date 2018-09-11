@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'Tests not done yet...'",
+    "testEmail": "node src/tests/email.js",
     "start": "node index.js",
     "debug": "nodemon --inspect index.js"
   },

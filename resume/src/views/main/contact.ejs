@@ -36,8 +36,15 @@
     </form>
 </div>
 <script>
+    const spinner = '<div style="background-color: white; width: 30px; height: 30px" class="spinner"></div>'
     function Send(e){
         e.preventDefault()
+        const formButton = document.getElementById('formButton')
+        const formError = document.getElementById('formError')
+        if (formButton.innerHTML === spinner)
+            return
+        const formButtonText = formButton.innerHTML
+        formButton.innerHTML = spinner
         fetch('/email', {
             method: 'post',
             credentials: 'same-origin',
@@ -49,14 +56,14 @@
             })
         }).then(res=>{
             if (!res.ok) throw res
-            document.getElementById('formError').style.display = "none"
-            document.getElementById('formButton').style.display = "none"
+            formError.style.display = "none"
+            formButton.style.display = "none"
             document.getElementById('formConfirmaton').style.display = ""
         }).catch(res=>{
             console.error(res)
-            let formError = document.getElementById('formError')
-            formError.style.display = ""
-            formError.innerHTML = res.statusText
+            formButton.innerHTML = formButtonText
+            this.formError.style.display = ""
+            this.formError.innerHTML = res.statusText
         })
     }
 </script>

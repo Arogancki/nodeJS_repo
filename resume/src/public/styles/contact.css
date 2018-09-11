@@ -1,0 +1,16 @@
+.contactContainer { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; margin: 5% 10%; }
+
+.contactContainer .contactsWay { display: table; border-collapse: separate; border-spacing: 1rem; }
+
+.contactContainer .contactsWay div { display: table-row; }
+
+.contactContainer .contactsWay div h2 { display: table-cell; vertical-align: middle; text-align: left; }
+
+.contactContainer form h2 { margin-top: 2%; margin-bottom: 1%; }
+
+.contactContainer form .formAction { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+
+.contactContainer .row { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; margin: 0; }
+
+.contactContainer .row h2 { margin: 0 2%; }
+/*# sourceMappingURL=contact.css.map */
