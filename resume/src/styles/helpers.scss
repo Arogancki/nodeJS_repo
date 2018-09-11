@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+%textLink {
+    font-size: 1.1rem;
+    color: inherit;
+    transition: transform .5s;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline-block;
+    &:hover {
+        color: $fontColorHover;
+        transform: scale(1.2);
+    }
+}
+
+%selected {
+    font-weight: bold;
+    color: $fontColorFocused;
+}
+
+%noselect {
+    user-select: none; 
+}
+
+%selectable {
+    user-select: text; 
+}

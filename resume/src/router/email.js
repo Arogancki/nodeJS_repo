@@ -2,11 +2,11 @@ const router = require('express').Router()
     , Joi = require('joi')
 
     , sendEmail = require('../helpers/sendEmail')
+    , handleError = require('../helpers/handleError')
 
     , emailSchema = {
         contact: Joi.string().min(2).max(100).required(),
         subject: Joi.string().min(2).max(200).required(),
-        email: Joi.string().email({ minDomainAtoms: 2 }).required(),
         text: Joi.string().min(2).max(5000).required(),
     }
 
@@ -20,7 +20,7 @@ module.exports = (app) => {
         const { subject, text, contact } = req.body
         return sendEmail(subject, text, contact)
         .then(info=>res.json(info))
-        .catch(err=>res.status(500).json(err))
+        .catch(err=>handleError(err, req, res))
     })
 
     return router

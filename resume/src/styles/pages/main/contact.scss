@@ -1,0 +1,35 @@
+.contactContainer {
+    flex: 1;
+    margin: 5% 10%;
+    .contactsWay {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 1rem;
+        div {
+            display: table-row;
+            h2 {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: left;
+            }
+        }
+    }
+    form {
+        h2 {
+            margin-top: 2%;
+            margin-bottom: 1%;
+        }
+        .formAction {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    .row {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        h2 {
+            margin: 0 2%;
+        }
+    }
+}

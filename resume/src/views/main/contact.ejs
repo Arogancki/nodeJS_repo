@@ -1,3 +1,62 @@
-<p>
-    contact
-</p>
+<img class="background" src="/background/.jpg"/>
+<div class="contactContainer">
+    <h1><%= translation.main.contact.header %></h1>
+    <div class="contactsWay">
+        <div>
+            <h2><%= translation.main.contact.phone.key %> </h2>
+            <h2><%= translation.main.contact.phone.value %></h2>
+        </div>
+        <div>
+            <h2><%= translation.main.contact.email.key %> </h2>
+            <h2><%= translation.main.contact.email.value %></h2>
+        </div>
+    </div>
+    <form onsubmit="Send(event)">
+        <h2><%= translation.main.contact.form.header %></h2>
+        <div class="form-group">
+            <label for="subject"><%= translation.main.contact.form.subject.key %>: </label>
+            <input type="text" class="form-control is-valid" id="subject" placeholder="<%= translation.main.contact.form.subject.placeholder %>" required>
+            <div class="invalid-feedback"><%= translation.main.contact.form.subject.invalid %></div>
+        </div>
+        <div class="form-group">
+            <label for="message"><%= translation.main.contact.form.message.key %>: </label>
+            <textarea type="text" class="form-control is-valid" rows="10" id="message" placeholder="<%= translation.main.contact.form.message.placeholder %>" required></textarea>
+            <div class="invalid-feedback"><%= translation.main.contact.form.message.invalid %></div>
+        </div>
+        <div class="form-group">
+            <label for="contact"><%= translation.main.contact.form.contact.key %>: </label>
+            <input atype="text" class="form-control is-valid" id="contact" placeholder="<%= translation.main.contact.form.contact.placeholder %>" required>
+            <div class="invalid-feedback"><%= translation.main.contact.form.contact.invalid %></div>
+        </div>
+        <div class="formAction">
+            <button id="formButton" class="alert btn btn-primary" type="submit"><%= translation.main.contact.form.button %></button>
+            <div id="formConfirmaton" style="display: none" class="alert alert-success" role="alert"><%= translation.main.contact.form.confirmation %></div>
+        </div>
+        <div id="formError" style="display: none; text-align: center;" class="alert alert-danger" role="alert"></div>
+    </form>
+</div>
+<script>
+    function Send(e){
+        e.preventDefault()
+        fetch('/email', {
+            method: 'post',
+            credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                subject: document.getElementById('subject').value,
+                text: document.getElementById('message').value,
+                contact: document.getElementById('contact').value,
+            })
+        }).then(res=>{
+            if (!res.ok) throw res
+            document.getElementById('formError').style.display = "none"
+            document.getElementById('formButton').style.display = "none"
+            document.getElementById('formConfirmaton').style.display = ""
+        }).catch(res=>{
+            console.error(res)
+            let formError = document.getElementById('formError')
+            formError.style.display = ""
+            formError.innerHTML = res.statusText
+        })
+    }
+</script>

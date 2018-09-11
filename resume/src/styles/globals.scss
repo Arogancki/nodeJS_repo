@@ -1,0 +1,19 @@
+@import './helpers.scss';
+
+h1 {font-size: 2rem;}
+h2 {font-size: 1.6rem;}
+
+a:link {
+    font-weight: auto;
+    text-decoration: none;
+}
+
+body {
+    @extend %noselect;
+    color: $fontColor;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: $font1;
+    font-size: 1rem;
+}

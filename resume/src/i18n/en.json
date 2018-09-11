@@ -12,7 +12,8 @@
         "project": "Check out this project on",
         "funny": "Funny error handling links:",
         "technologies": "Made with:",
-        "more": "Expand me!"
+        "more": "Expand me!",
+        "less": "Fold me!"
     },
     "errors": {
         "404": "Not found",
@@ -39,6 +40,37 @@
                 "Cras nec euismod lacus, non congue arcu.",
                 "22Cras nec euismod lacus, non congue arc22 u."
             ]
+        },
+        "contact": {
+            "header": "Let's have a chat!",
+            "email": {
+                "key": "email",
+                "value": "Ziembaart@gmail.com"
+            },
+            "phone": {
+                "key": "phone number",
+                "value": "(+48) 601689606"
+            },
+            "form": {
+                "header": "or use the contact form to send me an email",
+                "subject": {
+                    "key": "Subject",
+                    "placeholder": "subject",
+                    "invalid": "Field has to have 2 to 200 characters"
+                },
+                "message": {
+                    "key": "Message text",
+                    "placeholder": "your message",
+                    "invalid": "Field has to have 2 to 5000 characters"
+                },
+                "contact": {
+                    "key": "Contact",
+                    "placeholder": "phone number or email",
+                    "invalid": "Field has to have 2 to 100 characters"
+                },
+                "button": "Send",
+                "confirmation": "Sent"
+            }
         }
     }
 }

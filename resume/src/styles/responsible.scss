@@ -1,0 +1,28 @@
+@media #{$smallScreen} {
+    main {
+        .aboutContainer {
+            margin: 5% 5%;
+            display: block;
+            overflow: overlay;
+            width: 100%;
+            position: relative;
+            .imageSlider {
+                background-color: black;
+                z-index: -1;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .contentContainer {
+                h1, h3{
+                    text-align: center;
+                }
+                position: absolute;
+                width: 98%;
+                height: 98%;
+                margin: 2%;
+                overflow: overlay;
+            }
+        }
+    }
+}

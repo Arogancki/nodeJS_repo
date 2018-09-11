@@ -8,12 +8,12 @@ const router = require('express').Router()
 
 module.exports = (app) => {
     router.get('/', (req, res) => res.redirect('/about'))
-    
+
     fs.readdirSync(__dirname)
         .filter(file=>file !== "index.js")
         .map(file=>router.use(`/${path.parse(file).name}`, 
             require(path.join(__dirname, file))(app)))
-
+           
     router.get('/404', (req, res) => render(req, res, 'errors/404'))
     router.get('/429', (req, res) => render(req, res, 'errors/429', {remainingTime: 10}))
     router.get('/500', (req, res) => render(req, res, 'errors/500'))

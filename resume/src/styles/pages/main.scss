@@ -1,0 +1,26 @@
+main {
+    @import './main/about.scss';
+    @import './main/contact.scss';
+    flex: 1;
+    display: flex;
+    overflow: overlay;
+    .background {
+        margin-top: -72px; 
+        min-width: 100%;
+        height: 100%;
+        z-index: -10;
+        position: fixed;
+        min-width: 100%;
+        min-height: 100%;
+        animation: breathingBlur 8s infinite, zoomIn 16s forwards;
+        @keyframes breathingBlur {
+            0% {filter: grayscale(85%) blur(4px) brightness(30%);}
+            50% {filter: grayscale(90%) blur(2px) brightness(30%);}
+            100% {filter: grayscale(90%) blur(4px) brightness(30%);}
+        }
+        @keyframes zoomIn {
+            0% {transform: scale(1.14);}
+            100% {transform: scale(1.1);}
+        }
+    }
+}

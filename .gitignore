@@ -72,3 +72,4 @@ typings/
 # environmental variables
 .env*
 *.env
+.env

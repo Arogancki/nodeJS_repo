@@ -1,0 +1,13 @@
+{
+    "liveSassCompile.settings.formats":[
+        // This is Default.
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/src/public/styles"
+        },
+    ],
+    "liveSassCompile.settings.includeItems": [
+        "/src/styles/styles.scss"
+    ]
+}

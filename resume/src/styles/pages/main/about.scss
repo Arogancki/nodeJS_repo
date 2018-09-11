@@ -1,0 +1,67 @@
+@import '../../helpers.scss';
+
+.aboutContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    .imageSlider {
+        display: flex;
+        height: 74%;
+        width: 60%;
+        align-self: center;
+        margin: 0 auto;
+        overflow: hidden;
+        background-color: black;
+        .image {
+            height: 100%;
+            width: 100%;
+            filter: opacity(80%);
+        }
+    }
+    .contentContainer{
+        min-height: 70%;
+        max-height: 100%;
+        width: 80%;
+        align-self: center;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        .headersContainer{
+            margin: 2.5% 0;
+        }
+        .navigationSlider {
+            display: flex;
+            flex-flow: row;
+            justify-content: space-around;
+            margin: 2.5% 0;
+            .selectedDiv {
+                @extend %selected;
+            }
+            .notSelectedDiv {
+                @extend %textLink 
+            }
+        }
+        .textSlider{
+            margin: 2.5% 0;
+            position: relative;
+            div {
+                position: absolute;
+            }
+            @keyframes fadeIn {
+                100% {opacity: 1;}
+            }
+            .selectedText{
+                opacity: 0;
+                animation: fadeIn 2s forwards;
+                animation-delay: 500ms;
+            }
+            @keyframes fadeOut {
+                100% {opacity: 0;}
+            }
+            .notSelectedText{
+                opacity: 1;
+                animation: fadeOut 500ms forwards;
+            }
+        }
+    }
+}

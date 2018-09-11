@@ -12,7 +12,8 @@
         "project": "Sprawdź ten projekt na",
         "funny": "Śmieszne linki obsługi błedów:",
         "technologies": "Stworzone z:",
-        "more": "Rozwiń mnie!"
+        "more": "Rozwiń mnie!",
+        "less": "Zwiń mnie!"
     },
     "errors": {
         "404": "Strona nie istnieje",
@@ -40,6 +41,37 @@
                "Cras nec euismod lacus, non congue arcu.",
                "22Cras nec euismod lacus, non congue arc22 u."
             ]
+        },
+        "contact": {
+            "header": "Skontaktuj się ze mną!",
+            "email": {
+                "key": "Adres email",
+                "value": "Ziembaart@gmail.com"
+            },
+            "phone": {
+                "key": "Numer telefonu",
+                "value": "601689606"
+            },
+            "form": {
+                "header": "lub skorzystaj z formularza aby wysłać do mnie email",
+                "subject": {
+                    "key": "Temat",
+                    "placeholder": "temat",
+                    "invalid": "Pole musi zawierać od 2 do 100 znaków"
+                },
+                "message": {
+                    "key": "Treść wiadomości",
+                    "placeholder": "twoja wiadomość",
+                    "invalid": "Pole musi zawierać od 2 do 5000 znaków"
+                },
+                "contact": {
+                    "key": "Kontakt",
+                    "placeholder": "numer telefonu lub email",
+                    "invalid": "Pole musi zawierać od 2 do 200 znaków"
+                },
+                "button": "Wyślij",
+                "confirmation": "Wysłano"
+            }
         }
     }
 }

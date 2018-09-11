@@ -1,0 +1,29 @@
+header {
+    nav {
+        background-color: $backgroundColor;
+        .title {
+            padding-left: 1%;
+        }
+        li {
+            text-align: center;
+            margin: 5px;
+            a {
+                @extend %textLink;
+            }
+        }
+        .selectedRoute {
+            @extend %selected;
+        }
+        .socialMediaLink {
+            max-width: 2.5vmax;
+            height: auto;
+            border-radius: 50%;
+            margin: 5px;
+            transition: transform .5s;
+            &:hover {
+                border-radius: 48%;
+                transform: rotate(5deg) scale(1.2);
+            }
+        }
+    }
+}

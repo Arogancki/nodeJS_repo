@@ -1,6 +1,7 @@
-<div data-toggle="collapse" href="#links" aria-expanded="false" aria-controls="links" onclick="removeShaking()">
+<div>
     <hr>
-    <div id="shakingText" class="shaking"><%= translation.footer.more %></div>
+    <span data-toggle="collapse" href="#links" id="shakingTextMore" style="cursor: pointer;" class="shaking"><%= translation.footer.more %></span>
+    <span data-toggle="collapse" href="#links" id="shakingTextLess" style="cursor: pointer; display: none;"><%= translation.footer.less %></span>
     <div id="links" class="collapse footer navbar-fixed-bottom">
         <div class="list-inline-item">
             <span><%= translation.footer.project %></span>
@@ -28,10 +29,20 @@
     </div>
 </div>
 <script>
-function removeShaking() {
-    // this.collapsed = this.collapsed === undefined ? true : !this.collapsed
-    const text = document.getElementById("shakingText")
-    if (text.classList.contains('shaking'))
-        text.classList.remove('shaking')
-}
+$(document).ready(function(){
+    $("#links").on('shown.bs.collapse', function(){
+        const more = document.getElementById("shakingTextMore")
+        if (more.classList.contains('shaking'))
+            more.classList.remove('shaking')
+        document.getElementById('last').scrollIntoView({behavior: 'smooth'})
+    })
+    $("#links").on('show.bs.collapse', function(){
+        document.getElementById("shakingTextMore").style.display = 'none'
+        document.getElementById("shakingTextLess").style.display = ''
+    })
+    $("#links").on('hide.bs.collapse', function(){
+        document.getElementById("shakingTextMore").style.display = ''
+        document.getElementById("shakingTextLess").style.display = 'none'
+    })
+})
 </script>
