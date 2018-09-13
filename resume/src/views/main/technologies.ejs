@@ -1,3 +1,20 @@
-<p>
-    technologies
-</p>
+<img class="background" src="/background/.jpg"/>
+<div class="technologiesContainer">
+    <% Object.keys(technologies).map((v,i)=> {
+        let typeKey = technologies.sort[i] %>
+        <div>
+            <h1><%= translation.main.technologies[typeKey] %></h1>
+            <h4><%= translation.main.technologies[typeKey+"Text"] %></h4>
+            <div class="links">
+                <% technologies[typeKey].forEach(technology=>{ %>
+                    <a target="_blank" rel="noopener noreferrer" href="<%= technology.link %>">
+                        <div>
+                            <img src="<%= technology.img %>"></img>
+                            <p><%= technology.name %></p>
+                        </div>
+                    </a>
+                <% }) %>
+            </div>
+        </div>
+    <% }) %>
+</div>

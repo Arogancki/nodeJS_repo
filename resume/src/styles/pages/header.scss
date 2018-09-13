@@ -15,13 +15,12 @@ header {
             @extend %selected;
         }
         .socialMediaLink {
-            max-width: 2.5vmax;
+            max-width: 2.5rem;
             height: auto;
             border-radius: 50%;
             margin: 5px;
-            transition: transform .5s;
+            transition: transform .4s;
             &:hover {
-                border-radius: 48%;
                 transform: rotate(5deg) scale(1.2);
             }
         }

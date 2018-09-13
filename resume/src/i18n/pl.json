@@ -72,6 +72,20 @@
                 "button": "Wyślij",
                 "confirmation": "Wysłano"
             }
+        },
+        "technologies": {
+            "technologies": "technologie",
+            "technologiesText": "technologie ktore bardzo fajne sa",
+            "tools": "narzędzia",
+            "toolsText": "technologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne sa",
+            "skils": "umiejętności",
+            "skilsText": "technologie ktore bardzo fajne sa",
+            "object oriented programing": "programowanie obiektowe",
+            "parallel programing": "programowanie współbieżne",
+            "data structures and algorithm knowledge": "znajomość algorytmów i struktur danych",
+            "team worker": "pracownik zespołowy",
+            "willingness to learn": "chęć do nauki",
+            "good grasping ability": "szybkie chwytanie nowych rzeczy"
         }
     }
 }

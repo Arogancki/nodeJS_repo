@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = Object.freeze([
     {
         href: `https://github.com/Arogancki`,
         src: '/images/socials/github.png',
@@ -14,4 +14,4 @@ module.exports = [
         src: '/images/socials/linkedin.png',
         alt: 'linkedin'
     }
-]
+])

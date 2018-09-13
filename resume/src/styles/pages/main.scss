@@ -1,6 +1,9 @@
 main {
     @import './main/about.scss';
     @import './main/contact.scss';
+    @import './main/experience.scss';
+    @import './main/technologies.scss';
+    @import './main/projects.scss';
     flex: 1;
     display: flex;
     overflow: overlay;

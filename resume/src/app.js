@@ -14,7 +14,7 @@ module.exports = async ()=>{
     app.set('port', parseInt(process.env.PORT, 10) || await portfinder.getPortPromise())
 
     app.public = process.env.APP_PUBLIC || path.join(__dirname, `public`)
-
+    
     await middlewares(app)
     await router(app)
 

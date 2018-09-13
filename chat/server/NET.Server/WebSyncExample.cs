@@ -23,7 +23,7 @@ namespace NET.Server
         [WebSyncEvent(EventType.AfterConnect)]
         public static void connected(object sender, WebSyncEventArgs e)
         {
-          Console.WriteLine("Hej");
+            Console.WriteLine("Hej");
         }
 
         [WebSyncEvent(EventType.BeforeService, "/message", FilterType.Template)]
@@ -33,7 +33,7 @@ namespace NET.Server
             lock (CurrentLock)
             {
                 chat.Add(incoming);
-                e.Client.Publish("/messages", Json.Serialize(incoming));
+                e.Client.Publish("/messages", Json.Serialize(     ));
             }
         }
 

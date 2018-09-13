@@ -37,6 +37,7 @@ export class Connection {
       this._client.connect({
         onSuccess: (e)=>{
             console.log('Connected to WebSync.')
+            console.log(e)
             this._status = Status.Connected
             this._client.subscribe({
               channel: '/messages',

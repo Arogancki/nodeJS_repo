@@ -10,7 +10,6 @@ module.exports = function handleError(err, req, res) {
         .catch(err=>log(`Could't send error email: ${err.stack}`, req))
     if (res)
         if (process.env.ENV === "production")
-            render(req, res.status(500), 'errors/500', {}, false)
-        else
-            res.status(500).send(err.message)
+            return render(req, res.status(500), 'errors/500', {}, false)
+        return res.status(500).send(err.message)
 }

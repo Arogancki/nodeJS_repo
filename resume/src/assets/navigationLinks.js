@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = Object.freeze([
     {
         href: '/about',
         value: 'aboutLink'
@@ -19,4 +19,4 @@ module.exports = [
         href: '/contact',
         value: 'contactLink'
     },
-]
+])

@@ -4,7 +4,11 @@ h1 { font-size: 2rem; }
 
 h2 { font-size: 1.6rem; }
 
-a:link { font-weight: auto; text-decoration: none; }
+a { font-weight: auto; text-decoration: none; color: inherit; }
+
+a:hover { font-weight: auto; text-decoration: none; color: inherit; }
+
+p { margin: 0; }
 
 body { color: green; min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; font-family: Raleway, sans-serif; font-size: 1rem; }
 

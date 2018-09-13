@@ -45,7 +45,7 @@
             return
         const formButtonText = formButton.innerHTML
         formButton.innerHTML = spinner
-        fetch('/email', {
+        fetch('', {
             method: 'post',
             credentials: 'same-origin',
             headers: {'Content-Type': 'application/json'},

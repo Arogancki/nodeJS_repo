@@ -3,9 +3,19 @@
 h1 {font-size: 2rem;}
 h2 {font-size: 1.6rem;}
 
-a:link {
+a {
     font-weight: auto;
     text-decoration: none;
+    color: inherit;
+    &:hover{
+        font-weight: auto;
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+p {
+    margin: 0;
 }
 
 body {

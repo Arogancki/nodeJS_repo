@@ -71,6 +71,14 @@
                 "button": "Send",
                 "confirmation": "Sent"
             }
+        },
+        "technologies": {
+            "technologies": "technologies",
+            "technologiesText": "technologie ktore bardzo fajne sa",
+            "tools": "tools",
+            "toolsText": "technologie ktore bardzo fajne sa",
+            "skils": "skils",
+            "skilsText": "technologie ktore bardzo fajne sa"
         }
     }
 }
