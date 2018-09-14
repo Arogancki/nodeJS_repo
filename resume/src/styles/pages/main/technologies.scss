@@ -1,8 +1,10 @@
 .technologiesContainer {
     flex: 1;
-    padding: 4% 8%;
+    padding: 4% 12%;
+    padding-bottom: 0;
     h1 {
-        font-size: 2.2rem;
+        font-size: 3rem;
+        text-transform: capitalize;
     }
     h4 {
         font-size: 1.4rem;
@@ -13,12 +15,16 @@
         flex-direction: row;
         justify-content: space-evenly;
         flex-wrap: wrap;
+        margin-bottom: 5rem;
         a {
             margin: 2% 2rem;
             div {
                 text-align: center;
                 p {
                     margin: 0.5rem 0;
+                    &:first-letter {
+                        text-transform: capitalize;
+                    }
                 }
                 img {
                     background-color: rgba(80, 80, 80, 0.8); 

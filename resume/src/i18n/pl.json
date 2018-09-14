@@ -22,6 +22,11 @@
     },
     "main": {
         "about": {
+            "details": {
+                "name": "Imie i nazwisko",
+                "age": "Wiek",
+                "location": "Lokalizacja"
+            },
             "paragraph": {
                 "developer": {
                     "text" :"11 DDDDDLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
@@ -86,6 +91,13 @@
             "team worker": "pracownik zespołowy",
             "willingness to learn": "chęć do nauki",
             "good grasping ability": "szybkie chwytanie nowych rzeczy"
+        },
+        "experience": {
+            "from": "od",
+            "to": "do",
+            "currently": "teraz",
+            "as": "jako",
+            "tieto": "22 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
         }
     }
 }

@@ -1,20 +1,27 @@
 .contactContainer {
     flex: 1;
-    margin: 5% 10%;
+    padding: 2% 20%;
+    text-align: center;
     .contactsWay {
         display: table;
         border-collapse: separate;
         border-spacing: 1rem;
+        width: 100%;
+        margin: 1rem auto;
         div {
             display: table-row;
             h2 {
+                width: 50%;
                 display: table-cell;
                 vertical-align: middle;
-                text-align: left;
             }
         }
     }
     form {
+        padding: 0 10%;
+        label {
+            font-size: 1.2rem;
+        }
         h2 {
             margin: 2rem 0;
             font-size: 1.5rem;

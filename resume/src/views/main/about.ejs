@@ -17,35 +17,60 @@
         </div>
         <div class="navigationSlider"> 
             <% Object.keys(translation.main.about.paragraph).forEach((key,index)=> { %>
-                <div data-slide-to="<%=index%>" href="#imageSlider" id="<%=index%>Link" 
-                onclick="select(<%=index%>)"  class="<%= index===0 ? 'selectedDiv' : 'notSelectedDiv' %>">
+                <div data-slide-to="<%=index%>" href="#imageSlider" id="<%=key%>Link" 
+                onclick="select('<%=key%>')"  class="notSelectedDiv">
                     <%= translation.main.about.paragraph[key].link %>
                 </div>
             <% }); %>
         </div>
-        <div class="textSlider"> 
-            <% Object.keys(translation.main.about.paragraph).forEach((key, index)=> { %>
-                <div id="<%=index%>Text" style="display: <%= index===0 ? 'block' : 'none' %>">
-                    <%= translation.main.about.paragraph[key].text %>
+        <div class="textSlider">
+            <div id="textSliderText">
+                <div class="details">
+                    <h3><%= translation.main.about.details.name %></h3>
+                    <p>Artur Ziemba</p>
+                    <hr>
+                    <h3><%= translation.main.about.details.age %></h3>
+                    <p><%= age %></p>
+                    <hr>
+                    <h3 style="visibility: hidden">&nbsp;</h3>
+                    <div>
+                        <h3><%= translation.main.about.details.location %></h3>
+                        <a target="_blank" rel="noopener noreferrer" href="https://maps.google.com/?q=Szczecin Poland">
+                            <i class="material-icons">location_on</i><p>Szczecin</p>
+                        </a>
+                    </div>
                 </div>
-            <% }); %>
+            </div>
         </div>
     </div>
 </div>
 <script>
+    let textSliderText = document.getElementById('textSliderText')
+    let texts = {
+        initialText: textSliderText.innerHTML,
+        <% Object.keys(translation.main.about.paragraph).forEach((key, index)=> { %>
+            <%= key %>:"<%= translation.main.about.paragraph[key].text %>",
+        <% }); %>
+    }
     function select(key){
-        this.active = this.active === undefined ? 0 : this.active
-        if (key === this.active)
-            return 
-        const prevLink = document.getElementById(this.active+"Link")
-        prevLink.className='notSelectedDiv'
-        const prevText = document.getElementById(this.active+"Text")
-        prevText.className='notSelectedText'
-        this.active = key
-        const currLink = document.getElementById(this.active+"Link")
-        currLink.className='selectedDiv'
-        const currText = document.getElementById(this.active+"Text")
-        currText.className='selectedText'
-        currText.style.display='block'
+        this.key = key
+        if (this.active){
+            document.getElementById(this.active+"Link").className='notSelectedDiv'
+        }
+        if (this.active!==this.key){
+            this.active = this.key
+            document.getElementById(this.active+"Link").className='selectedDiv'
+        } else {
+            this.active = null
+        }
+
+        // quick and dirty solution
+        textSliderText.className='fadeOut'
+        setTimeout(()=>{
+            textSliderText.innerHTML = texts[this.key] !== textSliderText.innerHTML 
+                ? texts[this.key] 
+                : texts.initialText
+            textSliderText.className='fadeIn'
+        }, 500)
     }
 </script>

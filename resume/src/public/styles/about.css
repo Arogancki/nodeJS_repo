@@ -1,8 +1,10 @@
-.aboutContainer .contentContainer .navigationSlider .notSelectedDiv { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; }
+.aboutContainer .contentContainer .navigationSlider .selectedDiv, .aboutContainer .contentContainer .navigationSlider .notSelectedDiv, .aboutContainer .contentContainer .textSlider .details div a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; }
 
-.aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
+.aboutContainer .contentContainer .navigationSlider .selectedDiv:hover, .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, .aboutContainer .contentContainer .textSlider .details div a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
 .aboutContainer .contentContainer .navigationSlider .selectedDiv { font-weight: bold; color: #001380; }
+
+.aboutContainer .contentContainer .navigationSlider .selectedDiv:hover { color: #001380; }
 
 .aboutContainer { width: 100%; display: -ms-grid; display: grid; -ms-grid-columns: 50% 50%; grid-template-columns: 50% 50%; }
 
@@ -12,23 +14,39 @@
 
 .aboutContainer .contentContainer { min-height: 70%; max-height: 100%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 0 auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
-.aboutContainer .contentContainer .headersContainer { margin: 2.5% 0; }
+.aboutContainer .contentContainer .headersContainer { text-align: justify; margin: 2.5% 0; }
 
-.aboutContainer .contentContainer .navigationSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; -ms-flex-pack: distribute; justify-content: space-around; margin: 2.5% 0; }
+.aboutContainer .contentContainer .headersContainer h1 { font-size: 2rem; }
 
-.aboutContainer .contentContainer .textSlider { margin: 2.5% 0; position: relative; }
+.aboutContainer .contentContainer .headersContainer h3 { font-size: 1.5rem; }
 
-.aboutContainer .contentContainer .textSlider div { position: absolute; }
+.aboutContainer .contentContainer .navigationSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; -ms-flex-pack: distribute; justify-content: space-around; margin: 2.5% 0; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 
-@-webkit-keyframes fadeIn { 100% { opacity: 1; } }
+.aboutContainer .contentContainer .textSlider { margin: 2.5% 0; }
 
-@keyframes fadeIn { 100% { opacity: 1; } }
+.aboutContainer .contentContainer .textSlider .details p { text-align: center; font-size: 1.4rem; margin-bottom: 1rem; font-weight: bold; }
 
-.aboutContainer .contentContainer .textSlider .selectedText { opacity: 0; -webkit-animation: fadeIn 2s forwards; animation: fadeIn 2s forwards; -webkit-animation-delay: 500ms; animation-delay: 500ms; }
+.aboutContainer .contentContainer .textSlider .details hr { margin: 2% 5%; background-color: green; }
 
-@-webkit-keyframes fadeOut { 100% { opacity: 0; } }
+.aboutContainer .contentContainer .textSlider .details div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
 
-@keyframes fadeOut { 100% { opacity: 0; } }
+.aboutContainer .contentContainer .textSlider .details div > * { margin: 0 0.5rem; }
 
-.aboutContainer .contentContainer .textSlider .notSelectedText { opacity: 1; -webkit-animation: fadeOut 500ms forwards; animation: fadeOut 500ms forwards; }
+.aboutContainer .contentContainer .textSlider .details div a { display: -webkit-box !important; display: -ms-flexbox !important; display: flex !important; }
+
+.aboutContainer .contentContainer .textSlider .fadeIn { -webkit-animation: fadeInAnimation 500ms forwards; animation: fadeInAnimation 500ms forwards; }
+
+@-webkit-keyframes fadeInAnimation { 0% { opacity: 0; }
+  100% { opacity: 1; } }
+
+@keyframes fadeInAnimation { 0% { opacity: 0; }
+  100% { opacity: 1; } }
+
+.aboutContainer .contentContainer .textSlider .fadeOut { -webkit-animation: fadeOutAnimation 500ms forwards; animation: fadeOutAnimation 500ms forwards; }
+
+@-webkit-keyframes fadeOutAnimation { 0% { opacity: 1; }
+  100% { opacity: 0; } }
+
+@keyframes fadeOutAnimation { 0% { opacity: 1; }
+  100% { opacity: 0; } }
 /*# sourceMappingURL=about.css.map */

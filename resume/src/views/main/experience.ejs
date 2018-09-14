@@ -1,3 +1,27 @@
-<p>
-    experience
-</p>
+<img class="background" src="/background/.jpg"/>
+<div class="experienceContainer">
+    <% experience.forEach((val)=> { %>
+        <div>
+            <img src="<%= val.img %>"></img>
+            <div>
+                <h1><%= val.name %></h1>
+                <h5> 
+                    <i class="material-icons">assignment_ind</i> 
+                    <%= translation.main.experience.as %> 
+                    <%= val.title %>
+                </h5>
+                <h5> 
+                    <i class="material-icons">access_time</i>
+                    <%= translation.main.experience.from %> 
+                    <%= val.from %>
+                    <%= translation.main.experience.to %> 
+                    <%= val.to || translation.main.experience.currently %>
+                </h5>
+                <div>
+                    <%= translation.main.experience[val.short] || val.desc %>
+                </div>
+                <a href="val.link"><%= val.short %></a>
+            </div>
+        </div>
+    <% }) %>
+</div>

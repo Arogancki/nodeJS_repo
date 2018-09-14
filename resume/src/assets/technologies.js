@@ -1,5 +1,4 @@
-const fs = require("fs")
-    , path = require('path')
+const path = require('path')
 
 function createImageLinks(obj){
     Object.keys(obj).forEach(type=>obj[type].forEach((v, i)=>{
@@ -66,7 +65,7 @@ const technologies = createImageLinks({
             "link": "https://www.linux.org/"
         },
         {
-            "name": "vs code",
+            "name": "VS code",
             "link": "https://code.visualstudio.com/"
         },
         {

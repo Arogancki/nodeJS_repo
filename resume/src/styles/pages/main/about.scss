@@ -27,40 +27,64 @@
         display: flex;
         flex-direction: column;
         .headersContainer{
+            text-align: justify;
             margin: 2.5% 0;
+            h1 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.5rem;
+            }
         }
         .navigationSlider {
             display: flex;
             flex-flow: row;
             justify-content: space-around;
             margin: 2.5% 0;
+            flex-wrap: wrap;
             .selectedDiv {
+                @extend %textLink;
                 @extend %selected;
             }
             .notSelectedDiv {
-                @extend %textLink 
+                @extend %textLink;
             }
         }
         .textSlider{
-            margin: 2.5% 0;
-            position: relative;
-            div {
-                position: absolute;
+            .details {
+                p {
+                    text-align: center;
+                    font-size: 1.4rem;
+                    margin-bottom: 1rem;   
+                    font-weight: bold;
+                }
+                hr {
+                    margin: 2% 5%;
+                    background-color: $fontColor;
+                }
+                div {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
+                    & > * {
+                        margin: 0 0.5rem;
+                    }
+                    a {
+                        @extend %textLink;
+                        display: flex !important;
+                    }
+                }
             }
-            @keyframes fadeIn {
+            margin: 2.5% 0;
+            .fadeIn{animation: fadeInAnimation 500ms forwards;}
+            @keyframes fadeInAnimation {
+                0% {opacity: 0;}
                 100% {opacity: 1;}
             }
-            .selectedText{
-                opacity: 0;
-                animation: fadeIn 2s forwards;
-                animation-delay: 500ms;
-            }
-            @keyframes fadeOut {
+            .fadeOut{animation: fadeOutAnimation 500ms forwards;}
+            @keyframes fadeOutAnimation {
+                0% {opacity: 1;}
                 100% {opacity: 0;}
-            }
-            .notSelectedText{
-                opacity: 1;
-                animation: fadeOut 500ms forwards;
             }
         }
     }

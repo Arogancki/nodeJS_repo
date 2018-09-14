@@ -3,12 +3,22 @@
     <h1><%= translation.main.contact.header %></h1>
     <div class="contactsWay">
         <div>
-            <h2><%= translation.main.contact.phone.key %> </h2>
-            <h2><%= translation.main.contact.phone.value %></h2>
+            <h2>
+                <i class="material-icons">email</i>
+                <%= translation.main.contact.email.key %>
+            </h2>
+            <h2>
+                <%= translation.main.contact.email.value %>
+            </h2>
         </div>
         <div>
-            <h2><%= translation.main.contact.email.key %> </h2>
-            <h2><%= translation.main.contact.email.value %></h2>
+            <h2>
+                <i class="material-icons">phone</i>
+                <%= translation.main.contact.phone.key %>
+            </h2>
+            <h2>
+                <%= translation.main.contact.phone.value %>
+            </h2>
         </div>
     </div>
     <form onsubmit="Send(event)">

@@ -22,6 +22,11 @@
     },
     "main": {
         "about": {
+            "details": {
+                "name": "Name",
+                "age": "Age",
+                "location": "Location"
+            },
             "paragraph": {
                 "developer": {
                     "text": "11DEW  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
@@ -33,7 +38,7 @@
                 },
                 "passionate": {
                     "text": "33 PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur  adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
-                    "link": "passionate"
+                    "link": "Passionate"
                 }
             },
             "headers": [
@@ -44,7 +49,7 @@
         "contact": {
             "header": "Let's have a chat!",
             "email": {
-                "key": "email",
+                "key": "address email",
                 "value": "Ziembaart@gmail.com"
             },
             "phone": {
@@ -52,7 +57,7 @@
                 "value": "(+48) 601689606"
             },
             "form": {
-                "header": "or use the contact form to send me an email",
+                "header": "or use this contact form to send me an email",
                 "subject": {
                     "key": "Subject",
                     "placeholder": "subject",
@@ -79,6 +84,12 @@
             "toolsText": "technologie ktore bardzo fajne sa",
             "skils": "skils",
             "skilsText": "technologie ktore bardzo fajne sa"
+        },
+        "experience": {
+            "from": "from",
+            "to": "to",
+            "currently": "currently",
+            "as": "as"
         }
     }
 }

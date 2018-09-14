@@ -1,6 +1,6 @@
 <img class="background" src="/background/.jpg"/>
 <div class="technologiesContainer">
-    <% Object.keys(technologies).map((v,i)=> {
+    <% Object.keys(technologies).forEach((v,i)=> {
         let typeKey = technologies.sort[i] %>
         <div>
             <h1><%= translation.main.technologies[typeKey] %></h1>

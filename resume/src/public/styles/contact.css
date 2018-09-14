@@ -1,10 +1,14 @@
-.contactContainer { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; margin: 5% 10%; }
+.contactContainer { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; padding: 2% 20%; text-align: center; }
 
-.contactContainer .contactsWay { display: table; border-collapse: separate; border-spacing: 1rem; }
+.contactContainer .contactsWay { display: table; border-collapse: separate; border-spacing: 1rem; width: 100%; margin: 1rem auto; }
 
 .contactContainer .contactsWay div { display: table-row; }
 
-.contactContainer .contactsWay div h2 { display: table-cell; vertical-align: middle; text-align: left; }
+.contactContainer .contactsWay div h2 { width: 50%; display: table-cell; vertical-align: middle; }
+
+.contactContainer form { padding: 0 10%; }
+
+.contactContainer form label { font-size: 1.2rem; }
 
 .contactContainer form h2 { margin: 2rem 0; font-size: 1.5rem; }
 
