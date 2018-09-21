@@ -1,0 +1,14 @@
+.projectsContainer ul { list-style: none; }
+
+.projectsContainer ul li { display: inline-block; margin-right: 15px; }
+
+.projectsContainer ul input { visibility: hidden; }
+
+.projectsContainer ul label { cursor: pointer; }
+
+.projectsContainer ul input:checked + label { background: red; }
+
+.projectsContainer .githubLink { -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
+
+.projectsContainer .githubLink:hover { border-radius: 48%; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
+/*# sourceMappingURL=projects.css.map */

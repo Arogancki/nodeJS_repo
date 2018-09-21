@@ -1,13 +1,5 @@
 const path = require('path')
 
-function createImageLinks(obj){
-    Object.keys(obj).forEach(type=>obj[type].forEach((v, i)=>{
-            v.img = path.join('/', 'images', type, `${v.name}.png`)
-        }
-    ))
-    return obj
-}
-
 const technologies = createImageLinks({
     "technologies": [
         {
@@ -98,8 +90,25 @@ const technologies = createImageLinks({
     ]
 })
 
+function createImageLinks(obj){
+    Object.keys(obj).forEach(type=>obj[type].forEach((v, i)=>{
+            v.img = path.join('/', 'images', type, `${v.name}.png`)
+        }
+    ))
+    return obj
+}
+
 Object.defineProperty(technologies, 'sort', { 
     value: ['technologies', 'tools', 'skils'], 
+    enumerable: false 
+})
+
+Object.defineProperty(technologies, 'icons', {
+    value: {
+        technologies: "whatshot",
+        tools: "build",
+        skils: "accessibility_new",
+    },
     enumerable: false 
 })
 

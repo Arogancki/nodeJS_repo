@@ -2,8 +2,11 @@
 <div class="aboutContainer">
     <div id="imageSlider" class="imageSlider carousel slide" data-ride="carousel" data-interval="0">
         <div class="carousel-inner">
+            <div style="height:100%" class="carousel-item active">
+                <img class="image" src="/images/artur/index.jpg" />
+            </div>
             <% Object.keys(translation.main.about.paragraph).forEach((k,index)=> { %>
-                <div style="height:100%" class="carousel-item <%= index===0 ? 'active' : '' %>">
+                <div style="height:100%" class="carousel-item">
                     <img class="image" src="/images/artur/<%= k %>.jpg" />
                 </div>
             <% }); %>
@@ -17,8 +20,7 @@
         </div>
         <div class="navigationSlider"> 
             <% Object.keys(translation.main.about.paragraph).forEach((key,index)=> { %>
-                <div data-slide-to="<%=index%>" href="#imageSlider" id="<%=key%>Link" 
-                onclick="select('<%=key%>')"  class="notSelectedDiv">
+                <div id="<%=key%>Link" onclick="select('<%=key%>', <%=index+1%>)" class="notSelectedDiv">
                     <%= translation.main.about.paragraph[key].link %>
                 </div>
             <% }); %>
@@ -45,6 +47,8 @@
     </div>
 </div>
 <script>
+    const selectContext = {}
+    $(document).ready(()=> selectContext.carouselChange = (i) => $("#imageSlider").carousel(i))
     let textSliderText = document.getElementById('textSliderText')
     let texts = {
         initialText: textSliderText.innerHTML,
@@ -52,23 +56,27 @@
             <%= key %>:"<%= translation.main.about.paragraph[key].text %>",
         <% }); %>
     }
-    function select(key){
-        this.key = key
-        if (this.active){
-            document.getElementById(this.active+"Link").className='notSelectedDiv'
+    function select(key, index){
+        select.key = key
+        if (select.active){
+            document.getElementById(select.active+"Link").className='notSelectedDiv'
         }
-        if (this.active!==this.key){
-            this.active = this.key
-            document.getElementById(this.active+"Link").className='selectedDiv'
+        if (select.active!==select.key){
+            select.active = select.key
+            document.getElementById(select.active+"Link").className='selectedDiv'
         } else {
-            this.active = null
+            select.active = null
+            index = 0
         }
+
+        if (selectContext.carouselChange)
+            selectContext.carouselChange(index)
 
         // quick and dirty solution
         textSliderText.className='fadeOut'
         setTimeout(()=>{
-            textSliderText.innerHTML = texts[this.key] !== textSliderText.innerHTML 
-                ? texts[this.key] 
+            textSliderText.innerHTML = texts[select.key] !== textSliderText.innerHTML 
+                ? texts[select.key] 
                 : texts.initialText
             textSliderText.className='fadeIn'
         }, 500)

@@ -1,4 +1,4 @@
-footer .funny a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; }
+footer .funny a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; cursor: pointer; }
 
 footer .funny a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
@@ -10,11 +10,11 @@ footer div { width: 100%; text-align: center; }
 
 footer img { max-width: 1.5vmax; height: auto; border-radius: 50%; margin: 2px; }
 
-footer .githubLink { -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
+footer .githubLinkContainer .githubLink { -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
-footer .githubLink:hover { border-radius: 48%; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
+footer .githubLinkContainer:hover .githubLink { border-radius: 48%; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
 
-footer .shaking { -webkit-animation: shake 6s infinite; animation: shake 6s infinite; -webkit-animation-delay: 2s; animation-delay: 2s; }
+footer .shaking { -webkit-animation: shake 6s infinite; animation: shake 6s infinite; display: block; -webkit-animation-delay: 2s; animation-delay: 2s; }
 
 @-webkit-keyframes shake { 2.5%, 22.5% { -webkit-transform: translate3d(-1px, 0, 0); transform: translate3d(-1px, 0, 0); }
   5%, 20% { -webkit-transform: translate3d(2px, 0, 0); transform: translate3d(2px, 0, 0); }

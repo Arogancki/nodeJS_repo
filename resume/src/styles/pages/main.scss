@@ -4,12 +4,12 @@ main {
     @import './main/experience.scss';
     @import './main/technologies.scss';
     @import './main/projects.scss';
+    @import './main/index.scss';
     flex: 1;
     display: flex;
-    overflow: overlay;
+    overflow: auto;
     .background {
         margin-top: -72px; 
-        min-width: 100%;
         height: 100%;
         z-index: -10;
         position: fixed;

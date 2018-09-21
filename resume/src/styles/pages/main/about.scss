@@ -6,13 +6,16 @@
     grid-template-columns: 50% 50%;
     .imageSlider {
         display: flex;
-        height: 70%;
-        width: 60%;
         align-self: center;
-        margin: 0 auto;
+        margin: 0 15px;
         overflow: hidden;
-        background-color: black;
+        border: 8px solid;
+        border-radius: 50%;
+        justify-self: center;
+        max-width: 600px;
+        height: auto;
         .image {
+            opacity: 0.9;
             height: 100%;
             width: 100%;
             filter: opacity(80%);
@@ -24,6 +27,7 @@
         width: 80%;
         align-self: center;
         margin: 0 auto;
+        margin-left:0;
         display: flex;
         flex-direction: column;
         .headersContainer{

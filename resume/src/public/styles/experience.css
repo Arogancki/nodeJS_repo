@@ -1,1 +1,26 @@
-/* No CSS *//*# sourceMappingURL=experience.css.map */
+.experienceContainer div .details a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; cursor: pointer; }
+
+.experienceContainer div .details a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
+
+.experienceContainer { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; overflow: hidden; }
+
+.experienceContainer div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; position: relative; height: 350px; }
+
+.experienceContainer div:hover .imageContainer { width: 20%; }
+
+.experienceContainer div:hover .details { left: 20%; }
+
+.experienceContainer div .imageContainer { width: 100%; z-index: 1; -webkit-transition: width 500ms; transition: width 500ms; -webkit-transition-delay: 100ms; transition-delay: 100ms; }
+
+.experienceContainer div .imageContainer img { margin: auto; height: 60%; -webkit-box-shadow: 0 0 25px 25px rgba(255, 255, 255, 0.14); box-shadow: 0 0 25px 25px rgba(255, 255, 255, 0.14); opacity: 0.85; }
+
+.experienceContainer div .details { -webkit-transition: left 500ms; transition: left 500ms; z-index: 2; position: absolute; left: 100%; width: 80%; background-color: white; background: rgba(255, 255, 255, 0.85); display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding: 1rem; }
+
+.experienceContainer div .details h1 { font-size: 2.5rem; border-bottom: 1px solid; }
+
+.experienceContainer div .details h5 { font-size: 1rem; }
+
+.experienceContainer div .details div { display: block; height: 100%; overflow: hidden; margin: 0.5; overflow: auto; }
+
+.experienceContainer div .details a { width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; text-transform: capitalize; }
+/*# sourceMappingURL=experience.css.map */

@@ -21,7 +21,7 @@
             div {
                 text-align: center;
                 p {
-                    margin: 0.5rem 0;
+                    margin: 0.7rem 0;
                     &:first-letter {
                         text-transform: capitalize;
                     }
@@ -31,14 +31,28 @@
                     max-width: 4.5rem;
                     height: auto;
                     border-radius: 50%;
-                    transition: transform .4s;
+                    animation: rotate-in-center 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                    @keyframes rotate-in-center {
+                        0% {
+                          -webkit-transform: rotate(-360deg);
+                                  transform: rotate(-360deg);
+                          opacity: 0;
+                        }
+                        100% {
+                          -webkit-transform: rotate(0);
+                                  transform: rotate(0);
+                          opacity: 1;
+                        }
+                    }
                 }
                 &:hover {
-                    img {
+                    span {
+                        transition: transform .4s;
                         transform: rotate(5deg) scale(1.2);
+                        display: block;
                     }
                     p {
-                        color: inherit;
+                        color: $fontColorHover;
                         text-decoration: none;
                     }
                 }

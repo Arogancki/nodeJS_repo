@@ -2,8 +2,10 @@
 <div class="experienceContainer">
     <% experience.forEach((val)=> { %>
         <div>
-            <img src="<%= val.img %>"></img>
-            <div>
+            <div class="imageContainer">
+                <img src="<%= val.img %>"></img>
+            </div>
+            <div class="details">
                 <h1><%= val.name %></h1>
                 <h5> 
                     <i class="material-icons">assignment_ind</i> 
@@ -20,7 +22,7 @@
                 <div>
                     <%= translation.main.experience[val.short] || val.desc %>
                 </div>
-                <a href="val.link"><%= val.short %></a>
+                <a href="<%= val.link %>" target="_blank" rel="noopener noreferrer"><i class="material-icons">navigate_next</i><%= val.short %></a>
             </div>
         </div>
     <% }) %>

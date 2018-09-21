@@ -21,6 +21,9 @@
         "429": ["Za dużo zapytań", "Spróbuj ponowanie za", "sekund", "Spróbuj ponownie"]
     },
     "main": {
+        "index": {
+            "header": "CV dewelopera"
+        },
         "about": {
             "details": {
                 "name": "Imie i nazwisko",
@@ -84,13 +87,7 @@
             "tools": "narzędzia",
             "toolsText": "technologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne sa",
             "skils": "umiejętności",
-            "skilsText": "technologie ktore bardzo fajne sa",
-            "object oriented programing": "programowanie obiektowe",
-            "parallel programing": "programowanie współbieżne",
-            "data structures and algorithm knowledge": "znajomość algorytmów i struktur danych",
-            "team worker": "pracownik zespołowy",
-            "willingness to learn": "chęć do nauki",
-            "good grasping ability": "szybkie chwytanie nowych rzeczy"
+            "skilsText": "technologie ktore bardzo fajne sa"
         },
         "experience": {
             "from": "od",
@@ -98,6 +95,19 @@
             "currently": "teraz",
             "as": "jako",
             "tieto": "22 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        },
+        "projects": {
+            "more": "Odkryj więcej na github",
+            "check": "Sprawdź projekt",
+            "example Project": "cos innego dla przykladu"
         }
+    },
+    "glossary": {
+        "object oriented programing": "programowanie obiektowe",
+        "parallel programing": "programowanie współbieżne",
+        "data structures and algorithm knowledge": "znajomość algorytmów i struktur danych",
+        "team worker": "pracownik zespołowy",
+        "willingness to learn": "chęć do nauki",
+        "good grasping ability": "szybkie chwytanie nowych rzeczy"
     }
 }

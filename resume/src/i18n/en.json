@@ -21,6 +21,9 @@
         "429": ["Too many requests", "Try again in", "seconds", "Try again"]
     },
     "main": {
+        "index": {
+            "header": "Developer's resume"
+        },
         "about": {
             "details": {
                 "name": "Name",
@@ -90,6 +93,11 @@
             "to": "to",
             "currently": "currently",
             "as": "as"
+        },
+        "projects": {
+            "check": "Check this project",
+            "more": "Find out more on github"
         }
-    }
+    },
+    "glossary": {}
 }

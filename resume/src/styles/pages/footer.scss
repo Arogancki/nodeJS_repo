@@ -17,11 +17,15 @@ footer {
         border-radius: 50%;
         margin: 2px;
     }
-    .githubLink {
-        transition: transform .4s;
+    .githubLinkContainer {
+        .githubLink {
+            transition: transform .4s;
+        }
         &:hover {
-            border-radius: 48%;
-            transform: rotate(5deg) scale(1.2);
+            .githubLink {
+                border-radius: 48%;
+                transform: rotate(5deg) scale(1.2);
+            }
         }
     }
     .funny{
@@ -31,6 +35,7 @@ footer {
     }
     .shaking {
         animation: shake 6s infinite;
+        display: block;
         animation-delay: 2s;
     }
     @keyframes shake {

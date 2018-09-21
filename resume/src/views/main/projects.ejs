@@ -1,4 +1,55 @@
 <img class="background" src="/background/.jpg"/>
-<div class="technologiesContainer">
-    experienceContainer
+<div class="projectsContainer">
+    <ul>
+        <% Object.keys(tags).forEach(tagKey=> { %>
+            <li>
+                <input onclick="showTags('<%=tags[tagKey]%>')" type='radio' 
+                value='<%=tagKey%>' name='radio' id='<%=tags[tagKey]%>Tag'/>
+                <label for='<%=tags[tagKey]%>Tag'>
+                    #<%= translation.glossary[tags[tagKey]] || tags[tagKey] %>
+                </label>
+                <input type='radio'/>
+            </li>
+        <% }); %>
+    </ul>
+    <div id="projectsContainerContent">
+        <% shuffle(projects).forEach(project=> { %>
+            <div class="projectContainer" tags="<%=project.tags.join(';')%>">
+                <img class="projectBackground" src="<%=project.img%>"/>
+                <div class="projectBackgroundBackground"></div>
+                <div>
+                    <h1><%=project.title%></h1>
+                    <div class="description"><%=translation.main.projects[project.title] || project.desc%></div>
+                    <a href="<%=project.github%>" target="_blank" rel="noopener noreferrer">
+                        <%=translation.main.projects.check%>
+                        <img class="githubLink" src="/images/socials/github.png"></img>
+                    </a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <span>
+        <a href="<%=(socialMediaLinks.find(e=>e.alt==='github')).href%>" target="_blank" rel="noopener noreferrer">
+            <%=translation.main.projects.more%>
+            <img class="githubLink" src="/images/socials/github.png"></img>
+        </a>
+    </span>
 </div>
+<script>
+    let showTagsContext = {}
+    function showTags(tag){
+        showTagsContext.hidden = showTagsContext.hidden || []
+        showTagsContext.hidden.forEach(e=>e.style.display='block')
+        if (showTagsContext.last === tag){
+            document.getElementById(`${tag}Tag`).checked = false
+            showTagsContext.last = null
+            return
+        }
+        showTagsContext.last = tag
+        showTagsContext.hidden = Array.from(document.getElementById('projectsContainerContent').children)
+        .filter(child=>{
+            return !child.attributes.tags.value.split(';').includes(tag)
+        })
+        showTagsContext.hidden.forEach(e=>e.style.display='none')
+    }
+</script>

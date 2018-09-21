@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
 
 module.exports = function sendEmail(subject, text, contact) {
     return new Promise((res, rej)=>{
-        if (!process.env.EMAILS !== 'true')
+        if (process.env.EMAILS !== 'true')
             return setTimeout(res, 500)
         text = contact ? `${text}\nContact: ${contact}` : text
         return transporter.sendMail({

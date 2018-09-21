@@ -7,7 +7,7 @@ const router = require('express').Router()
     , handleError = require('../helpers/handleError')
 
 module.exports = (app) => {
-    router.get('/', (req, res) => res.redirect('/about'))
+    router.get('/', (req, res) => render(req, res, 'main/index'))
 
     fs.readdirSync(__dirname)
         .filter(file=>file !== "index.js")
