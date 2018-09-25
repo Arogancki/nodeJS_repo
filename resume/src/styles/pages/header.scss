@@ -15,7 +15,10 @@ header {
             text-align: center;
             margin: 5px;
             a {
-                @extend %textLink;
+                font-size: 1.1rem;
+                padding-left: 5px;
+                padding-right: 5px;
+                @extend %link;
             }
         }
         .selectedRoute {

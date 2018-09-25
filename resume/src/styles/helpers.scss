@@ -1,13 +1,10 @@
 @import './variables.scss';
 
-%textLink {
-    font-size: 1.1rem;
+%link {
     color: inherit;
-    transition: transform .4s;
-    padding-left: 5px;
-    padding-right: 5px;
-    display: inline-block;
     cursor: pointer;
+    display: inline-block;
+    transition: transform .4s;
     &:hover {
         color: $fontColorHover;
         transform: scale(1.2);

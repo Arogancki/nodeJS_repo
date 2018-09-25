@@ -1,6 +1,6 @@
-.experienceContainer div .details a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; cursor: pointer; }
+.experienceContainer div .details a { color: inherit; cursor: pointer; display: inline-block; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
-.experienceContainer div .details a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
+.experienceContainer div .details a:hover { color: #cfe2ff; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
 .experienceContainer { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; width: 100%; overflow: hidden; }
 

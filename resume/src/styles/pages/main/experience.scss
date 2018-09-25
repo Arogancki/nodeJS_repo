@@ -56,7 +56,7 @@
                 overflow: auto;
             }
             a {
-                @extend %textLink;
+                @extend %link;
                 width: fit-content;
                 text-transform: capitalize;
             }

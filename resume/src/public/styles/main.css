@@ -1,8 +1,10 @@
+main::after { content: ""; background-image: url("/background/.jpg"); top: 0; left: 0; z-index: -10; background-size: cover; min-width: 100%; min-height: 100%; position: fixed; }
+
 main { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; display: -webkit-box; display: -ms-flexbox; display: flex; overflow: auto; }
 
-main .aboutContainer .contentContainer .navigationSlider .selectedDiv, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv, main .aboutContainer .contentContainer .textSlider .details div a, main .experienceContainer div .details a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; cursor: pointer; }
+main .aboutContainer .contentContainer .navigationSlider .selectedDiv, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv, main .aboutContainer .contentContainer .textSlider .details div a, main .experienceContainer div .details a { color: inherit; cursor: pointer; display: inline-block; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
-main .aboutContainer .contentContainer .navigationSlider .selectedDiv:hover, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, main .aboutContainer .contentContainer .textSlider .details div a:hover, main .experienceContainer div .details a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
+main .aboutContainer .contentContainer .navigationSlider .selectedDiv:hover, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, main .aboutContainer .contentContainer .textSlider .details div a:hover, main .experienceContainer div .details a:hover { color: #cfe2ff; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
 main .aboutContainer .contentContainer .navigationSlider .selectedDiv, main .projectsContainer ul input:checked + label { font-weight: bold; color: #001380; }
 
@@ -12,7 +14,7 @@ main .aboutContainer { width: 100%; display: -ms-grid; display: grid; -ms-grid-c
 
 main .aboutContainer .imageSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-item-align: center; align-self: center; margin: 0 15px; overflow: hidden; border: 8px solid; border-radius: 50%; justify-self: center; max-width: 600px; height: auto; }
 
-main .aboutContainer .imageSlider .image { opacity: 0.9; height: 100%; width: 100%; -webkit-filter: opacity(80%); filter: opacity(80%); }
+main .aboutContainer .imageSlider .image { opacity: 0.9; max-height: 520px; max-width: 100%; -webkit-filter: opacity(80%); filter: opacity(80%); }
 
 main .aboutContainer .contentContainer { min-height: 70%; max-height: 100%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 0 auto; margin-left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
@@ -28,7 +30,7 @@ main .aboutContainer .contentContainer .textSlider { margin: 2.5% 0; }
 
 main .aboutContainer .contentContainer .textSlider .details p { text-align: center; font-size: 1.4rem; margin-bottom: 1rem; font-weight: bold; }
 
-main .aboutContainer .contentContainer .textSlider .details hr { margin: 2% 5%; background-color: green; }
+main .aboutContainer .contentContainer .textSlider .details hr { margin: 2% 5%; background-color: #a7bac5; }
 
 main .aboutContainer .contentContainer .textSlider .details div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
 
@@ -72,9 +74,9 @@ main .contactContainer .row { display: -webkit-box; display: -ms-flexbox; displa
 
 main .contactContainer .row h2 { margin: 0 2%; }
 
-main .aboutContainer .contentContainer .navigationSlider .selectedDiv, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv, main .aboutContainer .contentContainer .textSlider .details div a, main .experienceContainer div .details a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; cursor: pointer; }
+main .aboutContainer .contentContainer .navigationSlider .selectedDiv, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv, main .aboutContainer .contentContainer .textSlider .details div a, main .experienceContainer div .details a { color: inherit; cursor: pointer; display: inline-block; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
-main .aboutContainer .contentContainer .navigationSlider .selectedDiv:hover, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, main .aboutContainer .contentContainer .textSlider .details div a:hover, main .experienceContainer div .details a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
+main .aboutContainer .contentContainer .navigationSlider .selectedDiv:hover, main .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, main .aboutContainer .contentContainer .textSlider .details div a:hover, main .experienceContainer div .details a:hover { color: #cfe2ff; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
 main .aboutContainer .contentContainer .navigationSlider .selectedDiv, main .projectsContainer ul input:checked + label { font-weight: bold; color: #001380; }
 
@@ -114,11 +116,11 @@ main .technologiesContainer .links a { margin: 2% 2rem; }
 
 main .technologiesContainer .links a div { text-align: center; }
 
-main .technologiesContainer .links a div p { margin: 0.5rem 0; }
+main .technologiesContainer .links a div p { margin: 0.7rem 0; }
 
 main .technologiesContainer .links a div p:first-letter { text-transform: capitalize; }
 
-main .technologiesContainer .links a div img { background-color: rgba(80, 80, 80, 0.8); max-width: 4.5rem; height: auto; border-radius: 50%; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; -webkit-animation: rotate-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; animation: rotate-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+main .technologiesContainer .links a div img { background-color: rgba(80, 80, 80, 0.8); max-width: 4.5rem; height: auto; border-radius: 50%; -webkit-animation: rotate-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; animation: rotate-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
 @-webkit-keyframes rotate-in-center { 0% { -webkit-transform: rotate(-360deg);
     transform: rotate(-360deg);
@@ -134,27 +136,45 @@ main .technologiesContainer .links a div img { background-color: rgba(80, 80, 80
     transform: rotate(0);
     opacity: 1; } }
 
-main .technologiesContainer .links a div:hover img { -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
+main .technologiesContainer .links a div:hover span { -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); display: block; }
 
-main .technologiesContainer .links a div:hover p { color: inherit; text-decoration: none; }
+main .technologiesContainer .links a div:hover p { color: #cfe2ff; text-decoration: none; }
 
 main .projectsContainer { width: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
-main .projectsContainer ul { background-color: #c6c8e8; list-style: none; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -ms-flex-wrap: wrap; flex-wrap: wrap; margin: 0 0; }
+main .projectsContainer ul { background-color: #6d7e8f; list-style: none; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -ms-flex-wrap: wrap; flex-wrap: wrap; margin: 0 0; }
 
 main .projectsContainer ul li { margin: 1rem 0; display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; border-radius: 50px; background-color: #b6b8d7; }
 
 main .projectsContainer ul input { visibility: hidden; }
 
-main .projectsContainer ul input:hover + label { color: #80006b; }
+main .projectsContainer ul input:hover + label { color: #cfe2ff; }
 
 main .projectsContainer ul label { margin: auto; cursor: pointer; }
 
 main .projectsContainer div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
-main .projectsContainer div .projectContainer { border-bottom: 1px solid #b6b8d7; border-top: 1px solid #b6b8d7; overflow: hidden; height: 350px; position: relative; }
+main .projectsContainer div .projectContainer { border-bottom: 4px solid #b6b8d7; position: relative; overflow: hidden; }
 
-main .projectsContainer div .projectContainer img { width: 100%; height: auto; z-index: -5; position: absolute; }
+main .projectsContainer div .projectContainer:hover .description { max-height: 1000px; min-height: 300px; opacity: 1; }
+
+main .projectsContainer div .projectContainer .projectBackground { z-index: -5; position: absolute; min-width: 100%; height: auto; }
+
+main .projectsContainer div .projectContainer .projectBackgroundBackground { z-index: -6; position: absolute; width: 100%; height: 100%; background-color: #6d7e8f; }
+
+main .projectsContainer div .projectContainer div { min-height: 200px; padding: 2rem; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; }
+
+main .projectsContainer div .projectContainer div h1 { padding-right: 1rem; font-size: 2.5rem; border-bottom: 1px solid; }
+
+main .projectsContainer div .projectContainer div a { display: block; margin-top: auto; font-size: 1.2rem; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; }
+
+main .projectsContainer div .projectContainer div a img { max-width: 1.5rem; height: auto; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; border-radius: 50%; }
+
+main .projectsContainer div .projectContainer div a:hover { color: #cfe2ff; }
+
+main .projectsContainer div .projectContainer div a:hover img { border-radius: 48%; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
+
+main .projectsContainer div .projectContainer div .description { -webkit-transition: max-height 500ms, opacity 500ms, min-height 500ms; transition: max-height 500ms, opacity 500ms, min-height 500ms; display: block; max-height: 0; min-height: 0; padding: 1rem; overflow: hidden; opacity: 0; }
 
 main .projectsContainer span { display: block; text-align: center; margin-top: auto; padding: 15px 0; }
 
@@ -162,39 +182,21 @@ main .projectsContainer span a { font-size: 1rem; }
 
 main .projectsContainer span a img { max-width: 1.5vmax; height: auto; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; border-radius: 50%; }
 
+main .projectsContainer span a:hover { color: #cfe2ff; }
+
 main .projectsContainer span a:hover img { border-radius: 48%; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
 
 main .indexContainer { width: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; }
 
 main .indexContainer h1 { font-size: 2.5rem; margin: auto auto; -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; }
 
-@-webkit-keyframes text-focus-in { 0% { -webkit-filter: blur(12px);
-    filter: blur(12px);
+@-webkit-keyframes text-focus-in { 0% { -webkit-filter: blur(12px); filter: blur(12px);
     opacity: 0; }
-  100% { -webkit-filter: blur(0px);
-    filter: blur(0px);
+  100% { -webkit-filter: blur(0px); filter: blur(0px);
     opacity: 1; } }
 
-@keyframes text-focus-in { 0% { -webkit-filter: blur(12px);
-    filter: blur(12px);
+@keyframes text-focus-in { 0% { -webkit-filter: blur(12px); filter: blur(12px);
     opacity: 0; }
-  100% { -webkit-filter: blur(0px);
-    filter: blur(0px);
+  100% { -webkit-filter: blur(0px); filter: blur(0px);
     opacity: 1; } }
-
-main .background { margin-top: -72px; height: 100%; z-index: -10; position: fixed; min-width: 100%; min-height: 100%; -webkit-animation: breathingBlur 8s infinite, zoomIn 16s forwards; animation: breathingBlur 8s infinite, zoomIn 16s forwards; }
-
-@-webkit-keyframes breathingBlur { 0% { -webkit-filter: grayscale(85%) blur(4px) brightness(30%); filter: grayscale(85%) blur(4px) brightness(30%); }
-  50% { -webkit-filter: grayscale(90%) blur(2px) brightness(30%); filter: grayscale(90%) blur(2px) brightness(30%); }
-  100% { -webkit-filter: grayscale(90%) blur(4px) brightness(30%); filter: grayscale(90%) blur(4px) brightness(30%); } }
-
-@keyframes breathingBlur { 0% { -webkit-filter: grayscale(85%) blur(4px) brightness(30%); filter: grayscale(85%) blur(4px) brightness(30%); }
-  50% { -webkit-filter: grayscale(90%) blur(2px) brightness(30%); filter: grayscale(90%) blur(2px) brightness(30%); }
-  100% { -webkit-filter: grayscale(90%) blur(4px) brightness(30%); filter: grayscale(90%) blur(4px) brightness(30%); } }
-
-@-webkit-keyframes zoomIn { 0% { -webkit-transform: scale(1.14); transform: scale(1.14); }
-  100% { -webkit-transform: scale(1.1); transform: scale(1.1); } }
-
-@keyframes zoomIn { 0% { -webkit-transform: scale(1.14); transform: scale(1.14); }
-  100% { -webkit-transform: scale(1.1); transform: scale(1.1); } }
 /*# sourceMappingURL=main.css.map */

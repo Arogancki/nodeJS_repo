@@ -1,8 +1,8 @@
-footer .funny a { font-size: 1.1rem; color: inherit; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; padding-left: 5px; padding-right: 5px; display: inline-block; cursor: pointer; }
+footer .funny a { color: inherit; cursor: pointer; display: inline-block; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
-footer .funny a:hover { color: #80006b; -webkit-transform: scale(1.2); transform: scale(1.2); }
+footer .funny a:hover { color: #cfe2ff; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
-footer { padding: .1rem 1rem; background-color: #c6c8e8; }
+footer { padding: .1rem 1rem; background-color: #6d7e8f; }
 
 footer hr { margin: 2px 10%; }
 
@@ -13,16 +13,4 @@ footer img { max-width: 1.5vmax; height: auto; border-radius: 50%; margin: 2px; 
 footer .githubLinkContainer .githubLink { -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
 footer .githubLinkContainer:hover .githubLink { border-radius: 48%; -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
-
-footer .shaking { -webkit-animation: shake 6s infinite; animation: shake 6s infinite; display: block; -webkit-animation-delay: 2s; animation-delay: 2s; }
-
-@-webkit-keyframes shake { 2.5%, 22.5% { -webkit-transform: translate3d(-1px, 0, 0); transform: translate3d(-1px, 0, 0); }
-  5%, 20% { -webkit-transform: translate3d(2px, 0, 0); transform: translate3d(2px, 0, 0); }
-  7.5%, 12.5%, 17.5% { -webkit-transform: translate3d(-4px, 0, 0); transform: translate3d(-4px, 0, 0); }
-  10%, 15% { -webkit-transform: translate3d(4px, 0, 0); transform: translate3d(4px, 0, 0); } }
-
-@keyframes shake { 2.5%, 22.5% { -webkit-transform: translate3d(-1px, 0, 0); transform: translate3d(-1px, 0, 0); }
-  5%, 20% { -webkit-transform: translate3d(2px, 0, 0); transform: translate3d(2px, 0, 0); }
-  7.5%, 12.5%, 17.5% { -webkit-transform: translate3d(-4px, 0, 0); transform: translate3d(-4px, 0, 0); }
-  10%, 15% { -webkit-transform: translate3d(4px, 0, 0); transform: translate3d(4px, 0, 0); } }
 /*# sourceMappingURL=footer.css.map */

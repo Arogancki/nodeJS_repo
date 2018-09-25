@@ -16,8 +16,8 @@
         height: auto;
         .image {
             opacity: 0.9;
-            height: 100%;
-            width: 100%;
+            max-height: 520px;
+            max-width: 100%;
             filter: opacity(80%);
         }
     }
@@ -33,11 +33,14 @@
         .headersContainer{
             text-align: justify;
             margin: 2.5% 0;
+            font-style: oblique;
+            font-family: $font2;
             h1 {
                 font-size: 2rem;
             }
             h3 {
                 font-size: 1.5rem;
+                text-align: right;
             }
         }
         .navigationSlider {
@@ -47,11 +50,11 @@
             margin: 2.5% 0;
             flex-wrap: wrap;
             .selectedDiv {
-                @extend %textLink;
+                @extend %link;
                 @extend %selected;
             }
             .notSelectedDiv {
-                @extend %textLink;
+                @extend %link;
             }
         }
         .textSlider{
@@ -74,7 +77,7 @@
                         margin: 0 0.5rem;
                     }
                     a {
-                        @extend %textLink;
+                        @extend %link;
                         display: flex !important;
                     }
                 }

@@ -1,0 +1,33 @@
+%shakingAnimation {
+    animation: shake 6s infinite;
+    animation-delay: 2s;
+    display: block;
+}
+@keyframes shake {
+    2.5%, 22.5% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    5%, 20% {
+      transform: translate3d(2px, 0, 0);
+    }
+    7.5%, 12.5%, 17.5% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    10%, 15% {
+      transform: translate3d(4px, 0, 0);
+    }
+}
+
+%breathingAnimation {
+  animation: breathingBlur 8s infinite, zoomIn 16s forwards;
+  @keyframes breathingBlur {
+      0% {filter: grayscale(85%) blur(4px) brightness(30%);}
+      50% {filter: grayscale(90%) blur(2px) brightness(30%);}
+      100% {filter: grayscale(90%) blur(4px) brightness(30%);}
+  }
+  @keyframes zoomIn {
+      0% {transform: scale(1.14);}
+      100% {transform: scale(1.1);}
+  }
+} 
+

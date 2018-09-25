@@ -10,7 +10,7 @@
         flex-wrap: wrap;
         margin: 0 0;
         li {
-            margin: 1rem 0;
+            margin: 1.2rem 0;
             display: inline-flex;
             border-radius: 50px;
             background-color: $backgroundColorDarker;
@@ -48,6 +48,7 @@
                 position: absolute;
                 min-width: 100%;
                 height: auto;
+                filter: brightness(40%);
             }
             .projectBackgroundBackground {
                 z-index: -6;
@@ -59,8 +60,8 @@
             div{
                 min-height: 200px;
                 padding: 2rem;
-                width: fit-content;
                 h1 {
+                    width: fit-content;
                     padding-right: 1rem;
                     font-size: 2.5rem;
                     border-bottom: 1px solid;

@@ -1,0 +1,24 @@
+@-webkit-keyframes shake { 2.5%, 22.5% { -webkit-transform: translate3d(-1px, 0, 0); transform: translate3d(-1px, 0, 0); }
+  5%, 20% { -webkit-transform: translate3d(2px, 0, 0); transform: translate3d(2px, 0, 0); }
+  7.5%, 12.5%, 17.5% { -webkit-transform: translate3d(-4px, 0, 0); transform: translate3d(-4px, 0, 0); }
+  10%, 15% { -webkit-transform: translate3d(4px, 0, 0); transform: translate3d(4px, 0, 0); } }
+
+@keyframes shake { 2.5%, 22.5% { -webkit-transform: translate3d(-1px, 0, 0); transform: translate3d(-1px, 0, 0); }
+  5%, 20% { -webkit-transform: translate3d(2px, 0, 0); transform: translate3d(2px, 0, 0); }
+  7.5%, 12.5%, 17.5% { -webkit-transform: translate3d(-4px, 0, 0); transform: translate3d(-4px, 0, 0); }
+  10%, 15% { -webkit-transform: translate3d(4px, 0, 0); transform: translate3d(4px, 0, 0); } }
+
+@-webkit-keyframes breathingBlur { 0% { -webkit-filter: grayscale(85%) blur(4px) brightness(30%); filter: grayscale(85%) blur(4px) brightness(30%); }
+  50% { -webkit-filter: grayscale(90%) blur(2px) brightness(30%); filter: grayscale(90%) blur(2px) brightness(30%); }
+  100% { -webkit-filter: grayscale(90%) blur(4px) brightness(30%); filter: grayscale(90%) blur(4px) brightness(30%); } }
+
+@keyframes breathingBlur { 0% { -webkit-filter: grayscale(85%) blur(4px) brightness(30%); filter: grayscale(85%) blur(4px) brightness(30%); }
+  50% { -webkit-filter: grayscale(90%) blur(2px) brightness(30%); filter: grayscale(90%) blur(2px) brightness(30%); }
+  100% { -webkit-filter: grayscale(90%) blur(4px) brightness(30%); filter: grayscale(90%) blur(4px) brightness(30%); } }
+
+@-webkit-keyframes zoomIn { 0% { -webkit-transform: scale(1.14); transform: scale(1.14); }
+  100% { -webkit-transform: scale(1.1); transform: scale(1.1); } }
+
+@keyframes zoomIn { 0% { -webkit-transform: scale(1.14); transform: scale(1.14); }
+  100% { -webkit-transform: scale(1.1); transform: scale(1.1); } }
+/*# sourceMappingURL=animations.css.map */
