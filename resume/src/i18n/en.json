@@ -96,7 +96,8 @@
         },
         "projects": {
             "check": "Check this project",
-            "more": "Find out more on github"
+            "more": "Find out more on github",
+            "tags": "tags"
         }
     },
     "glossary": {}

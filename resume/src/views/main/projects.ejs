@@ -18,7 +18,17 @@
                 <div class="projectBackgroundBackground"></div>
                 <div>
                     <h1><%=project.title%></h1>
-                    <div class="description"><%=translation.main.projects[project.title] || project.desc%></div>
+                    <div class="description">
+                        <%=translation.main.projects[project.title] || project.desc%>
+                        <ul>
+                            <%=translation.main.projects.tags%>:
+                            <% project.tags.forEach(tag=> { %>
+                                <li>
+                                    #<%= translation.glossary[tag] || tag %>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>
                     <a href="<%=project.github%>" target="_blank" rel="noopener noreferrer">
                         <%=translation.main.projects.check%>
                         <img class="githubLink" src="/images/socials/github.png"></img>

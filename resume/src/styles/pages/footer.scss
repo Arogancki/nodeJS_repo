@@ -42,6 +42,7 @@ footer {
     .funny{
         a {
             @extend %link;
+            margin: 0 0.1rem;
         }
     }
 }

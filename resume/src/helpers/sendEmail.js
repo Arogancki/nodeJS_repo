@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 module.exports = function sendEmail(subject, text, contact) {
     return new Promise((res, rej)=>{
         if (process.env.EMAILS !== 'true')
-            return setTimeout(res, 500)
+            return setTimeout(res, 1000)
         text = contact ? `${text}\nContact: ${contact}` : text
         return transporter.sendMail({
             from: `"Artur Ziemba - developer's resume" <${process.env.EMAIL_LOGIN}>`,

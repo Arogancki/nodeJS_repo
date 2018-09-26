@@ -9,12 +9,16 @@
             <h4><%= translation.main.technologies[typeKey+"Text"] %></h4>
             <div class="links">
                 <% technologies[typeKey].forEach(technology=>{ %>
-                    <a target="_blank" rel="noopener noreferrer" href="<%= technology.link %>">
+                    <% if (technology.link) { %>
+                        <a target="_blank" rel="noopener noreferrer" href="<%= technology.link %>">
+                    <% } %>
                         <div>
                             <span><img src="<%= technology.img %>"></img></span>
                             <p><%= translation.glossary[technology.name] || technology.name %></p>
                         </div>
-                    </a>
+                    <% if (technology.link) { %>
+                        </a>
+                    <% } %>
                 <% }) %>
             </div>
         </div>

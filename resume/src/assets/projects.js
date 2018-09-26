@@ -5,7 +5,7 @@ const projects = createImageLinks([{
     title: "example Project",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
     github: "https://github.com/Arogancki/data-structures-and-algorithm",
-    tags: [tags.javaScript, tags.nodeJs, tags.oop, tags.cSharp],
+    tags: [tags.javaScript, tags.nodeJs, tags.oop, tags.cSharp]
 },
 {
     title: "example Project",

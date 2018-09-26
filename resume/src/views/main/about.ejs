@@ -2,11 +2,11 @@
     <div id="imageSlider" class="imageSlider carousel slide carousel-fade" data-ride="carousel" data-interval="0">
         <div class="carousel-inner">
             <div style="height:100%" class="carousel-item active">
-                <img class="image" src="/images/artur/index.jpg" />
+                <img class="image asyncImage" asyncImage="/images/artur/index.jpg" />
             </div>
             <% Object.keys(translation.main.about.paragraph).forEach((k,index)=> { %>
                 <div style="height:100%" class="carousel-item">
-                    <img class="image" src="/images/artur/<%= k %>.jpg" />
+                    <img class="image asyncImage" asyncImage="/images/artur/<%= k %>.jpg" />
                 </div>
             <% }); %>
         </div>

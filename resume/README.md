@@ -1,11 +1,8 @@
 #My resume project
 
-#TODO
-zrobic job ktory po powstaniu node bedzie sprawdzal broken linki
-naprawic async background loading
+#TODO 
+poprawic linki w kontakcie zeby numer telefonu i email sie swiecil jak sie otwiera jak link i zeby mozna je bylo zaznaczyc
 
 do tools
-microsft office
-google office
 google chrome
 Crucible 

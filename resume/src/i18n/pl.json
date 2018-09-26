@@ -99,7 +99,8 @@
         "projects": {
             "more": "Odkryj więcej na github",
             "check": "Sprawdź projekt",
-            "example Project": "cos innego dla przykladu"
+            "example Project": "cos innego dla przykladu",
+            "tags": "tagi"
         }
     },
     "glossary": {

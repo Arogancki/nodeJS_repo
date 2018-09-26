@@ -35,8 +35,9 @@
         .projectContainer {
             &:hover{
                 .description {
+                    transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms;
+                    min-height: 250px;
                     max-height: 1000px;
-                    min-height: 300px;
                     opacity: 1;
                 }
             }
@@ -86,13 +87,22 @@
                     }  
                 }
                 .description {
-                    transition: max-height 500ms, opacity 500ms, min-height 500ms;
+                    transition: max-height 500ms linear, min-height 125ms linear 500ms, opacity 500ms;
                     display: block;
-                    max-height: 0;
-                    min-height: 0;
+                    max-height: 0px;
+                    min-height: 0px;
                     padding: 1rem;
                     overflow: hidden;
                     opacity: 0;
+                    ul {
+                        display: block;
+                        background-color: initial;
+                        li {
+                            padding: 0 0.8rem;
+                            font-size: 0.8rem;
+                            margin: 0 0 0.1rem;
+                        }
+                    }
                 }
             }
         }

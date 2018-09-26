@@ -2,15 +2,27 @@
 
 .aboutContainer .contentContainer .navigationSlider .selectedDiv:hover, .aboutContainer .contentContainer .navigationSlider .notSelectedDiv:hover, .aboutContainer .contentContainer .textSlider .details div a:hover { color: #cfe2ff; -webkit-transform: scale(1.2); transform: scale(1.2); }
 
-.aboutContainer .contentContainer .navigationSlider .selectedDiv { font-weight: bold; color: #001380; }
+.aboutContainer .contentContainer .navigationSlider .selectedDiv { font-weight: bold; color: white; }
 
-.aboutContainer .contentContainer .navigationSlider .selectedDiv:hover { color: #001380; }
+.aboutContainer .contentContainer .navigationSlider .selectedDiv:hover { color: white; }
+
+.spinner { border-radius: 100%; -webkit-animation: sk-scaleout 1.0s infinite ease-in-out; animation: sk-scaleout 1.0s infinite ease-in-out; }
+
+@-webkit-keyframes sk-scaleout { 0% { -webkit-transform: scale(0); }
+  100% { -webkit-transform: scale(1);
+    opacity: 0; } }
+
+@keyframes sk-scaleout { 0% { -webkit-transform: scale(0);
+    transform: scale(0); }
+  100% { -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; } }
 
 .aboutContainer { width: 100%; display: -ms-grid; display: grid; -ms-grid-columns: 50% 50%; grid-template-columns: 50% 50%; }
 
 .aboutContainer .imageSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-item-align: center; align-self: center; margin: 0 15px; overflow: hidden; border: 8px solid; border-radius: 50%; justify-self: center; max-width: 600px; height: auto; }
 
-.aboutContainer .imageSlider .image { opacity: 0.9; max-height: 520px; max-width: 100%; -webkit-filter: opacity(80%); filter: opacity(80%); }
+.aboutContainer .imageSlider .image { opacity: 0.9; height: 520px; width: 520px; background-color: #637485; -webkit-filter: opacity(80%); filter: opacity(80%); }
 
 .aboutContainer .contentContainer { min-height: 70%; max-height: 100%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 0 auto; margin-left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 

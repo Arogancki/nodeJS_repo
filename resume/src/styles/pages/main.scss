@@ -1,7 +1,5 @@
-main::after
+.background
 {
-	content: "";
-	background-image: url("/background/.jpg");
 	top: 0;
 	left: 0;
 	z-index: -10;  

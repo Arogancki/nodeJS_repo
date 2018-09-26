@@ -14,6 +14,9 @@
                 width: 50%;
                 display: table-cell;
                 vertical-align: middle;
+                .selectable {
+                    @extend %selectable;
+                }
             }
         }
     }
@@ -29,6 +32,26 @@
         .formAction {
             display: flex;
             justify-content: center;
+        }
+        input, textarea {
+            color: $fontColor;
+            background-color: $backgroundColor !important;
+            border-color: $fontColor !important;
+            &:focus{
+                border-color: $fontColorHover !important;
+                color: $fontColorHover;
+            }
+            &::placeholder{
+                color: $fontColor;
+            }
+        }
+        button {
+            background-color: $backgroundColor !important;
+            &:hover, &:focus{
+                color: $fontColorHover !important;
+                border-color: $fontColor;
+                background-color: $backgroundColorDarker !important;
+            }
         }
     }
     .row {

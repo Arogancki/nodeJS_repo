@@ -7,7 +7,9 @@
                 <%= translation.main.contact.email.key %>
             </h2>
             <h2>
-                <%= translation.main.contact.email.value %>
+                <a href="mailto: <%= translation.main.contact.email.value %>">
+                    <div class="selectable"><%= translation.main.contact.email.value %></div>
+                </a>
             </h2>
         </div>
         <div>
@@ -15,7 +17,7 @@
                 <i class="material-icons">phone</i>
                 <%= translation.main.contact.phone.key %>
             </h2>
-            <h2>
+            <h2 class="selectable">
                 <%= translation.main.contact.phone.value %>
             </h2>
         </div>
@@ -24,22 +26,18 @@
         <h2><%= translation.main.contact.form.header %></h2>
         <div class="form-group">
             <label for="subject"><%= translation.main.contact.form.subject.key %>: </label>
-            <input type="text" class="form-control is-valid bg-dark text-white" id="subject" placeholder="<%= translation.main.contact.form.subject.placeholder %>" required>
-            <div class="invalid-feedback"><%= translation.main.contact.form.subject.invalid %></div>
+            <input type="text" class="form-control is-valid" id="subject" placeholder="<%= translation.main.contact.form.subject.placeholder %>" required>
         </div>
         <div class="form-group">
             <label for="message"><%= translation.main.contact.form.message.key %>: </label>
-            <textarea type="text" class="form-control is-valid bg-dark text-white" rows="10" id="message" placeholder="<%= translation.main.contact.form.message.placeholder %>" required></textarea>
-            <div class="invalid-feedback"><%= translation.main.contact.form.message.invalid %></div>
+            <textarea type="text" class="form-control is-valid" rows="10" id="message" placeholder="<%= translation.main.contact.form.message.placeholder %>" required></textarea>
         </div>
         <div class="form-group">
             <label for="contact"><%= translation.main.contact.form.contact.key %>: </label>
-            <input atype="text" class="form-control is-valid bg-dark text-white" id="contact" placeholder="<%= translation.main.contact.form.contact.placeholder %>" required>
-            <div class="invalid-feedback"><%= translation.main.contact.form.contact.invalid %></div>
+            <input atype="text" class="form-control is-valid" id="contact" placeholder="<%= translation.main.contact.form.contact.placeholder %>" required>
         </div>
         <div class="formAction">
             <button style="color: inherit;" id="formButton" class="alert btn btn-primary bg-dark" type="submit"><%= translation.main.contact.form.button %></button>
-            <div id="formConfirmaton" style="display: none" class="alert alert-success" role="alert"><%= translation.main.contact.form.confirmation %></div>
         </div>
         <div id="formError" style="display: none; text-align: center;" class="alert alert-danger" role="alert"></div>
     </form>
@@ -54,6 +52,8 @@
             return
         const formButtonText = formButton.innerHTML
         formButton.innerHTML = spinner
+        formButton.disabled = true
+        formButton.style['pointer-events'] = 'none'
         fetch('', {
             method: 'post',
             credentials: 'same-origin',
@@ -66,13 +66,19 @@
         }).then(res=>{
             if (!res.ok) throw res
             formError.style.display = "none"
-            formButton.style.display = "none"
-            document.getElementById('formConfirmaton').style.display = ""
-        }).catch(res=>{
+            formButton.innerHTML = "<%= translation.main.contact.form.confirmation %>"
+        }).catch(async res=>{
             console.error(res)
+            let message = res.statusText || "Service Unavailable"
+            try {
+                message  = await res.json()
+            }
+            catch(e){}
             formButton.innerHTML = formButtonText
+            formButton.disabled = false
+            formButton.style['pointer-events'] = ''
             formError.style.display = ""
-            formError.innerHTML = res.statusText || "Service Unavailable"
+            formError.innerHTML = message
         })
     }
 </script>
