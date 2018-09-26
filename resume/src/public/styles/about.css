@@ -22,9 +22,9 @@
 
 .aboutContainer .imageSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-item-align: center; align-self: center; margin: 0 15px; overflow: hidden; border: 8px solid; border-radius: 50%; justify-self: center; max-width: 600px; height: auto; }
 
-.aboutContainer .imageSlider .image { opacity: 0.9; height: 520px; width: 520px; background-color: #637485; -webkit-filter: opacity(80%); filter: opacity(80%); }
+.aboutContainer .imageSlider .image { opacity: 0.9; height: 22rem; width: 22rem; background-color: #637485; -webkit-filter: opacity(80%); filter: opacity(80%); }
 
-.aboutContainer .contentContainer { min-height: 70%; max-height: 100%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 0 auto; margin-left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.aboutContainer .contentContainer { min-height: 70%; max-height: 100%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 2rem auto; margin-left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
 .aboutContainer .contentContainer .headersContainer { text-align: justify; margin: 2.5% 0; font-style: oblique; font-family: Merienda, sans-serif; }
 

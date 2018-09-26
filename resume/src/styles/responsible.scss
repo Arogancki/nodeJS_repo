@@ -16,6 +16,8 @@
                 .image {
                     max-width: unset;
                     max-height: unset;
+                    height: unset;
+                    width: unset;
                     filter: brightness(40%);
                 }
             }
@@ -30,9 +32,13 @@
         }
         .experienceContainer {
             div {
+                .imageContainer{
+                    transition: filter 500ms;
+                }
                 &:hover{
                     .imageContainer {
                         width: 100%;
+                        filter: brightness(40%);
                     }
                     .details {
                         left: 0%;

@@ -16,8 +16,8 @@
         height: auto;
         .image {
             opacity: 0.9;
-            height: 520px;
-            width: 520px;
+            height: 22rem;
+            width: 22rem;
             background-color: $backgroundColorDarker;
             filter: opacity(80%);
         }
@@ -27,7 +27,7 @@
         max-height: 100%;
         width: 80%;
         align-self: center;
-        margin: 0 auto;
+        margin: 2rem auto;
         margin-left:0;
         display: flex;
         flex-direction: column;
