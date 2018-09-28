@@ -93,14 +93,16 @@
             "from": "od",
             "to": "do",
             "currently": "teraz",
-            "as": "jako",
-            "tieto": "22 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+            "tieto": "22 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+            "The West Pomeranian University of Technology": "Zachodniopomorski Uniwersytet Technologiczny",
+            "Master of science - Software Engineering": "Studia magisterskie - Inżynieria oprogramowania",
+            "Engineer's degree - Computer Science and Information Technology": "Studia inżynierskie - systemy komputerowe i oprogramowanie"
         },
         "projects": {
             "more": "Odkryj więcej na github",
             "check": "Sprawdź projekt",
-            "example Project": "cos innego dla przykladu",
-            "tags": "tagi"
+            "tags": "tagi",
+            "example Project": "cos innego dla przykladu"
         }
     },
     "glossary": {
@@ -109,6 +111,9 @@
         "data structures and algorithm knowledge": "znajomość algorytmów i struktur danych",
         "team worker": "pracownik zespołowy",
         "willingness to learn": "chęć do nauki",
-        "good grasping ability": "szybkie chwytanie nowych rzeczy"
+        "good grasping ability": "szybkie chwytanie nowych rzeczy",
+        "design patterns": "wzorce projektowe",
+        "agile methodology": "metodologia agile",
+        "machine learning": "nauczanie maszynowe"
     }
 }

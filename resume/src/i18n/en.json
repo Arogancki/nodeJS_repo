@@ -46,7 +46,7 @@
             },
             "headers": [
                 "The difference between ordinary and extraordinary",
-                "is that little “extra”."
+                "is that little “extra”"
             ]
         },
         "contact": {
@@ -57,7 +57,7 @@
             },
             "phone": {
                 "key": "phone number",
-                "value": "(+48) 601689606"
+                "value": "+48601689606"
             },
             "form": {
                 "header": "or use this contact form to send me an email",
@@ -91,8 +91,7 @@
         "experience": {
             "from": "from",
             "to": "to",
-            "currently": "currently",
-            "as": "as"
+            "currently": "currently"
         },
         "projects": {
             "check": "Check this project",

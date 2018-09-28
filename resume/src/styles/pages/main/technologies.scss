@@ -17,8 +17,9 @@
         flex-wrap: wrap;
         margin-bottom: 5rem;
         div {
-            margin: 1.0rem 2rem;
+            margin: 1.2rem 2rem;
             text-align: center;
+            width: 10rem;
             p {
                 margin: 0.7rem 0;
                 &:first-letter {
@@ -26,9 +27,8 @@
                 }
             }
             img {
-                background-color: rgba(80, 80, 80, 0.8); 
-                max-width: 4.5rem;
-                height: auto;
+                width: 4.5rem;
+                height: 4.5rem;
                 border-radius: 50%;
                 animation: rotate-in-center 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
                 @keyframes rotate-in-center {

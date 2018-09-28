@@ -1,3 +1,17 @@
+.contactContainer .contactsWay div .selectable { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+
+.spinner { border-radius: 100%; -webkit-animation: sk-scaleout 1.0s infinite ease-in-out; animation: sk-scaleout 1.0s infinite ease-in-out; }
+
+@-webkit-keyframes sk-scaleout { 0% { -webkit-transform: scale(0); }
+  100% { -webkit-transform: scale(1);
+    opacity: 0; } }
+
+@keyframes sk-scaleout { 0% { -webkit-transform: scale(0);
+    transform: scale(0); }
+  100% { -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; } }
+
 .contactContainer { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; padding: 2% 20%; text-align: center; }
 
 .contactContainer .contactsWay { display: table; border-collapse: separate; border-spacing: 1rem; width: 100%; margin: 1rem auto; }
@@ -13,6 +27,22 @@
 .contactContainer form h2 { margin: 2rem 0; font-size: 1.5rem; }
 
 .contactContainer form .formAction { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+
+.contactContainer form input, .contactContainer form textarea { color: #a7bac5; background-color: #6d7e8f !important; border-color: #a7bac5 !important; }
+
+.contactContainer form input:focus, .contactContainer form textarea:focus { border-color: #cfe2ff !important; color: #cfe2ff; }
+
+.contactContainer form input::-webkit-input-placeholder, .contactContainer form textarea::-webkit-input-placeholder { color: #a7bac5; }
+
+.contactContainer form input:-ms-input-placeholder, .contactContainer form textarea:-ms-input-placeholder { color: #a7bac5; }
+
+.contactContainer form input::-ms-input-placeholder, .contactContainer form textarea::-ms-input-placeholder { color: #a7bac5; }
+
+.contactContainer form input::placeholder, .contactContainer form textarea::placeholder { color: #a7bac5; }
+
+.contactContainer form button { background-color: #6d7e8f !important; }
+
+.contactContainer form button:hover, .contactContainer form button:focus { color: #cfe2ff !important; border-color: #a7bac5; background-color: #637485 !important; }
 
 .contactContainer .row { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; margin: 0; }
 

@@ -24,9 +24,19 @@
             .contentContainer{
                 margin-left: auto;
             }
-            .technologiesContainer {
-                h1, h4{
-                    text-align: center;
+        }
+        .technologiesContainer {
+            padding: 4% 2%;
+            h1, h4{
+                text-align: center;
+            }
+            .links {
+                div {
+                    width: 8rem;
+                    img {
+                        width: 4rem;
+                        height: 4rem;
+                    }
                 }
             }
         }

@@ -1,3 +1,4 @@
+<img class="background asyncImage" asyncImage="/background/.jpg"></img>
 <div class="contactContainer">
     <h1><%= translation.main.contact.header %></h1>
     <div class="contactsWay">
@@ -6,9 +7,9 @@
                 <i class="material-icons">email</i>
                 <%= translation.main.contact.email.key %>
             </h2>
-            <h2>
-                <a href="mailto: <%= translation.main.contact.email.value %>">
-                    <div class="selectable"><%= translation.main.contact.email.value %></div>
+            <h2 class="selectable">
+                <a href="mailto:<%= translation.main.contact.email.value %>">
+                    <%= translation.main.contact.email.value %>
                 </a>
             </h2>
         </div>
@@ -18,7 +19,9 @@
                 <%= translation.main.contact.phone.key %>
             </h2>
             <h2 class="selectable">
-                <%= translation.main.contact.phone.value %>
+                <a href="tel:<%= translation.main.contact.phone.value %>">
+                    <%= translation.main.contact.phone.value %>
+                </a>
             </h2>
         </div>
     </div>

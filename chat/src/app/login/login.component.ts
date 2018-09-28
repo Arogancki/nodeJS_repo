@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Connection } from '../../providers/Connection'
 
-const WEBSYNC_URL = 'https://v4.websync.fm/websync.ashx'
+const WEBSYNC_URL = 'http://localhost:2000/websync.ashx'
 
 @Component({
   selector: 'app-login',

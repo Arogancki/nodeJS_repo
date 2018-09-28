@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
     if (typeof messages === typeof [])
       this.messages = [...this.messages, ...messages]
     else
-    this.messages.push(messages)
+      this.messages.push(messages)
     
     setTimeout(() => {
       document.getElementById("lastElement").scrollIntoView()

@@ -3,7 +3,60 @@ const path = require('path')
 const technologies = createImageLinks({
     "technologies": [
         {
-            "name": "nodejs",
+            "name": "matlab",
+            "link": "https://www.mathworks.com/products/matlab.html"
+        },
+        {
+            "name": "c++",
+            "link": "https://en.wikipedia.org/wiki/C%2B%2B"
+        },
+        {
+            "name": "java",
+            "link": "https://en.wikipedia.org/wiki/Java_(programming_language)"
+        },
+        {
+            "name": "spring",
+            "link": "https://en.wikipedia.org/wiki/Spring_Framework"
+        },
+        {
+            "name": "c#",
+            "link": "https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/",
+            "img": "/images/technologies/csharp.png"
+        },
+        {
+            "name": "meteor",
+            "link": "https://www.meteor.com/"
+        },
+        {
+            "name": "sails",
+            "link": "https://sailsjs.com/"
+        },
+        {
+            "name": "angular",
+            "link": "https://angularjs.org/"
+        },
+        {
+            "name": "react",
+            "link": "https://reactjs.org/"
+        },
+        {
+            "name": "SQL",
+            "link": "https://en.wikipedia.org/wiki/SQL"
+        },
+        {
+            "name": "mongoDB",
+            "link": "https://www.mongodb.com/"
+        },
+        {
+            "name": "typeScript",
+            "link": "https://www.typescriptlang.org/"
+        },
+        {
+            "name": "bash",
+            "link": "https://www.gnu.org/software/bash/"
+        },
+        {
+            "name": "nodeJS",
             "link": "https://nodejs.org/"
         },
         {
@@ -11,7 +64,7 @@ const technologies = createImageLinks({
             "link": "https://getbootstrap.com/"
         },
         {
-            "name": "css",
+            "name": "CSS",
             "link": "https://www.w3.org/Style/CSS/Overview.en.html"
         },
         {
@@ -19,19 +72,47 @@ const technologies = createImageLinks({
             "link": "https://expressjs.com/"
         },
         {
-            "name": "html",
+            "name": "HTML",
             "link": "https://www.w3.org/html/"
         },
         {
-            "name": "javascript",
+            "name": "javaScript",
             "link": "https://www.javascript.com/"
         },
         {
-            "name": "sass",
+            "name": "SASS",
             "link": "https://sass-lang.com/"
         }
     ],
     "tools": [
+        {
+            "name": "postman",
+            "link": "https://www.getpostman.com/"
+        },
+        {
+            "name": "Visual Studio",
+            "link": "https://visualstudio.microsoft.com/pl/"
+        },
+        {
+            "name": "chrome DevTools",
+            "link": "https://developers.google.com/web/tools/chrome-devtools/"
+        },
+        {
+            "name": "crucible",
+            "link": "https://pl.atlassian.com/software/crucible"
+        },
+        {
+            "name": "slack",
+            "link": "https://slack.com"
+        },
+        {
+            "name": "nginx",
+            "link": "https://www.nginx.com/"
+        },
+        {
+            "name": "webpack",
+            "link": "https://webpack.js.org/"
+        },
         {
             "name": "git",
             "link": "https://git-scm.com/"
@@ -67,6 +148,18 @@ const technologies = createImageLinks({
     ],
     "skils": [
         {
+            "name": "agile methodology",
+            "link": "http://agilemanifesto.org/"
+        },
+        {
+           "name": "machine learning",
+           "link":  "https://en.wikipedia.org/wiki/Machine_learning"
+        },
+        {
+            "name": "design patterns",
+            "link": "https://refactoring.guru/design-patterns"
+        },
+        {
             "name": "object oriented programing",
             "link": "https://en.wikipedia.org/wiki/Object-oriented_programming"
         },
@@ -86,13 +179,23 @@ const technologies = createImageLinks({
         },
         {
             "name": "good grasping ability"
+        },
+        {
+            "name": "performance and scalability optimization"
+        },
+        {
+            "name": "strong decision making"
+        },
+        {
+            "name": "efficient data management" 
         }
+
     ]
 })
 
 function createImageLinks(obj){
     Object.keys(obj).forEach(type=>obj[type].forEach((v, i)=>{
-            v.img = path.join('/', 'images', type, `${v.name}.png`)
+            v.img = v.img || path.join('/', 'images', type, `${v.name.toLowerCase()}.png`)
         }
     ))
     return obj
@@ -111,5 +214,9 @@ Object.defineProperty(technologies, 'icons', {
     },
     enumerable: false 
 })
+
+Object.keys(technologies)
+    .forEach(key=>technologies[key]
+        .sort((e1,e2)=>(e1.name.toLowerCase() > e2.name.toLowerCase())*2-1))
 
 module.exports = Object.freeze(technologies)

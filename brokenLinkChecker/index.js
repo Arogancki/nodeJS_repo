@@ -6,7 +6,6 @@ const blc = require('broken-link-checker')
 const spawn = require('child_process').spawn
 
 let child = null
-let serverAddress = 'http://localhost:4000/'
 
 let options = {
     cacheResponses: true,
@@ -82,7 +81,7 @@ function processExit(status = 0){
     kill(child.pid, null, ()=>process.exit(status))
 }
 
-(function startAndCheck(){
+function startAndCheck(serverAddress){
     child = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'start'])
     child.stdout.on('data', function (data) {
         if (~data.toString().indexOf('Hexo is running')){
@@ -93,4 +92,13 @@ function processExit(status = 0){
         kill(child.pid)
         processExit(2)
     })
-})()
+})
+
+function start(serverAddress){
+	return htmlChecker.enqueue(serverAddress)
+}
+
+module.exports = {
+	startAndCheck: startAndCheck,
+	start: start
+}
