@@ -15,9 +15,8 @@
     <div id="projectsContainerContent">
         <% shuffle(projects).forEach((project, index)=> { %>
             <div class="projectContainer" tags="<%=project.tags.join(';')%>">
-                <img style="z-index: <%=-projects.length + index%>" 
-                class="projectBackground asyncImage" asyncImage="<%=project.img%>"></img>
-                <div>
+                <img style="z-index: <%=index+1%>" class="projectBackground asyncImage" asyncImage="<%=project.img%>"></img>
+                <div style="z-index: <%=index+2%>">
                     <h1><%=translation.main.projects[project.title] || project.title%></h1>
                     <div class="description">
                         <div>
@@ -51,7 +50,7 @@
     let showTagsContext = {}
     function showTags(tag){
         showTagsContext.hidden = showTagsContext.hidden || []
-        showTagsContext.hidden.forEach(e=>e.style.display='block')
+        showTagsContext.hidden.forEach(e=>e.style.display='flex')
         if (showTagsContext.last === tag){
             document.getElementById(`${tag}Tag`).checked = false
             showTagsContext.last = null

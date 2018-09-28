@@ -17,8 +17,7 @@ module.exports = (passport)=>{
     .map(v=>router.use(v.path, v.router(passport)))
     router.get('/', (req, res)=>{
         if (isLogged(req)){
-            redirect(req, res, '/app');
-            return
+            return redirect(req, res, '/app');
         }
         redirect(req, res, '/signIn');
     });

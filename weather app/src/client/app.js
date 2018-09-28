@@ -63,7 +63,7 @@ input:hover{
 
 		<div class='row'>
 			<div class='item'>Temperature</div>
-			<div class='item'>${data.main.temp - 273.15}&#8451</div>
+			<div class='item'>${(data.main.temp - 273.15).toFixed(2)}&#8451</div>
 		</div>
 
 		<div class='row'>

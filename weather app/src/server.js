@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
     send(req, res, 500, 
         process.env.ENV === 'dev' 
-        ? err.message 
+        ? err.stack 
         : undefined
     );
 });

@@ -36,9 +36,9 @@ module.exports=(passport)=>{
         next();
     })
     router.get('/', async function (req, res) {
-        if (req.user.cities.length){
+        if (req.user.data.length){
             try{
-                let weatherInfo = JSON.parse(await getWeather(req.user.cities[0]));
+                let weatherInfo = JSON.parse(await getWeather(req.user.data[0]));
                 req.flash('background', weatherInfo.weather[0].description);
                 send(req, res, 200, html(app(weatherInfo, req.flash('appMessage')||"")));
             }
@@ -57,7 +57,7 @@ module.exports=(passport)=>{
             return;
         }
         let user = req.user;
-        user.cities = [ req.body.city, ...user.cities.slice(0, 9)];
+        user.data = [ req.body.city, ...user.data.slice(0, 9)];
         try{
             await user.save();
         }

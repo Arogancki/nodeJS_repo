@@ -13,10 +13,12 @@ let users = new mongoose.Schema({
     }]
 });
 
-users.methods.generateHash = (password) =>
-    bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+users.methods.generateHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+}
 
-users.methods.validPassword = (password) =>
-    bcrypt.compareSync(password, this.local.password)
+users.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.password)
+}
 
 module.exports = mongoose.model('users', users)

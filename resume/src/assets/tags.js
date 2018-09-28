@@ -1,19 +1,29 @@
 const tags = sort({
     javaScript: "javaScript",
-    //java: "java",
-    cSharp: "c#",
+    java: "java",
+    cSharp: "cSharp",
     nodeJs: "nodeJS",
     meteor: "meteor",
     sails: "sails",
     bootstrap: "bootstrap",
     sass: "sass",
-    //oop: "object oriented programing",
+    oop: "object oriented programing",
     react: "react",
     angular: "angular",
     mongodb: "mongoDB",
     html: "HTML",
     css: "CSS",
-    npm: "npm"
+    npm: "npm",
+    express: "express",
+    typeScript: "typeScript",
+    //matlab: "matlab",
+    algorithms: "algorithms",
+    openGl: "openGL",
+    cpp: "C++",
+    //c: "c",
+    bash: "bash",
+    spring: "spring",
+    networking: "networking"
 })
 
 function sort(obj){

@@ -46,6 +46,8 @@ module.exports = function(passport) {
     }, async function(req, username, password, done) {
         try{
             let user = await users.findOne({'username': username});
+            if (!user)
+                throw new Error('Unauthenticated')
             if (user.validPassword(password)) {
                 return done(null, user);
             }

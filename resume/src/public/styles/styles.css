@@ -82,7 +82,7 @@ header nav .socialMediaLink { max-width: 2.5rem; height: auto; border-radius: 50
 
 header nav .socialMediaLink:hover { -webkit-transform: rotate(5deg) scale(1.2); transform: rotate(5deg) scale(1.2); }
 
-.background { top: 0; left: 0; z-index: -10; background-size: cover; min-width: 100%; min-height: 100%; position: fixed; }
+.background { top: 0; left: 0; z-index: -10; background-size: cover; min-width: 100%; min-height: 100%; position: fixed; display: block; }
 
 main { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; display: -webkit-box; display: -ms-flexbox; display: flex; overflow: auto; }
 
@@ -288,7 +288,7 @@ main .projectsContainer div .projectContainer { border-bottom: 4px solid #637485
 
 main .projectsContainer div .projectContainer:hover .description { -webkit-transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms; transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms; min-height: 250px; max-height: 1000px; opacity: 1; }
 
-main .projectsContainer div .projectContainer .projectBackground { top: 0; left: 0; background-size: cover; min-width: 100%; min-height: 100%; position: absolute; -webkit-filter: brightness(30%); filter: brightness(30%); }
+main .projectsContainer div .projectContainer .projectBackground { top: 0; left: 0; background-size: cover; min-width: 100%; min-height: 100%; position: absolute; display: block; -webkit-filter: brightness(30%); filter: brightness(30%); background-color: white; }
 
 main .projectsContainer div .projectContainer div { min-height: 200px; padding: 2rem; }
 
@@ -314,7 +314,7 @@ main .projectsContainer span { display: block; text-align: center; margin-top: a
 
 main .projectsContainer span a { font-size: 1rem; }
 
-main .projectsContainer span a img { max-width: 1.5vmax; height: auto; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; border-radius: 50%; }
+main .projectsContainer span a img { max-width: 1.2rem; height: auto; -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; border-radius: 50%; }
 
 main .projectsContainer span a:hover { color: #cfe2ff; }
 
@@ -364,7 +364,7 @@ footer hr { margin: 2px 10%; }
 
 footer div { width: 100%; text-align: center; }
 
-footer img { max-width: 1.5vmax; height: auto; border-radius: 50%; margin: 2px; }
+footer img { max-width: 1.2rem; height: auto; border-radius: 50%; margin: 2px; }
 
 footer .githubLinkContainer .githubLink { -webkit-transition: -webkit-transform .4s; transition: -webkit-transform .4s; transition: transform .4s; transition: transform .4s, -webkit-transform .4s; }
 
@@ -390,6 +390,7 @@ footer .funny a { margin: 0 0.1rem; }
   main .aboutContainer .imageSlider { z-index: -1; position: absolute; width: 100%; height: 100%; border: 0; border-radius: 0; margin: 0; }
   main .aboutContainer .imageSlider .image { max-width: unset; max-height: unset; height: unset; width: unset; -webkit-filter: brightness(40%); filter: brightness(40%); }
   main .aboutContainer .contentContainer { margin-left: auto; }
+  main .projectsContainer ul li { margin: 0.1rem; }
   main .technologiesContainer { padding: 4% 2%; }
   main .technologiesContainer h1, main .technologiesContainer h4 { text-align: center; }
   main .technologiesContainer .links div { width: 8rem; }
