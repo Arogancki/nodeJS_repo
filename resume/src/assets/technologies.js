@@ -187,7 +187,7 @@ const technologies = createImageLinks({
             "name": "strong decision making"
         },
         {
-            "name": "efficient data management" 
+            "name": "efficient data management"
         }
 
     ]

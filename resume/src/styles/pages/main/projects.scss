@@ -29,10 +29,16 @@
             cursor: pointer;
         }
     }
+    //.projectContainerContent
     div {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
         .projectContainer {
+            height: fit-content;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid $backgroundColorDarker;
             &:hover{
                 .description {
                     transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms;
@@ -40,29 +46,35 @@
                     max-height: 1000px;
                     opacity: 1;
                 }
+                .projectBackground {
+                    filter: brightness(40%) blur(1px);
+                }
             }
-            border-bottom: 4px solid $backgroundColorDarker;
-            position: relative;
-            overflow: hidden;
             .projectBackground {
+                border-top: 4px solid $backgroundColorDarker;
+                transition: filter 500ms linear;
                 top: 0;
                 left: 0;
-                background-size:cover;
+                background-size: cover;
                 min-width: 100%;
                 min-height: 100%;
                 position: absolute;
                 display: block;
-                filter: brightness(30%);
+                filter: brightness(30%) blur(4px);
                 background-color: white;
             }
             div{
                 min-height: 200px;
-                padding: 2rem;
+                padding: 1.5rem;
                 h1 {
                     width: fit-content;
                     padding-right: 1rem;
-                    font-size: 2.5rem;
+                    font-size: 1.5rem;
                     border-bottom: 1px solid;
+                    height: fit-content;
+                    &:first-letter {
+                        text-transform: capitalize;
+                    }
                 }
                 a {
                     display: block;

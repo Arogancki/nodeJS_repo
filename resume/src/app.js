@@ -5,6 +5,7 @@ const express = require('express')
 
     , middlewares = require('./middlewares')
     , router = require('./router')
+    , brokenLinkChecker = require('./helpers/brokenLinkChecker')
 
     , app = express()
 
@@ -20,6 +21,14 @@ module.exports = async ()=>{
 
     return new Promise(res=>{
         const server = http.createServer(app)
-        .listen(app.get('port'), "127.0.0.1", ()=>res({server, app}))
+        .listen(app.get('port'), "127.0.0.1", ()=>{
+            const address = server.address()
+            return res({
+                server, 
+                address, 
+                app, 
+                checkBrokenLinks: brokenLinkChecker(`http://${address.address}:${address.port}`)
+            })
+        })
     })
 }

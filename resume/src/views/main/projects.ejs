@@ -1,4 +1,4 @@
-<img style="z-index: <%=-projects.length-1%>"class="background asyncImage" asyncImage="/background/.jpg"></img>
+<img style="z-index: <%=-projects.length-1%>" class="background asyncImage" asyncImage="/background/.jpg"></img>
 <div class="projectsContainer">
     <ul>
         <% Object.keys(tags).forEach(tagKey=> { %>
@@ -15,7 +15,7 @@
     <div id="projectsContainerContent">
         <% shuffle(projects).forEach((project, index)=> { %>
             <div class="projectContainer" tags="<%=project.tags.join(';')%>">
-                <img style="z-index: <%=index+1%>" class="projectBackground asyncImage" asyncImage="<%=project.img%>"></img>
+                <img style="z-index: <%=index+1%>" class="projectBackground" src="<%=project.img%>"></img>
                 <div style="z-index: <%=index+2%>">
                     <h1><%=translation.main.projects[project.title] || project.title%></h1>
                     <div class="description">

@@ -15,18 +15,15 @@
 
     <body data-gr-c-s-loaded="true">
         <header><%- include('partials/header') -%></header>
-        <div id="layoutSpinner" style="margin: auto; align-self: center; background-color: white; 
+        <div id="layoutSpinner" style="margin: auto;">
+            <img class="background asyncImage" asyncImage="/background/.jpg"></img>
+            <div style="margin: auto; align-self: center; background-color: white; 
                 width: 120px; height: 120px" class="spinner"></div>
+        </div>
          <main style="display: none" id="main">
             <%- include(body) -%>
         </main>
         <footer><%- include('partials/footer') -%></footer>
         <%- include('helpers/index') -%>
-        <script>
-            window.onload = () => {
-                document.getElementById('main').style.display = 'flex'
-                document.getElementById('layoutSpinner').style.display = 'none'
-            }
-        </script>
     </body>
 </html>

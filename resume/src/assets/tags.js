@@ -16,14 +16,15 @@ const tags = sort({
     npm: "npm",
     express: "express",
     typeScript: "typeScript",
-    //matlab: "matlab",
+    matlab: "matlab",
     algorithms: "algorithms",
     openGl: "openGL",
     cpp: "C++",
-    //c: "c",
+    c: "c",
     bash: "bash",
     spring: "spring",
-    networking: "networking"
+    networking: "networking",
+    //machineLearning: "machine learning"
 })
 
 function sort(obj){

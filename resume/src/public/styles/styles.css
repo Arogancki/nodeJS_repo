@@ -22,7 +22,7 @@ main .contactContainer .contactsWay div .selectable { -webkit-user-select: text;
     transform: scale(1);
     opacity: 0; } }
 
-body { color: #a7bac5; min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; font-family: Raleway, sans-serif; font-size: 1rem; }
+body { color: #a7bac5; min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; font-family: Raleway, sans-serif; font-size: 1rem; overflow: auto; }
 
 h1 { font-size: 2rem; }
 
@@ -282,17 +282,21 @@ main .projectsContainer ul input:hover + label { color: #cfe2ff; }
 
 main .projectsContainer ul label { margin: auto; cursor: pointer; }
 
-main .projectsContainer div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+main .projectsContainer div { display: -ms-grid; display: grid; -ms-grid-columns: (minmax(400px, 1fr))[auto-fill]; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
 
-main .projectsContainer div .projectContainer { border-bottom: 4px solid #637485; position: relative; overflow: hidden; }
+main .projectsContainer div .projectContainer { height: -webkit-fit-content; height: -moz-fit-content; height: fit-content; margin-top: 60px; position: relative; overflow: hidden; border-bottom: 4px solid #637485; }
 
 main .projectsContainer div .projectContainer:hover .description { -webkit-transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms; transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms; min-height: 250px; max-height: 1000px; opacity: 1; }
 
-main .projectsContainer div .projectContainer .projectBackground { top: 0; left: 0; background-size: cover; min-width: 100%; min-height: 100%; position: absolute; display: block; -webkit-filter: brightness(30%); filter: brightness(30%); background-color: white; }
+main .projectsContainer div .projectContainer:hover .projectBackground { -webkit-filter: brightness(40%) blur(1px); filter: brightness(40%) blur(1px); }
 
-main .projectsContainer div .projectContainer div { min-height: 200px; padding: 2rem; }
+main .projectsContainer div .projectContainer .projectBackground { border-top: 4px solid #637485; -webkit-transition: -webkit-filter 500ms linear; transition: -webkit-filter 500ms linear; transition: filter 500ms linear; transition: filter 500ms linear, -webkit-filter 500ms linear; top: 0; left: 0; background-size: cover; min-width: 100%; min-height: 100%; position: absolute; display: block; -webkit-filter: brightness(30%) blur(4px); filter: brightness(30%) blur(4px); background-color: white; }
 
-main .projectsContainer div .projectContainer div h1 { width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; padding-right: 1rem; font-size: 2.5rem; border-bottom: 1px solid; }
+main .projectsContainer div .projectContainer div { min-height: 200px; padding: 1.5rem; }
+
+main .projectsContainer div .projectContainer div h1 { width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; padding-right: 1rem; font-size: 1.5rem; border-bottom: 1px solid; height: -webkit-fit-content; height: -moz-fit-content; height: fit-content; }
+
+main .projectsContainer div .projectContainer div h1:first-letter { text-transform: capitalize; }
 
 main .projectsContainer div .projectContainer div a { display: block; margin-top: auto; font-size: 1.2rem; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; }
 
@@ -376,7 +380,7 @@ footer .collapseButton:hover { color: #cfe2ff; }
 
 footer .funny a { margin: 0 0.1rem; }
 
-.error { background-color: white; position: relative; text-align: center; width: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.error { position: relative; text-align: center; width: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
 .error .code { z-index: 2; font-size: 15vmax; }
 

@@ -17,11 +17,6 @@ const projects = createImageLinks([{
     github: "https://github.com/Arogancki/nodeJS_repo/tree/master/Task%20manager",
     tags: [tags.javaScript, tags.nodeJs, tags.express, tags.angular, tags.react, tags.html, tags.css, tags.mongodb]
 }, {
-    title: "Broken link checker",
-    desc: "sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
-    github: "https://github.com/Arogancki/nodeJS_repo/tree/master/brokenLinkChecker",
-    tags: [tags.javaScript, tags.nodeJs]
-}, {
     title: "WebSync chat",
     desc: "sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
     github: "https://github.com/Arogancki/nodeJS_repo/tree/master/chat",
@@ -164,7 +159,7 @@ const projects = createImageLinks([{
 }, {
     title: "Dijkstra vs Astar",
     desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
-    github: "https://github.com/Arogancki/data-structures-and-algorithm/blob/master/Dijkstra%20vs%20Astar.cpp",
+    github: "https://github.com/Aroganckii/data-structures-and-algorithm/blob/master/Dijkstra%20vs%20Astar.cpp",
     tags: [tags.cpp, tags.algorithms]
 }, {
     title: "BST tree (DSW algorithm)",
@@ -176,6 +171,61 @@ const projects = createImageLinks([{
     desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
     github: "https://github.com/Arogancki/data-structures-and-algorithm/blob/master/AVL.cpp",
     tags: [tags.cpp, tags.algorithms]
+}, {
+    title: "OpenMP projects",
+    desc: "open mp projects game of life matrix multiplication fractal generation",
+    github: "https://github.com/Arogancki/OpenMP",
+    tags: [tags.c, tags.cpp, tags.algorithms]
+}, {
+    title: "Game of Life",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/all-c/tree/master/Game%20of%20Life",
+    tags: [tags.cpp, tags.oop, tags.algorithms]
+}, {
+    title: "Labirynth console game",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/all-c/tree/master/Dynamic%20Random%20Labirynth%20build",
+    tags: [tags.cpp, tags.oop, tags.algorithms]
+}, {
+    title: "Hamming code",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/all-c/blob/master/hamming%20code%20(bit%20verison%207%204%20)/ConsoleApplication3.cpp",
+    tags: [tags.c, tags.algorithms]
+}, {
+    title: "Linux socket communicator",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/all-c/tree/master/linux%20programing/communicator",
+    tags: [tags.c, tags.networking]
+}, {
+    title: "Linux brute force",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/all-c/tree/master/linux%20programing/password%20hacking",
+    tags: [tags.c, tags.networking]
+}, {
+    title: "Static file server",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/all-c/tree/master/advanced%20c%23/2/Server",
+    tags: [tags.cSharp, tags.networking]
+}, {
+    title: "Face recognition matlab",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/matlab/blob/master/face%20recognition/Untitled.m",
+    tags: [tags.matlab, tags.algorithms]
+}, {
+    title: "Genetic algorithm",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/matlab/tree/master/genetic%20algorithm",
+    tags: [tags.matlab, tags.algorithms]
+}, {
+    title: "Image processing - edge detection",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/matlab/tree/master/image%20processing/Edge%20detection",
+    tags: [tags.matlab, tags.algorithms]
+}, {
+    title: "Image processing - circle detection",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/matlab/tree/master/image%20processing/circle%20detection",
+    tags: [tags.matlab, tags.algorithms]
 }])
 
 function createImageLinks(obj){
