@@ -4,7 +4,9 @@
       item.classList.remove('asyncImage')
       const img = new Image()
       img.src = item.attributes.asyncImage.value
-      item.src = img.src.replace('.', '-min.')
+      const split = img.src.split('.')
+      split[split.length-2] += '-min'
+      item.src = split.join('.')
       img.onload = () => item.src = img.src
     })
   })()

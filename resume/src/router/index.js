@@ -10,9 +10,10 @@ module.exports = (app) => {
     router.get('/', (req, res) => render(req, res, 'main/index'))
 
     fs.readdirSync(__dirname)
-        .filter(file=>file !== "index.js")
-        .map(file=>router.use(`/${path.parse(file).name}`, 
-            require(path.join(__dirname, file))(app)))
+    .filter(file=>file !== "index.js")
+    .map(file=>
+        router.use(`/${path.parse(file).name}`, require(path.join(__dirname, file))(app))
+    )
            
     router.get('/404', (req, res) => render(req, res, 'errors/404'))
     router.get('/429', (req, res) => render(req, res, 'errors/429', {remainingTime: 10}))

@@ -22,7 +22,7 @@ main .contactContainer .contactsWay div .selectable { -webkit-user-select: text;
     transform: scale(1);
     opacity: 0; } }
 
-body { color: #a7bac5; min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; font-family: Raleway, sans-serif; font-size: 1rem; overflow: auto; }
+body { color: #a7bac5; min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; font-family: Raleway, sans-serif; font-size: 1rem; }
 
 h1 { font-size: 2rem; }
 
@@ -170,17 +170,31 @@ main .contactContainer form h2 { margin: 2rem 0; font-size: 1.5rem; }
 
 main .contactContainer form .formAction { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
-main .contactContainer form input, main .contactContainer form textarea { color: #a7bac5; background-color: #6d7e8f !important; border-color: #a7bac5 !important; }
+main .contactContainer form input { color: #a7bac5; background-color: #6d7e8f !important; border-color: #a7bac5 !important; background-color: red; }
 
-main .contactContainer form input:focus, main .contactContainer form textarea:focus { border-color: #cfe2ff !important; color: #cfe2ff; }
+main .contactContainer form input:focus { border-color: #cfe2ff !important; color: #cfe2ff; }
 
-main .contactContainer form input::-webkit-input-placeholder, main .contactContainer form textarea::-webkit-input-placeholder { color: #a7bac5; }
+main .contactContainer form input::-webkit-input-placeholder { color: #a7bac5; }
 
-main .contactContainer form input:-ms-input-placeholder, main .contactContainer form textarea:-ms-input-placeholder { color: #a7bac5; }
+main .contactContainer form input:-ms-input-placeholder { color: #a7bac5; }
 
-main .contactContainer form input::-ms-input-placeholder, main .contactContainer form textarea::-ms-input-placeholder { color: #a7bac5; }
+main .contactContainer form input::-ms-input-placeholder { color: #a7bac5; }
 
-main .contactContainer form input::placeholder, main .contactContainer form textarea::placeholder { color: #a7bac5; }
+main .contactContainer form input::placeholder { color: #a7bac5; }
+
+main .contactContainer form textarea { color: #a7bac5; background-color: #6d7e8f !important; border-color: #a7bac5 !important; background-color: red; }
+
+main .contactContainer form textarea:focus { border-color: #cfe2ff !important; color: #cfe2ff; }
+
+main .contactContainer form textarea::-webkit-input-placeholder { color: #a7bac5; }
+
+main .contactContainer form textarea:-ms-input-placeholder { color: #a7bac5; }
+
+main .contactContainer form textarea::-ms-input-placeholder { color: #a7bac5; }
+
+main .contactContainer form textarea::placeholder { color: #a7bac5; }
+
+main .contactContainer form textarea { background-color: red; border-radius: 0.25rem; width: 100%; padding: 0.375rem 0.75rem; }
 
 main .contactContainer form button { background-color: #6d7e8f !important; }
 

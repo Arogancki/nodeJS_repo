@@ -1,7 +1,6 @@
 const express = require('express')
     , bodyParser = require('body-parser')
     , cookieParser = require('cookie-parser')
-    , apicache = require('apicache')
 
     , helmet = require('./helmet')
     , session = require('./session')
@@ -23,7 +22,7 @@ module.exports = async (app) => {
     app.use(geolang)
     app.use(i18n)
     app.use(logger)
-    if (process.env.CACHE === 'true')
-        app.use(apicache.middleware('5 minutes'))
-    app.use(express.static(app.public))
+    app.use(express.static(app.public, {
+        maxage: '1h'
+    }))
 }

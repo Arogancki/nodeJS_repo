@@ -12,7 +12,7 @@ module.exports = {
     }),
     emailLimit: new RateLimit({
         windowMs: 5*60*1000, 
-        max: 3,
+        max: 10,
         delayMs: 0
     })
 }

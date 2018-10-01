@@ -12,7 +12,6 @@
   "author": "Artur Ziemba",
   "license": "ISC",
   "dependencies": {
-    "apicache": "^1.2.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "broken-link-checker": "^0.7.8",

@@ -29,15 +29,15 @@
         <h2><%= translation.main.contact.form.header %></h2>
         <div class="form-group">
             <label for="subject"><%= translation.main.contact.form.subject.key %>: </label>
-            <input type="text" class="form-control is-valid" id="subject" placeholder="<%= translation.main.contact.form.subject.placeholder %>" required>
+            <input type="text" class="form-control" id="subject" placeholder="<%= translation.main.contact.form.subject.placeholder %>" required>
         </div>
         <div class="form-group">
             <label for="message"><%= translation.main.contact.form.message.key %>: </label>
-            <textarea type="text" class="form-control is-valid" rows="10" id="message" placeholder="<%= translation.main.contact.form.message.placeholder %>" required></textarea>
+            <textarea type="text" class="" rows="10" id="message" placeholder="<%= translation.main.contact.form.message.placeholder %>" required></textarea>
         </div>
         <div class="form-group">
             <label for="contact"><%= translation.main.contact.form.contact.key %>: </label>
-            <input atype="text" class="form-control is-valid" id="contact" placeholder="<%= translation.main.contact.form.contact.placeholder %>" required>
+            <input type="text" class="form-control" id="contact" placeholder="<%= translation.main.contact.form.contact.placeholder %>" required>
         </div>
         <div class="formAction">
             <button style="color: inherit;" id="formButton" class="alert btn btn-primary bg-dark" type="submit"><%= translation.main.contact.form.button %></button>
@@ -69,6 +69,9 @@
         }).then(res=>{
             if (!res.ok) throw res
             formError.style.display = "none"
+            document.getElementById('subject').value = ""
+            document.getElementById('message').value = ""
+            document.getElementById('contact').value = ""
             formButton.innerHTML = "<%= translation.main.contact.form.confirmation %>"
         }).catch(async res=>{
             console.error(res)
