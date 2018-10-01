@@ -21,7 +21,7 @@ module.exports = async ()=>{
 
     return new Promise(res=>{
         const server = http.createServer(app)
-        .listen(app.get('port'), "127.0.0.1", ()=>{
+        .listen(app.get('port'), ()=>{
             const address = server.address()
             return res({
                 server, 
