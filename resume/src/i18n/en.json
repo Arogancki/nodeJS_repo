@@ -66,7 +66,7 @@
                     "placeholder": "subject",
                     "invalid": "Field has to have 2 to 200 characters"
                 },
-                "message": {
+                "text": {
                     "key": "Message text",
                     "placeholder": "your message",
                     "invalid": "Field has to have 2 to 5000 characters"

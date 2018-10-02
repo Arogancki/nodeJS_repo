@@ -18,7 +18,7 @@ module.exports = (app) => {
     router.post('/', emailLimit, async (req, res)=>{
         const validation = Joi.validate(req.body, emailSchema)
         if (validation.error){
-            return res.status(422).json(validation.error.details[0].message)
+            return res.status(422).json(validation.error.details[0].context.key)
         }
         const { subject, text, contact } = req.body
         return sendEmail(subject, text, contact)

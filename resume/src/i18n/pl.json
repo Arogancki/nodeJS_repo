@@ -22,7 +22,7 @@
     },
     "main": {
         "index": {
-            "header": "CV dewelopera"
+            "header": "CV deweloperskie"
         },
         "about": {
             "details": {
@@ -67,7 +67,7 @@
                     "placeholder": "temat",
                     "invalid": "Pole musi zawierać od 2 do 100 znaków"
                 },
-                "message": {
+                "text": {
                     "key": "Treść wiadomości",
                     "placeholder": "twoja wiadomość",
                     "invalid": "Pole musi zawierać od 2 do 5000 znaków"

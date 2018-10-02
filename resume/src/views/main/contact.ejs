@@ -32,8 +32,8 @@
             <input type="text" class="form-control" id="subject" placeholder="<%= translation.main.contact.form.subject.placeholder %>" required>
         </div>
         <div class="form-group">
-            <label for="message"><%= translation.main.contact.form.message.key %>: </label>
-            <textarea type="text" class="" rows="10" id="message" placeholder="<%= translation.main.contact.form.message.placeholder %>" required></textarea>
+            <label for="text"><%= translation.main.contact.form.text.key %>: </label>
+            <textarea type="text" rows="10" id="text" placeholder="<%= translation.main.contact.form.text.placeholder %>" required></textarea>
         </div>
         <div class="form-group">
             <label for="contact"><%= translation.main.contact.form.contact.key %>: </label>
@@ -63,7 +63,7 @@
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 subject: document.getElementById('subject').value,
-                text: document.getElementById('message').value,
+                text: document.getElementById('text').value,
                 contact: document.getElementById('contact').value,
             })
         }).then(res=>{
@@ -78,6 +78,11 @@
             let message = res.statusText || "Service Unavailable"
             try {
                 message  = await res.json()
+                message = { 
+                    <% Object.keys(translation.main.contact.form).forEach(k=> { %>
+                        <%= k %>: "<%= translation.main.contact.form[k].invalid %>",
+                    <% }); %>
+                }[message] || message
             }
             catch(e){}
             formButton.innerHTML = formButtonText
