@@ -1,0 +1,79 @@
+<script>
+// global variables
+var socket = null
+var pos=null
+var readyFired=false
+var map=null
+
+function login(){
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    if (!email || !password)
+        return 
+    return connect(email, password)
+}
+
+function signUp(){
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    const password2 = document.getElementById('password2').value
+    if (!email || !password || !password2)
+        return 
+
+    fetch('/sign-up', {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email, password, password2})
+    })
+    .then(res=>{
+        if (res.status===200){
+            return connect(email, password) 
+        } 
+        return res.json().then(e=>alert(e.message || 'Unauthorised'))
+    })
+    return
+}
+
+function connect(email, password){
+    socket = io.connect('/', {
+        reconnectionAttempts: 3
+    })
+    socket.on('connect', function(){
+        socket.emit('authentication', {email, password})
+        socket.on('authenticated', ()=>{
+            console.log('Socket ready')
+            document.getElementById('auth').style.display = 'none'
+            document.getElementById('app').style.display = ''
+            !readyFired && ready()
+            socket.emit('list')
+        })
+        socket.on('put-done', addLocation)
+        socket.on('unsnooze-done', addLocation)
+        socket.on('snooze-done', addLocation)
+        socket.on('del-done', deleteFromMap)
+        socket.on('list-done', locs=>(locs||{}).locations.forEach(addLocation))
+        socket.on('near', foundNear)
+
+
+        socket.on('err', err=>{
+            if (err.event === 'authenticate'){
+                document.getElementById('auth').style.display = ''
+                document.getElementById('app').style.display = 'none'
+            }
+            alert(`error during ${err.event}: ${err.message}`)
+            //location.reload()
+        })
+    })
+}
+
+function move(){
+    const lat=prompt('lat')
+    const lng=prompt('lng')
+    locationfound2({latlng: {lat, lng}})    
+    console.log('ustawiono recznie')
+    pos.latlng
+}
+</script>
