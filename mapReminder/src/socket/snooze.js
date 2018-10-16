@@ -3,7 +3,7 @@ const models = require('../models')
 
     , snoozeSchema = {
         id: Joi.required(),
-        time: Joi.string().min(5000).required()
+        time: Joi.number().min(5000).max((1000*60*60*24)+1).required()
     }
 
 module.exports = async (data, socket) => {
@@ -14,7 +14,7 @@ module.exports = async (data, socket) => {
 
     return models.location.snooze(data.id, data.time, socket.client.user.email, (err, loc)=>{
         !err
-        ? socket.emit('unsnooze-done', loc)
-        : socket.emit('err', {event: "unsnooze", message: err.message})
+        ? socket.myBroadcast('unsnooze-done', {id: loc.id})
+        : socket.myBroadcast('err', {event: "unsnooze", message: err.message})
     })
 }

@@ -14,10 +14,11 @@ module.exports = async (data, socket)=>{
     }
 
     try{
-        const user = await models.user.get(data.email)
+        const user = socket.client.user || await models.user.get(data.email)
         if (!await bcrypt.compare(data.password, user.password)){
             throw new Error('Invalid email or password')
         }
+        socket.client.user=data
         return user
     }
     catch(e){

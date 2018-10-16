@@ -19,6 +19,7 @@ const deleteLocation = (id, email) =>
         if (location.userEmail!==email)
             return Promise.reject({message: 'Not found'})
         return user.deleteLocation(location.userEmail, id)
+        .then(_=>location)
     })
 
 const deleteHistory = (id, email) => 
@@ -27,8 +28,9 @@ const deleteHistory = (id, email) =>
         if (location.userEmail!==email)
             return Promise.reject({message: 'Not found'})
         return user.deleteHistory(location.userEmail, id)
+        .then(location.deleteLocation(id))
+        .then(_=>location)
     })
-    .then(location.deleteLocation(id))
 
 const putLocation=(name, description, latitude, longitude, tolerance, userEmail)=>
     location.putLocation(name, description, latitude, longitude, tolerance, userEmail)
@@ -50,7 +52,7 @@ const getLocations = email=>user.getLocationIds(email)
             }
             ids.forEach(v => locations[v.id] 
                 ? locs.locations.push(v) 
-                : locs.locs.locations.push(v).push(v)
+                : locs.history.push(v)
             )
             return locs
         })
