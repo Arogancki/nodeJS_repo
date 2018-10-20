@@ -1,0 +1,24 @@
+<div id='auth'>
+    <label for="email"><b>Username</b></label>
+    <input id="email" type="text" placeholder="email" name="email" required>
+
+    <label for="password"><b>Password</b></label>
+    <input id="password" type="password" placeholder="password" name="password" required>
+
+    <label for="password2"><b>Confirm password (sign-up only)</b></label>
+    <input id="password2" type="password" placeholder="password" name="password2" required>
+        
+    <button onclick="return login()">Login</button>
+    <button onclick="return signUp()">Sign up</button>
+</div>
+
+<div id='spinner' style="display: none; height: 100%; width: 100%; margin: auto;">loading</div>
+
+<div id="app" style="display: none;height:100%; width:100%">
+    
+    <div id="map" style="height:100%; width:100%;"></div>
+    
+    <button onclick="return move()">move</button>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>

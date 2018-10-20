@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+	"serve": "http-server ./dist/chat -p 5556",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build_prod": "npm run build && browserify -s main dist/chat/main.js > dist/chat/bundle.js && npm run minify",
+    "minify": "uglifyjs dist/chat/bundle.js --screw-ie8 --compress --mangle --output dist/chat/bundle.min.js"
   },
   "private": true,
   "dependencies": {
@@ -20,8 +23,12 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "browserify": "^16.2.3",
     "core-js": "^2.5.4",
+    "http-server": "^0.11.1",
+    "minify": "^3.0.5",
     "rxjs": "^6.0.0",
+    "uglifyjs": "^2.4.11",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

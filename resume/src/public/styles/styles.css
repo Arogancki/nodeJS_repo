@@ -160,27 +160,27 @@ main .contactContainer .contactsWay { display: table; border-collapse: separate;
 
 main .contactContainer .contactsWay div { display: table-row; }
 
-main .contactContainer .contactsWay div h2 { width: 50%; display: table-cell; vertical-align: middle; }
+main .contactContainer .contactsWay div h2 { width: 50%; display: table-cell; vertical-align: middle; font-size: 1.2rem; }
 
 main .contactContainer form { padding: 0 10%; }
 
 main .contactContainer form label { font-size: 1.2rem; }
 
-main .contactContainer form h2 { margin: 2rem 0; font-size: 1.2rem; }
+main .contactContainer form h2 { margin: 2rem 0; font-size: 1.6rem; }
 
 main .contactContainer form .formAction { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
-main .contactContainer form input { color: #a7bac5; background-color: #6d7e8f !important; border-color: #a7bac5 !important; }
+main .contactContainer form input, main .contactContainer form textarea { color: #a7bac5; background-color: #6d7e8f !important; border-color: #a7bac5 !important; }
 
-main .contactContainer form input:focus { border-color: #cfe2ff !important; color: #cfe2ff; }
+main .contactContainer form input:focus, main .contactContainer form textarea:focus { border-color: #cfe2ff !important; color: #cfe2ff; }
 
-main .contactContainer form input::-webkit-input-placeholder { color: #a7bac5; }
+main .contactContainer form input::-webkit-input-placeholder, main .contactContainer form textarea::-webkit-input-placeholder { color: #a7bac5; }
 
-main .contactContainer form input:-ms-input-placeholder { color: #a7bac5; }
+main .contactContainer form input:-ms-input-placeholder, main .contactContainer form textarea:-ms-input-placeholder { color: #a7bac5; }
 
-main .contactContainer form input::-ms-input-placeholder { color: #a7bac5; }
+main .contactContainer form input::-ms-input-placeholder, main .contactContainer form textarea::-ms-input-placeholder { color: #a7bac5; }
 
-main .contactContainer form input::placeholder { color: #a7bac5; }
+main .contactContainer form input::placeholder, main .contactContainer form textarea::placeholder { color: #a7bac5; }
 
 main .contactContainer form textarea { border-radius: 0.25rem; width: 100%; padding: 0.375rem 0.75rem; }
 

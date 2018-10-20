@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit {
   }
 
   update(messages) {
+	if (!messages) return
     if (typeof messages === typeof [])
       this.messages = [...this.messages, ...messages]
     else

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" 
+        src="node_modules/socketcluster-client/socketcluster.js"></script>
+    </head>
+    <body>
+    </body>
+    <script>
+        var options = {
+            port: 3000,
+            hostname: "https://requestbin.fullcontact.com",
+            path: "/15m2j4m1?inspect"
+        };
+
+        var socket = socketCluster.create(options);
+
+        socket.on('connect', function () {
+            console.log('CONNECTED');
+        });
+    </script> 
+</html>

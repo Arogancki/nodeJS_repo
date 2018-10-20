@@ -59,7 +59,7 @@ const projects = createImageLinks([{
 }, {
     title: "Volume of any shape calculator",
     desc: "sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
-    github: "https://github.com/kkolodziejczak/Computational-mathematics",
+    github: "https://github.com/Arogancki/Computational-mathematics",
     tags: [tags.cpp, tags.algorithms, tags.openGl, tags.oop]
 }, {
     title: "bash",
