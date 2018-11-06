@@ -1,18 +1,31 @@
 {
-  "name": "parell-programing",
+  "name": "app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple express app",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "start": "node index.js"
+    "test": "./node_modules/.bin/mocha test --max-old-space-size=8192 --reporter spec -s 0 --no-timeouts",
+    "start": "node --max-old-space-size=8192 index.js"
   },
-  "author": "",
+  "author": "Artur Ziemba",
   "license": "ISC",
   "dependencies": {
-    "cluster": "^0.7.7",
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "4.16.3",
+    "express-session": "^1.15.6",
     "fs-extra": "^7.0.0",
+    "helmet": "^3.12.1",
     "jimp": "^0.5.4",
-    "pngjs": "^3.3.3"
+    "joi": "^13.4.0",
+    "mocha": "^5.2.0",
+    "perf_hooks": "0.0.1",
+    "portfinder": "^1.0.13",
+    "randomcolor": "^0.5.3",
+    "randomstring": "^1.1.5",
+    "supertest": "^3.1.0"
   }
 }

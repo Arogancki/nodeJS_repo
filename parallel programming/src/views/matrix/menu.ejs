@@ -1,0 +1,15 @@
+<ul id="matrixUl">
+    <% Object.keys(matrixes||{}).forEach((v,i)=> { %>
+        <li id="matrix<%=v%>">
+            <h1 class='id' onClick="return deleteMatrix('<%=v%>')">del</h1>
+            <h1 class='id' onClick="return activeMatrix('<%=v%>')"><%=v%></h1>
+            <div id="matrix<%=v%>CheckBox" 
+            class="checkbox" onClick="return checkMatrix('<%=v%>')"></div>
+        </li>
+    <% }) %>
+    <li id="lastLi"><h2 style="width: 120px">Threads: <h2><input value='1' id='threads'></input></li>
+    <li><button onClick="return multiplicate()" 
+    type='button'/><h2>MUL</h2></button></li>
+    <li ><button onClick="return save()" 
+    type='button'/><h2>SAVE</h2></button></li>
+</ul>

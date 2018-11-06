@@ -5,22 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Run mocha",
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\index.js",
-            "args": [
-                "--inspect"
-            ]
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "stopOnEntry": false,
+            "args": ["test/**/*.js", "--no-timeouts"],
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": null
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "test",
-            "program": "${workspaceFolder}\\test.js",
-            "args": [
-                "--inspect"
-            ]
-        }
+            "name": "Launch Program",
+            "program": "${workspaceFolder}\\index.js"
+        },
     ]
 }

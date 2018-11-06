@@ -25,7 +25,7 @@ exports.parallel = async function parallel(config){
 function createThread(pathToScript, data){
     return new Promise(async (res, rej)=>{
         //return res(require(pathToScript)(data))
-        const process = fork('./threads/worker')
+        const process = fork('./src/threads/worker')
         process.send({
             args: data,
             pathToScript: pathToScript

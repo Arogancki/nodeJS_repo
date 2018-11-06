@@ -14,18 +14,13 @@ const m2 = matrix.Create([
 ])
 
 console.log(
-    '\nisEqual', matrix.isEqual(m1, m1) && !matrix.isEqual(m1, m2) ? 'passed' : 'failed', 
-    '\nmultiplicate', matrix.isEqual(matrix.multiplicateMatrixes(m1, m2), matrix.Create([
-        [153799,	247983,	2024654,	81410,	164657],
-        [210733,	2100873,	7227144,	0,	55765],
-        [1168138,	2644928,	13017138,	472804,	1125366]
-    ])) ? 'passed' : 'failed',
+    '\nisEqual', matrix.isEqual(m1, m1) && !matrix.isEqual(m1, m2) ? 'passed' : 'failed',
     '\nsetElement', m1.setElement(0,1,1).get()[1][1]===0 ? 'passed' : 'failed'
 )
 
-matrix.multiplicateParallel(m1.get(), m2.get())
+matrix.multiplicate(m1.get(), m2.get(), 4)
 .then(d=>{
-    console.log('multiplicate parallel', matrix.isEqual(d, matrix.Create([
+    console.log('multiplicate parallel', matrix.isEqual(d.matrix, matrix.Create([
         [153799,	247983,	2024654,	81410,	164657],
         [210733,	2100873,	7227144,	0,	55765],
         [1168138,	2644928,	13017138,	472804,	1125366]

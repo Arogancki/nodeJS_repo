@@ -1,0 +1,14 @@
+<ul id="fractalUl">
+    <% Object.keys(fractals||{}).forEach(v=> { %>
+        <li id="fractal<%=v%>">
+            <h1 class='id' onClick="return deleteFractal('<%=v%>')">del</h1>
+            <h1 class='id' onClick="return activeFractal('<%=v%>')"><%=v%></h1>
+        </li>
+    <% }) %>
+    <li id="lastLi"></li>
+    <li><h2 style="width: 120px">Widht: <h2><input value='400' id='width'></input></li>
+    <li><h2 style="width: 120px">Height: <h2><input value='400' id='height'></input></li>
+    <li><h2 style="width: 120px">Threads: <h2><input value='1' id='threads'></input></li>
+    <li><button onClick="return save()" 
+    type='button'/><h2>Create</h2></button></li>
+</ul>

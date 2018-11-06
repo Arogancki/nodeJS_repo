@@ -1,4 +1,5 @@
 const { join } = require('path')
+    ,{ performance } = require('perf_hooks')
 
     , threads = require('../threads')
     , { create2DArray } = require('../helpers')
@@ -48,26 +49,39 @@ function isEqual(m1, m2){
     return true
 }
 
-function multiplicateMatrixes(m1, m2){
-    return Create(multiplicate(m1.get(), m2.get()))
+async function multiplicateMatrixes(m1, m2, threads){
+    if (threads>1){
+        return multiplicateMatrixesParallel(m1, m2, threads)
+    }
+    const {time, matrix} = await multiplicate(m1.get(), m2.get())
+    return {matrix: Create(matrix), time}
 }
 
-function multiplicate(m1, m2){
-    return multiplicateFun({
+async function multiplicate(m1, m2, threads){
+    threads=1*threads
+    if (threads>1){
+        return multiplicateParallel(m1, m2, threads)
+    }
+    const t0 = performance.now()
+    const matrix = await multiplicateFun({
         m1,
         m2,
         threads: 1,
         id: 0
     })
+    const time = performance.now() - t0
+    return {matrix, time, threads: 1}
 }
 
 async function multiplicateMatrixesParallel(m1, m2, threads){
-    return Create(await multiplicateParallel(m1.get(), m2.get(), threads))
+    const {time, matrix} = await multiplicateParallel(m1.get(), m2.get(), threads)
+    return {matrix: Create(matrix), time}
 } 
 
 async function multiplicateParallel(m1, m2, t){
     if (m1.length < t)
-        Promise.reject(new Error('Too many threads or too small matrix'))
+        t=m1.length
+    const t0 = performance.now()
     return threads.parallel({
         pathToScript: join(__dirname, './multiplicate.js', ),
         data: {
@@ -76,12 +90,17 @@ async function multiplicateParallel(m1, m2, t){
         },
         threads: t
     })
-    .then(array=>array.reduce((a, v)=>[...a, ...v], []))
+    .then(array=>{
+        return {
+            time: performance.now() - t0,
+            matrix: array.reduce((a, v)=>[...a, ...v], []),
+            threads: t
+        }
+    })
 }
 
 exports.isEqual=isEqual
 exports.Create=Create
 exports.multiplicate=multiplicate
-exports.multiplicateParallel=multiplicateParallel
 exports.multiplicateMatrixes=multiplicateMatrixes
-exports.multiplicateMatrixesParallel=multiplicateMatrixesParallel
+exports.create2DArray=create2DArray

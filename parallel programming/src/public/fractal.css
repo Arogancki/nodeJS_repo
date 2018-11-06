@@ -1,0 +1,118 @@
+html {
+    width:100%;
+    height:100%;
+}
+
+body {
+    display: flex;
+    background-color: red;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+ul {
+    height: 100%;
+    min-width: 250px;
+    list-style-type: none;
+    margin: 0;
+    border-right: 10px double white;
+    padding: 2% 5px;
+}
+
+li {
+    width: 190px;
+    display: flex;
+    flex-direction: row;
+    margin: 1% auto;
+    align-items: center;
+}
+
+h1, h2, h3, h4, h5 {
+    text-align: center;
+    margin: 0;
+}
+
+h1:hover{
+    background-color: darkred;
+    cursor: pointer;
+}
+
+button, input[type="submit"], input[type="reset"] {
+    background: none;color: inherit;border: none;padding: 0;
+    font: inherit;cursor: pointer;outline: inherit;
+}
+
+button {
+    margin: 10% auto;
+    padding:2% 8%;
+    background: darkred;
+    text-align: center;
+}
+
+.main {
+    overflow: auto;
+    height: 100%;
+    padding: 2% 5%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    margin: auto;
+}
+
+span{
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+textarea, input { outline: none; }
+
+input {
+    font-size: 1rem;
+    height: 30px;
+    width: 50px;
+    text-align: center;
+}
+
+button:hover{
+    background-color: darksalmon;
+}
+
+.sizer {
+    margin: 2% auto;
+    justify-content: center;
+    display: block;
+    padding: 8px 16px;
+    width: 50px;
+}
+
+.matrix {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#matrix {
+    display: flex;
+    flex-direction: row;
+}
+
+.id {
+    flex:1;
+    font-size:1.2rem; 
+    margin:0 2%;
+}
+
+img {
+    max-width: 100%;
+    min-height: auto;
+    max-height: 90%;
+    margin: auto;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    var matrixes = {
+        <% Object.keys(matrixes||{}).forEach(v=> { %>
+            '<%=v%>': [
+                <%matrixes[v].forEach(v=> { %>
+                    [
+                        <% v.forEach(v=> { %>
+                            <%=v%>,
+                        <% }) %>
+                    ],
+                <% }) %>
+            ],
+        <% }) %>
+    }
+</script>
+<html lang="en">
+    <head>
+        <title>Matrix</title>
+
+        <link rel="stylesheet" href="/matrix.css">
+        <script src="/matrix.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+
+    <body>
+        <%- include('menu') -%>
+        <%- include('main') -%>
+    </body>
+</html>

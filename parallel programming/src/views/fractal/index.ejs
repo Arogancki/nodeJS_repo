@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+var fractals = [
+    <% Object.keys(fractals||{}).forEach((v)=> {%>
+    '<%=v%>',
+    <% }) %>
+]
+</script>
+<html lang="en">
+    <head>
+        <title>Fractal</title>
+
+        <link rel="stylesheet" href="/fractal.css">
+        <script src="/fractal.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+
+    <body>
+        <%- include('menu') -%>
+        <%- include('main') -%>
+    </body>
+</html>
