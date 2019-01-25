@@ -50,6 +50,7 @@
             justify-content: space-around;
             margin: 2.5% 0;
             flex-wrap: wrap;
+            font-size: 1.2rem;
             .selectedDiv {
                 @extend %link;
                 @extend %selected;

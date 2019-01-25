@@ -1,5 +1,8 @@
 const path = require('path')
     , tags = require('./tags')
+    , fs = require('fs-extra')
+    , config = require('../config')
+    , { log } = require('../helpers/log')
 
 const projects = createImageLinks([{
     title: "Master thesis",
@@ -117,7 +120,7 @@ const projects = createImageLinks([{
     github: "https://github.com/Arogancki/java/tree/master/jade/my%20projects/Matrixes",
     tags: [tags.java]
 }, {
-    title: "big-data-and-machine-learning",
+    title: "big data and machine learning",
     desc: "asdadas dads",
     github: "https://github.com/Arogancki/big-data-and-machine-learning",
     tags: [tags.bigData, tags.python, tags.machineLearning, tags.matlab]
@@ -131,6 +134,11 @@ const projects = createImageLinks([{
     desc: "asdadas dads",
     github: "https://github.com/Arogancki/nodeJS_repo/tree/master/parallel%20programming",
     tags: [tags.javaScript, tags.nodeJs, tags.html, tags.css, tags.express]
+}, {
+    title: "remindMeNear",
+    desc: "asd asd ad ad a sdad",
+    github: "https://github.com/Arogancki/nodeJS_repo/tree/master/mapReminder",
+    tags: [tags.javaScript, tags.nodeJs, tags.html, tags.css, tags.express, tags.dynamodb]
 }, {
     title: "Shoot targets",
     desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
@@ -259,7 +267,14 @@ const projects = createImageLinks([{
 }])
 
 function createImageLinks(obj){
-    obj.forEach((v)=>v.img = path.join('/', 'images', 'projects', `${v.title.toLowerCase()}.png`))
+    obj.forEach((v)=>{
+        v.img = path.join('/', 'images', 'projects', `${v.title.toLowerCase()}.png`)
+        fs.exists(path.join(config.APP_PUBLIC, v.img)).then(exists=>{
+            if (!exists){
+                log(`Img for project "${v.title}" not found`)
+            }
+        })
+    })
     return obj
 }
 

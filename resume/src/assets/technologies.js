@@ -1,4 +1,7 @@
 const path = require('path')
+    , fs = require('fs-extra')
+    , config = require('../config')
+    , { log } = require('../helpers/log')
 
 const technologies = createImageLinks({
     "technologies": [
@@ -212,6 +215,11 @@ const technologies = createImageLinks({
 function createImageLinks(obj){
     Object.keys(obj).forEach(type=>obj[type].forEach((v, i)=>{
             v.img = v.img || path.join('/', 'images', type, `${v.name.toLowerCase()}.png`)
+            fs.exists(path.join(config.APP_PUBLIC, v.img)).then(exists=>{
+                if (!exists){
+                    log(`Img for technology "${v.name}" not found`)
+                }
+            })
         }
     ))
     return obj

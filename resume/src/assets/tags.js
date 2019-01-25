@@ -27,7 +27,8 @@ const tags = sort({
     sql: "SQL",
     python: "python",
     machineLearning: "machine learning",
-    bigData: "big data"
+    bigData: "big data",
+    dynamodb: "dynamoDB"
 })
 
 function sort(obj){

@@ -1,4 +1,7 @@
 const path = require('path')
+    , fs = require('fs-extra')
+    , config = require('../config')
+    , { log } = require('../helpers/log')
 
 let experience = createImageLinks([{
     short: "tieto",
@@ -45,8 +48,14 @@ let experience = createImageLinks([{
 }])
 
 function createImageLinks(obj){
-    obj.forEach((v)=>
-        v.img = path.join('/', 'images', 'experience', `${v.short.toLowerCase().replace(/[0-9]*$/g, '')}.png`))
+    obj.forEach((v)=>{
+        v.img = path.join('/', 'images', 'experience', `${v.short.toLowerCase().replace(/[0-9]*$/g, '') + ".png"}`)
+        fs.exists(path.join(config.APP_PUBLIC, v.img)).then(exists=>{
+            if (!exists){
+                log(`Img for experience "${v.short}" not found`)
+            }
+        })
+    })
     return obj
 }
 

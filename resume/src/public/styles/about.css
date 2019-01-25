@@ -32,7 +32,7 @@
 
 .aboutContainer .contentContainer .headersContainer h3 { font-size: 1.5rem; text-align: right; }
 
-.aboutContainer .contentContainer .navigationSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; -ms-flex-pack: distribute; justify-content: space-around; margin: 2.5% 0; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+.aboutContainer .contentContainer .navigationSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; -ms-flex-pack: distribute; justify-content: space-around; margin: 2.5% 0; -ms-flex-wrap: wrap; flex-wrap: wrap; font-size: 1.2rem; }
 
 .aboutContainer .contentContainer .textSlider { margin: 2.5% 0; line-height: 1.8rem; }
 
