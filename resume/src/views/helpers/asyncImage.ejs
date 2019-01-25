@@ -7,7 +7,7 @@
       const split = img.src.split('.')
       split[split.length-2] += '-min'
       item.src = split.join('.')
-      img.onload = () => item.src = img.src
+      img.onload = () => {item.src = img.src}
     })
   })()
   </script>

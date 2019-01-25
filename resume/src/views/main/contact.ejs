@@ -19,7 +19,7 @@
                 <%= translation.main.contact.phone.key %>
             </h2>
             <h2 class="selectable">
-                <a href="tel:<%= translation.main.contact.phone.value %>">
+                <a href="tel:<%= translation.main.contact.phone.value.replace(/\s+/g, '') %>">
                     <%= translation.main.contact.phone.value %>
                 </a>
             </h2>

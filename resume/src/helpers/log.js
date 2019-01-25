@@ -1,5 +1,7 @@
+const config = require('../config')
+
 function consoleLog(...v){
-    if (process.env.LOG==='true')
+    if (config.LOG)
         console.log(...v)
 }
 
@@ -29,7 +31,7 @@ const log = function log(text, req, obj){
         consoleLog(`${getDate()} > ${text}`)
     else
         consoleLog(`${getDate()} > ${req.ip} (${req.session.id}) > ${text}`)
-    if (process.env.LOG_BODY==='true' && obj)
+    if (config.LOG_BODY==='true' && obj)
         typeof obj === 'object' 
         ? logObject(obj)
         : consoleLog(obj)

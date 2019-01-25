@@ -24,7 +24,10 @@ const tags = sort({
     bash: "bash",
     spring: "spring",
     networking: "networking",
-    //machineLearning: "machine learning"
+    sql: "SQL",
+    python: "python",
+    machineLearning: "machine learning",
+    bigData: "big data"
 })
 
 function sort(obj){

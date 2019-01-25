@@ -22,7 +22,7 @@
     },
     "main": {
         "index": {
-            "header": "CV deweloperskie"
+            "header": "CV dewelopera"
         },
         "about": {
             "details": {
@@ -32,22 +32,21 @@
             },
             "paragraph": {
                 "developer": {
-                    "text" :"11 DDDDDLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "text" :"Najlepszym elementem w wytwarzaniu oprogramowania niewątpliwie jest możliwość przełożenia idei na gotowe rozwiązanie. Nie zawsze jest to łatwe, ale wraz ze skomplikowaniem wymagań rośnie satysfakcja z rozwiązania. Zdecydowanie moimi ulubionymi technologiami są technologie z rodziny JS. Szeroki wachlaż możliwości oraz prostota sprawiają że praca z nimi to czysta przyjemność.",
                     "link": "Deweloper"
                 },
                 "musician": {
-                    "text": "22 MMMMLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "text": "Moja drugą pasją jest muzyka. Spędzanie czasu grając z przyjaciółmi jak nic innego odrywa od rzeczywistości. Doskonale odnajduję się w centrum uwagi, na scenie podczas koncertów pokazując artystyczną część mojej osobowości.",
                     "link": "Muzyk"
                 },
                 "passionate": {
-                    "text": "PPPP33Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "text": "Staram się korzystać z każdej chwili i okazji jaka mi się przydaża. We wszystko co robie w pełni się angażuje. Nie pozwalam aby coś powstrzymało mnie od osiągnięcia zamierzonych celów, mimo tysiąca pomysłów na jedną minute.",
                     "link": "Pasjonata"
                 }
             },
-            "photoSelectors": ["Developer", "Musician", "Pasojnata"],
             "headers": [
-               "Cras nec euismod lacus, non congue arcu.",
-               "22Cras nec euismod lacus, non congue arc22 u."
+               "Jeśli będziesz wierzyć że się uda",
+               "zobaczysz możliwości"
             ]
         },
         "contact": {
@@ -58,7 +57,7 @@
             },
             "phone": {
                 "key": "Numer telefonu",
-                "value": "601689606"
+                "value": "601 689 606"
             },
             "form": {
                 "header": "lub skorzystaj z formularza aby wysłać do mnie email",
@@ -83,11 +82,11 @@
         },
         "technologies": {
             "technologies": "technologie",
-            "technologiesText": "technologie ktore bardzo fajne sa",
+            "technologiesText": "sprawiające że każdy pomysł może stać się rzeczywistością",
             "tools": "narzędzia",
-            "toolsText": "technologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne stechnologie ktore bardzo fajne sa",
+            "toolsText": "dzięki którym maksymalizuje moja produktywność",
             "skils": "umiejętności",
-            "skilsText": "technologie ktore bardzo fajne sa"
+            "skilsText": "pozwalające na ominięcie jakichkolwiek przeszkód"
         },
         "experience": {
             "from": "od",

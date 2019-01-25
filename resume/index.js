@@ -1,4 +1,9 @@
-require('dotenv').config()
-require('print-env')(console.log)
+const handleError = require('./src/helpers/handleError')
+const { log } = require('./src/helpers/log')
 require('./src/app')()
-.then(exp=>console.log(`Server is listening on ${exp.address.address}:${exp.address.port}`))
+.then(exp=>
+    log(`Server is working on (${exp.protocol}) port ${exp.server.address().port}`)
+)
+.catch(e=>
+    handleError(e)
+)

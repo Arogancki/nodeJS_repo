@@ -1,7 +1,5 @@
-require('dotenv').config()
 require('../app')().then(exp=>{
     console.log('TEST: Checking for broken links...')
-    process.env.log = 'false'
     exp.checkBrokenLinks()
     .then(results=>
         results.broken.length

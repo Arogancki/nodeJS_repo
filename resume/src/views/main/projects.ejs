@@ -13,7 +13,7 @@
         <% }); %>
     </ul>
     <div id="projectsContainerContent">
-        <% shuffle(projects).forEach((project, index)=> { %>
+        <% projects.forEach((project, index)=> { %>
             <div class="projectContainer" tags="<%=project.tags.join(';')%>">
                 <img style="z-index: <%=index+1%>" class="projectBackground" src="<%=project.img%>"></img>
                 <div style="z-index: <%=index+2%>">
@@ -32,7 +32,7 @@
                         </ul>
                     </div>
                     <a href="<%=project.github%>" target="_blank" rel="noopener noreferrer">
-                        <%=translation.main.projects.check%>
+                        <%= translation.main.projects.check %>
                         <img class="githubLink" src="/images/socials/github.png"></img>
                     </a>
                 </div>

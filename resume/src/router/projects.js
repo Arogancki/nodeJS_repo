@@ -7,9 +7,8 @@ const router = require('express').Router()
 
 module.exports = (app) => {
     router.get('/', async (req, res)=>render(req, res, 'main/projects', {
-        projects,
-        tags,
-        shuffle: (arr)=>shuffle(arr,{copy:true})
+        projects: shuffle(projects,{copy:true}),
+        tags
     }))
 
     return router

@@ -56,7 +56,7 @@ module.exports = (app) => {
             }
             return res.json({time, id})
         }
-        catch(e){
+        catch(e) {
             return res.status(400).json({message: e.message})
         }
     })

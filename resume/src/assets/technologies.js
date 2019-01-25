@@ -82,6 +82,10 @@ const technologies = createImageLinks({
         {
             "name": "SASS",
             "link": "https://sass-lang.com/"
+        },
+        {
+            "name": "graphQL",
+            "link": "https://graphql.org/"
         }
     ],
     "tools": [
@@ -96,10 +100,6 @@ const technologies = createImageLinks({
         {
             "name": "chrome DevTools",
             "link": "https://developers.google.com/web/tools/chrome-devtools/"
-        },
-        {
-            "name": "crucible",
-            "link": "https://pl.atlassian.com/software/crucible"
         },
         {
             "name": "slack",
@@ -144,6 +144,18 @@ const technologies = createImageLinks({
         {
             "name": "intelliJ IDEA",
             "link": "https://www.jetbrains.com/idea/"
+        },
+        {
+            "name": "crucible",
+            "link": "https://www.atlassian.com/software/crucible"
+        },
+        {
+            "name": "amazon Web Services",
+            "link": "https://aws.amazon.com/"
+        },
+        {
+            "name": "bamboo",
+            "link": "https://www.atlassian.com/software/bamboo"
         }
     ],
     "skils": [
@@ -170,6 +182,10 @@ const technologies = createImageLinks({
         {
             "name": "data structures and algorithm knowledge",
             "link": "https://en.wikipedia.org/wiki/Data_structure"
+        },
+        {
+            "name": "gitflow", 
+            "link": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"
         },
         {
             "name": "team worker"

@@ -45,8 +45,8 @@
                 }
             },
             "headers": [
-                "The difference between ordinary and extraordinary",
-                "is that little “extra”"
+                "If you believe it will work out,",
+                "you’ll see opportunities"
             ]
         },
         "contact": {
@@ -57,7 +57,7 @@
             },
             "phone": {
                 "key": "phone number",
-                "value": "+48601689606"
+                "value": "+48 601 689 606"
             },
             "form": {
                 "header": "or use this contact form to send me an email",

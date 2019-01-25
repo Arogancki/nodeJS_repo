@@ -102,6 +102,36 @@ const projects = createImageLinks([{
     github: "https://github.com/Arogancki/java",
     tags: [tags.java, tags.oop]
 }, {
+    title: "workers list",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/java/tree/master/worker%20list",
+    tags: [tags.java, tags.oop, tags.networking, tags.sql]
+}, {
+    title: "dining philosophers problem",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/java/tree/master/jade/my%20projects/Dining%20philosophers%20problem",
+    tags: [tags.java]
+}, {
+    title: "matrixes",
+    desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
+    github: "https://github.com/Arogancki/java/tree/master/jade/my%20projects/Matrixes",
+    tags: [tags.java]
+}, {
+    title: "big-data-and-machine-learning",
+    desc: "asdadas dads",
+    github: "https://github.com/Arogancki/big-data-and-machine-learning",
+    tags: [tags.bigData, tags.python, tags.machineLearning, tags.matlab]
+}, {
+    title: "safety documents exchange",
+    desc: "asdadas dads",
+    github: "https://github.com/Arogancki/PBAI/tree/master/app",
+    tags: [tags.javaScript, tags.nodeJs, tags.react, tags.bootstrap, tags.express, tags.css, tags.html]
+}, {
+    title: "my nodejs multithreading library",
+    desc: "asdadas dads",
+    github: "https://github.com/Arogancki/nodeJS_repo/tree/master/parallel%20programming",
+    tags: [tags.javaScript, tags.nodeJs, tags.html, tags.css, tags.express]
+}, {
     title: "Shoot targets",
     desc: "sed do iusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod em .",
     github: "https://github.com/Arogancki/OpenGl-Projects/tree/master/collect%20stars%20Opengl",
@@ -235,8 +265,9 @@ function createImageLinks(obj){
 
 (function checkIfAllTagsAreUsed(){
     Object.values(tags).forEach(tag=>{
-        if (!projects.find(project=>project.tags.includes(tag)))
+        if (!projects.find(project=>project.tags.includes(tag))){
             throw new Error(`Tag ${tag} is not used!!`)
+        }
     })
 })()
 
