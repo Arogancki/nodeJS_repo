@@ -70,11 +70,11 @@
             if (!res.ok) throw res
             formError.style.display = "none"
             document.getElementById('subject').value = ""
-            document.getElementById('message').value = ""
+            document.getElementById('text').value = ""
             document.getElementById('contact').value = ""
             formButton.innerHTML = "<%= translation.main.contact.form.confirmation %>"
         }).catch(async res=>{
-            console.error(res)
+            console.error("email sending error: ", res)
             let message = res.statusText || "Service Unavailable"
             try {
                 message  = await res.json()

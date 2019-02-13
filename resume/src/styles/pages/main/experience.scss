@@ -53,9 +53,11 @@
                 overflow: hidden;
                 margin: 0.4rem;
                 overflow: auto;
+                padding-right: 15rem;
             }
             a {
                 @extend %link;
+                margin-top: 1rem;
                 width: fit-content;
                 text-transform: capitalize;
             }

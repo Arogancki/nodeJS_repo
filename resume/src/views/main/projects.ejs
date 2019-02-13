@@ -17,7 +17,9 @@
             <div class="projectContainer" tags="<%=project.tags.join(';')%>">
                 <img style="z-index: <%=index+1%>" class="projectBackground" src="<%=project.img%>"></img>
                 <div style="z-index: <%=index+2%>">
-                    <h1><%=translation.main.projects[project.title] || project.title%></h1>
+                    <h1>
+                        <%=translation.main.projects[project.title] || project.title%>
+                    </h1>
                     <div class="description">
                         <div>
                             <%=translation.main.projects[project.title+".desc"] || project.desc%>

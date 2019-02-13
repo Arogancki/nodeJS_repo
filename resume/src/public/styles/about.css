@@ -22,11 +22,13 @@
 
 .aboutContainer .imageSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-item-align: center; align-self: center; margin: 0 15px; overflow: hidden; border: 8px solid; border-radius: 50%; justify-self: center; max-width: 600px; height: auto; }
 
+.aboutContainer .imageSlider .carousel-indicators li { width: 10px; height: 10px; cursor: pointer; border-radius: 100%; }
+
 .aboutContainer .imageSlider .image { opacity: 0.9; height: 22rem; width: 22rem; background-color: #637485; -webkit-filter: opacity(80%); filter: opacity(80%); }
 
-.aboutContainer .contentContainer { min-height: 70%; max-height: 100%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 2rem auto; margin-left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.aboutContainer .contentContainer { height: 80%; width: 80%; -ms-flex-item-align: center; align-self: center; margin: 2rem auto; margin-left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
-.aboutContainer .contentContainer .headersContainer { text-align: justify; margin: 2.5% 0; font-style: oblique; font-family: Merienda, sans-serif; }
+.aboutContainer .contentContainer .headersContainer { text-align: justify; margin: 2.5% 0; font-style: oblique; font-family: Alegreya, sans-serif; }
 
 .aboutContainer .contentContainer .headersContainer h1 { font-size: 2rem; }
 
@@ -34,7 +36,7 @@
 
 .aboutContainer .contentContainer .navigationSlider { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row; flex-flow: row; -ms-flex-pack: distribute; justify-content: space-around; margin: 2.5% 0; -ms-flex-wrap: wrap; flex-wrap: wrap; font-size: 1.2rem; }
 
-.aboutContainer .contentContainer .textSlider { margin: 2.5% 0; line-height: 1.8rem; }
+.aboutContainer .contentContainer .textSlider { height: 60%; margin: 2.5% 0; line-height: 1.8rem; }
 
 .aboutContainer .contentContainer .textSlider .details p { text-align: center; font-size: 1.4rem; margin-bottom: 1rem; font-weight: bold; }
 

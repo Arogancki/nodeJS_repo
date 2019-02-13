@@ -1,6 +1,12 @@
 <img class="background asyncImage" asyncImage="/background/.jpg"></img>
 <div class="aboutContainer">
     <div id="imageSlider" class="imageSlider carousel slide carousel-fade" data-ride="carousel" data-interval="0">
+        <ul class="carousel-indicators">
+            <li style="display: none"></li>
+            <% Object.keys(translation.main.about.paragraph).forEach((key,index)=> { %>
+                <li onclick="select('<%=key%>', <%=index+1%>)"></li>
+            <% }); %>
+        </ul>    
         <div class="carousel-inner">
             <div style="height:100%" class="carousel-item active">
                 <img class="image asyncImage" asyncImage="/images/artur/index.jpg" />

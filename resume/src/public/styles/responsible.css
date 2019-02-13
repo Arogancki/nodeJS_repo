@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) { body { font-size: 0.8rem; }
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  main .aboutContainer { margin: 5% 5%; display: block; overflow: auto; position: relative; }
+  main .aboutContainer .imageSlider { z-index: -1; position: absolute; width: 100%; height: 100%; border: 0; border-radius: 0; margin: 0; }
+  main .aboutContainer .imageSlider .image { max-width: unset; max-height: unset; height: 100%; width: auto; -webkit-filter: brightness(40%); filter: brightness(40%); }
+  main .aboutContainer .contentContainer { margin-left: auto; }
+  main .projectsContainer ul li { margin: 0.1rem; }
+  main .projectsContainer div { -ms-grid-columns: (100%)[auto-fill]; grid-template-columns: repeat(auto-fill, 100%); }
+  main .technologiesContainer { padding: 4% 2%; }
+  main .technologiesContainer h1, main .technologiesContainer h4 { text-align: center; }
+  main .technologiesContainer .links div { width: 8rem; }
+  main .technologiesContainer .links div img { width: 4rem; height: 4rem; }
+  main .experienceContainer div .imageContainer { -webkit-transition: -webkit-filter 500ms; transition: -webkit-filter 500ms; transition: filter 500ms; transition: filter 500ms, -webkit-filter 500ms; }
+  main .experienceContainer div:hover .imageContainer { width: 100%; -webkit-filter: brightness(40%); filter: brightness(40%); }
+  main .experienceContainer div:hover .details { left: 0%; }
+  main .experienceContainer div .details { width: 100%; }
+  main .experienceContainer div .details div { padding-right: 0rem; }
+  main .contactContainer { padding: 2% 0; } }
+/*# sourceMappingURL=responsible.css.map */

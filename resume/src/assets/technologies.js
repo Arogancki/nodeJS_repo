@@ -203,6 +203,10 @@ const technologies = createImageLinks({
             "name": "performance and scalability optimization"
         },
         {
+            "name": "Test Driven Development",
+            "link": "https://en.wikipedia.org/wiki/Test-driven_development"
+        },
+        {
             "name": "strong decision making"
         },
         {

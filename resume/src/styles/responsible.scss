@@ -1,4 +1,13 @@
+@import './variables.scss';
 @media #{$smallScreen} {
+
+    body {
+        font-size: 0.8rem;
+    }
+    
+    h1 {font-size: 1.8rem;}
+    h2 {font-size: 1.4rem;}
+
     main {
         .aboutContainer {
             margin: 5% 5%;
@@ -16,8 +25,8 @@
                 .image {
                     max-width: unset;
                     max-height: unset;
-                    height: unset;
-                    width: unset;
+                    height: 100%;
+                    width: auto;
                     filter: brightness(40%);
                 }
             }
@@ -30,6 +39,9 @@
                 li{
                     margin: 0.1rem;
                 }
+            }
+            div {
+                grid-template-columns: repeat(auto-fill, 100%);
             }
         }
         .technologiesContainer {
@@ -63,6 +75,9 @@
                 }
                 .details {
                     width: 100%;
+                    div {
+                        padding-right: 0rem;
+                    }
                 }
             }
         } 

@@ -37,10 +37,9 @@ exports.optional = {
     "LIMIT": true,
     "CORS": true,
     "EMAILS": true,
-    "EMAIL_SERVICE": "gmail",
-    "EMAIL_LOGIN": "ziembaartdev@gmail.com",
-    "EMAIL_PASSWORD": "MySecretPassword987@",
-    "CONTACT_EMAIL": "ziembaartdev@gmail.com",
+    "EMAIL_LOGIN": "",
+    "EMAIL_PASSWORD": "",
+    "CONTACT_EMAIL": "",
     "PRINT_CONFIG": true,
     "SEND_EMAIL_ON_ERROR": true
 }

@@ -14,7 +14,7 @@
     transform: scale(1);
     opacity: 0; } }
 
-.projectsContainer { width: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.projectsContainer { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
 .projectsContainer ul { background-color: #6d7e8f; list-style: none; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -ms-flex-wrap: wrap; flex-wrap: wrap; margin: 0 0; }
 
@@ -32,13 +32,13 @@
 
 .projectsContainer div .projectContainer:hover .description { -webkit-transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms; transition: max-height 500ms linear 125ms, min-height 125ms linear, opacity 500ms; min-height: 250px; max-height: 1000px; opacity: 1; }
 
-.projectsContainer div .projectContainer:hover .projectBackground { -webkit-filter: brightness(40%) blur(1px); filter: brightness(40%) blur(1px); }
+.projectsContainer div .projectContainer:hover .projectBackground { -webkit-filter: brightness(35%) blur(1px); filter: brightness(35%) blur(1px); }
 
-.projectsContainer div .projectContainer .projectBackground { border-top: 4px solid #637485; -webkit-transition: -webkit-filter 500ms linear; transition: -webkit-filter 500ms linear; transition: filter 500ms linear; transition: filter 500ms linear, -webkit-filter 500ms linear; top: 0; left: 0; background-size: cover; min-width: 100%; min-height: 100%; position: absolute; display: block; -webkit-filter: brightness(30%) blur(4px); filter: brightness(30%) blur(4px); background-color: white; }
+.projectsContainer div .projectContainer .projectBackground { border-top: 4px solid #637485; -webkit-transition: -webkit-filter 500ms linear; transition: -webkit-filter 500ms linear; transition: filter 500ms linear; transition: filter 500ms linear, -webkit-filter 500ms linear; top: 0; left: 0; background-size: cover; min-width: 100%; min-height: 100%; position: absolute; display: block; -webkit-filter: brightness(25%) blur(4px); filter: brightness(25%) blur(4px); background-color: white; }
 
 .projectsContainer div .projectContainer div { min-height: 200px; padding: 1.5rem; }
 
-.projectsContainer div .projectContainer div h1 { width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; padding-right: 1rem; font-size: 1.5rem; border-bottom: 1px solid; height: -webkit-fit-content; height: -moz-fit-content; height: fit-content; }
+.projectsContainer div .projectContainer div h1 { width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin-right: 1rem; font-size: 1.5rem; border-bottom: 1px solid; height: -webkit-fit-content; height: -moz-fit-content; height: fit-content; -ms-flex-item-align: start; align-self: flex-start; }
 
 .projectsContainer div .projectContainer div h1:first-letter { text-transform: capitalize; }
 

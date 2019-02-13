@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo 'Tests not done yet...'",
     "testEmail": "node src/tests/email.js",
+    "blc": "node src/tests/brokenLinkChecker.js",
     "start": "node index.js",
     "debug": "nodemon --inspect index.js"
   },

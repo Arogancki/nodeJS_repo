@@ -10,9 +10,9 @@
     },
     "footer":{
         "project": "Check out this project on",
-        "funny": "Funny error handling links:",
+        "errors": "Error handling links:",
         "technologies": "Made with:",
-        "more": "Expand me!",
+        "more": "Unfold me!",
         "less": "Fold me!"
     },
     "errors": {
@@ -32,15 +32,15 @@
             },
             "paragraph": {
                 "developer": {
-                    "text": "11DEW  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "text": "The best element of software development is an opportunity to change the idea to a working solution. It's not always easy but along with difficulties of requirements there's a constant satisfaction growing. My favourite technologies are JS technologies. The wide range of possibilities and simplicity turn work into joy.",
                     "link": "Developer"
                 },
                 "musician": {
-                    "text":"11DEW  Lorem ipsum dolor sit amet,asda asd adad ad ad aadsa dad asd",
+                    "text": "My second hobby is music. Spending time playing with my friends and making our own songs make me feel relaxed. I find myself perfectly fine in the spotlight during the concerts, expressing the artistic side of me.",
                     "link": "Musician"
                 },
                 "passionate": {
-                    "text": "33 PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur PASLorem ipsum dolor sit amet, consectetur  adipiscing elit. Cras nec euismod lacus, non congue arcu. Aliquam porta ligula in posuere dapibus. Ut lectus risus, commodo placerat nulla id, posuere pellentesque massa. Curabitur porttitor sodales leo, quis vehicula felis tristique sed. Donec ac mi ac quam pellentesque cursus. Curabitur nec dignissim est, a facilisis tellus. Aenean a massa varius, vehicula nunc vitae, suscipit odio.",
+                    "text": "I enjoy every moment and take every chance I get. Everything I do I get actively involved in. I won't let anything to stop me from achieving my goals.",
                     "link": "Passionate"
                 }
             },
@@ -53,7 +53,7 @@
             "header": "Let's have a chat!",
             "email": {
                 "key": "address email",
-                "value": "Ziembaart@gmail.com"
+                "value": "ziembaart@gmail.com"
             },
             "phone": {
                 "key": "phone number",
@@ -82,11 +82,11 @@
         },
         "technologies": {
             "technologies": "technologies",
-            "technologiesText": "technologie ktore bardzo fajne sa",
+            "technologiesText": "allowing every idea to become reality",
             "tools": "tools",
-            "toolsText": "technologie ktore bardzo fajne sa",
+            "toolsText": "with which I maximize my productivity",
             "skils": "skils",
-            "skilsText": "technologie ktore bardzo fajne sa"
+            "skilsText": "letting me to avoid any obstacle"
         },
         "experience": {
             "from": "from",

@@ -38,8 +38,8 @@ module.exports = async ()=>{
             app.get('port'), () => res({
                 server, 
                 app, 
-                protocol: config.HTTPS?'https':'http',
-                brokenLinkChecker: brokenLinkChecker
+                brokenLinkChecker,
+                protocol: config.HTTPS ? 'https' : 'http'
             })
         )
     })

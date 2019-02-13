@@ -23,7 +23,7 @@ function link(results){
     }
 }
 
-module.exports = (serverAddress)=>()=>{
+module.exports = (serverAddress)=>{
     const results = {
         valid: [],
         broken: [],

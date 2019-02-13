@@ -2,7 +2,7 @@ const tags = sort({
     javaScript: "javaScript",
     java: "java",
     cSharp: "cSharp",
-    nodeJs: "nodeJS",
+    nodeJs: "node.js",
     meteor: "meteor",
     sails: "sails",
     bootstrap: "bootstrap",
@@ -19,8 +19,7 @@ const tags = sort({
     matlab: "matlab",
     algorithms: "algorithms",
     openGl: "openGL",
-    cpp: "C++",
-    c: "c",
+    ccpp: "c/c++",
     bash: "bash",
     spring: "spring",
     networking: "networking",
@@ -55,6 +54,6 @@ function sort(obj){
 
 module.exports = Object.freeze(new Proxy(tags, { 
     get(target, name){
-        return target[name] || (()=>{throw new Error(`Property '${name}' is not defined`)})()
+        return target[name] || (()=>{throw new Error(`Tag '${name}' is not defined`)})()
     }
 }))

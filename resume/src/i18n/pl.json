@@ -1,4 +1,4 @@
-{
+﻿{
     "language": "pl",
     "title": "Artur Ziemba - CV dewelopera",
     "header": {
@@ -10,7 +10,7 @@
     },
     "footer":{
         "project": "Sprawdź ten projekt na",
-        "funny": "Śmieszne linki obsługi błedów:",
+        "errors": "Linki obsługi błędów:",
         "technologies": "Stworzone z:",
         "more": "Rozwiń mnie!",
         "less": "Zwiń mnie!"
@@ -26,21 +26,21 @@
         },
         "about": {
             "details": {
-                "name": "Imie i nazwisko",
+                "name": "Imię i nazwisko",
                 "age": "Wiek",
                 "location": "Lokalizacja"
             },
             "paragraph": {
                 "developer": {
-                    "text" :"Najlepszym elementem w wytwarzaniu oprogramowania niewątpliwie jest możliwość przełożenia idei na gotowe rozwiązanie. Nie zawsze jest to łatwe, ale wraz ze skomplikowaniem wymagań rośnie satysfakcja z rozwiązania. Zdecydowanie moimi ulubionymi technologiami są technologie z rodziny JS. Szeroki wachlaż możliwości oraz prostota sprawiają że praca z nimi to czysta przyjemność.",
+                    "text" :"Najlepszym elementem w wytwarzaniu oprogramowania niewątpliwie jest możliwość przełożenia idei na gotowe rozwiązanie. Nie zawsze jest to łatwe, ale wraz ze skomplikowaniem wymagań rośnie satysfakcja z rozwiązania. Zdecydowanie moimi ulubionymi technologiami są technologie z rodziny JS. Szeroki wachlarz możliwości oraz prostota sprawiają, że praca z nimi to czysta przyjemność.",
                     "link": "Deweloper"
                 },
                 "musician": {
-                    "text": "Moja drugą pasją jest muzyka. Spędzanie czasu grając z przyjaciółmi jak nic innego odrywa od rzeczywistości. Doskonale odnajduję się w centrum uwagi, na scenie podczas koncertów pokazując artystyczną część mojej osobowości.",
+                    "text": "Moja drugą pasją jest muzyka. Spędzanie czasu grając z przyjaciółmi, jak nic innego, odrywa od rzeczywistości. Doskonale odnajduję się w centrum uwagi, na scenie podczas koncertów pokazując artystyczną część mojej osobowości.",
                     "link": "Muzyk"
                 },
                 "passionate": {
-                    "text": "Staram się korzystać z każdej chwili i okazji jaka mi się przydaża. We wszystko co robie w pełni się angażuje. Nie pozwalam aby coś powstrzymało mnie od osiągnięcia zamierzonych celów, mimo tysiąca pomysłów na jedną minute.",
+                    "text": "Staram się korzystać z każdej chwili i okazji, jaka mi się przydarza. We wszystko, co robię, w pełni się angażuję. Nie daję się powstrzymać od osiągnięcia zamierzonych celów.",
                     "link": "Pasjonata"
                 }
             },
@@ -53,7 +53,7 @@
             "header": "Skontaktuj się ze mną!",
             "email": {
                 "key": "Adres email",
-                "value": "Ziembaart@gmail.com"
+                "value": "ziembaart@gmail.com"
             },
             "phone": {
                 "key": "Numer telefonu",
@@ -64,7 +64,7 @@
                 "subject": {
                     "key": "Temat",
                     "placeholder": "temat",
-                    "invalid": "Pole musi zawierać od 2 do 100 znaków"
+                    "invalid": "Pole musi zawierać od 2 do 200 znaków"
                 },
                 "text": {
                     "key": "Treść wiadomości",
@@ -74,7 +74,7 @@
                 "contact": {
                     "key": "Kontakt",
                     "placeholder": "numer telefonu lub email",
-                    "invalid": "Pole musi zawierać od 2 do 200 znaków"
+                    "invalid": "Pole musi zawierać od 2 do 100 znaków"
                 },
                 "button": "Wyślij",
                 "confirmation": "Wysłano"
@@ -82,7 +82,7 @@
         },
         "technologies": {
             "technologies": "technologie",
-            "technologiesText": "sprawiające że każdy pomysł może stać się rzeczywistością",
+            "technologiesText": "sprawiające, że każdy pomysł może stać się rzeczywistością",
             "tools": "narzędzia",
             "toolsText": "dzięki którym maksymalizuje moja produktywność",
             "skils": "umiejętności",
@@ -92,16 +92,91 @@
             "from": "od",
             "to": "do",
             "currently": "teraz",
-            "tieto": "22 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+            "tieto": "Praca w projekcie embedded w środowisku c/c++ przy tworzeniu oprogramowania dla lidera rozwiązań sieci telekomunikacyjnych (5G/6G).",
+            "avid": "Moja odpowiedzialność skupiała się na wytwarzaniu (przez większość czasu) części backendowej w postaci mikroserwisów i narzędzi serwerowych (node.js, java) oraz części frontendowej (react) dla platformy do zarządzania i edycji multimediów.",
+            "zut1": "Studia wyższe inżynierskie na kierunku Informatyka w specjalizacji wytwarzania oprogramowania, podczas których udało mi się pięciokrotnie uzyskać Stypendium Rektora dla najlepszych studentów oraz zająć czołowe miejsca w konkursach tj. Szczecin Gamedev Talents. Studia zakończyłem pisząc prace na temat środowiska node.js oraz wytwarzania oprogramowania w języku javascript.",
+            "zut2": "Kontynuacja studiów na stopniu magisterskim na kierunku Informatyka w specjalizacji techniki programowania, podczas których ponownie otrzymałem trzykrotnie Stypendium Rektora dla najlepszych studentów. Moja końcowa praca opisywała analizę porównawczą metod pracy z paroma najpopularniejszymi frameworkami technologii node.js.",
+            "apptimia": "Moje aktualne miejsce zatrudnienia, w którym zajmuję się wytwarzaniem oprogramowania dla projektów zarówno po stronie backendu (node.js) jak i frontendu (angular, react).",
             "The West Pomeranian University of Technology": "Zachodniopomorski Uniwersytet Technologiczny",
             "Master of science - Software Engineering": "Studia magisterskie - Inżynieria oprogramowania",
-            "Engineer's degree - Computer Science and Information Technology": "Studia inżynierskie - systemy komputerowe i oprogramowanie"
+            "Engineer's degree - Computer Science and Information Technology": "Studia inżynierskie - Systemy komputerowe i oprogramowanie"
         },
         "projects": {
             "more": "Odkryj więcej na github",
             "check": "Sprawdź projekt",
             "tags": "tagi",
-            "example Project": "cos innego dla przykladu"
+            "Master thesis": "Praca magisterska",
+            "Master thesis.desc": "Moja praca magisterska pod tytułem \"Analiza porównawcza wybranych frameworków technologii Node.js\" zawierająca porównanie praktyk, metod programowania oraz gotowe implementacje przykładowej aplikacji we frameworkach Express, Sails, Meteor.",
+            "Resume.desc": "Projekt przedstawiający moje umiejętności, doświadczenie oraz zamiłowanie do programowania.",
+            "Task manager.desc": "Aplikacja stworzona podczas pisania pracy inżynierskiej służaca do zarządzaniem zadaniami w zorganizowanych zespołach. Zapewnia przejrzystą prezentacje oraz łatwą komunikacje pomiędzy członkami.",
+            "WebSync chat.desc": "Globalny czat tekstowy wykorzystujący standart webRTC.",
+            "Face recognition.desc": "Prosta biblioteka rozpoznająca osoby znajdujące się na obrazach przy użyciu zewnętrnego API Microsoft cognitive API.",
+            "My npm avid account": "Moje Avidowe konto na npm",
+            "My npm avid account.desc": "Zbiór udostępnionych przeze mnie bibliotek w serwisie npm stworzonych w czasie pracy w Avid Poland.",
+            "My npm private account": "Moje prywatne konto na npm",
+            "My npm private account.desc": "Zbiór udostępnionych przeze mnie bibliotek w serwisie npm.",
+            "Video chat.desc": "Czat wideo stworzony za pomocą biblioteki Frozen Mountain od Cisco wykorzystujący technologie webRTC.",
+            "VS code extension.desc": "Rozszerzenie do vs code, pozwalające na dołączenie dowolnej aplikacji webowej (klienta oraz serwisu).",
+            "watcher.desc": "Serwis śledzący oraz zgłaszający zmiany w dowolnym serwisie internetowym.",
+            "weather app.desc": "Prognoza pogody dopasowująca tło aplikacji do aktualnej pogody. Korzysta z zewnętrznych API do badania zmian pogody oraz wyszukiwania odpowiednich obrazów.",
+            "Volume of any shape calculator": "Obliczanie objętości dowolnej figury geometrycznej",
+            "Volume of any shape calculator.desc": "Aplikacja pozwalająca na obliczenie oraz prezentację objętości dowolnej figury geometrycznej przy pomocy algorytmu Monte Carlo oraz metody sześcianów.",
+            "bash.desc": "Moje skrypty stworzone podczas nauki poleceń konsoli bashowej.",
+            "IoT simulator.desc": "Symulator środowiska IoT pozwalający na tworzenie, komunikację urządzeń w wielu sieciach, wykorzystując standardy IoT oraz reagowanie na stany innych urządzeń.",
+            "Simple spring app": "Przykładowy serwer w Java Spring",
+            "Simple spring app.desc": "Serwer stworzony podczas nauki środowiska Java spring. Przedstawia on prosty webSerwis wykorzystujący Hibernate do zarządzania składem samochodów.",
+            "Notes player.desc": "Aplikacja odgrywająca przy pomocy komunikacji z kartą dzwiękową wejściowe pliki tekstowe zawierające zapis nutowy dowolnych utworów.",
+            "Geometry soldiers.desc": "Gra komputerowa z gatunku strzelanin 3d, stworzona na konkurs Szczecin Gamedev Talents. Pozwalała na grę w dwóch trybach, różnymi klasami postaci, z mądrymi przeciwnikami oraz rozwój kierowaną postacią. W konkursie uzyskała 3 miejsce.",
+            "my compilator MKlab.desc": "Kompilator języka C podobnego. Pozwala na podstawowe operacje artmetyczne, pętle, instrukcje warunkowe, zarządzanie pamięcią, funkcje, struktury oraz zarządzanie dynamiczne i statyczne zmiennymi tablicowymi.",
+            "MOS device simulator": "Symulator urządzenia MOS",
+            "MOS device simulator.desc": "Symulator urządzenia komunikującego się przy użyciu socketów TCP/IP w standardzie MOS.",
+            "java SE console apps.desc": "Proste aplikacje konsolowe storzone podczas nauki języka java (standart edition).",
+            "workers list.desc": "Aplikacja do zarządzania listą pracowników oraz zapewniająca wymianę danych poprzez różne strategie komunikacji (JDBC, TCP/IP, RMI, JNDI, JAXB, JAXWS).",
+            "dining philosophers problem": "Problem ucztujących filozofów",
+            "dining philosophers problem.desc": "Wieloagentowa aplikacja w środowisku JADE, prezentująca problem ucztujących filozofów.",
+            "matrixes.desc": "Wieloagentowa aplikacja w środowisku JADE przedstawiająca komunikację między dostawcą usługi oraz wykorzystującym usługę klientem.",
+            "big data and machine learning": "big data i nauczanie maszynowe",
+            "big data and machine learning.desc": "Skrypty wykorzystujące algorytmy big data w celu wnioskowania i prezentacji danych z dużych baz danych oraz algorytmy nauczania maszynowego w celu automatyzacji procesów wybranych problemów.",
+            "safety documents exchange.desc": "Projekt polegał na stworzeniu aplikacji internetowej do bezpiecznej wymiany dokumentów przy użyciu algorytmu Diffiego Hellmana. W projekcie byłem odpowiedzialny całkowicie za część backendową, integrację w warstwą UI oraz dostarczeniem środowiska uruchomieniowego oraz deploy'owego. Największy nacisk został położony na aspekty bezpieczeństwa.",
+            "my node.js multithreading library": "Autorska biblioteka wielowątkowa Node.js",
+            "my node.js multithreading library.desc": "Aplikacja prezentująca możliwości mojej autorskiej biblioteki w technologii Node.js zapewniającej tworzenie, synchronizację oraz zakończenie wytworzonych procesów rozwiązujących wspólny problem.",
+            "remindMeNear.desc": "Aplikacja wysyłająca ustawione powiadomienie kiedy znajdziemy się w pobliżu określonego miejsca.",
+            "Shoot targets.desc": "Gra komputerowa z gatunku 3d shooter, w której celem jest zestrzelenie jak największej ilości celów.",
+            "Pendulum simulator": "Symulator wahadła",
+            "Pendulum simulator.desc": "Symulator zachowania fizycznego wahadła oraz wahadła podwójnego.",
+            "Dynamic random labirynth game.desc": "Gra komputerowa polegająca na odnalezieniu ukrytych przedmiotów w losowo generowanym labiryncie.",
+            "Crawler.desc": "Crawler stron internetowych wyszukujący wybrane elementy.",
+            "FTP client.desc": "Klient FTP pobierający dane z wybranego serwera FTP.",
+            "POP3 client.desc": "Klient emailowy komunikujący się z dowolnym serwisem POP3.",
+            "SMTP client.desc": "Klient SMTP komunikujący się z dowolnym serwisem SMTP.",
+            "Base 64 conventer.desc": "Konwerter dowolnego pliku na ciąg znaków w formacie base 64.",
+            "Dynamic table": "Dynamiczna tablica",
+            "Dynamic table.desc": "Implementacja struktury danych - dynamicznej tablicy.",
+            "Doubly linked list": "Podwójna lista dowiązań",
+            "Doubly linked list.desc": "Implementacja struktury danych - podwójnej listy dowiązań.",
+            "Min-Max heap": "Kopiec Min-Max",
+            "Min-Max heap.desc": "Implementacja struktury danych - kopca Min-Max",
+            "Dijkstra vs A*.desc": "Porównanie czasów wykonania oraz osiągniętych wyników zaimplementowanych algorytmów do poszukiwania najkrótszej drogi - Dijkstry oraz A*.",
+            "BST tree (DSW algorithm)": "Drzewo BST (z algorytmem DSW)",
+            "BST tree (DSW algorithm).desc": "Implementacja struktury danych - drzewa BST wraz z algorytmem równoważącym DSW.",
+            "AVL tree": "Drzewo AVL",
+            "AVL tree.desc": "Implementacja struktury danych - drzewa AVL.",
+            "Game of Life": "Gra w życie",
+            "Game of Life.desc": "Implementacja gry losowej na wielu rywalizujących wątkach, generując plik w formacie gif z przebiegiem gry.",
+            "Labirynth console game.desc": "Gra konsolowa polegająca na pokonaniu działającego w tle wątku programu w przejściu losowo generowanych labiryntów.",
+            "Hamming code": "Kod Hamminga",
+            "Hamming code.desc": "Implementacja kodera oraz dekodera kodu Hamminga (7.4).",
+            "Linux socket communicator.desc": "Konsolowa aplikacja, komunikator do czatowania między użytkownikami systemu linux.",
+            "Linux brute force.desc": "Skrypt wykorzystujący technikę brute force w celu dopasowania haseł z pliku do użytkowników systemu.",
+            "Static file server": "Serwer statycznych plików",
+            "Static file server.desc": "Aplikacja udostępniające pliki we wskazanym folderze poprzez socket TCP/IP.",
+            "Face recognition matlab.desc": "Skrypt odnajdujący twarze na obrazach.",
+            "Genetic algorithm": "Algorytm genetyczny",
+            "Genetic algorithm.desc": "Skrypt rozwiązujący problem plecakowy za pomocą algorytmu genetycznego.",
+            "Image processing - edge detection": "Przetważanie obrazów - wykrywanie krawędzi",
+            "Image processing - edge detection.desc": "Skrypt znajdujący krawędzie na analizowanym obrazie.",
+            "Image processing - circle detection": "Przetważanie obrazów - wykrywanie okręgów",
+            "Image processing - circle detection.desc": "Skrypt znajdujący okręgi na analizowanym obrazie"
         }
     },
     "glossary": {
@@ -110,10 +185,11 @@
         "data structures and algorithm knowledge": "znajomość algorytmów i struktur danych",
         "team worker": "pracownik zespołowy",
         "willingness to learn": "chęć do nauki",
-        "good grasping ability": "szybkie chwytanie nowych rzeczy",
+        "good grasping ability": "szybkie przyswajanie nowych informacji",
         "design patterns": "wzorce projektowe",
         "agile methodology": "metodologia agile",
         "machine learning": "nauczanie maszynowe",
+        "algorithms": "algorytmika",
         "performance and scalability optimization": "optymalizacja wydajności i skalowalności",
         "efficient data management": "efektywne zarządzanie zasobami",
         "strong decision making": "umiejętność podejmowania decyzji"
