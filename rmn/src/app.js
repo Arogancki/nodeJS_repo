@@ -7,13 +7,15 @@ const express = require('express')
     , router = require('./router')
     , app = express()
     , log = require('./helpers/log')
+    , ensureServicesConnection = require('./helpers/ensureServicesConnection.js')
  
 module.exports = async ()=>{
     app.set('port', config.PORT)
-    app.public = config.APP_PUBLIC
 
     await middlewares(app)
     await router(app)
+
+    await ensureServicesConnection([config.AUTH_SERVICE_ADDRESS, config.CMB_SERVICE_ADDRESS])
 
     config.PRINT_CONFIG && Object.keys(config).forEach(key=>log.debug(`$${key}=${config[key]}`))
 

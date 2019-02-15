@@ -5,28 +5,26 @@ const path = require('path')
 exports.required = [
     "NODE_ENV",
     "PORT",
-    "PORT_MONGO_ADMIN",
     "MONGO_CONNECTION_STRING",
+    "AUTH_SERVICE_ADDRESS",
+    "CMB_SERVICE_ADDRESS"
 ]
 
 exports.optional = {
-    "APP_PUBLIC": path.join(process.cwd(), `src`, `client`, `build`),
     "LOG_LEVEL": 'trace', // no, info, debug, trace
     "LOG_BODY": true,
+    "LOG_FILE": path.join(process.cwd(), 'logs.html'),
     "LOG_TEMPLATE": path.join(process.cwd(), 'src', 'assets', 'log-template.html')/**/,
     "SESSION_SECRET": "OaMBtTO1UGw3ZCuPNdYU",
     "COOKIE_MAX_AGE": 1000*60*60*24,
-    "USERSS_DATABASE_NAME": "users_collection",
+    "REMINDERS_DATABASE_NAME": "reminders_collection",
     "HTTPS": false,
     "SSL_CERT_FILE": path.join(process.cwd(), `src`, `assets`, 'ssl-cert.pem'),
     "SSL_KEY_FILE": path.join(process.cwd(), `src`, `assets`, 'ssl-key.pem'),
     "NO_CACHE": true,
     "LIMITER": true,
-    "AUTH_LIMITER": true,
-    "AUTH_LIMITER_RESET_PASSWORD": "sorry mr. server for bothering your awesomeness",
     "CORS": true,
     "STORE_SESSION_ON_MONGO": true,
-    "REJECT_BLACKLISTED_PASSWORDS": true,
     "PRINT_CONFIG": true, // level debug
 }
 
@@ -56,9 +54,6 @@ exports.parsers = {
     "SSL_KEY_FILE": parsers.toBoleanOrString,
     "LOG_TEMPLATE": parsers.toBoleanOrString,
     "SERVE_LOGS": parsers.toBoleanOrString,
-    "CREATE_ADMIN": parsers.toBoleanOrString,
-    "REJECT_BLACKLISTED_PASSWORDS": parsers.toBoleanOrString,
-    "AUTH_LIMITER_RESET_PASSWORD": parsers.toBoleanOrString
 }
 
 exports.validators = {

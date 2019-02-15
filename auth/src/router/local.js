@@ -20,7 +20,7 @@ module.exports = app => {
             checkBlackListedPasswords
         ], 
         handler: passport.authenticate('registration', {
-            successRedirect : '/done'
+            successRedirect : config.DONE_REDIRECT,
         })
     }, {
         method: "post",
@@ -30,7 +30,7 @@ module.exports = app => {
             password: schemes.password
         }, 'body'),
         handler: passport.authenticate('authorization', {
-            successRedirect : '/done'
+            successRedirect : config.DONE_REDIRECT,
         })
     }])
 }

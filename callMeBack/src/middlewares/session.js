@@ -8,6 +8,7 @@ module.exports = async (secret, maxAge) => {
     ? new (connectMongo(session))({ mongooseConnection: ( await mongoose()).connection })
     : new session.MemoryStore
     return session({
+        name: 'cmb.sid',
         cookie: { maxAge },
         store: store,
         saveUninitialized: true,

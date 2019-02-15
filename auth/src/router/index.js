@@ -4,15 +4,13 @@ const httpStatuses = require('http-status-codes')
     , getLocalRoutes = require('../helpers/getLocalRoutes')
     , errorHandler = require('../helpers/errorHandler')
     , authenticated = require('../policies/authenticated')
-
+    
 module.exports = async app => {
     const router = createRouter([{
         policy: authenticated,
         route: '/done',
         handler: function done(req, res, next){
-            //req.session.w =( req.session.w || 0)+1
-            //console.log(req.session.w)
-            return res.json({id: req.user._id.toString()})
+            return res.json({userId: req.user._id.toString()})
         }
     }, {
         method: "delete",

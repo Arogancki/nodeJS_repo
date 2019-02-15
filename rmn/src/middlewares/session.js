@@ -8,10 +8,11 @@ module.exports = async (secret, maxAge) => {
     ? new (connectMongo(session))({ mongooseConnection: ( await mongoose()).connection })
     : new session.MemoryStore
     return session({
-        cookie: { maxAge },
+        name: 'rmn.sid',
+        cookie: { secure: config.HTTPS,  maxAge },
         store: store,
         saveUninitialized: true,
-        resave: true,
+        resave: false,
         secret,
     })
 }

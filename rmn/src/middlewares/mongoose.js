@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
     , config = require('../config')
-    , log = require('../helpers/log')
 
 mongoose.Promise = Promise
+mongoose.set('useFindAndModify', false)
+mongoose.set('useCreateIndex', true)
 mongoose.connect(config.MONGO_CONNECTION_STRING, {useNewUrlParser: true})
 
 module.exports = function ensureConnection() {

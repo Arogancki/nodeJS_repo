@@ -1,6 +1,7 @@
 const crateRouter = require('../helpers/createRouter')
     , notAuthenticated = require('../policies/notAuthenticated')
     , passport = require('passport')
+    , config = require('../config')
 
 module.exports = app => {
     return crateRouter([{
@@ -8,8 +9,8 @@ module.exports = app => {
             policy: notAuthenticated,
             handler: passport.authenticate('facebook')
         }, {
-            route: '/redirect',
+            route: '/done',
             policy: notAuthenticated,
-            handler: [passport.authenticate('facebook'), (req, res)=>res.redirect('/done')]
+            handler: [passport.authenticate('facebook'), (req, res)=>res.redirect(config.DONE_REDIRECT)]
         }])
 }

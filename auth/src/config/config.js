@@ -10,7 +10,10 @@ exports.required = [
     "GOOGLE_CLIENT_SECRET",
     "FACEBOOK_APP_ID",
     "FACEBOOK_APP_SECRET",
-    "EMAIL_PASSWORD"
+    "EMAIL_PASSWORD",
+    "DONE_REDIRECT",
+    "FACEBOOK_DONE_REDIRECT",
+    "GOOGLE_DONE_REDIRECT"
 ]
 
 exports.optional = {

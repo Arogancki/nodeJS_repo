@@ -3,9 +3,9 @@ const log = require('../helpers/log')
 
 const logger = function logger(req, res, next) {
     req.session.logger = (...logs) => log.info(
-        ` -- ${req.user 
-            ? `user: id: ${req.user._id}) login: ${req.user.login}` 
-            : `ip: (${req.ip})`
+        ` -- ${req.session.user 
+            ? `user: ${req.session.user.userId}`
+            : `ip: ${req.ip}`
         } --`
         , ...logs
     )

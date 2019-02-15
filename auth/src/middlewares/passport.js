@@ -76,13 +76,13 @@ passport.use('authorization', new LocalStrategy({
 }))
 
 passport.use(new GoogleStrategy({
-    callbackURL: "/google/redirect",
+    callbackURL: config.GOOGLE_DONE_REDIRECT,
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_CLIENT_SECRET
 }, (accessToken, refreshToken, profile, done)=>passport.externalAuthorization(profile, 'GOOGLE', done)))
 
 passport.use(new FacebookStrategy({
-    callbackURL: "/facebook/redirect",
+    callbackURL: config.FACEBOOK_DONE_REDIRECT,
     clientID: config.FACEBOOK_APP_ID,
     clientSecret: config.FACEBOOK_APP_SECRET
 }, (accessToken, refreshToken, profile, done)=>passport.externalAuthorization(profile, 'FACEBOOK', done)))
