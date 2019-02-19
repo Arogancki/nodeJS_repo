@@ -161,6 +161,22 @@ to start:
 ```
 npm run compose
 ```
+### Tests
+Requires the same setup as running locally
+first download dependencies:
+```
+npm i
+```
+run tests:
+```
+npm test
+```
+check coverage:
+```
+npm run coverage
+```
+Current coverage:
+![coverage](coverage.png)
 
 ### todo
 adding routes for graphQL
