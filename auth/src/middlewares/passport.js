@@ -32,7 +32,7 @@ passport.externalAuthorization = async (profile, type, cb) => {
     }
     catch(err){
         if (err.codeName === "ImmutableField"){
-            try{
+            try {
                 const user = await UsersCollection.findOne({id})
                 if (!user){
                     throw new Error('User not found but id has been already taken')

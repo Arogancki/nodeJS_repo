@@ -2,13 +2,7 @@ const log = require('../helpers/log')
     , config = require('../config')
 
 const logger = function logger(req, res, next) {
-    req.session.logger = (...logs) => log.info(
-        ` -- ${req.user 
-            ? `user: id: ${req.user._id}) email: ${req.user.email}` 
-            : `ip: (${req.ip})`
-        } --`
-        , ...logs
-    )
+    req.session.logger = (...logs) => log.info(` -- ip: (${req.ip}) --`, ...logs)
     req.session.logger(`(${req.session.id || ''}) ${req.method}: ${req.url}`)
     if (config.LOG_BODY){
         Object.keys(req.body).length && req.session.logger('body:', req.body)
