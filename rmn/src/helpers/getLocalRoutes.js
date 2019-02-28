@@ -8,7 +8,7 @@ module.exports = (app, fileName) => {
     .map(file=>{
         const modulePath = path.parse(file).name
         return {
-            path: `/${modulePath}` ,
+            path: `/${modulePath}`,
             router: require(path.join(dir, modulePath))(app)
         }
     })

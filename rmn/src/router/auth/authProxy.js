@@ -12,12 +12,14 @@ module.exports = proxy(config.AUTH_SERVICE_ADDRESS, {
         if (proxyRes.statusCode===200 && contentType==="application/json; charset=utf-8" || contentType==="application/json"){
             try{
                 const data = JSON.parse(proxyResData.toString('utf8'))
-                if (!data.userId){
-                    throw new Error(`Invalid data from auth service`)
+                if (!data.error){
+                    if (!data.userId){
+                        throw new Error(`Invalid data from auth service`)
+                    }
+                    req.session.user = data
+                    log.trace(`User logged: ${data.userId}`)
+                    proxyResData = {}
                 }
-                req.session.user = data
-                log.trace(`User logged: ${data.userId}`)
-                proxyResData = {}
             }
             catch(err){
                 throw err

@@ -1,6 +1,6 @@
 const Router = require('express').Router
     , log = require('./log')
-    , config = require('../config')
+    , httpStatuses = require('http-status-codes')
 
 
 async function runner(fun, req, res){
@@ -33,7 +33,7 @@ function validate(validators){
         const validationError = validators && await runner(validators, req, res)
         if (validationError){
             req.session.logger(`Validation error ${validationError.join ? validationError.join(', ') : validationError}`)
-            return res.status(400).json(validationError)
+            return res.status(httpStatuses.UNPROCESSABLE_ENTITY).json(validationError)
         }
         return next()
     }
@@ -53,10 +53,10 @@ module.exports = function createRouter(routesConfig=[], localRoutes=[]){
                 routeConfig.handler = (()=>{})
             }
         })
-        return router[routeConfig.method](
+        return router[routeConfig.method.toLowerCase()](
             routeConfig.route, 
-            ...[checkPolicies(routeConfig.policy), 
-                validate(routeConfig.validation),
+            ...[validate(routeConfig.validation),
+                checkPolicies(routeConfig.policy),
                 ...handlers]
         )
     })

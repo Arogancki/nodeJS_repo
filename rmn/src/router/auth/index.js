@@ -13,7 +13,6 @@ module.exports = app => {
         }, authProxy]
     }, {
         route: /.*/,
-        policy: notAuthenticated,
         handler: authProxy
     }])
 }

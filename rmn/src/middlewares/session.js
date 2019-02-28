@@ -5,7 +5,10 @@ const session = require('express-session')
 
 module.exports = async (secret, maxAge) => {
     const store = config.STORE_SESSION_ON_MONGO 
-    ? new (connectMongo(session))({ mongooseConnection: ( await mongoose()).connection })
+    ? new (connectMongo(session))({ 
+        mongooseConnection: ( await mongoose()).connection,
+        collection: 'rmn-sessions'
+     })
     : new session.MemoryStore
     return session({
         name: 'rmn.sid',

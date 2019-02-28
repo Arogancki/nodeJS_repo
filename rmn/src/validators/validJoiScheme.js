@@ -6,5 +6,6 @@ module.exports = function validJoiScheme(scheme, validationElement){
         if (validation.error){
             return validation.error.details.map(d=>d.message)
         }
+        req[validationElement] = validation.value
     }
 }

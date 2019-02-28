@@ -12,12 +12,12 @@ const express = require('express')
 module.exports = async ()=>{
     app.set('port', config.PORT)
 
+    config.PRINT_CONFIG && Object.keys(config).forEach(key=>log.debug(`$${key}=${config[key]}`))
+
     await middlewares(app)
     await router(app)
 
     await ensureServicesConnection([config.AUTH_SERVICE_ADDRESS, config.CMB_SERVICE_ADDRESS])
-
-    config.PRINT_CONFIG && Object.keys(config).forEach(key=>log.debug(`$${key}=${config[key]}`))
 
     return new Promise(async res=>{
         const server = (

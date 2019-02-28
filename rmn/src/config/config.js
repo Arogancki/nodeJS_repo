@@ -7,7 +7,8 @@ exports.required = [
     "PORT",
     "MONGO_CONNECTION_STRING",
     "AUTH_SERVICE_ADDRESS",
-    "CMB_SERVICE_ADDRESS"
+    "CMB_SERVICE_ADDRESS",
+    "SERVER_PUBLIC_ADDRESS"
 ]
 
 exports.optional = {
@@ -17,7 +18,7 @@ exports.optional = {
     "LOG_TEMPLATE": path.join(process.cwd(), 'src', 'assets', 'log-template.html')/**/,
     "SESSION_SECRET": "OaMBtTO1UGw3ZCuPNdYU",
     "COOKIE_MAX_AGE": 1000*60*60*24,
-    "REMINDERS_DATABASE_NAME": "reminders_collection",
+    "PLACES_DATABASE_NAME": "places_collection",
     "HTTPS": false,
     "SSL_CERT_FILE": path.join(process.cwd(), `src`, `assets`, 'ssl-cert.pem'),
     "SSL_KEY_FILE": path.join(process.cwd(), `src`, `assets`, 'ssl-key.pem'),
