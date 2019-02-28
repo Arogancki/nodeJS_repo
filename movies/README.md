@@ -162,7 +162,7 @@ to start:
 npm run compose
 ```
 ### Tests
-Requires the same setup as running locally
+Requires the same setup as running locally  
 first download dependencies:
 ```
 npm i
@@ -176,6 +176,8 @@ check coverage:
 npm run coverage
 ```
 Current coverage:
+  
+    
 ![coverage](coverage.png)
 
 ### todo
