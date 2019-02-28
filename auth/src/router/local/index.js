@@ -1,16 +1,17 @@
-const crateRouter = require('../helpers/createRouter')
-    , notAuthenticated = require('../policies/notAuthenticated')
-    , validJoiScheme = require('../validators/validJoiScheme')
-    , checkBlackListedPasswords = require('../validators/checkBlackListedPasswords')
-    , schemes = require('../models/shemes')
-    , config = require('../config')
-    , localPost = require('../policies/limiters').localPost
+const crateRouter = require('../../helpers/createRouter')
+    , notAuthenticated = require('../../policies/notAuthenticated')
+    , validJoiScheme = require('../../validators/validJoiScheme')
+    , checkBlackListedPasswords = require('../../validators/checkBlackListedPasswords')
+    , getLocalRoutes = require('../../helpers/getLocalRoutes')
+    , schemes = require('../../models/schemes')
+    , config = require('../../config')
+    , { localPost, localPut} = require('../../policies/limiters')
     , passport = require('passport')
 
 module.exports = app => {
     return crateRouter([{
         method: "put",
-        policy: notAuthenticated,
+        policy: config.AUTH_LIMITER ? [notAuthenticated, localPut()] : notAuthenticated,
         validation: [
             validJoiScheme({
                 email: schemes.email,
@@ -32,5 +33,5 @@ module.exports = app => {
         handler: passport.authenticate('authorization', {
             successRedirect : config.DONE_REDIRECT,
         })
-    }])
+    }], getLocalRoutes(app, __filename))
 }

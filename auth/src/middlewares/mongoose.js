@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+    , criticalError = require('../helpers/criticalError')
     , config = require('../config')
 
 mongoose.Promise = Promise
@@ -13,6 +14,6 @@ module.exports = function ensureConnection() {
             return done()
         }
         mongoose.connection.once('open', done)
-        mongoose.connection.on('error', rej)
+        mongoose.connection.on('error', criticalError)
     })
 }

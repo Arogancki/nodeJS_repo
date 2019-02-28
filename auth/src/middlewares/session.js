@@ -1,18 +1,16 @@
 const session = require('express-session')
-    , connectMongo = require('connect-mongo')
+    , connectMongo = require('connect-mongo')(session)
     , mongoose = require('./mongoose')
     , config = require('../config')
 
-module.exports = async (secret, maxAge) => {
-    const store = config.STORE_SESSION_ON_MONGO 
-    ? new (connectMongo(session))({ mongooseConnection: ( await mongoose()).connection })
-    : new session.MemoryStore
-    return session({
-        name: 'auth.sid',
-        cookie: { secure: config.HTTPS,  maxAge },
-        store: store,
-        saveUninitialized: true,
-        resave: false,
-        secret,
-    })
-}
+module.exports = async (secret, maxAge) => session({
+    name: 'auth.sid',
+    cookie: { secure: config.HTTPS, maxAge },
+    store: new connectMongo({ 
+        mongooseConnection: ( await mongoose()).connection,
+        collection: 'auth-sessions'
+    }),
+    saveUninitialized: true,
+    resave: false,
+    secret,
+})

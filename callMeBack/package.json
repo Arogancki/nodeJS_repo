@@ -6,8 +6,9 @@
   "scripts": {
     "coverage": "nyc nyc --reporter=html --reporter=text ./node_modules/mocha/bin/_mocha src/test/test.js --no-timeouts --exit && start ./coverage/index.html",
     "test": "node ./node_modules/mocha/bin/_mocha src/test/test.js --no-timeouts --exit",
-    "start-dev": "node index.js",
-    "build:docker": "docker build --no-cache -t call-me-back ."
+    "start": "node index.js",
+    "build:docker": "docker build --no-cache -t call-me-back .",
+    "docker": "docker run call-me-back"
   },
   "author": "Artur Ziemba",
   "license": "MIT",

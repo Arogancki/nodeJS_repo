@@ -34,7 +34,7 @@ const mongoose = require('mongoose')
         retry: {
             gap: {
                 type: Number,
-                default: 2000
+                default: 3
             },
             times: {
                 type: Number,
@@ -63,16 +63,26 @@ async function invoke(hook, ms){
             res()
         }, ms)
     })
-    const response = await rp({
-        method: hook.method,
-        uri: hook.uri,
-        headers: hook.headers,
-        auth: hook.auth,
-        body: hook.body,
-        simple: false,
-        resolveWithFullResponse: true,
-        json: hook.body ? true : false
-    })
+    let response;
+    try {
+        response = await rp({
+            method: hook.method,
+            uri: hook.uri,
+            qs: {
+                token: hook.token,
+                id: hook._id.toString()
+            },
+            headers: hook.headers,
+            auth: hook.auth,
+            body: hook.body,
+            simple: false,
+            resolveWithFullResponse: true,
+            json: hook.body ? true : false
+        })
+    }
+    catch(err){
+        response = {statusCode: 404}
+    }
     if (response.statusCode < 400){
         await model.deleteById(hook._id)
         return log.trace(`webHook: "${hook._id}" (status: ${response.statusCode}) has finished execution`)
@@ -82,7 +92,10 @@ async function invoke(hook, ms){
         throw model.timerCanceledError
     }
     if (newHook.retry.times !== -1 && newHook.retry.done >= newHook.retry.times){
-        await model.deleteById(hook._id)
+        try{
+            await model.deleteById(hook._id)
+        }
+        catch(err){}
         return log.trace(`webHook: "${hook._id}" (status: ${response.statusCode}) has finished execution (did not reach the hook)`, response.statusCode)
     }
     ms = newHook.retry.gap*1000
