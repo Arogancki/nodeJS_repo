@@ -77,8 +77,9 @@ router.post('/registration', function (req, res) {
             res.cookie('password', req.body.password, { maxAge: 86400000, httpOnly: true });
             h.sendOk(req, res);
             if (req.body.email) {
-                let emailbody = `Open this link to confirm your email:<br><a href="${globals.dnsAddress}/confirm?login=${req.body.login}&confirmation=${confirmation}">Click Here</a>`;
-				console.log("ZLE LINKI W EMAILACH :"+ emailbody);
+				let link = `${globals.dnsAddress}/confirm?login=${req.body.login}&confirmation=${confirmation}`
+                let emailbody = `Open this link to confirm your email:<br><a href="${link}">Click Here</a> <br>or copy it to your browser ${link}`;
+				console.log("ZLE LINKI W EMAILACH :"+ emailbody)
                 emails.sendMailToLogin(req.body.login, "Confirm your email", emailbody, req.body.email);
             }
         }).catch(function(err){

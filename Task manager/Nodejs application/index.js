@@ -9,8 +9,8 @@ const h = require('./lib/helper')
 const { router } = require('./lib/router')
 const globals = require('./lib/globals')
 
-// const public = path.join(__dirname, "angular");	// path with public files
-const public = path.join(__dirname, "angular", "src");	// path with public files
+const public = path.join(__dirname, "angular");	// path with public files
+//const public = path.join(__dirname, "react", "src");	// path with public files
 const resources = path.join(public, "resources");	// specific files path
 
 const app = express();						        //  create epress configuration object
@@ -59,6 +59,6 @@ app.use(function(err, req, res, next) {
 
 app.set('port', globals.port);
 
-let server = app.listen(3002, "127.0.0.1", function () {
+let server = app.listen(globals.port, "127.0.0.1", function () {
     h.makeLog(`Server is listening on port ${server.address().port}`);
 });

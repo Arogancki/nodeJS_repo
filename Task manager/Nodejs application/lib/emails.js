@@ -4,8 +4,8 @@ const { makeLog } = require('./helper')
 const db = require('./db')()
 
 //email sender data
-const SERVER_EMAIL_ADDRESS = process.env.email;
-const SERVER_EMAIL_PASSWORD = process.env.emailPass;
+const SERVER_EMAIL_ADDRESS = process.env.email || 'nodejstaskmanagerapplication@gmail.com';
+const SERVER_EMAIL_PASSWORD = process.env.emailPass || '3uHC56T5Op3F0WxxCMMTcCY1kPNmp49xE7lDC9ICCXuX';
 const SERVER_NAME = `NodeJS Task manager <${SERVER_EMAIL_ADDRESS}>`;
 
 if (!SERVER_EMAIL_ADDRESS || !SERVER_EMAIL_PASSWORD){
