@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<wsdl:definitions name="add"
+             targetNamespace="http://example.com/add.wsdl"
+             xmlns:tns="http://example.com/add.wsdl"
+             xmlns:xsd1="http://example.com/add.xsd"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://example.com/add.xsd" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+            <xsd:element name="calculatePayload">
+              <xsd:complexType>
+                  <xsd:all>
+                    <xsd:element name="a" type="double"/>
+                    <xsd:element name="b" type="double"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="response">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="double"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="toCalculate">
+        <wsdl:part name="body" element="xsd1:calculatePayload"/>
+    </wsdl:message>
+
+     <wsdl:message name="fromCalculate">
+        <wsdl:part name="body" element="xsd1:response"/>
+    </wsdl:message>
+
+    <wsdl:portType name="addPortType">
+        <wsdl:operation name="calculate">
+           <wsdl:input message="tns:toCalculate"/>
+           <wsdl:output message="tns:fromCalculate"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="addSoapBinding" type="tns:addPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="calculate">
+        <soap:operation soapAction="http://example.com/calculate"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="addService">
+        <wsdl:port name="addPort" binding="tns:addSoapBinding">
+           <soap:address location="http://localhost:8082/add"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
