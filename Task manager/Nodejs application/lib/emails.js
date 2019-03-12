@@ -4,10 +4,15 @@ const { makeLog } = require('./helper')
 const db = require('./db')()
 
 //email sender data
-const SERVER_EMAIL_ADDRESS = 'nodejstaskmanagerapplication@gmail.com';
-const SERVER_EMAIL_SERVICE = 'gmail';
-const SERVER_EMAIL_PASSWORD = 'Secred_password1';
-const SERVER_NAME = 'NodeJS Task manager <nodejstaskmanagerapplication@gmail.com>';
+const SERVER_EMAIL_ADDRESS = process.env.email;
+const SERVER_EMAIL_PASSWORD = process.env.emailPass;
+const SERVER_NAME = `NodeJS Task manager <${SERVER_EMAIL_ADDRESS}>`;
+
+if (!SERVER_EMAIL_ADDRESS || !SERVER_EMAIL_PASSWORD){
+	throw new Error('EMAIL INFO IS NOT PROVIDED')
+}
+
+const SERVER_EMAIL_SERVICE = process.env.emailServ || 'gmail';
 
 //set email sender data
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
