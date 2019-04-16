@@ -123,9 +123,7 @@ model.validateEmailConfirmationSecret = async function validateEmailConfirmation
 }
 
 model.changePassword = async function changePassword(id, password){
-    let r = await model.updateOne({_id: id}, {"localProvider.password": getHash(password)})
-
-    return r
+    return model.updateOne({_id: id}, {"localProvider.password": getHash(password)})
 }
 
 model.sendResetPasswordLink = async function sendResetPasswordLink(email){

@@ -1,0 +1,2 @@
+concurrently pwd &
+echo "hej"

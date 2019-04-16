@@ -1,7 +1,6 @@
 const createRouter = require('../../helpers/createRouter')
     , authProxy = require('./authProxy')
     , authenticated = require('../../policies/authenticated')
-    , notAuthenticated = require('../../policies/notAuthenticated')
 
 module.exports = app => {
     return createRouter([{

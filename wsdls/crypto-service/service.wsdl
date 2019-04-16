@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<wsdl:definitions name="crypto"
+             targetNamespace="http://example.com/crypto.wsdl"
+             xmlns:tns="http://example.com/crypto.wsdl"
+             xmlns:xsd1="http://example.com/crypto.xsd"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://example.com/crypto.xsd" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+            <xsd:element name="cipherPayload">
+              <xsd:complexType>
+                  <xsd:all>
+                    <xsd:element name="text" type="string"/>
+                    <xsd:element name="password" type="string"/>
+                    <xsd:element name="algorithm" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+            <xsd:element name="decipherPayload">
+              <xsd:complexType>
+                  <xsd:all>
+                    <xsd:element name="coded" type="string"/>
+                    <xsd:element name="password" type="string"/>
+                    <xsd:element name="algorithm" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+           <xsd:element name="response">
+              <xsd:complexType>
+                  <xsd:all>
+                      <xsd:element name="response" type="string"/>
+                  </xsd:all>
+              </xsd:complexType>
+           </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="toDecipher">
+        <wsdl:part name="body" element="xsd1:decipherPayload"/>
+    </wsdl:message>
+
+     <wsdl:message name="fromDecipher">
+        <wsdl:part name="body" element="xsd1:response"/>
+    </wsdl:message>
+
+     <wsdl:message name="toCipher">
+        <wsdl:part name="body" element="xsd1:cipherPayload"/>
+    </wsdl:message>
+
+     <wsdl:message name="fromCipher">
+        <wsdl:part name="body" element="xsd1:response"/>
+    </wsdl:message>
+
+    <wsdl:message name="Empty">
+    </wsdl:message>
+
+    <wsdl:message name="algorithms">
+        <wsdl:part name="body" element="xsd1:algorithms"/>
+    </wsdl:message>
+
+    <wsdl:portType name="cryptoPortType">
+        <wsdl:operation name="decipher">
+           <wsdl:input message="tns:toDecipher"/>
+           <wsdl:output message="tns:fromDecipher"/>
+        </wsdl:operation>
+        <wsdl:operation name="cipher">
+           <wsdl:input message="tns:toCipher"/>
+           <wsdl:output message="tns:fromCipher"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAlgorithms">
+            <wsdl:input message="tns:Empty"/>
+           <wsdl:output message="tns:algorithms"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="cryptoSoapBinding" type="tns:cryptoPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="decipher">
+        <soap:operation soapAction="http://example.com/decipher"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cipher">
+        <soap:operation soapAction="http://example.com/cipher"/>
+           <wsdl:input>
+               <soap:body use="literal"/>
+           </wsdl:input>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAlgorithms">
+        <soap:operation soapAction="http://example.com/getAlgorithms"/>
+           <wsdl:output>
+               <soap:body use="literal"/>
+           </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="cryptoService">
+        <wsdl:port name="cryptoPort" binding="tns:cryptoSoapBinding">
+           <soap:address location="http://localhost:8082/crypto"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
