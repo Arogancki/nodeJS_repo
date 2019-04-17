@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
     , config = require('../config')
+    , criticalError = require('../helpers/criticalError')
 
 mongoose.Promise = Promise
 mongoose.set('useFindAndModify', false)
@@ -13,6 +14,6 @@ module.exports = function ensureConnection() {
 			done()
 		}
         mongoose.connection.once('open', done)
-        mongoose.connection.on('error', rej)
+        mongoose.connection.on('error', (err)=>rej(criticalError(err)))
     })
 }
