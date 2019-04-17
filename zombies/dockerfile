@@ -7,9 +7,11 @@ WORKDIR /be
 COPY package*.json ./
 RUN npm install
 
+npm i -g concurrently
+
 # Copy app source code
 COPY . .
 
 #Expose port and start application
 EXPOSE 8080
-CMD [ "npm", "start" ]
+CMD [ "npm", "startC" ]
