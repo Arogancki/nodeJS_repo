@@ -160,8 +160,8 @@ Environment variables are stored in .env file for all environment types or taken
 - PRINT_CONFIG - should print environment variables before starting, default: true
 - ZOMBIES_DATABASE_NAME - name of zombies collection, default: zombies
 - ITEMS_DATABASE_NAME - name of items collection, default: items
-- EXCHANGE_RATES_STORE_FILE - file to store current exchange rates
-- MAX_TRANSACTION_CALLS - amount of maximum sequential call attempts after getting errors during a transaction (when resource is being used by other calls)
+- EXCHANGE_RATES_STORE_FILE - file to store current exchange rates, default: ./exchange_rates.json
+- MAX_TRANSACTION_CALLS - amount of maximum sequential call attempts after getting errors during a transaction (when resource is being used by other calls), default: 5
 
 ## How to start
 first download dependencies:
