@@ -10,8 +10,8 @@ module.exports = function ensureConnection() {
     return new Promise((res, rej)=>{
         const done = ()=>res(mongoose)
         if (mongoose.connection.db) {
-            return done()
-        }
+			done()
+		}
         mongoose.connection.once('open', done)
         mongoose.connection.on('error', rej)
     })
