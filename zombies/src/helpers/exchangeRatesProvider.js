@@ -2,7 +2,7 @@ const rp = require('request-promise')
     , config = require('../config')
     , fs = require('fs-extra')
     , getLastMidnightTimestamp = require('./getLastMidnightTimestamp')
-    , Joi = require('Joi')
+    , Joi = require('joi')
     , schemes = require('../validators/schemes')
 
 let exchangeRates = null
