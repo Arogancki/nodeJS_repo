@@ -2,8 +2,8 @@
 
 ## Description
 Basic REST service for storing zombies and their items.   
-You can test the api at http://3.120.207.248:8000.  
-E.g: [http://3.120.207.248:8000/items](http://3.120.207.248:8000/items)
+You can test the api at http://18.184.108.61:8000.  
+E.g: [http://18.184.108.61:8000/items](http://18.184.108.61:8000/items)
 
 ## Requirements
 - npm (^v6) with node (^v9) installed
