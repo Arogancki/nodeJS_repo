@@ -1,67 +1,12 @@
 {
     "mobile.de": {
-        "address": "https://www.mobile.de",
+        "address": "http://18.184.108.61:8000",
         "time": 5000,
         "list": {
-            "Mercedes C class": {
-                "path": "/pl/samochod/mercedes-benz-c-klasse/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:17200_-6_,frn:2012,prn:5000,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
-                "time": 150000,
-                "pageCounter": {
-                    "alias": "PAGE_COUNTER_ALIAS",
-                    "start": 1
-                },
-                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
-                "children": "article > div > div[class='g-row js-ad-entry'] > a"
-            },
-            "Audi A6": {
-                "path": "/pl/samochod/audi-a6/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_10_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
-                "time": 150000,
-                "pageCounter": {
-                    "alias": "PAGE_COUNTER_ALIAS",
-                    "start": 1
-                },
-                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
-                "children": "article > div > div[class='g-row js-ad-entry'] > a"
-            },
-            "Audi A5": {
-                "path": "/pl/samochod/audi-a5/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_31_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
-                "time": 150000,
-                "pageCounter": {
-                    "alias": "PAGE_COUNTER_ALIAS",
-                    "start": 1
-                },
-                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
-                "children": "article > div > div[class='g-row js-ad-entry'] > a"
-            },
-            "Audi A4": {
-                "path": "/pl/samochod/audi-a4/vhc:car,cnt:de,pgn:PAGE_COUNTER_ALIAS,pgs:50,srt:price,sro:asc,ms1:1900_9_,frn:2012,prx:10000,ger:automatic_gear,vcg:sportscar!limousine!cabrio",
-                "time": 150000,
-                "pageCounter": {
-                    "alias": "PAGE_COUNTER_ALIAS",
-                    "start": 1
-                },
-                "container": "div[class='result-list-section js-result-list-section u-clearfix']",
-                "children": "article > div > div[class='g-row js-ad-entry'] > a"
+            "control": {
+                "path": "/items",
+                "time": 900000
             }
-        },
-        "headers": {
-            "User-Agent":  "PostmanRuntime/7.2.0",
-            "X-Amz-Cf-Id":  "sIPXRrtrn9kBZ6gGpyQipZbSPexV_8yQaKu3gLkNoRMDF8n9ZiEgjg==",
-            "Cloudfront-Is-Desktop-Viewer":  "true",
-            "Connect-Time":  "1",
-            "Via":  "1.1 5721f7035c3fc934bd3f96dbb04ba1e5.cloudfront.net (CloudFront), 1.1 vegur",
-            "Connection":  "close",
-            "Total-Route-Time":  "0",
-            "Postman-Token":  "3e077c96-47ca-40bb-a03a-f1df27b0be26",
-            "Accept":  "*/*",
-            "Cloudfront-Is-Mobile-Viewer":  "false",
-            "Cloudfront-Viewer-Country":  "PL",
-            "Cloudfront-Is-Smarttv-Viewer":  "false",
-            "Cache-Control":  "no-cache",
-            "Cloudfront-Is-Tablet-Viewer":  "false",
-            "Cloudfront-Forwarded-Proto":  "http",
-            "X-Request-Id":  "73fce4c5-76ea-403e-a907-7b4d9353af4a",
-            "cookie": "show_qs_e=vhc%3Acar%2Ccnt%3Ade%2Cms1%3A17200_-6_%2Cfrn%3A2012; sorting_e=PRICE_DESC; mobile.LOCALE=de; vi=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjaWQiOiJmMjE5ODljMy0zNWVjLTRiYzktYjkxYS0wOTA1Y2I1Nzg2ZTciLCJhdWQiOltdLCJpYXQiOjE1MzU4OTE1NzF9.oM01nX87AWVar0t39g6LZMQr7UJa2ni6RMDuBBYrlKo; featureVariant.QS_S4MR.1=NO_VARIANT; _ga=GA1.2.1346068961.1535891574; _gid=GA1.2.153886477.1535891574; optimizelyEndUserId=oeu1535891574774r0.7429371445685156; visited=1; _abck=4BBCC16A1187075054A1818FB60BBCBD02121D5E4764000073D88B5B6513B102~0~Myx1NG22e2qN0T4uMGyJK+RSXQJPGZ+l99Hr1+hmDkA=~-1~-1; axd=1000718201432560065; mdeConsentData=BOTdnTAOTdnTAB9ABBDEBa-AAAJw-BOgACAAkABgA1gBuAL8AYQBigDIAM0AaABpgDYAOcAdwB4AD1AHwAhoBEAEjAJMApYBTgFXAK0Ar4BYgFpALYAuYBeAGXAM0AzoBoAG0AN2Ab4B0QDqAPaAfACFQEMAQ6AiACNQEcAR2Aj4CRwElASeAlICVwEtATCAmgCcQE6AUEAocBRQFGgKQApYBTYCngKrAVcBW4CugK-AWKAsoC1QFtAW6AuAC4gFzgLqAvUBfAF-gMAAwMBgwGIgMUAxcBjQGOAMhAZIBlYDLgM1AZwBnYDPgNAAaKA0oDXwGyAbQA2wBuIDdAN5Ab8BwgDiQHGAceA5QDlwHNAc6A6ADqwHZAdwA7wB4ADyAHmgPQA9YB7YD3gPjAfMB9AD7CcP; mdeCustomConsentData=25; bm_sz=7CB3767651EDBE9615B3A12E17453217~QAAQXh0SAt7lvYtlAQAATjPonQhw8i5tLwv/y+dWQobtHxrAfdcXtbv5Qm88grpeQlok7Jg6xntZWCywvWps6Af/3PtxFg9lQafvzUUEJObX5WH3wAOz3/FGqZQD+kbw/A4kjeSw+OhLxaF0QelWnprQEIZnh3JhFEsfccoUV2msDKjKurg9+PtvYTJ+Ag==; __gads=ID=638711d13828ad37:T=1535954822:S=ALNI_MbJzYuDeCOsMUHtwFW7kixnVImNng; GED_PLAYLIST_ACTIVITY=W3sidSI6IlBFL1QiLCJ0c2wiOjE1MzU5NTY3OTAsIm52IjoxLCJ1cHQiOjE1MzU5NTY3ODgsImx0IjoxNTM1OTU2Nzg4fV0."
         }
     }
 }

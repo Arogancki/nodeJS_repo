@@ -50,11 +50,19 @@ async function check(name, domain, element){
             log(`getting request for ${domain.address}: ${name}`)
         }
 
-        const html = await rp({
-            method: 'GET',
-            url: urlAddress,
-            headers: domain.headers
-        })
+        try{
+            const response = await rp({
+                method: 'GET',
+                url: urlAddress,
+                //headers: domain.headers,
+                resolveWithFullResponse: true
+            })
+            return console.log(`${new Date()} ${response.statusCode}`)
+        }
+        catch(err){
+            return console.log(`${new Date()} ${err.message}`)
+        }
+
         if (html.includes("Are you a human?"))
             throw new Error('THEY KNOW THIS IS A BOT WATCHER!')
 

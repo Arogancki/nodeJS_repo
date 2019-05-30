@@ -1,0 +1,4 @@
+{
+	"main": "./Component.js",
+	"test": "./test.js"
+}
