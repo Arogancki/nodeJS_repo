@@ -1,6 +1,6 @@
 const rp = require('request-promise')
     , config = require('../config')
-    , Joi = require('Joi')
+    , Joi = require('joi')
     , schemes = require('../validators/schemes')
 
 module.exports = () => rp({
