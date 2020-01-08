@@ -2,8 +2,6 @@
 Application with aws services.
 Trace your movement and notify you when you enter some places
 
-Check it out on: http://mapreminder-env.x3jahuf9qs.eu-central-1.elasticbeanstalk.com/
-
 # routes 
 
 ##/sign-up - sign up a new account

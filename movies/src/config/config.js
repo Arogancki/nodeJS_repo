@@ -2,7 +2,7 @@ const path = require("path"),
     validators = require("./validators"),
     parsers = require("./parsers");
 
-exports.required = ["NODE_ENV", "PORT", "MONGO_CONNECTION_STRING", "API_KEY"];
+exports.required = ["NODE_ENV", "PORT", "MONGODB_URI", "API_KEY"];
 
 exports.optional = {
     LOG_LEVEL: "trace", // no, info, debug, trace

@@ -172,7 +172,7 @@ Environment variables are stored in .env file for all environment types or taken
 
 -   NODE_ENV - environment name
 -   PORT - server local tcp port
--   MONGO_CONNECTION_STRING - connection string to mongodb
+-   MONGODB_URI - connection string to mongodb
 -   API_KEY - api key for omdbapi
 
 ### Optional
@@ -205,7 +205,7 @@ npm start
 
 ### Docker
 
-no need to provide MONGO_CONNECTION_STRING  
+no need to provide MONGODB_URI  
 server PORT is set to 8080  
 to build:
 
