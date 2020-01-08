@@ -1,67 +1,70 @@
-const dotenv = require('dotenv')
-    , fs = require('fs-extra')
-    , requirements = require('./config')
-    , criticalError = require('../helpers/criticalError')
+const dotenv = require("dotenv"),
+    fs = require("fs-extra"),
+    requirements = require("./config"),
+    criticalError = require("../helpers/criticalError");
 
-let config = null
+let config = null;
 
-function init(){
-    config !== null && criticalError("Second inicialization of config object")
-    const configBuilder = {}
-    function setConfigBuilder(k, v){
-        if (configBuilder.hasOwnProperty(k)){
-            criticalError(`Environment variable ${k} has been already set`)
+function init() {
+    const configBuilder = {};
+
+    function validateEnvVar(key, value) {
+        if (configBuilder.hasOwnProperty(key)) {
+            criticalError(`Environment variable ${key} has been already set`);
         }
-        const parser = requirements.parsers[k]
-        const val = typeof parser === typeof (()=>{}) ? parser(v) : v
-        const validator = requirements.validators[k]
-        const error = typeof validator === typeof (()=>{}) && requirements.validators[k](val)
-        error && criticalError(`Invalid ${k}`, error)
-        configBuilder[k] = val
+
+        const parser = requirements.parsers[key];
+        const parsedValue = typeof parser === typeof (() => {}) ? parser(value) : value;
+        const validator = requirements.validators[key];
+        const error = typeof validator === typeof (() => {}) && requirements.validators[key](parsedValue);
+        error && criticalError(`Invalid ${key}`, error);
+        configBuilder[key] = parsedValue;
     }
 
-    const initialNodeEnv = process.env.NODE_ENV
-    dotenv.config()
-    if (initialNodeEnv){
-        process.env.NODE_ENV = initialNodeEnv
+    const initialNodeEnv = process.env.NODE_ENV;
+    dotenv.config();
+    if (initialNodeEnv) {
+        process.env.NODE_ENV = initialNodeEnv;
     }
 
-    if (!process.env.hasOwnProperty("NODE_ENV"))
-        criticalError(`Required environment variable NODE_ENV is not set`)
+    if (!process.env.hasOwnProperty("NODE_ENV")) {
+        criticalError(`Required environment variable NODE_ENV is not set`);
+    }
 
-    const envSpecificConfigFilePath = './.env_' + process.env.NODE_ENV
-    if (fs.existsSync(envSpecificConfigFilePath)){
+    const envSpecificConfigFilePath = "./.env_" + process.env.NODE_ENV;
+    if (fs.existsSync(envSpecificConfigFilePath)) {
         dotenv.config({
-            path: envSpecificConfigFilePath
-        })
+            path: envSpecificConfigFilePath,
+        });
     }
 
-    requirements.required.forEach(v=>{
-        if (!process.env.hasOwnProperty(v)){
-            criticalError(`Required environment variable ${v} is not set`)
+    requirements.required.forEach(requiredEnvKey => {
+        if (!process.env.hasOwnProperty(requiredEnvKey)) {
+            criticalError(`Required environment variable ${requiredEnvKey} is not set`);
         }
-        setConfigBuilder(v, process.env[v])
-    })
+        validateEnvVar(requiredEnvKey, process.env[requiredEnvKey]);
+    });
 
-    Object.keys(requirements.optional).forEach(k=>{
-        setConfigBuilder(k, process.env[k] || requirements.optional[k])
-    })
+    Object.keys(requirements.optional).forEach(optionalEnvKey => {
+        validateEnvVar(optionalEnvKey, process.env[optionalEnvKey] || requirements.optional[optionalEnvKey]);
+    });
 
-    return config = new Proxy(configBuilder, {
+    config = new Proxy(configBuilder, {
         get(target, k) {
-            if (!target.hasOwnProperty(k)){
-                criticalError(`Config variable ${k} is not set`)
+            if (!target.hasOwnProperty(k)) {
+                criticalError(`Config variable ${k} is not set`);
             }
-            return target[k]
+            return target[k];
         },
-        set(target, k){
-            criticalError(`cannot set config variables`)
+        set(target, k) {
+            criticalError(`cannot set config variables`);
         },
         deleteProperty(target, k) {
-            criticalError(`cannot delete config variables`)
-        }
-    })
+            criticalError(`cannot delete config variables`);
+        },
+    });
 
+    return config;
 }
 
-module.exports = config || init()
+module.exports = config || init();

@@ -1,11 +1,11 @@
 module.exports = {
     string2Int: s => +s,
-    toBoleanOrString: s=> { 
-        s = s.toLowerCase ? s.toLowerCase() : s
+    toBooleanOrString: s => {
+        s = String(s).toLowerCase();
         if (typeof s === typeof true) {
-            return s
+            return s;
         }
-        return s==='true'?true:s==='false'?false:s
+        return s === "true" ? true : s === "false" ? false : s;
     },
-    toLower: s => String(s).toLowerCase()
-}
+    toLower: s => String(s).toLowerCase(),
+};

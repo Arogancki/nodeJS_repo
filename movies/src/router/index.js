@@ -1,18 +1,17 @@
-const httpStatus = require('http-status-codes')
-    , createRouter = require('../helpers/createRouter')
-    , log = require('../helpers/log')
-    , getLocalRoutes = require('../helpers/getLocalRoutes')
-    , errorHandler = require('../helpers/errorHandler')
+const httpStatus = require("http-status-codes"),
+    Router = require("../common/Router"),
+    log = require("../helpers/log"),
+    errorHandler = require("../helpers/errorHandler");
 
-module.exports = app => {
-    const router = createRouter([], getLocalRoutes(app, __filename))
+module.exports = (app, routers) => {
+    const router = new Router([], routers);
 
-    router.use(function notFoundHandler(req, res, next){
-        res.sendStatus(httpStatus.NOT_FOUND)
-        return log.debug(`${httpStatus.NOT_FOUND} sent`)
-    })
+    router.use(function notFoundHandler(req, res, next) {
+        res.sendStatus(httpStatus.NOT_FOUND);
+        return log.debug(`${httpStatus.NOT_FOUND} sent`);
+    });
 
-    router.use(errorHandler)
-    
-    app.use(router)
-}
+    router.use(errorHandler);
+
+    app.use(router);
+};
