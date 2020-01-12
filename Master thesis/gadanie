@@ -1,0 +1,87 @@
+dzien dobry,
+temat jakim chcialem sie dzisiaj zajac na kotrym powstala moja praca magisterska to Analiza porownawcza wybranych frameworkow technologi nodejs, a moim Promotorem ktory pomogl mi z praca i procesem dyplomowania jest Piotr Blaszynski
+wybralem taki temat poniewaz na codzien mam kontakt w pracy zawodowej oraz jak i poprostu hobistycznie zajmuje sie technologiami js owymi szczecgolnie Nodem
+wiec bylo to dla mnie naturalne nastepstwo. chcialem poznac narzedzia ktorych nigdy nie mialem okazji dotknac i poznac cos nowego.
+wiec celem mojej pracy bylo przedstawienie roznic podobienst stosowanych konceptow ronych frameworkow technologi Nodejs i wskazac ktore nadaja sie najlepiej do okreslonych zastosowan
+
+krotko o samej techlologi
+node js jest to coss platformowe srodowisko, dzialajace w jezyku javaScript bazujace na jezyku c oraz bibliotece do komunikacji z os libuv.
+poczatkowo byla przeznaczona do pisania glownie aplikacji backendowych w tym momencie jest stosowana w wielu innych dziedzinach takich jak front (ssr), embeded, desktop czy mobilnych. Dzieki zastowaniu js mozemy pozwolic sobie na bardzo duza dowolnosc co jednoczesnie wprowadza pewne niespojnosci i wieloostaciowosci standardow wiec warto korzystac ze znanych narzedzi frameworkow w celu standaryzaji aplikajci czy kodu
+
+same frameworki
+sa to narzdedzia ktore zapewniaja nam okresolne funkcjonalnosci bez potrzeby ich pisania od zera czesto narzudzaja pewne schematy architektury aplikacji, pozwalaja na latwiejsze wdrozenia w przypadku kiedy technologia jest przez kogos juz znana oraz dostarczajaa pewnego rodzaju standardow rozwiazan. tendencja frameworkow sprawaia ze sa bardziej easy to use and possible to extend, mniej zrobic aby sprostac podstawowym oczekiwania z mozliwoscia jak najszerszego rozszerzania
+
+frameworki i kultura
+kultura js jest wyjatkowo dynamiczna w swieie programowania pewnie w trakcjie tej obrony powstaly ze 2 frameworki do pisania (zart hehe) wiec wymusza na programistach ciagla adaptacjie do zmian i nauke. technologia zastepuje technologie ale proces ten ma na celu tylko ulatiwnie zycia programistow i ulatwienie procesu deweloperskicgo wiec zawsze warto miec to na uwadze kiedy juz rece opadaja przy nauce nowcyh nardzediz
+
+na potrzebe pracy musialem wybrac pare frameworkow
+a tak jak to mowilem jest to zadanie trudne poniewaz nardzedzi jest od groma
+glownym kryterium wyboru poniewaz staralem sie zrobic to tak jak by zrobila to osoboa ktora nie ma pojecia o srodowisku co jest najlepsze modne etc
+bylo popularnosc. googlowalelm szukalem na githbuie oraz popularnych forach czy artykulach jakie rozwiazania sie stosuje i wybralem z nich pare najpopularniejszych
+
+na koniec postanoiwlem wybrac 3 najbardziej widoczne dla spolecznosci tzn
+express najbardziej popularny, nie narzucajacy zadnej architektury (chociaz sa pewne konwencje wypracowane przez spolecznosc) bardzo elastyczny framework do tworzenia backendow lub aplikacji fullstack lub narzedzi systemowych czy sieciowych.
+
+metoer - framework izofromiczny czyli kod ten sam kod dziala po stronie be i fe. stworzony do tworzenia jedna baza kodu aplikacji na ios android i web. odchodzi troche od tradycyjnych narzdedzi nodejs jak packagemenagrzer na rzefczy wlasnych rozwiazan.
+
+sails - framework mvc do naprawde prostego nie wymagajacego duzej wiedzy programistycznej frameworkow, oparty na expressie, posiada scisla architekture a glownym zalozeniem jest konfiguracja ponad programowanie
+
+na co zwrocilem uwage przy porownywaniu
+w celu poronania stworzylem prosta aplikacje zawierajaca rozne podstawowe funkcjonalnosci serisow internetowych w kazdym frameworku
+pod uwage przy analizie porownawczej wzialem rozne parametry ktorym nadalem rozna wage tzn
+popularnosc oznaczajaca wsparcie utrzymanie	
+rozmiar majacy wplyw na wielkosc koncowego produktu
+dokumentacja nie musze mowic czemu	
+prog wejscia - wazny przy wdrazaniu oraz utrzymaniu aplikacji
+warstwa widoku - synchronizacja z warstwa widoku aplikacji, w przypadku narzedzi be mniej wazna ale latwosc integacji z nia ma znaczenie
+warstwa bazy danych - jakie sa zastosowane koncepty bazo daowe
+ilosc kodu - przeklada sie na koszt czas pracy
+rozszerzalnsoc - czyli mozeliwosci frammeworku funckjonalnosci
+testowanie - metody zapewnionego testowania kodu 
+testy sprawnosciowe - wydajosc przy kolejnych zapytaniach
+testy obciazeniowe - wydajnosc przy rownoleglym obciazeniem
+
+dobrze wiec jak juz znamy podstwe moich badan moge powiedziec ze same badania poszly bardzo sprawnie zaczynalem od zapoznania z dokumentacja przykladowymi aplikacjiami na github a nastepnie pisalem moja aplikacje nastepnie testy i sprawdzalem testy wytrzymaloscioe sprawnosciowe
+
+mysle ze najbardziej interesprog wejscaujace sa rezultaty wiec do nich przejdzmy
+popularnosc
+express jest tutaj bezkonkurencyjy
+meteor ma bardzo silna spolecznosc mniej zastosowan komercyjnych
+sails ciagle traktowany jako nowosc ciekawostka
+
+rozmiar tutaj nie ma ciekawych poprostu porownianie rozmirow
+
+dokumentacja wszystko posiadaja naprade bardzo dobrze opisane dokumentacje pelne przykladow i szerokich opsiow express mimo wszystko najmniejsza 
+
+prog wejscia - express rosnie z projektem poniewaz braku standarodw architektury, sails jest zawsze maly meteror poniewaz posiada kompeltne wlasne srodowisko uruchomieniowe nardzie i koncepty jest najwyzszy
+
+widok
+express i sails - wspieraja ogromna ilosc silikow do ssr oraz wspracie dla biliotek frntendowych
+meteor wlasne rozwiazanie ktore bardzo spojnie wiaze be i fe cos niecodziennego przez sockety aktualizowi sa w 1 momentcie wszyscy klienci bez zadnej interkacji programisty 
+
+baza danych
+express brak wspracia wszstyko na programiste
+sails - uzywa boblioteki waterline do unifikacji dostepu do roznyhc baz danych
+meteor - wpolpraca tylko z mongodb na ten moment ale bardzo silne dowiazanie kodu i bazy danuch brak potrzeby integracji programisty korzystanie z obserwatorow
+
+ilsoc kodu
+tu nie ma co omawiac tylko poprostu porownanie wytworzonych lin kodu
+
+rozszerzalnosc
+express zaleznie od doswiadczenia preogramistow
+sails - zgodnie ze sztywna architekotra ale latwa do rozszerzalnia
+meteor - podobnie jak express ale troche bardziej prowadzi za eke
+
+testowanie
+wszstkie rozwiazanie podobnie wskazuja najbadziej popularnne metody testowania ale nie dostraczaja metod fixturow czy mockow
+
+testy sprawdnosciowe i obciazeniowe
+tutaj na zywe wyniki, porownanie czasow doslownie 0 express prawie dwukrotnie przewyzszyl konkurentow
+
+podusmowanie
+express swietne wyniki wydajnosciowe ale wymaga doswiadczenia, lepiej dziala w architektorze mikroserisowych 
+meteor - wysokozautomatyzowany bardzo szybkie wytwarzanie prototypow aplikacji startupow, lub niewielkich aplikacji mobilnych, poniewaz przy wzroscie ruchu znacznie cierpi jego efektywanosc
+sails - wygral w wynikach poprzez otrzymywanie glownie usrednionych ocen, najbardziej uniwersalny framework, ale dostrcza metody ogromnej rozszerzalnosci w prosty sprosb
+
+pomimo ze prace pisalem rok temu wyniki sa nadal aktualne, byc moze w tym momencie wybral bym inne frameworki jak nest czy next ktore bardzo zyskaly w ostatnim roku 
+praca sprawila ze wile sie nauczylem o tych rozwiazanich i jesli nawet nie w zyciu zawodowych to prywatnie stanowia bardzo fajne rozwiazania

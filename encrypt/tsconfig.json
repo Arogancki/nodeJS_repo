@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "es2017",
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "strictNullChecks": true,
+        "outDir": "./dist",
+        "experimentalDecorators": true,
+        "strict": true,
+        "noImplicitReturns": false,
+        "noFallthroughCasesInSwitch": true,
+        "esModuleInterop": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
+    },
+    "exclude": ["tests/**/*"]
+}
