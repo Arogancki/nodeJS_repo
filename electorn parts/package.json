@@ -2,6 +2,6 @@
   "name": "",
   "version": "",
   "dependencies": {
-    "electron": "^1.8.3"
+    "electron": "^9.4.0"
   }
 }
