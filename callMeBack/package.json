@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "jsdom": "^9.4.1",
+    "jsdom": "^16.5.0",
     "mocha": "^2.5.3",
     "mocha-jsdom": "^1.1.0",
     "nyc": "^13.1.0",
