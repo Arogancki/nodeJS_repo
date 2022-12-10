@@ -13,7 +13,7 @@
   "author": "Artur Ziemba",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "celebrate": "^9.0.2",
     "chai": "^4.1.2",
     "colors": "^1.3.3",
@@ -21,7 +21,7 @@
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "express-rate-limit": "^3.3.2",
     "express-session": "^1.15.6",
     "fs-extra": "^7.0.1",
